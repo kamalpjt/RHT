@@ -21,6 +21,16 @@ class BaseViewController: UIViewController {
         
         view.backgroundColor = color;
     }
+    func CloseKeyboard(bool:Bool) -> Void {
+        if(bool){
+           // view.endEditing(true);
+            let tap = UITapGestureRecognizer(target: self, action:#selector(handleTap))
+            self.view.addGestureRecognizer(tap)
+        }
+    }
+    @objc func handleTap(sender: UITapGestureRecognizer) {
+        self.view.endEditing(true)
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

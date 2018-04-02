@@ -15,20 +15,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        setNavigationBar()
+        
         self.window?.rootViewController = showLaunchScreen()
+        setNavigationBar()
         return true
     }
     
     func showLaunchScreen() -> UIViewController {
         let storyboard:UIStoryboard = UIStoryboard.init(name: "Login", bundle: Bundle.main)
         let rootViewController = storyboard.instantiateViewController(withIdentifier: "LoginViewController")
-        return rootViewController;
+         let navController = UINavigationController(rootViewController: rootViewController)
+        return navController;
     }
     func setNavigationBar() -> Void {
-        UINavigationBar.appearance().tintColor = AppConstant.sharedInstance.backGroundColor;
+        UINavigationBar.appearance().tintColor = UIColor.white;
         UINavigationBar.appearance().backgroundColor = AppConstant.sharedInstance.backGroundColor;
+        UINavigationBar.appearance().barTintColor = AppConstant.sharedInstance.backGroundColor;
         UINavigationBar.appearance().isTranslucent = false;
+        let attributes = [NSAttributedStringKey.font : UIFont.boldSystemFont(ofSize: 17), NSAttributedStringKey.foregroundColor : UIColor.white]
+        UINavigationBar.appearance().titleTextAttributes = attributes;
     }
     func applicationWillResignActive(_ application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
