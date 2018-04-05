@@ -509,11 +509,11 @@
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ea8-zH-Ddo">
                                                         <rect key="frame" x="52" y="0.0" width="144" height="48.5"/>
-                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <color key="backgroundColor" red="0.87843137250000003" green="0.20392156859999999" blue="0.2901960784" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                         <inset key="titleEdgeInsets" minX="0.0" minY="0.0" maxX="-38" maxY="0.0"/>
                                                         <inset key="imageEdgeInsets" minX="3" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                                        <state key="normal" image="Login">
+                                                        <state key="normal">
                                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </state>
                                                     </button>
@@ -526,7 +526,7 @@
                                                     <constraint firstItem="Ea8-zH-Ddo" firstAttribute="top" secondItem="Lrv-fd-XbG" secondAttribute="top" id="pxs-ky-w1G"/>
                                                 </constraints>
                                             </view>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Or" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TaE-50-Jlb">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="or" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TaE-50-Jlb">
                                                 <rect key="frame" x="0.0" y="373.5" width="288" height="15"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <nil key="textColor"/>
@@ -688,6 +688,7 @@
                     <navigationItem key="navigationItem" id="FGt-yp-4by"/>
                     <connections>
                         <outlet property="butForgotPassowrd" destination="gjJ-Jf-Ezj" id="LaN-iI-AUD"/>
+                        <outlet property="butLogin" destination="Ea8-zH-Ddo" id="XZC-9n-WIm"/>
                         <outlet property="txtPassowrd" destination="UAt-bF-CWB" id="mjn-Q3-DPa"/>
                         <outlet property="txtemail" destination="jvZ-29-euA" id="Wcu-FG-Vo4"/>
                         <outlet property="vEmail" destination="ADN-Zu-pSx" id="Okv-vf-rp3"/>
@@ -698,7 +699,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ejk-T2-RXM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-3823" y="-2024"/>
+            <point key="canvasLocation" x="-4296" y="-1989"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="UFy-pZ-gCr">

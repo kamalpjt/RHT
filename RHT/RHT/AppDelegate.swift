@@ -22,7 +22,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func showLaunchScreen() -> UIViewController {
-        let storyboard:UIStoryboard = UIStoryboard.init(name: "Login", bundle: Bundle.main)
+        var storyboard:UIStoryboard ;
+        if ShareData.isIpad(){
+             storyboard = UIStoryboard.init(name: "Loginipad", bundle: Bundle.main)
+        }else{
+            storyboard = UIStoryboard.init(name: "Login", bundle: Bundle.main)
+        }
+    
         let rootViewController = storyboard.instantiateViewController(withIdentifier: "LoginViewController")
          let navController = UINavigationController(rootViewController: rootViewController)
         return navController;

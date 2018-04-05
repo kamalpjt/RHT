@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A90BF6572075F644007B8F2B /* RHTBridgeHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = A90BF6562075F644007B8F2B /* RHTBridgeHeader.m */; };
+		A90BF65B2075F6AB007B8F2B /* RESideMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = A90BF65A2075F6AB007B8F2B /* RESideMenu.m */; };
+		A90BF65E2075F6D1007B8F2B /* UIViewController+RESideMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = A90BF65D2075F6D1007B8F2B /* UIViewController+RESideMenu.m */; };
 		A914484120700A960031AD30 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A914484020700A960031AD30 /* HomeViewController.swift */; };
 		A914484320700E650031AD30 /* HomeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A914484220700E650031AD30 /* HomeCollectionViewCell.swift */; };
 		A916538E206E759C0029FFE1 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = A916538D206E759C0029FFE1 /* CustomTextField.swift */; };
@@ -43,6 +46,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		A90BF6552075F644007B8F2B /* RHT-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "RHT-Bridging-Header.h"; sourceTree = "<group>"; };
+		A90BF6562075F644007B8F2B /* RHTBridgeHeader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RHTBridgeHeader.m; sourceTree = "<group>"; };
+		A90BF6592075F695007B8F2B /* RESideMenu.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RESideMenu.h; sourceTree = "<group>"; };
+		A90BF65A2075F6AB007B8F2B /* RESideMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RESideMenu.m; sourceTree = "<group>"; };
+		A90BF65C2075F6C9007B8F2B /* UIViewController+RESideMenu.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIViewController+RESideMenu.h"; sourceTree = "<group>"; };
+		A90BF65D2075F6D1007B8F2B /* UIViewController+RESideMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+RESideMenu.m"; sourceTree = "<group>"; };
 		A914484020700A960031AD30 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		A914484220700E650031AD30 /* HomeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCollectionViewCell.swift; sourceTree = "<group>"; };
 		A916538D206E759C0029FFE1 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
@@ -92,13 +101,26 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A90BF6582075F65B007B8F2B /* SideMenu */ = {
+			isa = PBXGroup;
+			children = (
+				A90BF65C2075F6C9007B8F2B /* UIViewController+RESideMenu.h */,
+				A90BF65D2075F6D1007B8F2B /* UIViewController+RESideMenu.m */,
+				A90BF6592075F695007B8F2B /* RESideMenu.h */,
+				A90BF65A2075F6AB007B8F2B /* RESideMenu.m */,
+			);
+			path = SideMenu;
+			sourceTree = "<group>";
+		};
 		A918243E206CBB2000B358D8 = {
 			isa = PBXGroup;
 			children = (
+				A90BF6562075F644007B8F2B /* RHTBridgeHeader.m */,
 				A9182449206CBB2000B358D8 /* RHT */,
 				A918245E206CBB2000B358D8 /* RHTTests */,
 				A9182469206CBB2000B358D8 /* RHTUITests */,
 				A9182448206CBB2000B358D8 /* Products */,
+				A90BF6552075F644007B8F2B /* RHT-Bridging-Header.h */,
 			);
 			sourceTree = "<group>";
 		};
@@ -115,6 +137,7 @@
 		A9182449206CBB2000B358D8 /* RHT */ = {
 			isa = PBXGroup;
 			children = (
+				A90BF6582075F65B007B8F2B /* SideMenu */,
 				A9182484206CC48400B358D8 /* ShareClass */,
 				A918247C206CBD0B00B358D8 /* Login */,
 				A918244A206CBB2000B358D8 /* AppDelegate.swift */,
@@ -260,6 +283,7 @@
 				TargetAttributes = {
 					A9182446206CBB2000B358D8 = {
 						CreatedOnToolsVersion = 9.2;
+						LastSwiftMigration = 0920;
 						ProvisioningStyle = Automatic;
 					};
 					A918245A206CBB2000B358D8 = {
@@ -331,7 +355,10 @@
 				A916538E206E759C0029FFE1 /* CustomTextField.swift in Sources */,
 				A9182488206CC4EC00B358D8 /* SharedData.swift in Sources */,
 				A918248A206CC50500B358D8 /* AppConstant.swift in Sources */,
+				A90BF65B2075F6AB007B8F2B /* RESideMenu.m in Sources */,
 				A914484120700A960031AD30 /* HomeViewController.swift in Sources */,
+				A90BF65E2075F6D1007B8F2B /* UIViewController+RESideMenu.m in Sources */,
+				A90BF6572075F644007B8F2B /* RHTBridgeHeader.m in Sources */,
 				A9182483206CBF6500B358D8 /* LoginViewController.swift in Sources */,
 				A914484320700E650031AD30 /* HomeCollectionViewCell.swift in Sources */,
 				A918248E206CD09800B358D8 /* RegisterViewController.swift in Sources */,
@@ -494,6 +521,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer: kamalelango15@gmail.com (4W8Z798JZ5)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
@@ -504,6 +532,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = rht.RHs;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "RHT-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -513,6 +543,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer: kamalelango15@gmail.com (4W8Z798JZ5)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
@@ -523,6 +554,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = rht.RHs;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "RHT-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

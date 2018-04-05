@@ -10,6 +10,7 @@ import UIKit
 
 class LoginViewController: BaseViewController,UITextFieldDelegate {
     
+    @IBOutlet weak var butLogin: UIButton!
     @IBOutlet weak var butForgotPassowrd: UIButton!
     @IBOutlet weak var txtPassowrd: UITextField!
     @IBOutlet weak var txtemail: UITextField!
@@ -36,6 +37,7 @@ class LoginViewController: BaseViewController,UITextFieldDelegate {
         SetBackGroundColor(color: AppConstant.sharedInstance.backGroundColor)
         ShareData.sharedInstance.SetCornerRadius(view: vLogin, radius: 15);
         ShareData.sharedInstance.SetCornerRadius(view: vShadowView, radius: 15)
+        ShareData.sharedInstance.SetCornerRadiusButton(view: butLogin, radius: 15)
         ShareData.sharedInstance.DrawBorder(view: vEmail, color: AppConstant.sharedInstance.viewEmailBoder);
         if ShareData.isIPhone5() {
             ShareData.sharedInstance.SetCornerRadius(view: vEmail, radius: 18)
@@ -76,7 +78,14 @@ class LoginViewController: BaseViewController,UITextFieldDelegate {
     }
     
     @IBAction func RegisterButton(_ sender: Any) {
-        let storyboardLogin = UIStoryboard(name: "Login", bundle: nil)
+        var storyboardLogin:UIStoryboard;
+        if ShareData.isIpad()
+        {
+             storyboardLogin = UIStoryboard(name: "Loginipad", bundle: nil)
+        }else{
+             storyboardLogin = UIStoryboard(name: "Login", bundle: nil)
+        }
+       
         let VC1 = storyboardLogin.instantiateViewController(withIdentifier: "RegisterViewController") as! RegisterViewController
         self.navigationController?.pushViewController(VC1, animated: true)
     }
