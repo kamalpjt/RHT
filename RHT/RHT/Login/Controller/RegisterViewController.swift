@@ -33,9 +33,20 @@ class RegisterViewController: BaseViewController {
         print("Button tapped")
     }
     @IBAction func RegisterAction(_ sender: Any) {
-        let storyboardLogin = UIStoryboard(name: "Login", bundle: nil)
-        let VC1 = storyboardLogin.instantiateViewController(withIdentifier: "HomeViewController") as! HomeViewController
-        self.navigationController?.pushViewController(VC1, animated: true)
+      let storyboardLogin = UIStoryboard(name: "Login", bundle: nil)
+      let VC1 = storyboardLogin.instantiateViewController(withIdentifier: "HomeViewController") as! HomeViewController
+//        self.navigationController?.pushViewController(VC1, animated: true)
+        
+        let navi = UINavigationController.init(rootViewController: VC1)
+        
+        
+        let  leftmenu = storyboardLogin.instantiateViewController(withIdentifier: "LoginViewController") as! LoginViewController
+        
+        let resdidemenu = RESideMenu.init(contentViewController: navi, leftMenuViewController: leftmenu, rightMenuViewController: nil)
+        
+        UIApplication.shared.keyWindow?.rootViewController  = resdidemenu;
+        
+        
         
     }
     override func didReceiveMemoryWarning() {
