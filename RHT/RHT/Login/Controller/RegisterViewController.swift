@@ -21,11 +21,17 @@ class RegisterViewController: BaseViewController {
         ShareData.sharedInstance.SetCornerRadius(view: vRegister, radius: 15);
         ShareData.sharedInstance.SetCornerRadius(view: vShadowView, radius: 15)
         vShadowView.bringSubview(toFront: vRegister)
-     // SetBackGroundColor(color: AppConstant.sharedInstance.backGroundColor)
+        
+    navigationItem.leftBarButtonItems = [SharedNavigation.sharedInstance.menuButton()]
+        SharedNavigation.sharedInstance.menuButton().target  = "menuAction" as AnyObject
         
         // Do any additional setup after loading the view.
     }
 
+    @objc func buttonAction(_ sender:UIButton!)
+    {
+        print("Button tapped")
+    }
     @IBAction func RegisterAction(_ sender: Any) {
         let storyboardLogin = UIStoryboard(name: "Login", bundle: nil)
         let VC1 = storyboardLogin.instantiateViewController(withIdentifier: "HomeViewController") as! HomeViewController

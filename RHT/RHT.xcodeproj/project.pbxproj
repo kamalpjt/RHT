@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		A90BF6572075F644007B8F2B /* RHTBridgeHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = A90BF6562075F644007B8F2B /* RHTBridgeHeader.m */; };
 		A90BF65B2075F6AB007B8F2B /* RESideMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = A90BF65A2075F6AB007B8F2B /* RESideMenu.m */; };
 		A90BF65E2075F6D1007B8F2B /* UIViewController+RESideMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = A90BF65D2075F6D1007B8F2B /* UIViewController+RESideMenu.m */; };
 		A914484120700A960031AD30 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A914484020700A960031AD30 /* HomeViewController.swift */; };
@@ -26,6 +25,8 @@
 		A918248C206CCA5900B358D8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A918248B206CCA5900B358D8 /* Main.storyboard */; };
 		A918248E206CD09800B358D8 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A918248D206CD09800B358D8 /* RegisterViewController.swift */; };
 		A91E87ED207115C1006AF73D /* Loginipad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A91E87EC207115C1006AF73D /* Loginipad.storyboard */; };
+		A921F83220774C120042738A /* RECommonFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = A921F83120774C120042738A /* RECommonFunctions.m */; };
+		A921F835207755640042738A /* SharedNavigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A921F834207755640042738A /* SharedNavigation.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,8 +47,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		A90BF6552075F644007B8F2B /* RHT-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "RHT-Bridging-Header.h"; sourceTree = "<group>"; };
-		A90BF6562075F644007B8F2B /* RHTBridgeHeader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RHTBridgeHeader.m; sourceTree = "<group>"; };
 		A90BF6592075F695007B8F2B /* RESideMenu.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RESideMenu.h; sourceTree = "<group>"; };
 		A90BF65A2075F6AB007B8F2B /* RESideMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RESideMenu.m; sourceTree = "<group>"; };
 		A90BF65C2075F6C9007B8F2B /* UIViewController+RESideMenu.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIViewController+RESideMenu.h"; sourceTree = "<group>"; };
@@ -74,6 +73,10 @@
 		A918248B206CCA5900B358D8 /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		A918248D206CD09800B358D8 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		A91E87EC207115C1006AF73D /* Loginipad.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Loginipad.storyboard; sourceTree = "<group>"; };
+		A921F83020774C080042738A /* RECommonFunctions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RECommonFunctions.h; sourceTree = "<group>"; };
+		A921F83120774C120042738A /* RECommonFunctions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RECommonFunctions.m; sourceTree = "<group>"; };
+		A921F83320774DD60042738A /* RHT-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "RHT-Bridging-Header.h"; sourceTree = "<group>"; };
+		A921F834207755640042738A /* SharedNavigation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedNavigation.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,6 +107,8 @@
 		A90BF6582075F65B007B8F2B /* SideMenu */ = {
 			isa = PBXGroup;
 			children = (
+				A921F83020774C080042738A /* RECommonFunctions.h */,
+				A921F83120774C120042738A /* RECommonFunctions.m */,
 				A90BF65C2075F6C9007B8F2B /* UIViewController+RESideMenu.h */,
 				A90BF65D2075F6D1007B8F2B /* UIViewController+RESideMenu.m */,
 				A90BF6592075F695007B8F2B /* RESideMenu.h */,
@@ -115,12 +120,10 @@
 		A918243E206CBB2000B358D8 = {
 			isa = PBXGroup;
 			children = (
-				A90BF6562075F644007B8F2B /* RHTBridgeHeader.m */,
 				A9182449206CBB2000B358D8 /* RHT */,
 				A918245E206CBB2000B358D8 /* RHTTests */,
 				A9182469206CBB2000B358D8 /* RHTUITests */,
 				A9182448206CBB2000B358D8 /* Products */,
-				A90BF6552075F644007B8F2B /* RHT-Bridging-Header.h */,
 			);
 			sourceTree = "<group>";
 		};
@@ -144,6 +147,7 @@
 				A9182451206CBB2000B358D8 /* Assets.xcassets */,
 				A9182453206CBB2000B358D8 /* LaunchScreen.storyboard */,
 				A9182456206CBB2000B358D8 /* Info.plist */,
+				A921F83320774DD60042738A /* RHT-Bridging-Header.h */,
 			);
 			path = RHT;
 			sourceTree = "<group>";
@@ -211,6 +215,7 @@
 				A9182487206CC4EC00B358D8 /* SharedData.swift */,
 				A9182489206CC50500B358D8 /* AppConstant.swift */,
 				A916538D206E759C0029FFE1 /* CustomTextField.swift */,
+				A921F834207755640042738A /* SharedNavigation.swift */,
 			);
 			path = ShareClass;
 			sourceTree = "<group>";
@@ -358,8 +363,9 @@
 				A90BF65B2075F6AB007B8F2B /* RESideMenu.m in Sources */,
 				A914484120700A960031AD30 /* HomeViewController.swift in Sources */,
 				A90BF65E2075F6D1007B8F2B /* UIViewController+RESideMenu.m in Sources */,
-				A90BF6572075F644007B8F2B /* RHTBridgeHeader.m in Sources */,
+				A921F835207755640042738A /* SharedNavigation.swift in Sources */,
 				A9182483206CBF6500B358D8 /* LoginViewController.swift in Sources */,
+				A921F83220774C120042738A /* RECommonFunctions.m in Sources */,
 				A914484320700E650031AD30 /* HomeCollectionViewCell.swift in Sources */,
 				A918248E206CD09800B358D8 /* RegisterViewController.swift in Sources */,
 				A918244B206CBB2000B358D8 /* AppDelegate.swift in Sources */,
@@ -532,7 +538,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = rht.RHs;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_OBJC_BRIDGING_HEADER = "RHT-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "RHT/RHT-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -554,7 +560,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = rht.RHs;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_OBJC_BRIDGING_HEADER = "RHT-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "RHT/RHT-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

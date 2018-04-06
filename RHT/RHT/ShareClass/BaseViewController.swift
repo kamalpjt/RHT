@@ -18,9 +18,9 @@ class BaseViewController: UIViewController {
     }
     
     func  SetBackGroundColor(color: UIColor) -> Void {
-        
         view.backgroundColor = color;
     }
+    
     func CloseKeyboard(bool:Bool) -> Void {
         if(bool){
            // view.endEditing(true);
@@ -36,7 +36,19 @@ class BaseViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
+    func menuButton() -> UIBarButtonItem {
+        
+        let menuButton = UIButton.init(type: UIButtonType.custom)
+        menuButton.setImage(UIImage.init(named: "menu"), for: UIControlState.normal)
+        //menuButton.addTarget(self, action:Selector(buttonAction(_sender: UIButton)) , for: UIControlEvents.touchUpInside)
+        menuButton.contentEdgeInsets = UIEdgeInsetsMake(0, 0, 0, 0)
+        menuButton.frame = CGRect(x: 0, y: 0, width: 24, height: 24)
+        // menuButton.contentMode = UIViewContentMode.right
+        let barbutton = UIBarButtonItem.init(customView: menuButton)
+        // barbutton.bac
+        return barbutton
+        //return barbutton;
+    }
 
     /*
     // MARK: - Navigation
