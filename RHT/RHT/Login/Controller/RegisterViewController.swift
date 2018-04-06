@@ -21,10 +21,6 @@ class RegisterViewController: BaseViewController {
         ShareData.sharedInstance.SetCornerRadius(view: vRegister, radius: 15);
         ShareData.sharedInstance.SetCornerRadius(view: vShadowView, radius: 15)
         vShadowView.bringSubview(toFront: vRegister)
-        
-    navigationItem.leftBarButtonItems = [SharedNavigation.sharedInstance.menuButton()]
-        SharedNavigation.sharedInstance.menuButton().target  = "menuAction" as AnyObject
-        
         // Do any additional setup after loading the view.
     }
 
