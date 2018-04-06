@@ -30,8 +30,8 @@ class HomeViewController: UIViewController,UICollectionViewDataSource,UICollecti
         CollectionModel.append("Annonce")
         CollectionModel.append("File")
         CollectionModel.append("note")
-        navigationItem.leftBarButtonItems = [SharedNavigation.sharedInstance.menuButton()]
-       //  navigationItem.leftBarButtonItems = [menuButton()]
+       // navigationItem.leftBarButtonItems = [SharedNavigation.sharedInstance.menuButton()]
+         navigationItem.leftBarButtonItems = [menuButton()]
         // Do any additional setup after loading the view.
         
     }
