@@ -14,7 +14,7 @@ struct ListMdoel {
     
 }
 
-class HomeViewController: UIViewController,UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout {
+class HomeViewController: BaseViewController,UICollectionViewDataSource,UICollectionViewDelegate {
     @IBOutlet weak var homeCollectionView: UICollectionView!
     
     var CollectionModel:[String] = [];
@@ -35,50 +35,41 @@ class HomeViewController: UIViewController,UICollectionViewDataSource,UICollecti
         // Do any additional setup after loading the view.
         
     }
-    func menuButton() -> UIBarButtonItem{
-        let menuButton = UIButton.init(type: UIButtonType.custom)
-        menuButton.setImage(UIImage.init(named: "menu"), for: UIControlState.normal)
-        menuButton.addTarget(self, action:#selector(presentLeftMenuViewController(_:)), for: UIControlEvents.touchUpInside)
-        menuButton.contentEdgeInsets = UIEdgeInsetsMake(0, 0, 0, 0)
-        menuButton.frame = CGRect(x: 0, y: 0, width: 40, height: 40)
-        menuButton.contentMode = UIViewContentMode.right
-        let barbutton = UIBarButtonItem.init(customView: menuButton)
-        return barbutton
-    }
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return CollectionModel.count
     }
  
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        
-        if ShareData.isIPhone5() {
-            return 140
-        }else if ShareData.isIPhone6() {
-            return 0
-        }else if ShareData.isIPhone6Plus(){
-            return 0
-        }else if ShareData.isIPhoneX(){
-            return 10
-        }else{
-            return 0
-        }
-        
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        
-            if ShareData.isIPhone5() {
-                 return CGSize(width: 150, height: 150);
-            }else if ShareData.isIPhone6() {
-                 return CGSize(width: 170, height: 150);
-            }else if ShareData.isIPhone6Plus(){
-                 return CGSize(width: 120, height: 100);
-            }else if ShareData.isIPhoneX(){
-                 return CGSize(width: 170, height: 150);
-            }else{
-                return CGSize(width: 180, height: 180);
-            }
-    }
+//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+//
+//        if ShareData.isIPhone5() {
+//            return 140
+//        }else if ShareData.isIPhone6() {
+//            return 0
+//        }else if ShareData.isIPhone6Plus(){
+//            return 0
+//        }else if ShareData.isIPhoneX(){
+//            return 10
+//        }else{
+//            return 0
+//        }
+//
+//    }
+//
+//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+//
+//            if ShareData.isIPhone5() {
+//                 return CGSize(width: 150, height: 150);
+//            }else if ShareData.isIPhone6() {
+//                 return CGSize(width: 170, height: 150);
+//            }else if ShareData.isIPhone6Plus(){
+//                 return CGSize(width: 120, height: 100);
+//            }else if ShareData.isIPhoneX(){
+//                 return CGSize(width: 170, height: 150);
+//            }else{
+//                return CGSize(width: 180, height: 180);
+//            }
+//    }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "HomeCollectionViewCell", for: indexPath) as! HomeCollectionViewCell

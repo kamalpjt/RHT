@@ -36,18 +36,30 @@ class BaseViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    func menuButton() -> UIBarButtonItem {
-        
+    func menuButton() -> UIBarButtonItem{
         let menuButton = UIButton.init(type: UIButtonType.custom)
         menuButton.setImage(UIImage.init(named: "menu"), for: UIControlState.normal)
-        //menuButton.addTarget(self, action:Selector(buttonAction(_sender: UIButton)) , for: UIControlEvents.touchUpInside)
+        menuButton.addTarget(self, action:#selector(presentLeftMenuViewController(_:)), for: UIControlEvents.touchUpInside)
         menuButton.contentEdgeInsets = UIEdgeInsetsMake(0, 0, 0, 0)
-        menuButton.frame = CGRect(x: 0, y: 0, width: 24, height: 24)
-        // menuButton.contentMode = UIViewContentMode.right
+        menuButton.frame = CGRect(x: 0, y: 0, width: 40, height: 40)
+        menuButton.contentMode = UIViewContentMode.right
         let barbutton = UIBarButtonItem.init(customView: menuButton)
-        // barbutton.bac
         return barbutton
-        //return barbutton;
+    }
+    func SetResidemenu() -> Void {
+        let storyboardLogin:UIStoryboard;
+            storyboardLogin = UIStoryboard(name: "Login", bundle: nil)
+//        if !ShareData.isIpad() {
+//        
+//        }else{
+//            storyboardLogin = UIStoryboard(name: "Loginipad", bundle: nil)
+//        }
+        
+        let VC1 = storyboardLogin.instantiateViewController(withIdentifier: "HomeViewController") as! HomeViewController
+        let navi = UINavigationController.init(rootViewController: VC1)
+        let  leftmenu = storyboardLogin.instantiateViewController(withIdentifier: "SettingViewController") as! SettingViewController
+        let resdidemenu = RESideMenu.init(contentViewController: navi, leftMenuViewController: leftmenu, rightMenuViewController: nil)
+        UIApplication.shared.keyWindow?.rootViewController  = resdidemenu;
     }
 
     /*

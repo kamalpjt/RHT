@@ -7,9 +7,12 @@
 //
 
 import UIKit
+import GoogleSignIn
 
-class LoginViewController: BaseViewController,UITextFieldDelegate {
-    
+class LoginViewController: BaseViewController,UITextFieldDelegate,GIDSignInDelegate,GIDSignInUIDelegate {
+   
+    @IBOutlet weak var vFacebook: UIView!
+    @IBOutlet weak var vGoogle: UIView!
     @IBOutlet weak var butLogin: UIButton!
     @IBOutlet weak var butForgotPassowrd: UIButton!
     @IBOutlet weak var txtPassowrd: UITextField!
@@ -23,6 +26,12 @@ class LoginViewController: BaseViewController,UITextFieldDelegate {
         SetUpView()
         SetTextFieldImage()
         CloseKeyboard(bool: true);
+        let tapgoogle = UITapGestureRecognizer(target: self, action:#selector(GoogleTap))
+        tapgoogle.numberOfTapsRequired=1;
+       vGoogle.addGestureRecognizer(tapgoogle)
+        let tapfacebook = UITapGestureRecognizer(target: self, action:#selector(FacebookTap))
+        tapfacebook.numberOfTapsRequired=1;
+        vFacebook.addGestureRecognizer(tapfacebook)
         
         // Do any additional setup after loading the view.
     }
@@ -37,7 +46,7 @@ class LoginViewController: BaseViewController,UITextFieldDelegate {
         SetBackGroundColor(color: AppConstant.sharedInstance.backGroundColor)
         ShareData.sharedInstance.SetCornerRadius(view: vLogin, radius: 15);
         ShareData.sharedInstance.SetCornerRadius(view: vShadowView, radius: 15)
-        ShareData.sharedInstance.SetCornerRadiusButton(view: butLogin, radius: 15)
+        ShareData.sharedInstance.SetCornerRadiusButton(view: butLogin, radius: 10)
         ShareData.sharedInstance.DrawBorder(view: vEmail, color: AppConstant.sharedInstance.viewEmailBoder);
         if ShareData.isIPhone5() {
             ShareData.sharedInstance.SetCornerRadius(view: vEmail, radius: 18)
@@ -76,7 +85,20 @@ class LoginViewController: BaseViewController,UITextFieldDelegate {
         butForgotPassowrd.setAttributedTitle(ShareData.sharedInstance.UnderLineText(text: "Forgot Passowrd?"), for: UIControlState.normal)
         
     }
-    
+    @objc func FacebookTap(sender: UITapGestureRecognizer) {
+        self.view.endEditing(true)
+        
+    }
+    @objc func GoogleTap(sender: UITapGestureRecognizer) {
+        self.view.endEditing(true)
+        GIDSignIn.sharedInstance().delegate=self
+        GIDSignIn.sharedInstance().uiDelegate=self
+        GIDSignIn.sharedInstance().signIn()
+    }
+    @IBAction func LoginAction(_ sender: Any) {
+        
+        SetResidemenu()
+    }
     @IBAction func RegisterButton(_ sender: Any) {
         var storyboardLogin:UIStoryboard;
         if ShareData.isIpad()
@@ -112,6 +134,29 @@ class LoginViewController: BaseViewController,UITextFieldDelegate {
             view.endEditing(true);
         }
         return true
+    }
+    func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
+        
+        if let error = error {
+            print("\(error.localizedDescription)")
+        } else {
+           
+            // Perform any operations on signed in user here.
+            let userId = user.userID                  // For client-side use only!
+            let idToken = user.authentication.idToken // Safe to send to the server
+            let fullName = user.profile.name
+            let givenName = user.profile.givenName
+            let familyName = user.profile.familyName
+            let email = user.profile.email
+            // ...
+      }
+    }
+    func sign(_ signIn: GIDSignIn!,dismiss viewController: UIViewController!) {
+        self.dismiss(animated: true, completion: nil)
+    }
+    
+    func sign(_ signIn: GIDSignIn!, present viewController: UIViewController!) {
+        self.present(viewController, animated: true, completion: nil)
     }
     
 

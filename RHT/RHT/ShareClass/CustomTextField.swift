@@ -10,16 +10,14 @@ import UIKit
 class CustomTextField: UITextField {
     let paddingsPlaceHolder = UIEdgeInsets(top: 0, left:40, bottom: 0, right: 10);
     let paddingsTextHolder = UIEdgeInsets(top: 0, left:40, bottom: 0, right: 10);
-//    @IBInspectable var cornerRadius: CGFloat {
-//        get {
-//            return layer.cornerRadius
-//        }
-//        set {
-//            layer.cornerRadius = newValue
-//            layer.masksToBounds = newValue > 0
-//        }
-//    }
+
     override func draw(_ rect: CGRect) {
+        if ShareData .isIpad(){
+             font = UIFont.systemFont(ofSize: 20)
+        }else{
+             font = UIFont.systemFont(ofSize: 14)
+        }
+       
         if tag==1{
                 let view = UIView();
                 view.frame = CGRect(x:44, y: self.frame.height-1, width: rect.width-44, height:1)
@@ -32,7 +30,7 @@ class CustomTextField: UITextField {
             self.addSubview(view)
         }
     }
-   
+ 
     override func textRect(forBounds bounds: CGRect) -> CGRect {
 
         if tag == 1 {

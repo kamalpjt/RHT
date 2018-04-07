@@ -20,23 +20,23 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dsW-Y0-2ic">
-                                <rect key="frame" x="0.0" y="20" width="768" height="964"/>
+                                <rect key="frame" x="0.0" y="20" width="768" height="1004"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qOR-Gg-MTS" userLabel="vContainer">
-                                        <rect key="frame" x="84" y="63" width="600" height="830"/>
+                                        <rect key="frame" x="84" y="63" width="600" height="878"/>
                                         <subviews>
                                             <view alpha="0.44999998807907104" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Myv-nh-GrG" userLabel="vShadow">
-                                                <rect key="frame" x="10" y="0.0" width="580" height="39.5"/>
+                                                <rect key="frame" x="10" y="0.0" width="580" height="44"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1gd-t9-8cP" userLabel="vRegister">
-                                                <rect key="frame" x="0.0" y="20" width="600" height="821"/>
+                                                <rect key="frame" x="0.0" y="20" width="600" height="861.5"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sGE-By-5a3" userLabel="vLogo">
-                                                        <rect key="frame" x="0.0" y="15" width="600" height="137"/>
+                                                        <rect key="frame" x="0.0" y="15" width="600" height="144"/>
                                                         <subviews>
                                                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Logo" translatesAutoresizingMaskIntoConstraints="NO" id="Bds-Qx-8Ob">
-                                                                <rect key="frame" x="91" y="0.0" width="419" height="137"/>
+                                                                <rect key="frame" x="91" y="0.0" width="419" height="144"/>
                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             </imageView>
                                                         </subviews>
@@ -49,13 +49,13 @@
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nMR-Ji-xfN" userLabel="vName">
-                                                        <rect key="frame" x="20" y="177" width="560" height="79"/>
+                                                        <rect key="frame" x="20" y="184" width="560" height="83"/>
                                                         <subviews>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XRE-IR-I05" userLabel="vFirst">
-                                                                <rect key="frame" x="0.0" y="0.0" width="272" height="79"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="272" height="83"/>
                                                                 <subviews>
                                                                     <textField opaque="NO" tag="2" contentMode="scaleToFill" semanticContentAttribute="forceRightToLeft" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="First Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Jlg-hE-gKi" customClass="CustomTextField" customModule="RHT" customModuleProvider="target">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="272" height="79"/>
+                                                                        <rect key="frame" x="0.0" y="0.0" width="272" height="83"/>
                                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -76,10 +76,10 @@
                                                                 </constraints>
                                                             </view>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jEd-zE-CG4" userLabel="vLast">
-                                                                <rect key="frame" x="280" y="0.0" width="272" height="79"/>
+                                                                <rect key="frame" x="280" y="0.0" width="272" height="83"/>
                                                                 <subviews>
                                                                     <textField opaque="NO" contentMode="scaleToFill" semanticContentAttribute="forceRightToLeft" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Last Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="tx8-0b-jH9" customClass="CustomTextField" customModule="RHT" customModuleProvider="target">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="272" height="79"/>
+                                                                        <rect key="frame" x="0.0" y="0.0" width="272" height="83"/>
                                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -114,10 +114,10 @@
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tfn-Qp-hgW" userLabel="VEmail">
-                                                        <rect key="frame" x="20" y="280" width="560" height="79.5"/>
+                                                        <rect key="frame" x="20" y="291" width="560" height="84.5"/>
                                                         <subviews>
                                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="OwN-JG-4cq" customClass="CustomTextField" customModule="RHT" customModuleProvider="target">
-                                                                <rect key="frame" x="0.0" y="0.0" width="560" height="79.5"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="560" height="84.5"/>
                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <nil key="textColor"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -137,10 +137,10 @@
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Im9-qN-84i" userLabel="vPassowrd">
-                                                        <rect key="frame" x="20" y="379.5" width="560" height="79.5"/>
+                                                        <rect key="frame" x="20" y="395.5" width="560" height="84"/>
                                                         <subviews>
                                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="SvW-yb-PtW" customClass="CustomTextField" customModule="RHT" customModuleProvider="target">
-                                                                <rect key="frame" x="0.0" y="0.0" width="560" height="79.5"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="560" height="84"/>
                                                                 <nil key="textColor"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                 <textInputTraits key="textInputTraits" spellCheckingType="no" returnKeyType="next" enablesReturnKeyAutomatically="YES" secureTextEntry="YES"/>
@@ -159,10 +159,10 @@
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BmN-i3-aDX" userLabel="vConfirm">
-                                                        <rect key="frame" x="20" y="481" width="560" height="79.5"/>
+                                                        <rect key="frame" x="20" y="501.5" width="560" height="84.5"/>
                                                         <subviews>
                                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Confirm Passowrd" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="yx9-kp-1Gk" customClass="CustomTextField" customModule="RHT" customModuleProvider="target">
-                                                                <rect key="frame" x="0.0" y="0.0" width="560" height="79.5"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="560" height="84.5"/>
                                                                 <nil key="textColor"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="next" enablesReturnKeyAutomatically="YES" secureTextEntry="YES"/>
@@ -181,10 +181,10 @@
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0Fq-Ab-kf0" userLabel="vPhoneNumber">
-                                                        <rect key="frame" x="20" y="588.5" width="560" height="79.5"/>
+                                                        <rect key="frame" x="20" y="614" width="560" height="84"/>
                                                         <subviews>
                                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Phone Number" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="FXP-xd-Cyk" customClass="CustomTextField" customModule="RHT" customModuleProvider="target">
-                                                                <rect key="frame" x="0.0" y="0.0" width="560" height="79.5"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="560" height="84"/>
                                                                 <nil key="textColor"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="phonePad" secureTextEntry="YES"/>
@@ -203,10 +203,10 @@
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="m5F-pm-AHA">
-                                                        <rect key="frame" x="20" y="717" width="560" height="66"/>
+                                                        <rect key="frame" x="20" y="747" width="560" height="70.5"/>
                                                         <subviews>
                                                             <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WtQ-vF-62H">
-                                                                <rect key="frame" x="120" y="0.0" width="321" height="66"/>
+                                                                <rect key="frame" x="120" y="0.0" width="321" height="70.5"/>
                                                                 <color key="backgroundColor" red="0.87843137250000003" green="0.20392156859999999" blue="0.2901960784" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                                 <inset key="titleEdgeInsets" minX="0.0" minY="0.0" maxX="-38" maxY="0.0"/>
@@ -271,7 +271,6 @@
                                             <constraint firstAttribute="trailing" secondItem="Myv-nh-GrG" secondAttribute="trailing" constant="10" id="m0N-dY-su8"/>
                                             <constraint firstItem="Myv-nh-GrG" firstAttribute="height" secondItem="qOR-Gg-MTS" secondAttribute="height" multiplier="40:508" constant="-25.854330708661422" id="n8T-2f-nlv"/>
                                             <constraint firstItem="Myv-nh-GrG" firstAttribute="leading" secondItem="qOR-Gg-MTS" secondAttribute="leading" constant="10" id="nTC-WX-aFA"/>
-                                            <constraint firstAttribute="bottom" secondItem="1gd-t9-8cP" secondAttribute="bottom" constant="-11" id="oue-VM-gBr"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -279,15 +278,17 @@
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="qOR-Gg-MTS" secondAttribute="trailing" constant="84" id="1mi-5k-gIH"/>
                                     <constraint firstItem="qOR-Gg-MTS" firstAttribute="centerX" secondItem="dsW-Y0-2ic" secondAttribute="centerX" id="4xj-d1-vHf"/>
+                                    <constraint firstItem="qOR-Gg-MTS" firstAttribute="centerY" secondItem="dsW-Y0-2ic" secondAttribute="centerY" id="5Vl-VR-VlI"/>
                                     <constraint firstItem="qOR-Gg-MTS" firstAttribute="top" secondItem="dsW-Y0-2ic" secondAttribute="top" constant="63" id="OBQ-1Q-Lg2"/>
-                                    <constraint firstItem="qOR-Gg-MTS" firstAttribute="centerY" secondItem="dsW-Y0-2ic" secondAttribute="centerY" constant="-4" id="OMF-mA-LzS"/>
-                                    <constraint firstAttribute="bottom" secondItem="qOR-Gg-MTS" secondAttribute="bottom" constant="91" id="PMc-1d-D6X"/>
+                                    <constraint firstAttribute="bottom" secondItem="qOR-Gg-MTS" secondAttribute="bottom" constant="111" id="PMc-1d-D6X"/>
                                     <constraint firstItem="qOR-Gg-MTS" firstAttribute="leading" secondItem="dsW-Y0-2ic" secondAttribute="leading" constant="84" id="ql7-3z-3Me"/>
+                                    <constraint firstItem="qOR-Gg-MTS" firstAttribute="centerX" secondItem="dsW-Y0-2ic" secondAttribute="centerX" id="rWP-hC-3qd"/>
                                 </constraints>
                             </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="dsW-Y0-2ic" firstAttribute="bottom" secondItem="1xr-25-fkx" secondAttribute="bottom" id="Tsz-0d-OrX"/>
                             <constraint firstItem="dsW-Y0-2ic" firstAttribute="top" secondItem="1xr-25-fkx" secondAttribute="top" id="azV-Sh-uJu"/>
                             <constraint firstAttribute="trailing" secondItem="dsW-Y0-2ic" secondAttribute="trailing" id="k7e-Id-nRs"/>
                             <constraint firstItem="dsW-Y0-2ic" firstAttribute="leading" secondItem="grU-rM-2SL" secondAttribute="leading" id="qc6-Kj-DYp"/>
@@ -297,13 +298,14 @@
                     <navigationItem key="navigationItem" id="IA8-A2-xW2"/>
                     <nil key="simulatedTopBarMetrics"/>
                     <connections>
+                        <outlet property="butRegister" destination="WtQ-vF-62H" id="Fs7-is-XA1"/>
                         <outlet property="vRegister" destination="1gd-t9-8cP" id="SwS-1U-Giz"/>
                         <outlet property="vShadowView" destination="Myv-nh-GrG" id="NR8-Zm-LJM"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ep2-fe-hYC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-3259" y="-2783"/>
+            <point key="canvasLocation" x="-3259.375" y="-2783.203125"/>
         </scene>
         <!--Home View Controller-->
         <scene sceneID="7P6-e2-5xW">
@@ -490,7 +492,7 @@
                                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
                                                 <connections>
-                                                    <action selector="RegisterButton:" destination="m2W-0b-ngg" eventType="touchUpInside" id="mCJ-0g-cgg"/>
+                                                    <action selector="LoginAction:" destination="m2W-0b-ngg" eventType="touchUpInside" id="cgr-12-M6k"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -589,7 +591,7 @@
                                     <constraint firstAttribute="trailing" secondItem="Wzr-zK-ihP" secondAttribute="trailing" id="yvq-Gg-62M"/>
                                 </constraints>
                             </view>
-                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rDV-gx-XbF">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rDV-gx-XbF">
                                 <rect key="frame" x="249" y="958" width="288" height="64"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uUO-Sd-qEx">
