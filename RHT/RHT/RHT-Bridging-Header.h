@@ -12,6 +12,8 @@
 #import "RECommonFunctions.h"
 #import "UIViewController+RESideMenu.h"
 #import "RESideMenu.h"
+#import <FBSDKCoreKit/FBSDKCoreKit.h>
+#import <FBSDKLoginKit/FBSDKLoginKit.h>
 
 
 #endif /* RHT_Bridging_Header_h */

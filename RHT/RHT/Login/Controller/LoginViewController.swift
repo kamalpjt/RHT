@@ -7,10 +7,13 @@
 //
 
 import UIKit
+import FacebookCore
+import FacebookLogin
 import GoogleSignIn
 
+
 class LoginViewController: BaseViewController,UITextFieldDelegate,GIDSignInDelegate,GIDSignInUIDelegate {
-   
+    
     @IBOutlet weak var vFacebook: UIView!
     @IBOutlet weak var vGoogle: UIView!
     @IBOutlet weak var butLogin: UIButton!
@@ -28,7 +31,7 @@ class LoginViewController: BaseViewController,UITextFieldDelegate,GIDSignInDeleg
         CloseKeyboard(bool: true);
         let tapgoogle = UITapGestureRecognizer(target: self, action:#selector(GoogleTap))
         tapgoogle.numberOfTapsRequired=1;
-       vGoogle.addGestureRecognizer(tapgoogle)
+        vGoogle.addGestureRecognizer(tapgoogle)
         let tapfacebook = UITapGestureRecognizer(target: self, action:#selector(FacebookTap))
         tapfacebook.numberOfTapsRequired=1;
         vFacebook.addGestureRecognizer(tapfacebook)
@@ -36,7 +39,7 @@ class LoginViewController: BaseViewController,UITextFieldDelegate,GIDSignInDeleg
         // Do any additional setup after loading the view.
     }
     override func viewWillAppear(_ animated: Bool) {
-         self.navigationController?.navigationBar.isHidden=true;
+        self.navigationController?.navigationBar.isHidden=true;
     }
     override func viewWillDisappear(_ animated: Bool) {
         self.navigationController?.navigationBar.isHidden=false;
@@ -51,7 +54,7 @@ class LoginViewController: BaseViewController,UITextFieldDelegate,GIDSignInDeleg
         if ShareData.isIPhone5() {
             ShareData.sharedInstance.SetCornerRadius(view: vEmail, radius: 18)
         }else if ShareData.isIPhone6(){
-           ShareData.sharedInstance.SetCornerRadius(view: vEmail, radius:22)
+            ShareData.sharedInstance.SetCornerRadius(view: vEmail, radius:22)
         }else if ShareData.isIPhone6Plus() {
             ShareData.sharedInstance.SetCornerRadius(view: vEmail, radius: 25)
         } else if ShareData.isIPhoneX() {
@@ -59,7 +62,7 @@ class LoginViewController: BaseViewController,UITextFieldDelegate,GIDSignInDeleg
         }else if ShareData.isIpad(){
             ShareData.sharedInstance.SetCornerRadius(view: vEmail, radius: 35)
         }
-          vShadowView.bringSubview(toFront: vLogin)
+        vShadowView.bringSubview(toFront: vLogin)
     }
     
     func SetTextFieldImage() -> Void {
@@ -81,13 +84,47 @@ class LoginViewController: BaseViewController,UITextFieldDelegate,GIDSignInDeleg
         passowordeye.image = UIImage(named: "eye")
         txtPassowrd.rightView = passowordeye
         txtPassowrd.rightViewMode = UITextFieldViewMode.always
-      
+        
         butForgotPassowrd.setAttributedTitle(ShareData.sharedInstance.UnderLineText(text: "Forgot Passowrd?"), for: UIControlState.normal)
         
     }
     @objc func FacebookTap(sender: UITapGestureRecognizer) {
         self.view.endEditing(true)
-        
+        let loginManager = LoginManager()
+        loginManager.logIn(readPermissions: [.publicProfile,.email], viewController: self) { (loginResult) in
+            
+            switch loginResult {
+            case .failed(let Error):
+                print(Error)
+            case .cancelled:
+                print("User cancelled login.")
+            case .success(let grantedPermissions, let declinedPermissions, let accessToken):
+                print(grantedPermissions)
+                print(declinedPermissions)
+                print(accessToken)
+               self.getFbId()
+                
+            }
+        }
+    }
+    func getFbId(){
+        if(FBSDKAccessToken.current() != nil){
+            FBSDKGraphRequest(graphPath: "me", parameters: ["fields": "id,name , first_name, last_name , email,picture.type(large)"]).start(completionHandler: { (connection, result, error) in
+                guard let Info = result as? [String: Any] else { return }
+                
+                let emailUrl = Info.values
+                
+               // let emails = ((Info["email"] as? [String: Any])?["data"] as? [String: Any])?["url"] as? String
+                print(emailUrl)
+            
+                if let imageURL = ((Info["picture"] as? [String: Any])?["data"] as? [String: Any])?["url"] as? String {
+                    //Download image from imageURL
+                }
+                if(error == nil){
+                    print("result")
+                }
+            })
+        }
     }
     @objc func GoogleTap(sender: UITapGestureRecognizer) {
         self.view.endEditing(true)
@@ -103,11 +140,11 @@ class LoginViewController: BaseViewController,UITextFieldDelegate,GIDSignInDeleg
         var storyboardLogin:UIStoryboard;
         if ShareData.isIpad()
         {
-             storyboardLogin = UIStoryboard(name: "Loginipad", bundle: nil)
+            storyboardLogin = UIStoryboard(name: "Loginipad", bundle: nil)
         }else{
-             storyboardLogin = UIStoryboard(name: "Login", bundle: nil)
+            storyboardLogin = UIStoryboard(name: "Login", bundle: nil)
         }
-       
+        
         let VC1 = storyboardLogin.instantiateViewController(withIdentifier: "RegisterViewController") as! RegisterViewController
         self.navigationController?.pushViewController(VC1, animated: true)
     }
@@ -140,7 +177,7 @@ class LoginViewController: BaseViewController,UITextFieldDelegate,GIDSignInDeleg
         if let error = error {
             print("\(error.localizedDescription)")
         } else {
-           
+            
             // Perform any operations on signed in user here.
             let userId = user.userID                  // For client-side use only!
             let idToken = user.authentication.idToken // Safe to send to the server
@@ -149,7 +186,7 @@ class LoginViewController: BaseViewController,UITextFieldDelegate,GIDSignInDeleg
             let familyName = user.profile.familyName
             let email = user.profile.email
             // ...
-      }
+        }
     }
     func sign(_ signIn: GIDSignIn!,dismiss viewController: UIViewController!) {
         self.dismiss(animated: true, completion: nil)
@@ -159,7 +196,7 @@ class LoginViewController: BaseViewController,UITextFieldDelegate,GIDSignInDeleg
         self.present(viewController, animated: true, completion: nil)
     }
     
-
-   
-
+    
+    
+    
 }
