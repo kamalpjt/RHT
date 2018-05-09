@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		41274DCF767A1BE7A80664EF /* Pods_RHTTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC4023868CCA04E85029133C /* Pods_RHTTests.framework */; };
 		70EB24AA65E633B82DD184C7 /* Pods_RHT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A0B23696F8BA6542264D351A /* Pods_RHT.framework */; };
+		8A08AA1620A32F0000C3B6A8 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A08AA1520A32F0000C3B6A8 /* ChatViewController.swift */; };
 		9C1C3FF06EF92C14D965D71D /* Pods_RHTUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 51EE2E4E70A6D36CD1271759 /* Pods_RHTUITests.framework */; };
 		A90BF65B2075F6AB007B8F2B /* RESideMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = A90BF65A2075F6AB007B8F2B /* RESideMenu.m */; };
 		A90BF65E2075F6D1007B8F2B /* UIViewController+RESideMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = A90BF65D2075F6D1007B8F2B /* UIViewController+RESideMenu.m */; };
@@ -58,6 +59,7 @@
 		51C99EB4291957B471CC89F1 /* Pods-RHTUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RHTUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RHTUITests/Pods-RHTUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		51EE2E4E70A6D36CD1271759 /* Pods_RHTUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RHTUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7B2CDDDB8AFBA956B6E3AD4B /* Pods-RHTTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RHTTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-RHTTests/Pods-RHTTests.release.xcconfig"; sourceTree = "<group>"; };
+		8A08AA1520A32F0000C3B6A8 /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		A0B23696F8BA6542264D351A /* Pods_RHT.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RHT.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A90BF6592075F695007B8F2B /* RESideMenu.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RESideMenu.h; sourceTree = "<group>"; };
 		A90BF65A2075F6AB007B8F2B /* RESideMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RESideMenu.m; sourceTree = "<group>"; };
@@ -133,6 +135,30 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		8A08AA1320A32E6A00C3B6A8 /* Chat */ = {
+			isa = PBXGroup;
+			children = (
+				8A08AA1720A3325300C3B6A8 /* Model */,
+				8A08AA1420A32E8900C3B6A8 /* Controller */,
+			);
+			path = Chat;
+			sourceTree = "<group>";
+		};
+		8A08AA1420A32E8900C3B6A8 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				8A08AA1520A32F0000C3B6A8 /* ChatViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		8A08AA1720A3325300C3B6A8 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		A90BF6582075F65B007B8F2B /* SideMenu */ = {
 			isa = PBXGroup;
 			children = (
@@ -171,6 +197,7 @@
 		A9182449206CBB2000B358D8 /* RHT */ = {
 			isa = PBXGroup;
 			children = (
+				8A08AA1320A32E6A00C3B6A8 /* Chat */,
 				A9FB541320794746002DD00A /* Communication */,
 				A9A134DA2078A5270093A78E /* Settings */,
 				A90BF6582075F65B007B8F2B /* SideMenu */,
@@ -541,6 +568,7 @@
 			files = (
 				A916538E206E759C0029FFE1 /* CustomTextField.swift in Sources */,
 				A9182488206CC4EC00B358D8 /* SharedData.swift in Sources */,
+				8A08AA1620A32F0000C3B6A8 /* ChatViewController.swift in Sources */,
 				A918248A206CC50500B358D8 /* AppConstant.swift in Sources */,
 				A90BF65B2075F6AB007B8F2B /* RESideMenu.m in Sources */,
 				A914484120700A960031AD30 /* HomeViewController.swift in Sources */,
