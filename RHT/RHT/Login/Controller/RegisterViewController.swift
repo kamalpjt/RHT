@@ -8,11 +8,16 @@
 
 import UIKit
 
-class RegisterViewController: BaseViewController {
-
+class RegisterViewController: BaseViewController ,UITextFieldDelegate{
+    @IBOutlet weak var txtEmail: CustomTextField!
+    @IBOutlet weak var txtPhoneNumber: CustomTextField!
+    @IBOutlet weak var txtConfirmPassowrd: CustomTextField!
+    @IBOutlet weak var txtPassowrd: CustomTextField!
+    @IBOutlet weak var txtLastName: CustomTextField!
+    @IBOutlet weak var txtFirstName: CustomTextField!
     @IBOutlet weak var butRegister: UIButton!
     @IBOutlet weak var vShadowView: UIView!
-      @IBOutlet weak var vRegister: UIView!
+    @IBOutlet weak var vRegister: UIView!
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Register"
@@ -22,9 +27,15 @@ class RegisterViewController: BaseViewController {
         ShareData.sharedInstance.SetCornerRadius(view: vShadowView, radius: 15)
         ShareData.sharedInstance.SetCornerRadiusButton(view: butRegister, radius: 10)
         vShadowView.bringSubview(toFront: vRegister)
+        txtEmail.delegate = self ;
+        txtFirstName.delegate = self ;
+        txtLastName.delegate = self;
+        txtPassowrd.delegate = self
+        txtConfirmPassowrd.delegate = self;
+        txtPhoneNumber.delegate = self;
         // Do any additional setup after loading the view.
     }
-
+    
     @objc func buttonAction(_ sender:UIButton!)
     {
         print("Button tapped")
@@ -36,16 +47,42 @@ class RegisterViewController: BaseViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        
+        switch textField {
+        case txtFirstName:
+            txtLastName.becomeFirstResponder()
+            break;
+        case txtLastName:
+            txtEmail.becomeFirstResponder()
+            break;
+        case txtEmail:
+            txtPassowrd.becomeFirstResponder()
+            break;
+        case txtPassowrd:
+            txtConfirmPassowrd.becomeFirstResponder()
+            break;
+        case txtConfirmPassowrd:
+            txtPhoneNumber.becomeFirstResponder()
+            break;
+        case txtPhoneNumber:
+            self.view.endEditing(true)
+            break;
+        default:
+            self.view.endEditing(true)
+        }
+        return true;
     }
-    */
-
+    
+    
+    /*
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     // Get the new view controller using segue.destinationViewController.
+     // Pass the selected object to the new view controller.
+     }
+     */
+    
 }

@@ -40,9 +40,11 @@ class LoginViewController: BaseViewController,UITextFieldDelegate,GIDSignInDeleg
     }
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.navigationBar.isHidden=true;
+         AddKeyboardObserver()
     }
     override func viewWillDisappear(_ animated: Bool) {
         self.navigationController?.navigationBar.isHidden=false;
+          RemoveKeyboardObserver()
     }
     func SetUpView() -> Void {
         

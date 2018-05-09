@@ -21,6 +21,53 @@ class BaseViewController: UIViewController {
         view.backgroundColor = color;
     }
     
+    func RemoveKeyboardObserver() -> Void {
+        NotificationCenter.default.removeObserver(self, name: .UIKeyboardWillShow, object: nil)
+    }
+    func AddKeyboardObserver() -> Void {
+       
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: .UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: .UIKeyboardWillHide, object: nil)
+    }
+    @objc func keyboardWillShow(notification: NSNotification) {
+        print("keyboardWillShow")
+        
+//        let userInfo: NSDictionary = notification.userInfo!
+//        let keyboardInfoFrame = userInfo.objectForKey(UIKeyboardFrameEndUserInfoKey)?.CGRectValue()
+//
+//        let windowFrame = (UIApplication.sharedApplication().keyWindow!.convertRect(self.view.frame, fromView:self.view))
+//        let keyboardFrame = CGRectIntersection(windowFrame, keyboardInfoFrame!)
+//
+//        let coveredFrame = UIApplication.sharedApplication().keyWindow!.convertRect(keyboardFrame, toView:self.view)
+//
+//
+//        let contentInsets = UIEdgeInsetsMake(0, 0, (coveredFrame.size.height), 0.0)
+//        self.scrollView .contentInset = contentInsets;
+//        self.scrollView.scrollIndicatorInsets = contentInsets;
+//        self.scrollView.contentSize = CGSizeMake((self.scrollView.contentSize.width), (self.scrollView.contentSize.height))
+        
+//        let userinfo = notification.userInfo! as NSDictionary
+//        let keyboardInfoFrame = userinfo.object(forKey: UIKeyboardFrameEndUserInfoKey)
+//        let windowFrame  =  (UIApplication.shared.keyWindow!.convert(self.view.frame, from: self.view))
+        
+        
+        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+            if self.view.frame.origin.y == 0{
+                self.view.frame.origin.y -= keyboardSize.height
+            }
+        }
+        
+    }
+    
+    
+    @objc func keyboardWillHide(notification: NSNotification){
+        print("keyboardWillHide")
+        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
+            if self.view.frame.origin.y != 0{
+                self.view.frame.origin.y += keyboardSize.height
+            }
+        }
+    }
     func CloseKeyboard(bool:Bool) -> Void {
         if(bool){
            // view.endEditing(true);
