@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="m2W-0b-ngg">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="m2W-0b-ngg">
     <device id="retina4_0" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -327,7 +327,9 @@
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ChatBhot" translatesAutoresizingMaskIntoConstraints="NO" id="3wc-N2-De2"/>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ChatBhot" translatesAutoresizingMaskIntoConstraints="NO" id="3wc-N2-De2">
+                                                    <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
+                                                </imageView>
                                             </subviews>
                                         </view>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -776,26 +778,50 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NeT-yb-gtu" userLabel="VBottom">
                                         <rect key="frame" x="0.0" y="464" width="320" height="40"/>
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ECx-sU-HtJ">
-                                                <rect key="frame" x="0.0" y="1" width="44" height="38"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XzB-mj-1uc">
+                                                <rect key="frame" x="0.0" y="0.0" width="320" height="1"/>
+                                                <color key="backgroundColor" red="0.99942404029999998" green="0.98555368190000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="1" id="mpE-Ql-nqX"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ECx-sU-HtJ">
+                                                <rect key="frame" x="0.0" y="1" width="44" height="39"/>
                                                 <color key="backgroundColor" red="0.87843137250000003" green="0.20392156859999999" blue="0.2901960784" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <color key="tintColor" red="0.87843137250000003" green="0.20392156859999999" blue="0.2901960784" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             </button>
-                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="RiX-Wx-hyc">
-                                                <rect key="frame" x="44" y="1" width="224" height="38"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="RiX-Wx-hyc">
+                                                <rect key="frame" x="44" y="1" width="226" height="39"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                             </textView>
-                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Biv-2Z-Uva">
-                                                <rect key="frame" x="268" y="1" width="50" height="38"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Biv-2Z-Uva">
+                                                <rect key="frame" x="270" y="1" width="50" height="39"/>
                                                 <state key="normal" title="Button"/>
                                             </button>
                                         </subviews>
                                         <color key="backgroundColor" red="0.0" green="0.32852089410000002" blue="0.57488495110000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstItem="Biv-2Z-Uva" firstAttribute="top" secondItem="XzB-mj-1uc" secondAttribute="bottom" id="1dR-jQ-K9r"/>
+                                            <constraint firstAttribute="trailing" secondItem="Biv-2Z-Uva" secondAttribute="trailing" id="73x-2t-FZW"/>
+                                            <constraint firstItem="ECx-sU-HtJ" firstAttribute="top" secondItem="NeT-yb-gtu" secondAttribute="top" constant="1" id="BPM-fF-MC1"/>
+                                            <constraint firstItem="ECx-sU-HtJ" firstAttribute="leading" secondItem="NeT-yb-gtu" secondAttribute="leading" id="DmX-Vb-xfj"/>
+                                            <constraint firstItem="Biv-2Z-Uva" firstAttribute="width" secondItem="NeT-yb-gtu" secondAttribute="width" multiplier="50:320" id="ELG-xk-TAm"/>
+                                            <constraint firstItem="ECx-sU-HtJ" firstAttribute="width" secondItem="NeT-yb-gtu" secondAttribute="width" multiplier="44:320" id="RkI-Xk-G1n"/>
+                                            <constraint firstItem="Biv-2Z-Uva" firstAttribute="leading" secondItem="RiX-Wx-hyc" secondAttribute="trailing" id="UI3-NG-xoQ"/>
+                                            <constraint firstItem="RiX-Wx-hyc" firstAttribute="leading" secondItem="ECx-sU-HtJ" secondAttribute="trailing" id="WKz-1I-huc"/>
+                                            <constraint firstItem="XzB-mj-1uc" firstAttribute="leading" secondItem="NeT-yb-gtu" secondAttribute="leading" id="WZ5-Io-n9A"/>
+                                            <constraint firstAttribute="bottom" secondItem="Biv-2Z-Uva" secondAttribute="bottom" id="goH-OZ-vwN"/>
+                                            <constraint firstAttribute="bottom" secondItem="RiX-Wx-hyc" secondAttribute="bottom" id="iqH-kf-4Ne"/>
+                                            <constraint firstItem="RiX-Wx-hyc" firstAttribute="top" secondItem="XzB-mj-1uc" secondAttribute="bottom" id="osr-4i-SeN"/>
+                                            <constraint firstAttribute="bottom" secondItem="ECx-sU-HtJ" secondAttribute="bottom" id="rcB-9E-g2a"/>
+                                            <constraint firstAttribute="trailing" secondItem="XzB-mj-1uc" secondAttribute="trailing" id="tRU-ID-EeY"/>
+                                            <constraint firstItem="XzB-mj-1uc" firstAttribute="top" secondItem="NeT-yb-gtu" secondAttribute="top" id="yWD-kJ-geh"/>
+                                        </constraints>
                                     </view>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
