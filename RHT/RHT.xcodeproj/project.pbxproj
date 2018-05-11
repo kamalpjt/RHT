@@ -10,6 +10,9 @@
 		41274DCF767A1BE7A80664EF /* Pods_RHTTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC4023868CCA04E85029133C /* Pods_RHTTests.framework */; };
 		70EB24AA65E633B82DD184C7 /* Pods_RHT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A0B23696F8BA6542264D351A /* Pods_RHT.framework */; };
 		8A08AA1620A32F0000C3B6A8 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A08AA1520A32F0000C3B6A8 /* ChatViewController.swift */; };
+		8AD69C0E20A5BC8500F2E135 /* ChatCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AD69C0D20A5BC8500F2E135 /* ChatCell.swift */; };
+		8AD69C1020A5BCB500F2E135 /* ChatSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AD69C0F20A5BCB500F2E135 /* ChatSource.swift */; };
+		8AD69C1220A5BCC800F2E135 /* ChatDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AD69C1120A5BCC800F2E135 /* ChatDelegate.swift */; };
 		9C1C3FF06EF92C14D965D71D /* Pods_RHTUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 51EE2E4E70A6D36CD1271759 /* Pods_RHTUITests.framework */; };
 		A90BF65B2075F6AB007B8F2B /* RESideMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = A90BF65A2075F6AB007B8F2B /* RESideMenu.m */; };
 		A90BF65E2075F6D1007B8F2B /* UIViewController+RESideMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = A90BF65D2075F6D1007B8F2B /* UIViewController+RESideMenu.m */; };
@@ -63,6 +66,9 @@
 		51EE2E4E70A6D36CD1271759 /* Pods_RHTUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RHTUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7B2CDDDB8AFBA956B6E3AD4B /* Pods-RHTTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RHTTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-RHTTests/Pods-RHTTests.release.xcconfig"; sourceTree = "<group>"; };
 		8A08AA1520A32F0000C3B6A8 /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
+		8AD69C0D20A5BC8500F2E135 /* ChatCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatCell.swift; sourceTree = "<group>"; };
+		8AD69C0F20A5BCB500F2E135 /* ChatSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatSource.swift; sourceTree = "<group>"; };
+		8AD69C1120A5BCC800F2E135 /* ChatDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatDelegate.swift; sourceTree = "<group>"; };
 		A0B23696F8BA6542264D351A /* Pods_RHT.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RHT.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A90BF6592075F695007B8F2B /* RESideMenu.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RESideMenu.h; sourceTree = "<group>"; };
 		A90BF65A2075F6AB007B8F2B /* RESideMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RESideMenu.m; sourceTree = "<group>"; };
@@ -302,6 +308,9 @@
 				A9BEEEF320A5736500C4755F /* ChatCollectionViewCell.swift */,
 				A9BEEEF520A5784900C4755F /* UICollectionViewSource.swift */,
 				A9BEEEF920A5798500C4755F /* UICollectionDelegete.swift */,
+				8AD69C0D20A5BC8500F2E135 /* ChatCell.swift */,
+				8AD69C0F20A5BCB500F2E135 /* ChatSource.swift */,
+				8AD69C1120A5BCC800F2E135 /* ChatDelegate.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -576,6 +585,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A9BEEEF420A5736500C4755F /* ChatCollectionViewCell.swift in Sources */,
+				8AD69C1020A5BCB500F2E135 /* ChatSource.swift in Sources */,
 				A916538E206E759C0029FFE1 /* CustomTextField.swift in Sources */,
 				A9182488206CC4EC00B358D8 /* SharedData.swift in Sources */,
 				8A08AA1620A32F0000C3B6A8 /* ChatViewController.swift in Sources */,
@@ -588,7 +598,9 @@
 				A921F835207755640042738A /* SharedNavigation.swift in Sources */,
 				A9182483206CBF6500B358D8 /* LoginViewController.swift in Sources */,
 				A921F83220774C120042738A /* RECommonFunctions.m in Sources */,
+				8AD69C0E20A5BC8500F2E135 /* ChatCell.swift in Sources */,
 				A914484320700E650031AD30 /* HomeCollectionViewCell.swift in Sources */,
+				8AD69C1220A5BCC800F2E135 /* ChatDelegate.swift in Sources */,
 				A918248E206CD09800B358D8 /* RegisterViewController.swift in Sources */,
 				A918244B206CBB2000B358D8 /* AppDelegate.swift in Sources */,
 				A9BEEEFA20A5798500C4755F /* UICollectionDelegete.swift in Sources */,
