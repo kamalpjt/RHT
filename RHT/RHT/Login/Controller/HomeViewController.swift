@@ -80,6 +80,12 @@ class HomeViewController: BaseViewController,UICollectionViewDataSource,UICollec
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
     }
+    @IBAction func ChatButton(_ sender: Any) {
+        
+        
+        let num =   self.storyboard?.instantiateViewController(withIdentifier: "ChatViewController") as! ChatViewController
+        self.navigationController?.pushViewController(num, animated: true)
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

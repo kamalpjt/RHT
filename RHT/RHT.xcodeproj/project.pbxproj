@@ -33,6 +33,9 @@
 		A921F835207755640042738A /* SharedNavigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A921F834207755640042738A /* SharedNavigation.swift */; };
 		A9A134DD2078A6A00093A78E /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9A134DC2078A6A00093A78E /* SettingViewController.swift */; };
 		A9A134DF2078B1930093A78E /* HomeCollectionFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9A134DE2078B1930093A78E /* HomeCollectionFlowLayout.swift */; };
+		A9BEEEF420A5736500C4755F /* ChatCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9BEEEF320A5736500C4755F /* ChatCollectionViewCell.swift */; };
+		A9BEEEF620A5784900C4755F /* UICollectionViewSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9BEEEF520A5784900C4755F /* UICollectionViewSource.swift */; };
+		A9BEEEFA20A5798500C4755F /* UICollectionDelegete.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9BEEEF920A5798500C4755F /* UICollectionDelegete.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -93,6 +96,9 @@
 		A921F834207755640042738A /* SharedNavigation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedNavigation.swift; sourceTree = "<group>"; };
 		A9A134DC2078A6A00093A78E /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		A9A134DE2078B1930093A78E /* HomeCollectionFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCollectionFlowLayout.swift; sourceTree = "<group>"; };
+		A9BEEEF320A5736500C4755F /* ChatCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ChatCollectionViewCell.swift; path = ../../../../../../ChatCollectionViewCell.swift; sourceTree = "<group>"; };
+		A9BEEEF520A5784900C4755F /* UICollectionViewSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UICollectionViewSource.swift; path = ../../../../../../UICollectionViewSource.swift; sourceTree = "<group>"; };
+		A9BEEEF920A5798500C4755F /* UICollectionDelegete.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UICollectionDelegete.swift; path = ../../../../../../UICollectionDelegete.swift; sourceTree = "<group>"; };
 		AC4023868CCA04E85029133C /* Pods_RHTTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RHTTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C954AB559FFB2A8158F85024 /* Pods-RHTTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RHTTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RHTTests/Pods-RHTTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -138,7 +144,7 @@
 		8A08AA1320A32E6A00C3B6A8 /* Chat */ = {
 			isa = PBXGroup;
 			children = (
-				8A08AA1720A3325300C3B6A8 /* Model */,
+				A9BEEEF020A5731B00C4755F /* Model */,
 				8A08AA1420A32E8900C3B6A8 /* Controller */,
 			);
 			path = Chat;
@@ -150,13 +156,6 @@
 				8A08AA1520A32F0000C3B6A8 /* ChatViewController.swift */,
 			);
 			path = Controller;
-			sourceTree = "<group>";
-		};
-		8A08AA1720A3325300C3B6A8 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
 			sourceTree = "<group>";
 		};
 		A90BF6582075F65B007B8F2B /* SideMenu */ = {
@@ -295,6 +294,16 @@
 				A9A134DC2078A6A00093A78E /* SettingViewController.swift */,
 			);
 			path = Controller;
+			sourceTree = "<group>";
+		};
+		A9BEEEF020A5731B00C4755F /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				A9BEEEF320A5736500C4755F /* ChatCollectionViewCell.swift */,
+				A9BEEEF520A5784900C4755F /* UICollectionViewSource.swift */,
+				A9BEEEF920A5798500C4755F /* UICollectionDelegete.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		A9FB541320794746002DD00A /* Communication */ = {
@@ -566,6 +575,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A9BEEEF420A5736500C4755F /* ChatCollectionViewCell.swift in Sources */,
 				A916538E206E759C0029FFE1 /* CustomTextField.swift in Sources */,
 				A9182488206CC4EC00B358D8 /* SharedData.swift in Sources */,
 				8A08AA1620A32F0000C3B6A8 /* ChatViewController.swift in Sources */,
@@ -574,12 +584,14 @@
 				A914484120700A960031AD30 /* HomeViewController.swift in Sources */,
 				A9A134DD2078A6A00093A78E /* SettingViewController.swift in Sources */,
 				A90BF65E2075F6D1007B8F2B /* UIViewController+RESideMenu.m in Sources */,
+				A9BEEEF620A5784900C4755F /* UICollectionViewSource.swift in Sources */,
 				A921F835207755640042738A /* SharedNavigation.swift in Sources */,
 				A9182483206CBF6500B358D8 /* LoginViewController.swift in Sources */,
 				A921F83220774C120042738A /* RECommonFunctions.m in Sources */,
 				A914484320700E650031AD30 /* HomeCollectionViewCell.swift in Sources */,
 				A918248E206CD09800B358D8 /* RegisterViewController.swift in Sources */,
 				A918244B206CBB2000B358D8 /* AppDelegate.swift in Sources */,
+				A9BEEEFA20A5798500C4755F /* UICollectionDelegete.swift in Sources */,
 				A9A134DF2078B1930093A78E /* HomeCollectionFlowLayout.swift in Sources */,
 				A9182486206CC4AC00B358D8 /* BaseViewController.swift in Sources */,
 			);
