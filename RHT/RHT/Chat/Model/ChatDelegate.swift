@@ -8,6 +8,8 @@
 
 import UIKit
 
-class ChatDelegate: NSObject {
+class ChatDelegate: NSObject ,UICollectionViewDelegate{
+    
+    
 
 }

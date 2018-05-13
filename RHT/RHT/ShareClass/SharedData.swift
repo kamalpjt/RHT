@@ -65,4 +65,14 @@ class ShareData {
         view.layer.borderWidth = 1;
         
     }
+    
+    func GetStringCGSize(stringValue:String,font:UIFont) -> CGRect {
+        
+        let size =  CGSize.init(width: UIScreen.main.bounds.size.width, height: 999999)
+        // let size = CGSize(UIScreen.main.bounds.size.width, 999999)
+        let options = NSStringDrawingOptions.usesFontLeading.union(.usesLineFragmentOrigin)
+        let estimatedStringSize = NSString(string: stringValue).boundingRect(with: size, options: options, attributes: [NSAttributedStringKey.font : font ], context: nil)
+        
+        return estimatedStringSize
+    }
 }
