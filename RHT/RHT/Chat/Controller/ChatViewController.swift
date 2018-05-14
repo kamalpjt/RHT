@@ -81,9 +81,10 @@ class ChatViewController: UIViewController,UITextViewDelegate,UITableViewDataSou
         
         //self.collectionviewDelegates = ChatFlowDelegate(item: chatItem);
        // self.dataSource = ChatSource(item: chatItem)
-       // cvChat.register(ChatCell.self, forCellWithReuseIdentifier: cellIdentifier)
-       // cvChat.dataSource = self;
-       // cvChat.delegate = self;
+        //cvChat.register(UITableViewCell.self(), forCellReuseIdentifier: cellIdentifier)
+        cvChat.register(ChatCell.self, forCellReuseIdentifier: cellIdentifier)
+        cvChat.dataSource = self;
+        cvChat.delegate = self;
         cvChat.reloadData()
         CloseKeyboard(bool: true)
         // Do any additional setup after loading the view.
@@ -182,6 +183,10 @@ class ChatViewController: UIViewController,UITextViewDelegate,UITableViewDataSou
         chatItem.append(items)
         print(tvchatInput.text)
         tvchatInput.text = "";
+        
+        let index = IndexPath(item: chatItem.count-1, section: 0)
+        cvChat.insertRows(at: [index], with: UITableViewRowAnimation.none)
+        cvChat.reloadRows(at: [index], with: UITableViewRowAnimation.none)
 
 //      cvChat?.performBatchUpdates({
 //
@@ -218,7 +223,13 @@ class ChatViewController: UIViewController,UITextViewDelegate,UITableViewDataSou
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: <#T##String#>, for: <#T##IndexPath#>)
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier) as! ChatCell
+        
+        let item = chatItem[indexPath.row]
+        cell.BindValue(chatitem: item)
+        return cell
+        
+        
     }
     
 
