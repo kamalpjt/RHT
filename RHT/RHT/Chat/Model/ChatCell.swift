@@ -28,7 +28,9 @@ class ChatCell: UITableViewCell {
     }()
     var tvChat:UITextView = {
         let txView = UITextView()
-        txView.textContainerInset = UIEdgeInsets.init(top: 5, left: 5, bottom: 5, right: 5)
+        txView.textContainerInset = UIEdgeInsets.init(top: 10, left: 10, bottom: 10, right: 10)
+        txView.textContainer.lineBreakMode = NSLineBreakMode.byWordWrapping
+        txView.textContainer.lineFragmentPadding = 0
         txView.font = UIFont.systemFont(ofSize: 13, weight: UIFont.Weight.regular)
         txView.text = "sampleMessage"
         txView.translatesAutoresizingMaskIntoConstraints = false;
@@ -52,7 +54,7 @@ class ChatCell: UITableViewCell {
         super.awakeFromNib()
         // Initialization code
         
-         self.SetUpLayout()
+       //  self.SetUpLayout()
     }
     override init(style: UITableViewCellStyle, reuseIdentifier: String!) {
         
@@ -108,20 +110,8 @@ class ChatCell: UITableViewCell {
         lblUserName.textAlignment = chatitem.IsSender == true ?  NSTextAlignment.left :  NSTextAlignment.right;
         lblDate.textAlignment = chatitem.IsSender == true ?  NSTextAlignment.left :  NSTextAlignment.right;
         tvChat.textAlignment = chatitem.IsSender == true ?  NSTextAlignment.left :  NSTextAlignment.right;
-        SetUpLayout()
+      //  SetUpLayout()
         UserNameHeight(messagetext: chatitem.chatMessage!, userName: chatitem.userName!, date: chatitem.date!, sendervalue: chatitem.IsSender!)
-        
-        if(chatitem.IsSender!)
-        {
-            tvChat.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10).isActive=true
-            tvChat.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: 0).isActive=false
-            self.layoutIfNeeded()
-        }else{
-            tvChat.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10).isActive=false
-            tvChat.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: 0).isActive=true
-            self.layoutIfNeeded()
-        }
-        
     }
     private func UserNameHeight(messagetext: String,userName: String,date:String, sendervalue:Bool)
     {
@@ -131,17 +121,18 @@ class ChatCell: UITableViewCell {
         let estimatedFramename = ShareData.sharedInstance.GetStringCGSize(stringValue:userName, font:UIFont.systemFont(ofSize: ShareData.SetFont14(), weight: UIFont.Weight.semibold))
         
         let estimatedFramedate = ShareData.sharedInstance.GetStringCGSize(stringValue:date, font:UIFont.systemFont(ofSize: ShareData.SetFont12(), weight: UIFont.Weight.semibold))
-//        if(sendervalue)
-//        {
-//            lblUserName.frame = CGRect(x: 0, y: 0, width: estimatedFramename.width, height: estimatedFramename.height)
-//            tvChat.frame = CGRect(x: 0, y: lblUserName.frame.height+4, width: estimatedFramemessage.width, height: estimatedFramemessage.height)
-//            lblDate .frame = CGRect(x: 0, y: estimatedFramemessage.height+14, width: estimatedFramedate.width, height: estimatedFramedate.height)
-//
-//        }else{
-//            lblUserName.frame = CGRect(x:0, y: 0, width: estimatedFramename.width, height: estimatedFramename.height)
-//            tvChat.frame = CGRect(x: UIScreen.main.bounds.width-estimatedFramemessage.width, y: lblUserName.frame.height+4, width: estimatedFramemessage.width, height: estimatedFramemessage.height)
-//            lblDate .frame = CGRect(x: 0, y: tvChat.frame.height+4, width: estimatedFramedate.width, height: estimatedFramedate.height)
-//        }
+        if(sendervalue)
+        {
+            lblUserName.frame = CGRect(x: 15, y: 0, width: ShareData.GetPhoneCurrentScreenWidth(), height: estimatedFramename.height)
+            //top =10 ,bottom= 10 == 20
+            tvChat.frame = CGRect(x: 5, y: lblUserName.frame.height+3, width: estimatedFramemessage.width+20, height: estimatedFramemessage.height+20)
+            lblDate .frame = CGRect(x: 14, y: lblUserName.frame.height+3+tvChat.frame.height+3, width: ShareData.GetPhoneCurrentScreenWidth(), height: estimatedFramedate.height)
+
+        }else{
+            lblUserName.frame = CGRect(x:0, y: 0, width: ShareData.GetPhoneCurrentScreenWidth()-15, height: estimatedFramename.height)
+            tvChat.frame = CGRect(x: UIScreen.main.bounds.width-25-estimatedFramemessage.width, y: lblUserName.frame.height+4, width: estimatedFramemessage.width+20, height: estimatedFramemessage.height+20)
+            lblDate .frame = CGRect(x: 0, y: lblUserName.frame.height+3+tvChat.frame.height+3, width: ShareData.GetPhoneCurrentScreenWidth()-15, height: estimatedFramedate.height)
+        }
        
         
           print("height:" + String(describing: estimatedFramemessage.height))
@@ -150,12 +141,12 @@ class ChatCell: UITableViewCell {
     
         
 //        SetUpLayout()
-         tvChat.heightAnchor.constraint(equalToConstant:estimatedFramemessage.height).isActive=true
-         tvChat.widthAnchor.constraint(equalToConstant: estimatedFramemessage.width).isActive=true
-        print("height:" + String(describing: estimatedFramemessage.height))
-         lblUserName.heightAnchor.constraint(equalToConstant:estimatedFramename.height).isActive=true
-         lblDate.heightAnchor.constraint(equalToConstant:estimatedFramedate.height).isActive=true
-        self.layoutIfNeeded()
+//         tvChat.heightAnchor.constraint(equalToConstant:estimatedFramemessage.height).isActive=true
+//         tvChat.widthAnchor.constraint(equalToConstant: estimatedFramemessage.width).isActive=true
+//        print("height:" + String(describing: estimatedFramemessage.height))
+//         lblUserName.heightAnchor.constraint(equalToConstant:estimatedFramename.height).isActive=true
+//         lblDate.heightAnchor.constraint(equalToConstant:estimatedFramedate.height).isActive=true
+//        self.layoutIfNeeded()
     }
     
     

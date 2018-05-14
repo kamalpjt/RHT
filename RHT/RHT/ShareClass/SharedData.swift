@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 
+
 extension ShareData {
     class func isIPhone5 () -> Bool{
         return max(UIScreen.main.bounds.width, UIScreen.main.bounds.height) == 568.0
@@ -53,6 +54,12 @@ extension ShareData {
             return 18
         }
     }
+    class func GetPhoneCurrentScreenWidth()-> CGFloat {
+        return UIScreen.main.bounds.size.width
+    }
+    class func GetPhoneCurrentScreenHeight()-> CGFloat {
+        return UIScreen.main.bounds.size.height
+    }
     
 }
 class ShareData {
@@ -94,7 +101,7 @@ class ShareData {
     func GetStringCGSize(stringValue:String,font:UIFont) -> CGRect {
         
       //  let size =  CGSize.init(width: UIScreen.main.bounds.size.width, height: 999999)
-        let size  = CGSize.init(width: UIScreen.main.bounds.size.width-60, height: 999999)
+        let size  = CGSize.init(width: UIScreen.main.bounds.size.width-90, height: 1000)
         //let size = CGSize(UIScreen.main.bounds.size.width, 999999)
         let options = NSStringDrawingOptions.usesFontLeading.union(.usesLineFragmentOrigin)
         let estimatedStringSize = NSString(string: stringValue).boundingRect(with: size, options: options, attributes: [NSAttributedStringKey.font : font ], context: nil)

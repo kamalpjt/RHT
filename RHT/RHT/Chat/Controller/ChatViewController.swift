@@ -34,8 +34,13 @@ class ChatViewController: UIViewController,UITextViewDelegate,UITableViewDataSou
         super.viewDidLoad()
         
         tvchatInput.textContainerInset = UIEdgeInsets.init(top: 5, left: 5, bottom: 5, right: 5)
+        tvchatInput.textContainer.lineBreakMode = NSLineBreakMode.byWordWrapping
+        tvchatInput.textContainer.lineFragmentPadding = 0;
         tvchatInput.layer.cornerRadius=5;
         tvchatInput.layer.masksToBounds = true;
+        cvChat.tableFooterView = UIView(frame: .zero)
+        cvChat.separatorStyle = .none
+      //  cvChat.contentInset = UIEdgeInsetsMake(5, 5, 5, 5)
       
         let borderWidth: CGFloat = 1
         tvchatInput.frame = tvchatInput.frame.insetBy(dx: -borderWidth, dy: -borderWidth)
@@ -44,40 +49,12 @@ class ChatViewController: UIViewController,UITextViewDelegate,UITableViewDataSou
       
         
         var chat = ChatData()
-        chat.chatMessage = "message1232232323232"+"\n"+"3232323232323232323"
+        chat.chatMessage = "Hi"
         chat.userName = "john"
         chat.IsSender = true
         chat.date = "12/100/2019"
-        
-        var chat1 = ChatData()
-        chat1.chatMessage = "message12322323232323232"+"\n"+"323232323232323ddd"+"\n"+"fdfdfdfdfdfdfddfdfdfdf"
-        chat1.userName = "john1"
-        chat1.IsSender = true
-        chat1.date = "12/100/2019"
-        
-        var chat2 = ChatData()
-        chat2.chatMessage = "message123223\n232323232323232\n32323232323dd/ndfdfdfdfdfdfdf\nddfdfdfdf5454"
-        chat2.userName = "john2"
-        chat2.IsSender = false
-        chat2.date = "12/100/2019"
-        
-        var chat3 = ChatData()
-        chat3.chatMessage = "message123223\n2323232323232323\n2323232323dd/ndfdfdfdfdfdfdfd\ndfdfdfdf675\n67567567"
-        chat3.userName = "john3"
-        chat3.IsSender = false
-        chat3.date = "12/100/2019"
-        
-        var chat4 = ChatData()
-        chat4.chatMessage = "message123223\n2323232323232323\n2323232323dd/ndfdfdfdfdfdfdfd\ndfdfdfdf675\n67567567"
-        chat4.userName = "john4"
-        chat4.IsSender = false
-        chat4.date = "12/100/2019"
-        
         chatItem.append(chat)
-        chatItem.append(chat1)
-        chatItem.append(chat2)
-        chatItem.append(chat3)
-        chatItem.append(chat4)
+
         
         //self.collectionviewDelegates = ChatFlowDelegate(item: chatItem);
        // self.dataSource = ChatSource(item: chatItem)
@@ -169,31 +146,24 @@ class ChatViewController: UIViewController,UITextViewDelegate,UITableViewDataSou
     }
     
     @IBAction func SendButtonAction(_ sender: Any) {
-        var bools = true;
-        var items =  ChatData();
-        items.chatMessage = tvchatInput.text;
-        items.date = "date"
-        items.userName = "Jack123456"
-         items.IsSender = true
-//        if chatItem.count % 2 == 0{
-//
-//        }else{
-//            items.IsSender = false
-//        }
-        chatItem.append(items)
-        print(tvchatInput.text)
-        tvchatInput.text = "";
-        
-        let index = IndexPath(item: chatItem.count-1, section: 0)
-        cvChat.insertRows(at: [index], with: UITableViewRowAnimation.none)
-        cvChat.reloadRows(at: [index], with: UITableViewRowAnimation.none)
-
-//      cvChat?.performBatchUpdates({
-//
-//          print("First part")
-//        }, completion: { (result: Bool) in
-//
-//        })
+        if tvchatInput.text.count>0{
+            var bools = true;
+            let value = chatItem[chatItem.count-1]
+            var items =  ChatData();
+            items.chatMessage = tvchatInput.text;
+            items.date = "date"
+            items.userName = "Jack123456"
+            items.IsSender = value.IsSender == true ? false:true
+            chatItem.append(items)
+            print(tvchatInput.text)
+            tvchatInput.text = "";
+            UIView.performWithoutAnimation {
+                let index = IndexPath(item: chatItem.count-1, section: 0)
+                cvChat.insertRows(at: [index], with: UITableViewRowAnimation.fade)
+                cvChat.scrollToRow(at: index, at: UITableViewScrollPosition.bottom, animated: true)
+            }
+        }
+       
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -215,7 +185,7 @@ class ChatViewController: UIViewController,UITextViewDelegate,UITableViewDataSou
             
             let estimatedFramedate = ShareData.sharedInstance.GetStringCGSize(stringValue:chatItem[indexPath.row].userName!, font:UIFont.systemFont(ofSize: ShareData.SetFont12(), weight: UIFont.Weight.semibold))
             
-            return estimatedFramemessage.height+estimatedFramedate.height+estimatedFramename.height+8;
+            return estimatedFramemessage.height+estimatedFramedate.height+estimatedFramename.height+30;
         }else{
             return 0
             print("error")
