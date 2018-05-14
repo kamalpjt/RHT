@@ -8,7 +8,11 @@
 
 import UIKit
 
-class ChatSource: NSObject,UICollectionViewDataSource {
+class ChatSource: NSObject,UICollectionViewDataSource,UpdateCons {
+    func update() {
+        
+    }
+    
     private let cellIdentifier = "ChatCell"
     private var chatItem = [ChatData]()
     
@@ -17,6 +21,9 @@ class ChatSource: NSObject,UICollectionViewDataSource {
         self.chatItem = item
     }
     
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return 1
+    }
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
         return chatItem.count;
@@ -29,11 +36,6 @@ class ChatSource: NSObject,UICollectionViewDataSource {
         cell.BindValue(chatitem: item)
         return cell;
         
-    }
-    public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize{
-        
-        return CGSize.init(width: UIScreen.main.bounds.size.width, height: 50);
-    }
-    
+    }    
 
 }

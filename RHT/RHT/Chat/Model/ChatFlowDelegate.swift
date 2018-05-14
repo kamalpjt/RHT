@@ -14,16 +14,20 @@ class ChatFlowDelegate: NSObject,UICollectionViewDelegateFlowLayout {
     init(item:[ChatData]) {
         self.chatItem = item
     }
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+       return   1
+    }
     
     public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize{
         //check the postive value first
         if let messagetext = chatItem[indexPath.row].chatMessage{
             
-            let estimatedFramemessage = ShareData.sharedInstance.GetStringCGSize(stringValue: messagetext, font: UIFont.systemFont(ofSize: 13, weight: UIFont.Weight.regular))
+            print(messagetext);
+            let estimatedFramemessage = ShareData.sharedInstance.GetStringCGSize(stringValue: messagetext, font: UIFont.systemFont(ofSize: ShareData.SetFont13(), weight: UIFont.Weight.regular))
             
-            let estimatedFramename = ShareData.sharedInstance.GetStringCGSize(stringValue:chatItem[indexPath.row].userName!, font:UIFont.systemFont(ofSize: 14, weight: UIFont.Weight.semibold))
+            let estimatedFramename = ShareData.sharedInstance.GetStringCGSize(stringValue:chatItem[indexPath.row].userName!, font:UIFont.systemFont(ofSize: ShareData.SetFont14(), weight: UIFont.Weight.semibold))
             
-             let estimatedFramedate = ShareData.sharedInstance.GetStringCGSize(stringValue:chatItem[indexPath.row].userName!, font:UIFont.systemFont(ofSize: 12, weight: UIFont.Weight.semibold))
+             let estimatedFramedate = ShareData.sharedInstance.GetStringCGSize(stringValue:chatItem[indexPath.row].userName!, font:UIFont.systemFont(ofSize: ShareData.SetFont12(), weight: UIFont.Weight.semibold))
             
               return CGSize.init(width: UIScreen.main.bounds.size.width, height: (estimatedFramemessage.height+estimatedFramedate.height+estimatedFramename.height+8));
         }else{

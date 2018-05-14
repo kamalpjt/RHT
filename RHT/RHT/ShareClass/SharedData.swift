@@ -29,6 +29,31 @@ extension ShareData {
         return false;
        }
    }
+    class func SetFont14()-> CGFloat {
+        if(!isIpad())
+        {
+            return 14
+        }else{
+            return 20
+        }
+    }
+    class func SetFont13()-> CGFloat {
+        if(!isIpad())
+        {
+            return 13
+        }else{
+            return 19
+        }
+    }
+    class func SetFont12()-> CGFloat {
+        if(!isIpad())
+        {
+            return 12
+        }else{
+            return 18
+        }
+    }
+    
 }
 class ShareData {
     
@@ -68,8 +93,9 @@ class ShareData {
     
     func GetStringCGSize(stringValue:String,font:UIFont) -> CGRect {
         
-        let size =  CGSize.init(width: UIScreen.main.bounds.size.width, height: 999999)
-        // let size = CGSize(UIScreen.main.bounds.size.width, 999999)
+      //  let size =  CGSize.init(width: UIScreen.main.bounds.size.width, height: 999999)
+        let size  = CGSize.init(width: UIScreen.main.bounds.size.width-60, height: 999999)
+        //let size = CGSize(UIScreen.main.bounds.size.width, 999999)
         let options = NSStringDrawingOptions.usesFontLeading.union(.usesLineFragmentOrigin)
         let estimatedStringSize = NSString(string: stringValue).boundingRect(with: size, options: options, attributes: [NSAttributedStringKey.font : font ], context: nil)
         
