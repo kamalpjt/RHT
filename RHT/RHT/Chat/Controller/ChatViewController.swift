@@ -12,7 +12,9 @@ protocol UpdateCons {
     
     func update()
 }
-class ChatViewController: UIViewController,UITextViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout {
+class ChatViewController: UIViewController,UITextViewDelegate,UITableViewDataSource,UITableViewDelegate {
+   
+    
     
     var delegate: UpdateCons?
     @IBOutlet weak var addButton: UIButton!
@@ -20,7 +22,7 @@ class ChatViewController: UIViewController,UITextViewDelegate,UICollectionViewDa
     @IBOutlet weak var vBottom: UIView!
     @IBOutlet weak var cvHeightConstrinat: NSLayoutConstraint!
     @IBOutlet weak var tvchatInput: UITextView!
-    @IBOutlet weak var cvChat: UICollectionView!
+    @IBOutlet weak var cvChat: UITableView!
     @IBOutlet weak var VContainer: UIView!
     var frameheight:CGFloat?
     var cell:ChatCell?
@@ -77,11 +79,11 @@ class ChatViewController: UIViewController,UITextViewDelegate,UICollectionViewDa
         chatItem.append(chat3)
         chatItem.append(chat4)
         
-        self.collectionviewDelegates = ChatFlowDelegate(item: chatItem);
-        self.dataSource = ChatSource(item: chatItem)
-        cvChat.register(ChatCell.self, forCellWithReuseIdentifier: cellIdentifier)
-        cvChat.dataSource = self;
-        cvChat.delegate = self;
+        //self.collectionviewDelegates = ChatFlowDelegate(item: chatItem);
+       // self.dataSource = ChatSource(item: chatItem)
+       // cvChat.register(ChatCell.self, forCellWithReuseIdentifier: cellIdentifier)
+       // cvChat.dataSource = self;
+       // cvChat.delegate = self;
         cvChat.reloadData()
         CloseKeyboard(bool: true)
         // Do any additional setup after loading the view.
@@ -180,39 +182,43 @@ class ChatViewController: UIViewController,UITextViewDelegate,UICollectionViewDa
         chatItem.append(items)
         print(tvchatInput.text)
         tvchatInput.text = "";
-//        self.collectionviewDelegates = ChatFlowDelegate(item: chatItem);
-//        self.dataSource = ChatSource(item: chatItem)
-//        cvChat.reloadData()
-       // tvchatInput.text = "";
-        
-        
-       // self.collectionviewDelegates = ChatFlowDelegate(item: chatItem);
-       // self.dataSource = ChatSource(item: chatItem)
-       // cvChat.register(ChatCell.self, forCellWithReuseIdentifier: cellIdentifier)
-       // cvChat.dataSource = dataSource;
-      //  cvChat.delegate = collectionviewDelegates;
-       // cvChat.reloadData()
-        //self.cvChat
-        
-      cvChat?.performBatchUpdates({
-            let index = chatItem.count-1;
-            let indexPaths = IndexPath(row:index, section: 0) //at some index
-        //  self.cvChat.numberOfItems(inSection: 1)
-        cvChat.dataSource  = self
-            self.cvChat.insertItems(at: [indexPaths])
-       //  self.cvChat.reloadData()
-        //self.cvChat.re
-            //self.cvChat.reloadItems(at: [indexPaths])
-//           // self.cvChat.inr(at: [num index])
-//            print("First part")
-        }, completion: { (result: Bool) in
-//            print("Second part")
-            //self.cvChat.reloadData()
-        })
+
+//      cvChat?.performBatchUpdates({
+//
+//          print("First part")
+//        }, completion: { (result: Bool) in
+//
+//        })
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
+        return chatItem.count
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        
+        if let messagetext = chatItem[indexPath.row].chatMessage{
+            
+            print(messagetext);
+            let estimatedFramemessage = ShareData.sharedInstance.GetStringCGSize(stringValue: messagetext, font: UIFont.systemFont(ofSize: ShareData.SetFont13(), weight: UIFont.Weight.regular))
+            
+            let estimatedFramename = ShareData.sharedInstance.GetStringCGSize(stringValue:chatItem[indexPath.row].userName!, font:UIFont.systemFont(ofSize: ShareData.SetFont14(), weight: UIFont.Weight.semibold))
+            
+            let estimatedFramedate = ShareData.sharedInstance.GetStringCGSize(stringValue:chatItem[indexPath.row].userName!, font:UIFont.systemFont(ofSize: ShareData.SetFont12(), weight: UIFont.Weight.semibold))
+            
+            return estimatedFramemessage.height+estimatedFramedate.height+estimatedFramename.height+8;
+        }else{
+            return 0
+            print("error")
+        }
+    }
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        let cell = tableView.dequeueReusableCell(withIdentifier: <#T##String#>, for: <#T##IndexPath#>)
     }
     
 
@@ -225,85 +231,6 @@ class ChatViewController: UIViewController,UITextViewDelegate,UICollectionViewDa
         // Pass the selected object to the new view controller.
     }
     */
-    func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 1
-    }
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        
-        let num = chatItem.count;
-        print(num)
-        return num;
-    }
     
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellIdentifier, for: indexPath) as! ChatCell;
-        let item  = self.chatItem[indexPath.row];
-        cell.BindValue(chatitem: item)
-        
-//        let estimatedFramemessage = ShareData.sharedInstance.GetStringCGSize(stringValue: item.chatMessage!, font: UIFont.systemFont(ofSize: ShareData.SetFont13(), weight: UIFont.Weight.regular))
-//        
-//        let estimatedFramename = ShareData.sharedInstance.GetStringCGSize(stringValue:item.userName!, font:UIFont.systemFont(ofSize: ShareData.SetFont14(), weight: UIFont.Weight.semibold))
-//        
-//        let estimatedFramedate = ShareData.sharedInstance.GetStringCGSize(stringValue:item.date!, font:UIFont.systemFont(ofSize: ShareData.SetFont12(), weight: UIFont.Weight.semibold))
-//        if(item.IsSender)!
-//        {
-//            cell.lblUserName.frame = CGRect(x: 0, y: 0, width: estimatedFramename.width, height: estimatedFramename.height)
-//            cell.tvChat.frame = CGRect(x: 10, y: cell.lblUserName.frame.height+4, width: estimatedFramemessage.width, height: estimatedFramemessage.height)
-//           cell.lblDate .frame = CGRect(x: 0, y: cell.tvChat.frame.height+4, width: estimatedFramedate.width, height: estimatedFramedate.height)
-//            
-//        }else{
-//             cell.lblUserName.frame = CGRect(x: UIScreen.main.bounds.width, y: 0, width: estimatedFramename.width, height: estimatedFramename.height)
-//            cell.tvChat.frame = CGRect(x: UIScreen.main.bounds.width-estimatedFramemessage.width, y: cell.lblUserName.frame.height+4, width: estimatedFramemessage.width, height: estimatedFramemessage.height)
-//            //  addSubview(tvChat)
-//            cell.lblDate .frame = CGRect(x: 0, y: cell.tvChat.frame.height+4, width: estimatedFramedate.width, height: estimatedFramedate.height)
-//        }
-        return cell;
-        
-    }
-    public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize{
-        //check the postive value first
-       // var num = collectionView.dequeueReusableCell(withReuseIdentifier: cellIdentifier, for: indexPath)
-       // num.BindValue(chatitem: chatItem[indexPath.row]);
-        
-        if let messagetext = chatItem[indexPath.row].chatMessage{
-            
-            print(messagetext);
-            let estimatedFramemessage = ShareData.sharedInstance.GetStringCGSize(stringValue: messagetext, font: UIFont.systemFont(ofSize: ShareData.SetFont13(), weight: UIFont.Weight.regular))
-            
-            let estimatedFramename = ShareData.sharedInstance.GetStringCGSize(stringValue:chatItem[indexPath.row].userName!, font:UIFont.systemFont(ofSize: ShareData.SetFont14(), weight: UIFont.Weight.semibold))
-            
-            let estimatedFramedate = ShareData.sharedInstance.GetStringCGSize(stringValue:chatItem[indexPath.row].userName!, font:UIFont.systemFont(ofSize: ShareData.SetFont12(), weight: UIFont.Weight.semibold))
-            
-            return CGSize.init(width: UIScreen.main.bounds.size.width, height: (estimatedFramemessage.height+estimatedFramedate.height+estimatedFramename.height+16));
-        }else{
-            return CGSize.init(width: UIScreen.main.bounds.size.width, height: 100);
-        }
-        
-    }
-    
-    //    public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets{
-    //
-    //    }
-    
-    //    public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat{
-    //
-    //    }
-    
-    
-    public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat{
-        
-        return 10
-    }
-    
-    public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize{
-        
-        return CGSize.init(width: 0, height: 0)
-    }
-    
-    public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize{
-        
-        return CGSize.init(width: 0, height: 0)
-    }
-
+   
 }

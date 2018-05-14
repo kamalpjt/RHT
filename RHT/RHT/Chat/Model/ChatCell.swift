@@ -16,7 +16,7 @@ struct ChatData {
 }
 
 
-class ChatCell: UICollectionViewCell {
+class ChatCell: UITableViewCell {
     
     var lblUserName:UILabel = {
         let lblname = UILabel()
