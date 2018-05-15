@@ -31,7 +31,7 @@ class ChatCell: UITableViewCell {
         txView.textContainerInset = UIEdgeInsets.init(top: 10, left: 10, bottom: 10, right: 10)
         txView.textContainer.lineBreakMode = NSLineBreakMode.byWordWrapping
         txView.textContainer.lineFragmentPadding = 0
-        txView.font = UIFont.systemFont(ofSize: 13, weight: UIFont.Weight.regular)
+        txView.font = UIFont.systemFont(ofSize: ShareData.SetFont13() , weight: UIFont.Weight.regular)
         txView.text = "sampleMessage"
         txView.translatesAutoresizingMaskIntoConstraints = false;
         txView.backgroundColor = AppConstant.sharedInstance.backGroundColor;
@@ -43,7 +43,7 @@ class ChatCell: UITableViewCell {
     }()
     var lblDate:UILabel = {
         let date = UILabel()
-        date.font = UIFont.systemFont(ofSize: 12, weight: UIFont.Weight.semibold)
+        date.font = UIFont.systemFont(ofSize: ShareData.SetFont12(), weight: UIFont.Weight.semibold)
         date.text = "12/09/2005"
         date.translatesAutoresizingMaskIntoConstraints = false;
         date.textColor = UIColor.gray;

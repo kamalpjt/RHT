@@ -39,6 +39,7 @@ class ChatViewController: UIViewController,UITextViewDelegate,UITableViewDataSou
         tvchatInput.layer.masksToBounds = true;
         cvChat.tableFooterView = UIView(frame: .zero)
         cvChat.separatorStyle = .none
+        tvchatInput.font = UIFont.systemFont(ofSize: ShareData.SetFont13(), weight: UIFont.Weight.regular)
       //  cvChat.contentInset = UIEdgeInsetsMake(5, 5, 5, 5)
       
         let borderWidth: CGFloat = 1
@@ -154,11 +155,11 @@ class ChatViewController: UIViewController,UITextViewDelegate,UITableViewDataSou
     }
     
     @IBAction func SendButtonAction(_ sender: Any) {
-        if tvchatInput.text.count>0{
+        if  tvchatInput.text.trimmingCharacters(in: .whitespacesAndNewlines).count>0{
             var bools = true;
             let value = chatItem[chatItem.count-1]
             var items =  ChatData();
-            items.chatMessage = tvchatInput.text;
+            items.chatMessage = tvchatInput.text.trimmingCharacters(in: .whitespacesAndNewlines);
             items.date = "date"
             items.userName = "Jack123456"
             items.IsSender = value.IsSender == true ? false:true
@@ -204,8 +205,7 @@ class ChatViewController: UIViewController,UITextViewDelegate,UITableViewDataSou
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier) as! ChatCell
-        
+        var cell = cvChat.dequeueReusableCell(withIdentifier: cellIdentifier) as! ChatCell
         let item = chatItem[indexPath.row]
         cell.BindValue(chatitem: item)
         return cell
