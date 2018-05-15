@@ -10,6 +10,7 @@
 		41274DCF767A1BE7A80664EF /* Pods_RHTTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC4023868CCA04E85029133C /* Pods_RHTTests.framework */; };
 		70EB24AA65E633B82DD184C7 /* Pods_RHT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A0B23696F8BA6542264D351A /* Pods_RHT.framework */; };
 		8A08AA1620A32F0000C3B6A8 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A08AA1520A32F0000C3B6A8 /* ChatViewController.swift */; };
+		8A3B3F2B20AB22DB0003AD22 /* CommunicationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A3B3F2A20AB22DB0003AD22 /* CommunicationController.swift */; };
 		8AD69C0E20A5BC8500F2E135 /* ChatCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AD69C0D20A5BC8500F2E135 /* ChatCell.swift */; };
 		9C1C3FF06EF92C14D965D71D /* Pods_RHTUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 51EE2E4E70A6D36CD1271759 /* Pods_RHTUITests.framework */; };
 		A90BF65B2075F6AB007B8F2B /* RESideMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = A90BF65A2075F6AB007B8F2B /* RESideMenu.m */; };
@@ -65,6 +66,7 @@
 		51EE2E4E70A6D36CD1271759 /* Pods_RHTUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RHTUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7B2CDDDB8AFBA956B6E3AD4B /* Pods-RHTTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RHTTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-RHTTests/Pods-RHTTests.release.xcconfig"; sourceTree = "<group>"; };
 		8A08AA1520A32F0000C3B6A8 /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
+		8A3B3F2A20AB22DB0003AD22 /* CommunicationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunicationController.swift; sourceTree = "<group>"; };
 		8AD69C0D20A5BC8500F2E135 /* ChatCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatCell.swift; sourceTree = "<group>"; };
 		A0B23696F8BA6542264D351A /* Pods_RHT.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RHT.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A90BF6592075F695007B8F2B /* RESideMenu.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RESideMenu.h; sourceTree = "<group>"; };
@@ -160,6 +162,29 @@
 				8A08AA1520A32F0000C3B6A8 /* ChatViewController.swift */,
 			);
 			path = Controller;
+			sourceTree = "<group>";
+		};
+		8A3B3F2720AB1B580003AD22 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				8A3B3F2A20AB22DB0003AD22 /* CommunicationController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		8A3B3F2820AB1B790003AD22 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				A91F3E5B20AABED80080B8E9 /* Communication.storyboard */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		8A3B3F2920AB1BA90003AD22 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		A90BF6582075F65B007B8F2B /* SideMenu */ = {
@@ -287,7 +312,9 @@
 		A91F3E5A20AABE980080B8E9 /* communications */ = {
 			isa = PBXGroup;
 			children = (
-				A91F3E5B20AABED80080B8E9 /* Communication.storyboard */,
+				8A3B3F2920AB1BA90003AD22 /* Model */,
+				8A3B3F2820AB1B790003AD22 /* View */,
+				8A3B3F2720AB1B580003AD22 /* Controller */,
 			);
 			path = communications;
 			sourceTree = "<group>";
@@ -595,6 +622,7 @@
 				A9182483206CBF6500B358D8 /* LoginViewController.swift in Sources */,
 				A921F83220774C120042738A /* RECommonFunctions.m in Sources */,
 				A91F3E5920AA92EC0080B8E9 /* ChatTblDelegate.swift in Sources */,
+				8A3B3F2B20AB22DB0003AD22 /* CommunicationController.swift in Sources */,
 				8AD69C0E20A5BC8500F2E135 /* ChatCell.swift in Sources */,
 				A914484320700E650031AD30 /* HomeCollectionViewCell.swift in Sources */,
 				A918248E206CD09800B358D8 /* RegisterViewController.swift in Sources */,
