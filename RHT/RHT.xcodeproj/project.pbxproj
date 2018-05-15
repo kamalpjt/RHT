@@ -199,7 +199,6 @@
 			isa = PBXGroup;
 			children = (
 				8A08AA1320A32E6A00C3B6A8 /* Chat */,
-				A9FB541320794746002DD00A /* Communication */,
 				A9A134DA2078A5270093A78E /* Settings */,
 				A90BF6582075F65B007B8F2B /* SideMenu */,
 				A9182484206CC48400B358D8 /* ShareClass */,
@@ -307,13 +306,6 @@
 				A91F3E5820AA92EC0080B8E9 /* ChatTblDelegate.swift */,
 			);
 			path = Model;
-			sourceTree = "<group>";
-		};
-		A9FB541320794746002DD00A /* Communication */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Communication;
 			sourceTree = "<group>";
 		};
 		D7A125A67E165C407DEAE53A /* Pods */ = {
