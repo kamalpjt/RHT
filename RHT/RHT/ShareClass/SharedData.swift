@@ -108,4 +108,14 @@ class ShareData {
         
         return estimatedStringSize
     }
+    
+    func ChangeImageTintColor(imageName: String) -> UIImageView{
+        
+        let image = UIImage(named:imageName )?.withRenderingMode(.alwaysTemplate)
+        let tittleimageview = UIImageView()
+        tittleimageview.tintColor = UIColor.white
+        tittleimageview.contentMode = UIViewContentMode.scaleAspectFit
+        tittleimageview.image = image
+        return tittleimageview
+    }
 }

@@ -26,8 +26,7 @@ class ChatViewController: UIViewController,UITextViewDelegate,UITableViewDataSou
     @IBOutlet weak var VContainer: UIView!
     var frameheight:CGFloat?
     var cell:ChatCell?
-    var dataSource:ChatSource?
-    var collectionviewDelegates:ChatFlowDelegate?
+    var dataSource:ChatTblSource?
     private let cellIdentifier = "ChatCell"
     var chatItem = [ChatData]()
     override func viewDidLoad() {
@@ -57,10 +56,11 @@ class ChatViewController: UIViewController,UITextViewDelegate,UITableViewDataSou
 
         
         //self.collectionviewDelegates = ChatFlowDelegate(item: chatItem);
-       // self.dataSource = ChatSource(item: chatItem)
+        self.dataSource = ChatTblSource(item: chatItem)
         //cvChat.register(UITableViewCell.self(), forCellReuseIdentifier: cellIdentifier)
         cvChat.register(ChatCell.self, forCellReuseIdentifier: cellIdentifier)
-        cvChat.dataSource = self;
+        //cvChat.dataSource = dataSource;
+        cvChat.dataSource = self
         cvChat.delegate = self;
         cvChat.reloadData()
         CloseKeyboard(bool: true)
@@ -97,30 +97,38 @@ class ChatViewController: UIViewController,UITextViewDelegate,UITableViewDataSou
         print("keyboardWillShow")
         if let keyboardSize = (notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
             if self.VContainer.frame.origin.y == 0{
-        frameheight = cvChat.frame.height
-                if(!ShareData.isIPhoneX())
+                frameheight = cvChat.frame.height
+                
+                if(ShareData.isIPhone5()||ShareData.isIPhone6()||ShareData.isIPhone6Plus())
                 {
                     let getheight = cvChat.frame.height - keyboardSize.height
                     cvChat.heightAnchor.constraint(equalTo: VContainer.heightAnchor, multiplier: getheight/VContainer.frame.height , constant: 0).isActive=true
                     vBottomconstraints.isActive = false;
                     self.view.layoutIfNeeded()
-                }else if(!ShareData.isIpad()){
                     
-                    let getheight = (cvChat.frame.height - keyboardSize.height)+30
+                }else if(ShareData.isIPhoneX()){
+                    
+                   let getheight = (cvChat.frame.height - keyboardSize.height)+30
                     cvChat.heightAnchor.constraint(equalTo: VContainer.heightAnchor, multiplier: getheight/VContainer.frame.height , constant: 0).isActive=true
                     vBottomconstraints.isActive = false;
                     self.view.layoutIfNeeded()
                     
-                }else{
-                    let getheight = (cvChat.frame.height - keyboardSize.height)+20
+                }else if(ShareData.isIpad()){
+                    
+                    let getheight = (cvChat.frame.height - keyboardSize.height)
                     cvChat.heightAnchor.constraint(equalTo: VContainer.heightAnchor, multiplier: getheight/VContainer.frame.height , constant: 0).isActive=true
                     vBottomconstraints.isActive = false;
                     self.view.layoutIfNeeded()
+                    
                 }
-               
+                if(chatItem.count>0)
+                {
+                    let index = IndexPath(item: chatItem.count-1, section: 0)
+                    cvChat.scrollToRow(at: index, at: UITableViewScrollPosition.top, animated: true)
+                }
+                
             }
         }
-        
     }
     @objc func keyboardWillHide(notification: NSNotification){
         print("keyboardWillHide")
@@ -156,11 +164,13 @@ class ChatViewController: UIViewController,UITextViewDelegate,UITableViewDataSou
             items.IsSender = value.IsSender == true ? false:true
             chatItem.append(items)
             print(tvchatInput.text)
-            tvchatInput.text = "";
+            tvchatInput.text = ""
+            //self.dataSource = ChatTblSource(item: chatItem)
+             //cvChat.dataSource = dataSource
             UIView.performWithoutAnimation {
                 let index = IndexPath(item: chatItem.count-1, section: 0)
                 cvChat.insertRows(at: [index], with: UITableViewRowAnimation.fade)
-                cvChat.scrollToRow(at: index, at: UITableViewScrollPosition.bottom, animated: true)
+                cvChat.scrollToRow(at: index, at: UITableViewScrollPosition.top, animated: true)
             }
         }
        
@@ -187,8 +197,9 @@ class ChatViewController: UIViewController,UITextViewDelegate,UITableViewDataSou
             
             return estimatedFramemessage.height+estimatedFramedate.height+estimatedFramename.height+30;
         }else{
+             print("error")
             return 0
-            print("error")
+           
         }
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -198,7 +209,6 @@ class ChatViewController: UIViewController,UITextViewDelegate,UITableViewDataSou
         let item = chatItem[indexPath.row]
         cell.BindValue(chatitem: item)
         return cell
-        
         
     }
     

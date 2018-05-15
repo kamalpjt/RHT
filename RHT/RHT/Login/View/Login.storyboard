@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="m2W-0b-ngg">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="m2W-0b-ngg">
     <device id="retina4_0" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -327,7 +327,9 @@
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ChatBhot" translatesAutoresizingMaskIntoConstraints="NO" id="3wc-N2-De2"/>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ChatBhot" translatesAutoresizingMaskIntoConstraints="NO" id="3wc-N2-De2">
+                                                    <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
+                                                </imageView>
                                             </subviews>
                                         </view>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -818,14 +820,14 @@
                                     <constraint firstItem="NeT-yb-gtu" firstAttribute="height" secondItem="kZn-LM-r2g" secondAttribute="height" multiplier="40:504" id="2hU-mf-Iaf"/>
                                     <constraint firstItem="cfo-oP-Y7G" firstAttribute="top" secondItem="kZn-LM-r2g" secondAttribute="top" id="A0s-Iz-FGi"/>
                                     <constraint firstItem="cfo-oP-Y7G" firstAttribute="height" secondItem="kZn-LM-r2g" secondAttribute="height" multiplier="504:548" id="Jik-ea-8qc"/>
-                                    <constraint firstItem="NeT-yb-gtu" firstAttribute="top" secondItem="cfo-oP-Y7G" secondAttribute="bottom" constant="0.5" id="LfF-UB-BWa"/>
+                                    <constraint firstItem="NeT-yb-gtu" firstAttribute="top" secondItem="cfo-oP-Y7G" secondAttribute="bottom" id="LfF-UB-BWa"/>
                                     <constraint firstAttribute="trailing" secondItem="cfo-oP-Y7G" secondAttribute="trailing" id="Ox2-BU-PZQ"/>
                                     <constraint firstAttribute="trailing" secondItem="cfo-oP-Y7G" secondAttribute="trailing" id="Y7L-cq-RlM"/>
                                     <constraint firstAttribute="bottom" secondItem="NeT-yb-gtu" secondAttribute="bottom" id="aPU-F8-Lwx"/>
                                     <constraint firstItem="NeT-yb-gtu" firstAttribute="leading" secondItem="kZn-LM-r2g" secondAttribute="leading" id="dg1-a5-c2H"/>
                                     <constraint firstAttribute="trailing" secondItem="NeT-yb-gtu" secondAttribute="trailing" id="fXj-Hh-yIv"/>
                                     <constraint firstItem="cfo-oP-Y7G" firstAttribute="leading" secondItem="kZn-LM-r2g" secondAttribute="leading" id="hlG-My-NaE"/>
-                                    <constraint firstItem="NeT-yb-gtu" firstAttribute="top" secondItem="cfo-oP-Y7G" secondAttribute="bottom" constant="0.5" id="p8h-u9-fd8"/>
+                                    <constraint firstItem="NeT-yb-gtu" firstAttribute="top" secondItem="cfo-oP-Y7G" secondAttribute="bottom" id="p8h-u9-fd8"/>
                                     <constraint firstItem="cfo-oP-Y7G" firstAttribute="leading" secondItem="kZn-LM-r2g" secondAttribute="leading" id="w0A-kB-6mn"/>
                                 </constraints>
                             </view>
