@@ -33,6 +33,7 @@
 		A91E87ED207115C1006AF73D /* Loginipad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A91E87EC207115C1006AF73D /* Loginipad.storyboard */; };
 		A91F3E5720AA92D70080B8E9 /* ChatTblSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = A91F3E5620AA92D70080B8E9 /* ChatTblSource.swift */; };
 		A91F3E5920AA92EC0080B8E9 /* ChatTblDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A91F3E5820AA92EC0080B8E9 /* ChatTblDelegate.swift */; };
+		A91F3E5C20AABED80080B8E9 /* Communication.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A91F3E5B20AABED80080B8E9 /* Communication.storyboard */; };
 		A921F83220774C120042738A /* RECommonFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = A921F83120774C120042738A /* RECommonFunctions.m */; };
 		A921F835207755640042738A /* SharedNavigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A921F834207755640042738A /* SharedNavigation.swift */; };
 		A9A134DD2078A6A00093A78E /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9A134DC2078A6A00093A78E /* SettingViewController.swift */; };
@@ -95,6 +96,7 @@
 		A91E87EC207115C1006AF73D /* Loginipad.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Loginipad.storyboard; sourceTree = "<group>"; };
 		A91F3E5620AA92D70080B8E9 /* ChatTblSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatTblSource.swift; sourceTree = "<group>"; };
 		A91F3E5820AA92EC0080B8E9 /* ChatTblDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatTblDelegate.swift; sourceTree = "<group>"; };
+		A91F3E5B20AABED80080B8E9 /* Communication.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Communication.storyboard; sourceTree = "<group>"; };
 		A921F83020774C080042738A /* RECommonFunctions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RECommonFunctions.h; sourceTree = "<group>"; };
 		A921F83120774C120042738A /* RECommonFunctions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RECommonFunctions.m; sourceTree = "<group>"; };
 		A921F83320774DD60042738A /* RHT-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "RHT-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -198,6 +200,7 @@
 		A9182449206CBB2000B358D8 /* RHT */ = {
 			isa = PBXGroup;
 			children = (
+				A91F3E5A20AABE980080B8E9 /* communications */,
 				8A08AA1320A32E6A00C3B6A8 /* Chat */,
 				A9A134DA2078A5270093A78E /* Settings */,
 				A90BF6582075F65B007B8F2B /* SideMenu */,
@@ -279,6 +282,14 @@
 				A921F834207755640042738A /* SharedNavigation.swift */,
 			);
 			path = ShareClass;
+			sourceTree = "<group>";
+		};
+		A91F3E5A20AABE980080B8E9 /* communications */ = {
+			isa = PBXGroup;
+			children = (
+				A91F3E5B20AABED80080B8E9 /* Communication.storyboard */,
+			);
+			path = communications;
 			sourceTree = "<group>";
 		};
 		A9A134DA2078A5270093A78E /* Settings */ = {
@@ -439,6 +450,7 @@
 				A9182481206CBD8F00B358D8 /* Login.storyboard in Resources */,
 				A91E87ED207115C1006AF73D /* Loginipad.storyboard in Resources */,
 				A918248C206CCA5900B358D8 /* Main.storyboard in Resources */,
+				A91F3E5C20AABED80080B8E9 /* Communication.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
