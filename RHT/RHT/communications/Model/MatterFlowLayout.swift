@@ -23,10 +23,10 @@ class MatterFlowLayout: UICollectionViewFlowLayout {
         if(!ShareData.isIpad())
         {
             minimumInteritemSpacing = 1
-            minimumLineSpacing = 1
+            minimumLineSpacing = 10
             scrollDirection = .vertical
             //to set top padding
-            sectionInset =  UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
+            sectionInset =  UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
         }else{
             
         }
@@ -43,12 +43,13 @@ class MatterFlowLayout: UICollectionViewFlowLayout {
             // let  screenHeight = screenSize.height
             
             //let itemWidth = (self.collectionView?.frame.width)!/2
-            if ShareData.isIpad(){
-                return CGSize(width: (screenWidth/3)-6, height: (screenWidth/3)-6)
+            if !ShareData.isIpad(){
+                return CGSize(width: (screenWidth)-16, height: 70)
             }else{
                 return CGSize(width: (screenWidth/2)-6, height: (screenWidth/2)-6)
             }
             
         }
+        
     }
 }
