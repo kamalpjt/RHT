@@ -11,14 +11,8 @@ import UIKit
 class ChatTblSource: NSObject,UITableViewDataSource {
 
     private let cellIdentifier = "ChatCell"
-    private var chatItem = [ChatData]()
-    
-    init(item:[ChatData]) {
-        
-        self.chatItem = item
-   // self.so
-    }
-    
+    public var chatItem = [ChatData]()
+   
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
          return chatItem.count

@@ -56,13 +56,13 @@ class ChatViewController: UIViewController,UITextViewDelegate,UITableViewDataSou
         chatItem.append(chat)
 
         
-        //self.collectionviewDelegates = ChatFlowDelegate(item: chatItem);
-        self.dataSource = ChatTblSource(item: chatItem)
-        //cvChat.register(UITableViewCell.self(), forCellReuseIdentifier: cellIdentifier)
+       
+        self.dataSource = ChatTblSource()
         cvChat.register(ChatCell.self, forCellReuseIdentifier: cellIdentifier)
-        //cvChat.dataSource = dataSource;
-        cvChat.dataSource = self
-        cvChat.delegate = self;
+
+        self.dataSource?.chatItem = chatItem
+        cvChat.dataSource =  self.dataSource
+        cvChat.delegate =  self
         cvChat.reloadData()
         CloseKeyboard(bool: true)
         // Do any additional setup after loading the view.
@@ -169,6 +169,7 @@ class ChatViewController: UIViewController,UITextViewDelegate,UITableViewDataSou
             //self.dataSource = ChatTblSource(item: chatItem)
              //cvChat.dataSource = dataSource
             UIView.performWithoutAnimation {
+                 self.dataSource?.chatItem = chatItem
                 let index = IndexPath(item: chatItem.count-1, section: 0)
                 cvChat.insertRows(at: [index], with: UITableViewRowAnimation.fade)
                 cvChat.scrollToRow(at: index, at: UITableViewScrollPosition.top, animated: true)

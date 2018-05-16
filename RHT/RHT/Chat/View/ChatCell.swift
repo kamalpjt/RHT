@@ -59,15 +59,10 @@ class ChatCell: UITableViewCell {
     override init(style: UITableViewCellStyle, reuseIdentifier: String!) {
         
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        //Do your cell set up
-        
-//        labTime = UILabel(frame: contentView.bounds)
-//        labTime.font = UIFont(name:"HelveticaNeue-Bold", size: 16)
-//
-//        contentView.addSubview(labTime)
         self.addSubview(lblUserName)
         self.addSubview(tvChat)
         self.addSubview(lblDate)
+        self.selectionStyle = UITableViewCellSelectionStyle.none;
        
     }
     
@@ -76,18 +71,6 @@ class ChatCell: UITableViewCell {
         
         // Configure the view for the selected state
     }
-//    override init(frame: CGRect) {
-//        super.init(frame: frame)
-//
-//        addSubview(lblUserName)
-//        addSubview(tvChat)
-//        addSubview(lblDate)
-//        contentView.backgroundColor = UIColor.lightGray
-//        //SetUpLayout()
-//
-//
-//       // backgroundColor? = UIColor.red;
-//    }
     private func SetUpLayout()
     {
         lblUserName.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20).isActive=true
