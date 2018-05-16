@@ -33,6 +33,8 @@
 		A91E87ED207115C1006AF73D /* Loginipad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A91E87EC207115C1006AF73D /* Loginipad.storyboard */; };
 		A91F3E5720AA92D70080B8E9 /* ChatTblSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = A91F3E5620AA92D70080B8E9 /* ChatTblSource.swift */; };
 		A91F3E5C20AABED80080B8E9 /* Communication.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A91F3E5B20AABED80080B8E9 /* Communication.storyboard */; };
+		A9209FA620AC1D8700E2F174 /* MatterFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9209FA520AC1D8700E2F174 /* MatterFlowLayout.swift */; };
+		A9209FA820AC30BD00E2F174 /* MatterDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9209FA720AC30BD00E2F174 /* MatterDataSource.swift */; };
 		A921F83220774C120042738A /* RECommonFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = A921F83120774C120042738A /* RECommonFunctions.m */; };
 		A921F835207755640042738A /* SharedNavigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A921F834207755640042738A /* SharedNavigation.swift */; };
 		A994955220AC1A4F00EECC2B /* MatterCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A994955120AC1A4F00EECC2B /* MatterCollectionViewCell.swift */; };
@@ -96,6 +98,8 @@
 		A91E87EC207115C1006AF73D /* Loginipad.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Loginipad.storyboard; sourceTree = "<group>"; };
 		A91F3E5620AA92D70080B8E9 /* ChatTblSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatTblSource.swift; sourceTree = "<group>"; };
 		A91F3E5B20AABED80080B8E9 /* Communication.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Communication.storyboard; sourceTree = "<group>"; };
+		A9209FA520AC1D8700E2F174 /* MatterFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatterFlowLayout.swift; sourceTree = "<group>"; };
+		A9209FA720AC30BD00E2F174 /* MatterDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatterDataSource.swift; sourceTree = "<group>"; };
 		A921F83020774C080042738A /* RECommonFunctions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RECommonFunctions.h; sourceTree = "<group>"; };
 		A921F83120774C120042738A /* RECommonFunctions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RECommonFunctions.m; sourceTree = "<group>"; };
 		A921F83320774DD60042738A /* RHT-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "RHT-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -315,6 +319,8 @@
 		A994954F20AC18DB00EECC2B /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				A9209FA720AC30BD00E2F174 /* MatterDataSource.swift */,
+				A9209FA520AC1D8700E2F174 /* MatterFlowLayout.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -615,6 +621,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A916538E206E759C0029FFE1 /* CustomTextField.swift in Sources */,
+				A9209FA820AC30BD00E2F174 /* MatterDataSource.swift in Sources */,
 				A994955220AC1A4F00EECC2B /* MatterCollectionViewCell.swift in Sources */,
 				A9182488206CC4EC00B358D8 /* SharedData.swift in Sources */,
 				8A08AA1620A32F0000C3B6A8 /* ChatViewController.swift in Sources */,
@@ -634,6 +641,7 @@
 				A918244B206CBB2000B358D8 /* AppDelegate.swift in Sources */,
 				A9A134DF2078B1930093A78E /* HomeCollectionFlowLayout.swift in Sources */,
 				A9182486206CC4AC00B358D8 /* BaseViewController.swift in Sources */,
+				A9209FA620AC1D8700E2F174 /* MatterFlowLayout.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

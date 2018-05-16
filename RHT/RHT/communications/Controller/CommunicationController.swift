@@ -8,11 +8,20 @@
 
 import UIKit
 
-class CommunicationController: UIViewController {
+class CommunicationController: UIViewController,UICollectionViewDelegateFlowLayout {
+
+    @IBOutlet weak var vTop: UIView!
+    @IBOutlet weak var sbSearchMatter: UISearchBar!
+    @IBOutlet weak var cvMatter: UICollectionView!
+    var dataSource:MatterDataSource?
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        self.dataSource = MatterDataSource()
+        cvMatter.dataSource = dataSource
+        cvMatter.delegate = self
+        cvMatter.reloadData()
         // Do any additional setup after loading the view.
     }
 
