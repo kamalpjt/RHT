@@ -14,13 +14,14 @@ class MatterDataSource: NSObject,UICollectionViewDataSource {
     //public var chatItem = []()
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
+        return 20
     }
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellIdentifier, for: indexPath)
-        cell.layer.cornerRadius = 10;
-        cell.layer.masksToBounds = false
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellIdentifier, for: indexPath) as! MatterCollectionViewCell
+        cell.SetUpView()
+       // cell.layer.cornerRadius = 10;
+        //cell.layer.masksToBounds = false
         return cell;
     }
     

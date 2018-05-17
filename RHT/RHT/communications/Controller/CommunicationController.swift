@@ -18,11 +18,21 @@ class CommunicationController: UIViewController,UICollectionViewDelegateFlowLayo
     override func viewDidLoad() {
         super.viewDidLoad()
 
+       
+        // Do any additional setup after loading the view.
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        SetUpCollectionView()
+        
+    }
+    func SetUpCollectionView()
+    {
         self.dataSource = MatterDataSource()
         cvMatter.dataSource = dataSource
         cvMatter.delegate = self
         cvMatter.reloadData()
-        // Do any additional setup after loading the view.
+        
     }
     
 
