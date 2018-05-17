@@ -12,6 +12,8 @@
 		8A08AA1620A32F0000C3B6A8 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A08AA1520A32F0000C3B6A8 /* ChatViewController.swift */; };
 		8A3B3F2B20AB22DB0003AD22 /* CommunicationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A3B3F2A20AB22DB0003AD22 /* CommunicationController.swift */; };
 		8AD69C0E20A5BC8500F2E135 /* ChatCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AD69C0D20A5BC8500F2E135 /* ChatCell.swift */; };
+		8AEB4DD920AE04240045DBD2 /* CommunicationDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AEB4DD820AE04240045DBD2 /* CommunicationDetailController.swift */; };
+		8AEB4DDB20AE047D0045DBD2 /* CommunicationDetailDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AEB4DDA20AE047D0045DBD2 /* CommunicationDetailDataSource.swift */; };
 		9C1C3FF06EF92C14D965D71D /* Pods_RHTUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 51EE2E4E70A6D36CD1271759 /* Pods_RHTUITests.framework */; };
 		A90BF65B2075F6AB007B8F2B /* RESideMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = A90BF65A2075F6AB007B8F2B /* RESideMenu.m */; };
 		A90BF65E2075F6D1007B8F2B /* UIViewController+RESideMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = A90BF65D2075F6D1007B8F2B /* UIViewController+RESideMenu.m */; };
@@ -69,6 +71,8 @@
 		8A08AA1520A32F0000C3B6A8 /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		8A3B3F2A20AB22DB0003AD22 /* CommunicationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunicationController.swift; sourceTree = "<group>"; };
 		8AD69C0D20A5BC8500F2E135 /* ChatCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatCell.swift; sourceTree = "<group>"; };
+		8AEB4DD820AE04240045DBD2 /* CommunicationDetailController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunicationDetailController.swift; sourceTree = "<group>"; };
+		8AEB4DDA20AE047D0045DBD2 /* CommunicationDetailDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunicationDetailDataSource.swift; sourceTree = "<group>"; };
 		A0B23696F8BA6542264D351A /* Pods_RHT.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RHT.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A90BF6592075F695007B8F2B /* RESideMenu.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RESideMenu.h; sourceTree = "<group>"; };
 		A90BF65A2075F6AB007B8F2B /* RESideMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RESideMenu.m; sourceTree = "<group>"; };
@@ -171,6 +175,7 @@
 			isa = PBXGroup;
 			children = (
 				8A3B3F2A20AB22DB0003AD22 /* CommunicationController.swift */,
+				8AEB4DD820AE04240045DBD2 /* CommunicationDetailController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -321,6 +326,7 @@
 			children = (
 				A9209FA720AC30BD00E2F174 /* MatterDataSource.swift */,
 				A9209FA520AC1D8700E2F174 /* MatterFlowLayout.swift */,
+				8AEB4DDA20AE047D0045DBD2 /* CommunicationDetailDataSource.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -626,6 +632,7 @@
 				A9182488206CC4EC00B358D8 /* SharedData.swift in Sources */,
 				8A08AA1620A32F0000C3B6A8 /* ChatViewController.swift in Sources */,
 				A918248A206CC50500B358D8 /* AppConstant.swift in Sources */,
+				8AEB4DD920AE04240045DBD2 /* CommunicationDetailController.swift in Sources */,
 				A90BF65B2075F6AB007B8F2B /* RESideMenu.m in Sources */,
 				A914484120700A960031AD30 /* HomeViewController.swift in Sources */,
 				A9A134DD2078A6A00093A78E /* SettingViewController.swift in Sources */,
@@ -637,6 +644,7 @@
 				8A3B3F2B20AB22DB0003AD22 /* CommunicationController.swift in Sources */,
 				8AD69C0E20A5BC8500F2E135 /* ChatCell.swift in Sources */,
 				A914484320700E650031AD30 /* HomeCollectionViewCell.swift in Sources */,
+				8AEB4DDB20AE047D0045DBD2 /* CommunicationDetailDataSource.swift in Sources */,
 				A918248E206CD09800B358D8 /* RegisterViewController.swift in Sources */,
 				A918244B206CBB2000B358D8 /* AppDelegate.swift in Sources */,
 				A9A134DF2078B1930093A78E /* HomeCollectionFlowLayout.swift in Sources */,

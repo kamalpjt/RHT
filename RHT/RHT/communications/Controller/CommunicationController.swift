@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CommunicationController: UIViewController,UICollectionViewDelegateFlowLayout {
+class CommunicationController: UIViewController,UICollectionViewDelegate {
 
     @IBOutlet weak var vTop: UIView!
     @IBOutlet weak var sbSearchMatter: UISearchBar!
@@ -40,6 +40,14 @@ class CommunicationController: UIViewController,UICollectionViewDelegateFlowLayo
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+//   func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath)
+//   {
+//    let vc = self.storyboard?.instantiateViewController(withIdentifier: "CommunicationController");
+//    navigationController?.pushViewController(vc!, animated: true)
+//   }
+        
+       
     
 
     /*
