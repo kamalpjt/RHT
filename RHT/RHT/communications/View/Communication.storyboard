@@ -217,7 +217,7 @@
                                 <rect key="frame" x="0.0" y="20" width="320" height="548"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="117" id="Krd-vJ-nZE">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="MatterDetailCell" rowHeight="117" id="Krd-vJ-nZE" customClass="MatterDetailCell" customModule="RHT" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="320" height="117"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Krd-vJ-nZE" id="fJ5-d4-BnN">
@@ -267,6 +267,9 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Fte-6M-W67"/>
                     </view>
+                    <connections>
+                        <outlet property="tblmatterDetail" destination="uOA-5z-xp3" id="n3P-3n-qko"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gW3-e4-VTd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

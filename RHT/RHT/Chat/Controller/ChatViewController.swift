@@ -172,7 +172,7 @@ class ChatViewController: UIViewController,UITextViewDelegate,UITableViewDataSou
                  self.dataSource?.chatItem = chatItem
                 let index = IndexPath(item: chatItem.count-1, section: 0)
                 cvChat.insertRows(at: [index], with: UITableViewRowAnimation.fade)
-                cvChat.scrollToRow(at: index, at: UITableViewScrollPosition.top, animated: true)
+                cvChat.scrollToRow(at: index, at: UITableViewScrollPosition.bottom, animated: false)
             }
         }
        

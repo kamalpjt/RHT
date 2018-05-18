@@ -11,6 +11,8 @@
 		70EB24AA65E633B82DD184C7 /* Pods_RHT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A0B23696F8BA6542264D351A /* Pods_RHT.framework */; };
 		8A08AA1620A32F0000C3B6A8 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A08AA1520A32F0000C3B6A8 /* ChatViewController.swift */; };
 		8A3B3F2B20AB22DB0003AD22 /* CommunicationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A3B3F2A20AB22DB0003AD22 /* CommunicationController.swift */; };
+		8A6C0EFB20AF14E8004B13DE /* MatterDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A6C0EFA20AF14E8004B13DE /* MatterDetailCell.swift */; };
+		8A6C0EFD20AF15E4004B13DE /* MatterDetailDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A6C0EFC20AF15E4004B13DE /* MatterDetailDataSource.swift */; };
 		8AD69C0E20A5BC8500F2E135 /* ChatCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AD69C0D20A5BC8500F2E135 /* ChatCell.swift */; };
 		8ADC021520AEB85500EE03DA /* DesignableButon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ADC021420AEB85500EE03DA /* DesignableButon.swift */; };
 		8AEB4DD920AE04240045DBD2 /* CommunicationDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AEB4DD820AE04240045DBD2 /* CommunicationDetailController.swift */; };
@@ -71,6 +73,8 @@
 		7B2CDDDB8AFBA956B6E3AD4B /* Pods-RHTTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RHTTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-RHTTests/Pods-RHTTests.release.xcconfig"; sourceTree = "<group>"; };
 		8A08AA1520A32F0000C3B6A8 /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		8A3B3F2A20AB22DB0003AD22 /* CommunicationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunicationController.swift; sourceTree = "<group>"; };
+		8A6C0EFA20AF14E8004B13DE /* MatterDetailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatterDetailCell.swift; sourceTree = "<group>"; };
+		8A6C0EFC20AF15E4004B13DE /* MatterDetailDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatterDetailDataSource.swift; sourceTree = "<group>"; };
 		8AD69C0D20A5BC8500F2E135 /* ChatCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatCell.swift; sourceTree = "<group>"; };
 		8ADC021420AEB85500EE03DA /* DesignableButon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignableButon.swift; sourceTree = "<group>"; };
 		8AEB4DD820AE04240045DBD2 /* CommunicationDetailController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunicationDetailController.swift; sourceTree = "<group>"; };
@@ -187,6 +191,7 @@
 			children = (
 				A91F3E5B20AABED80080B8E9 /* Communication.storyboard */,
 				A994955120AC1A4F00EECC2B /* MatterCollectionViewCell.swift */,
+				8A6C0EFA20AF14E8004B13DE /* MatterDetailCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -330,6 +335,7 @@
 				A9209FA720AC30BD00E2F174 /* MatterDataSource.swift */,
 				A9209FA520AC1D8700E2F174 /* MatterFlowLayout.swift */,
 				8AEB4DDA20AE047D0045DBD2 /* CommunicationDetailDataSource.swift */,
+				8A6C0EFC20AF15E4004B13DE /* MatterDetailDataSource.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -640,6 +646,7 @@
 				A914484120700A960031AD30 /* HomeViewController.swift in Sources */,
 				A9A134DD2078A6A00093A78E /* SettingViewController.swift in Sources */,
 				A90BF65E2075F6D1007B8F2B /* UIViewController+RESideMenu.m in Sources */,
+				8A6C0EFB20AF14E8004B13DE /* MatterDetailCell.swift in Sources */,
 				A921F835207755640042738A /* SharedNavigation.swift in Sources */,
 				A91F3E5720AA92D70080B8E9 /* ChatTblSource.swift in Sources */,
 				A9182483206CBF6500B358D8 /* LoginViewController.swift in Sources */,
@@ -647,6 +654,7 @@
 				8A3B3F2B20AB22DB0003AD22 /* CommunicationController.swift in Sources */,
 				8AD69C0E20A5BC8500F2E135 /* ChatCell.swift in Sources */,
 				A914484320700E650031AD30 /* HomeCollectionViewCell.swift in Sources */,
+				8A6C0EFD20AF15E4004B13DE /* MatterDetailDataSource.swift in Sources */,
 				8AEB4DDB20AE047D0045DBD2 /* CommunicationDetailDataSource.swift in Sources */,
 				8ADC021520AEB85500EE03DA /* DesignableButon.swift in Sources */,
 				A918248E206CD09800B358D8 /* RegisterViewController.swift in Sources */,

@@ -10,9 +10,12 @@ import UIKit
 
 
 
-class CommunicationDetailController: UIViewController {
+class CommunicationDetailController: UIViewController,UITableViewDelegate {
 
-    private let reuseIdentifier = "Cell"
+    @IBOutlet weak var tblmatterDetail: UITableView!
+      private let cellIdentifier = "MatterCell"
+   // var cell:MatterDetailCell?
+    var dataSource:MatterDetailDataSource?
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -23,6 +26,11 @@ class CommunicationDetailController: UIViewController {
        // self.collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
 
         // Do any additional setup after loading the view.
+        tblmatterDetail.estimatedRowHeight = 50;
+        self.dataSource = MatterDetailDataSource()
+        //tblmatterDetail.register(MatterDetailCell.self, forCellReuseIdentifier: cellIdentifier)
+        tblmatterDetail.dataSource = dataSource
+        tblmatterDetail.reloadData()
         
     }
 
@@ -31,47 +39,10 @@ class CommunicationDetailController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using [segue destinationViewController].
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+    // MARK: TableViewViewDelegate
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
     
-
-    // MARK: UICollectionViewDelegate
-
-    /*
-    // Uncomment this method to specify if the specified item should be highlighted during tracking
-    override func collectionView(_ collectionView: UICollectionView, shouldHighlightItemAt indexPath: IndexPath) -> Bool {
-        return true
+        return UITableViewAutomaticDimension
     }
-    */
-
-    /*
-    // Uncomment this method to specify if the specified item should be selected
-    override func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
-        return true
-    }
-    */
-
-    /*
-    // Uncomment these methods to specify if an action menu should be displayed for the specified item, and react to actions performed on the item
-    override func collectionView(_ collectionView: UICollectionView, shouldShowMenuForItemAt indexPath: IndexPath) -> Bool {
-        return false
-    }
-
-    override func collectionView(_ collectionView: UICollectionView, canPerformAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) -> Bool {
-        return false
-    }
-
-    override func collectionView(_ collectionView: UICollectionView, performAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) {
-    
-    }
-    */
 
 }
