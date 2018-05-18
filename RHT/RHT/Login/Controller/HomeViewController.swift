@@ -13,6 +13,7 @@ struct ListMdoel {
 }
 
 class HomeViewController: BaseViewController,UICollectionViewDataSource,UICollectionViewDelegate {
+    @IBOutlet weak var butChat: UIButton!
     @IBOutlet weak var homeCollectionView: UICollectionView!
     
     var CollectionModel:[String] = [];
@@ -25,6 +26,8 @@ class HomeViewController: BaseViewController,UICollectionViewDataSource,UICollec
         ConfigureColectionView()
         // navigationItem.leftBarButtonItems = [SharedNavigation.sharedInstance.menuButton()]
         navigationItem.leftBarButtonItems = [menuButton()]
+       //butChat.layer.cornerRadius = 25
+      //  butChat.layer.masksToBounds = false
         // Do any additional setup after loading the view.
         
     }
@@ -39,6 +42,9 @@ class HomeViewController: BaseViewController,UICollectionViewDataSource,UICollec
         view.addSubview(imageView)
         self.navigationItem.titleView?.frame = CGRect(x: -400, y: 0, width: 50, height: 50)
         self.navigationItem.titleView = view
+//        if ShareData.isIPhone5() {
+//            butChat.layer.cornerRadius = butChat.layer.frame.height/8.0;
+//        }
         
     }
     
@@ -47,7 +53,7 @@ class HomeViewController: BaseViewController,UICollectionViewDataSource,UICollec
         setTittleView()
         homeCollectionView.delegate = self;
         homeCollectionView.dataSource = self;
-        CollectionModel.append("ChatBhot")
+      //  CollectionModel.append("ChatBhot")
         CollectionModel.append("Communications")
         CollectionModel.append("News")
         CollectionModel.append("Annonce")

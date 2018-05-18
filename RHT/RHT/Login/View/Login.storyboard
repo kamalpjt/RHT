@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="m2W-0b-ngg">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="m2W-0b-ngg">
     <device id="retina4_0" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -327,9 +327,7 @@
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ChatBhot" translatesAutoresizingMaskIntoConstraints="NO" id="3wc-N2-De2">
-                                                    <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
-                                                </imageView>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ChatBhot" translatesAutoresizingMaskIntoConstraints="NO" id="3wc-N2-De2"/>
                                             </subviews>
                                         </view>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -348,9 +346,18 @@
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rHJ-5K-5x6">
-                                <rect key="frame" x="229" y="428" width="70" height="70"/>
-                                <color key="backgroundColor" red="0.87843137250000003" green="0.20392156859999999" blue="0.2901960784" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rHJ-5K-5x6" customClass="DesignableButon" customModule="RHT" customModuleProvider="target">
+                                <rect key="frame" x="220" y="428" width="70" height="70"/>
+                                <color key="backgroundColor" red="0.87450980389999999" green="0.20392156859999999" blue="0.2784313725" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="70" id="Qnw-yt-473"/>
+                                    <constraint firstAttribute="width" constant="70" id="Y1J-v1-IiI"/>
+                                </constraints>
+                                <inset key="imageEdgeInsets" minX="-20" minY="0.0" maxX="-22" maxY="0.0"/>
+                                <state key="normal" image="chat"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="roundCornerRadius" value="YES"/>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="ChatButton:" destination="0N6-LG-Mgz" eventType="touchUpInside" id="AC7-IL-VDr"/>
                                 </connections>
@@ -359,19 +366,17 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="Oc5-dQ-cmv" firstAttribute="bottom" secondItem="rHJ-5K-5x6" secondAttribute="bottom" constant="70" id="2vb-tS-VL7"/>
-                            <constraint firstItem="Oc5-dQ-cmv" firstAttribute="trailing" secondItem="rHJ-5K-5x6" secondAttribute="trailing" constant="21" id="2yy-Rb-lvA"/>
+                            <constraint firstItem="Oc5-dQ-cmv" firstAttribute="trailing" secondItem="rHJ-5K-5x6" secondAttribute="trailing" constant="30" id="2yy-Rb-lvA"/>
                             <constraint firstItem="UN6-hs-OVx" firstAttribute="trailing" secondItem="Oc5-dQ-cmv" secondAttribute="trailing" id="ALi-am-hgq"/>
                             <constraint firstItem="UN6-hs-OVx" firstAttribute="leading" secondItem="Oc5-dQ-cmv" secondAttribute="leading" id="M1Q-mq-jAQ"/>
-                            <constraint firstItem="rHJ-5K-5x6" firstAttribute="width" secondItem="7Hd-2T-zwI" secondAttribute="width" multiplier="70:320" id="Muh-bK-LOC"/>
                             <constraint firstItem="UN6-hs-OVx" firstAttribute="top" secondItem="Oc5-dQ-cmv" secondAttribute="top" id="QNG-M2-qFF"/>
                             <constraint firstItem="Oc5-dQ-cmv" firstAttribute="bottom" secondItem="rHJ-5K-5x6" secondAttribute="bottom" constant="70" id="QrE-6i-Gwy"/>
-                            <constraint firstItem="rHJ-5K-5x6" firstAttribute="height" secondItem="7Hd-2T-zwI" secondAttribute="height" multiplier="70:568" id="sWj-5G-94h"/>
                             <constraint firstItem="UN6-hs-OVx" firstAttribute="bottom" secondItem="Oc5-dQ-cmv" secondAttribute="bottom" id="vQ3-Pv-hV3"/>
-                            <constraint firstItem="Oc5-dQ-cmv" firstAttribute="trailing" secondItem="rHJ-5K-5x6" secondAttribute="trailing" constant="21" id="xsy-O9-6cc"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Oc5-dQ-cmv"/>
                     </view>
                     <connections>
+                        <outlet property="butChat" destination="rHJ-5K-5x6" id="22X-y0-dfv"/>
                         <outlet property="homeCollectionView" destination="UN6-hs-OVx" id="41i-gJ-5hk"/>
                     </connections>
                 </viewController>
@@ -853,7 +858,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="saO-cG-L0W" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-4303.125" y="-634.85915492957747"/>
+            <point key="canvasLocation" x="-3954" y="-1312"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="UFy-pZ-gCr">
@@ -1193,6 +1198,7 @@
         <image name="Googleplus" width="32" height="32"/>
         <image name="Login" width="565" height="149"/>
         <image name="Logo" width="388" height="181"/>
+        <image name="chat" width="16" height="16"/>
         <image name="facebook" width="32" height="32"/>
     </resources>
 </document>

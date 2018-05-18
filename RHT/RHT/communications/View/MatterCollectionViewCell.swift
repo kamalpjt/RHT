@@ -9,7 +9,9 @@
 import UIKit
 
 class MatterCollectionViewCell: UICollectionViewCell {
+    @IBOutlet weak var vTop: UIView!
     
+    @IBOutlet weak var vImageView: UIView!
     @IBOutlet weak var vCorner: UIView!
 //    override init(frame: CGRect) {
 //        super.init(frame: frame)
@@ -26,20 +28,21 @@ class MatterCollectionViewCell: UICollectionViewCell {
     func SetUpView() -> Void {
         vCorner.layer.cornerRadius = 15;
         vCorner.layer.masksToBounds = false;
-        
-      setupShadow()
+        vImageView.layer.cornerRadius = 15;
+        let path = UIBezierPath(roundedRect:vImageView.frame,byRoundingCorners:[.topLeft, .bottomLeft],
+                                cornerRadii: CGSize(width: 15, height:  vImageView.frame.height))
+        let maskLayer = CAShapeLayer()
+        maskLayer.path = path.cgPath
+       // vImageView.layer.mask = maskLayer
+    //  setupShadow()
        //self.layer.masksToBounds = false;
         
     }
     private func setupShadow() {
-        self.layer.cornerRadius = 15
-        self.layer.shadowOffset = CGSize(width: self.frame.width, height: self.frame.height)
-        self.layer.shadowRadius = 15
-        self.layer.shadowColor = UIColor.black.cgColor
-        self.layer.shadowOpacity = 0.3
-       // self.layer.shadowPath = UIBezierPath(roundedRect: self.bounds, byRoundingCorners: .allCorners, cornerRadii: CGSize(width: 8, height: 8)).cgPath
-        self.layer.shouldRasterize = true
-        self.layer.masksToBounds = false;
-        self.layer.rasterizationScale = UIScreen.main.scale
+        vTop.layer.shadowColor = UIColor.black.cgColor
+        vTop.layer.shadowOffset = CGSize(width: 15.0, height: 20.0)
+        vTop.layer.shadowOpacity = 0.3;
+        vTop.layer.masksToBounds = false;
+       
     }
 }

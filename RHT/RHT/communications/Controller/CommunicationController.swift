@@ -9,7 +9,7 @@
 import UIKit
 
 class CommunicationController: UIViewController,UICollectionViewDelegate {
-
+    @IBOutlet weak var vImageView: UIView!
     @IBOutlet weak var vTop: UIView!
     @IBOutlet weak var sbSearchMatter: UISearchBar!
     @IBOutlet weak var cvMatter: UICollectionView!
@@ -18,7 +18,9 @@ class CommunicationController: UIViewController,UICollectionViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-       
+        vTop.layer.cornerRadius = 15;
+        sbSearchMatter.layer.cornerRadius = 15;
+        sbSearchMatter.layer.masksToBounds = false
         // Do any additional setup after loading the view.
     }
     override func viewWillAppear(_ animated: Bool) {
@@ -41,12 +43,12 @@ class CommunicationController: UIViewController,UICollectionViewDelegate {
         // Dispose of any resources that can be recreated.
     }
     
-//   func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath)
-//   {
-//    let vc = self.storyboard?.instantiateViewController(withIdentifier: "CommunicationController");
-//    navigationController?.pushViewController(vc!, animated: true)
-//   }
-        
+   func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath)
+   {
+      let vc = self.storyboard?.instantiateViewController(withIdentifier: "CommunicationDetailController");
+     navigationController?.pushViewController(vc!, animated: true)
+   }
+    
        
     
 
