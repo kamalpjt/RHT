@@ -33,10 +33,13 @@ class MatterDetailCell: UITableViewCell {
     }
     @IBAction func CommentButtonAction(_ sender: Any) {
         
-        NotificationCenter.default.post(name: Notification.Name("CommentAction"), object: nil, userInfo: ["Sender":sender])
+       
         
     }
    
+    @IBAction func MoreButtonAction(_ sender: Any) {
+         NotificationCenter.default.post(name: Notification.Name("CommentAction"), object: nil, userInfo: ["Sender":sender])
+    }
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
        // fatalError("init(coder:) has not been implemented")

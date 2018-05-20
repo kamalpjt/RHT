@@ -276,6 +276,12 @@
                                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lLt-MO-tnA">
                                                                             <rect key="frame" x="145" y="0.0" width="145" height="118"/>
                                                                             <subviews>
+                                                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fvQ-bJ-bgs">
+                                                                                    <rect key="frame" x="0.0" y="0.0" width="145" height="118"/>
+                                                                                    <connections>
+                                                                                        <action selector="MoreButtonAction:" destination="Krd-vJ-nZE" eventType="touchUpInside" id="q0q-hV-MHl"/>
+                                                                                    </connections>
+                                                                                </button>
                                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="View More" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ahh-Ay-ye9">
                                                                                     <rect key="frame" x="49" y="39" width="46" height="41"/>
                                                                                     <constraints>
@@ -291,11 +297,15 @@
                                                                             </subviews>
                                                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                             <constraints>
+                                                                                <constraint firstAttribute="trailing" secondItem="fvQ-bJ-bgs" secondAttribute="trailing" id="9a8-G4-68D"/>
+                                                                                <constraint firstItem="fvQ-bJ-bgs" firstAttribute="top" secondItem="lLt-MO-tnA" secondAttribute="top" id="G2O-2l-hip"/>
                                                                                 <constraint firstAttribute="trailing" secondItem="E8h-pA-goS" secondAttribute="trailing" constant="8" id="G7I-ft-bk9"/>
                                                                                 <constraint firstItem="ahh-Ay-ye9" firstAttribute="leading" secondItem="lLt-MO-tnA" secondAttribute="leading" constant="49" id="GqA-xc-IHg"/>
                                                                                 <constraint firstItem="E8h-pA-goS" firstAttribute="centerY" secondItem="lLt-MO-tnA" secondAttribute="centerY" id="LFb-35-Lld"/>
+                                                                                <constraint firstAttribute="bottom" secondItem="fvQ-bJ-bgs" secondAttribute="bottom" id="S4Q-V4-crE"/>
                                                                                 <constraint firstItem="ahh-Ay-ye9" firstAttribute="top" secondItem="lLt-MO-tnA" secondAttribute="top" constant="39" id="kTg-Fl-FCa"/>
                                                                                 <constraint firstAttribute="trailing" secondItem="ahh-Ay-ye9" secondAttribute="trailing" constant="50" id="m9g-YN-qTr"/>
+                                                                                <constraint firstItem="fvQ-bJ-bgs" firstAttribute="leading" secondItem="lLt-MO-tnA" secondAttribute="leading" id="q6H-Cy-6wH"/>
                                                                             </constraints>
                                                                         </view>
                                                                     </subviews>
