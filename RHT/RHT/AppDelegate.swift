@@ -22,6 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.window?.rootViewController = showLaunchScreen()
         GIDSignIn.sharedInstance().clientID = AppConstant.sharedInstance.gooleplusid;
         setNavigationBar()
+        self.window?.makeKeyAndVisible()
         return true
     }
     

@@ -16,9 +16,9 @@ class MatterDetailDataSource: NSObject,UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier)
-        
-        return cell!
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier) as! MatterDetailCell
+        cell.SetUpView()
+        return cell
     }
     
 

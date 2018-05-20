@@ -12,9 +12,11 @@ protocol UpdateCons {
     
     func update()
 }
-class ChatViewController: UIViewController,UITextViewDelegate,UITableViewDataSource,UITableViewDelegate {
-   
+class ChatViewController: UIViewController,UITextViewDelegate,UITableViewDelegate {
     
+    @IBOutlet weak var vChatInnerView: UIView!
+    
+    @IBOutlet weak var vBottomHeight: NSLayoutConstraint!
     
     var delegate: UpdateCons?
     @IBOutlet weak var addButton: UIButton!
@@ -25,48 +27,55 @@ class ChatViewController: UIViewController,UITextViewDelegate,UITableViewDataSou
     @IBOutlet weak var cvChat: UITableView!
     @IBOutlet weak var VContainer: UIView!
     var frameheight:CGFloat?
+    var frameheightKeyboard:Int = 0;
     var cell:ChatCell?
     var dataSource:ChatTblSource?
+    var dataDelegate:ChatTblDelegate?
     private let cellIdentifier = "ChatCell"
-    var chatItem = [ChatData]()
+    private let cellIdentifierimage = "imagecell"
+    var chatItem = [ChatModel]()
     override func viewDidLoad() {
         super.viewDidLoad()
         
         tvchatInput.textContainerInset = UIEdgeInsets.init(top: 5, left: 5, bottom: 5, right: 5)
         tvchatInput.textContainer.lineBreakMode = NSLineBreakMode.byWordWrapping
         tvchatInput.textContainer.lineFragmentPadding = 0;
-        tvchatInput.layer.cornerRadius=5;
+        //tvchatInput.layer.cornerRadius=5;
         tvchatInput.layer.masksToBounds = true;
         cvChat.tableFooterView = UIView(frame: .zero)
         cvChat.separatorStyle = .none
         tvchatInput.font = UIFont.systemFont(ofSize: ShareData.SetFont13(), weight: UIFont.Weight.regular)
-      //  cvChat.contentInset = UIEdgeInsetsMake(5, 5, 5, 5)
-      
-        let borderWidth: CGFloat = 1
-        tvchatInput.frame = tvchatInput.frame.insetBy(dx: -borderWidth, dy: -borderWidth)
-        tvchatInput.layer.borderColor =  AppConstant.sharedInstance.borderChat.cgColor;
-        tvchatInput.layer.borderWidth = borderWidth
-      
+        // frameheightKeyboard = vBottomHeight.multiplier
+        //  cvChat.contentInset = UIEdgeInsetsMake(5, 5, 5, 5)
         
-        var chat = ChatData()
-        chat.chatMessage = "Hi"
-        chat.userName = "john"
-        chat.IsSender = true
-        chat.date = "12/100/2019"
+        //        let borderWidth: CGFloat = 1
+        //        tvchatInput.frame = tvchatInput.frame.insetBy(dx: -borderWidth, dy: -borderWidth)
+        //        tvchatInput.layer.borderColor =  AppConstant.sharedInstance.borderChat.cgColor;
+        //        tvchatInput.layer.borderWidth = borderWidth
+        
+        vChatInnerView.layer.cornerRadius = 20;
+        let chat = ChatModel.init(chatMessage: "Hi", userName: "john", IsSender: true, date:"12/100/201",imageUrl: "" , mType: MessageType.text)
+        let chat1 = ChatModel.init(chatMessage: "Hi", userName: "john", IsSender: false, date:"12/100/201",imageUrl: "Dravid" , mType: MessageType.image)
+         let chat2 = ChatModel.init(chatMessage: "Hi", userName: "john", IsSender: true, date:"12/100/201",imageUrl: "Pdf" , mType: MessageType.image)
         chatItem.append(chat)
-
+        chatItem.append(chat1)
+         chatItem.append(chat2)
         
-       
-        self.dataSource = ChatTblSource()
+        
+        
+        
         cvChat.register(ChatCell.self, forCellReuseIdentifier: cellIdentifier)
-
+        cvChat.register(ImageChatcell.self, forCellReuseIdentifier: cellIdentifierimage)
+        self.dataSource = ChatTblSource()
+        self.dataDelegate = ChatTblDelegate()
         self.dataSource?.chatItem = chatItem
+        self.dataDelegate?.chatItem = chatItem
         cvChat.dataSource =  self.dataSource
-        cvChat.delegate =  self
+        cvChat.delegate =  self.dataDelegate
         cvChat.reloadData()
         CloseKeyboard(bool: true)
         // Do any additional setup after loading the view.
-       
+        
         
     }
     func CloseKeyboard(bool:Bool) -> Void {
@@ -81,11 +90,12 @@ class ChatViewController: UIViewController,UITextViewDelegate,UITableViewDataSou
     }
     override func viewWillAppear(_ animated: Bool) {
         //AddKeyboardObserver()
-         AddKeyboardObserver()
+        AddKeyboardObserver()
     }
     override func viewWillDisappear(_ animated: Bool) {
-     RemoveKeyboardObserver()
+        RemoveKeyboardObserver()
     }
+    //M
     func RemoveKeyboardObserver() -> Void {
         NotificationCenter.default.removeObserver(self, name: .UIKeyboardWillShow, object: nil)
     }
@@ -104,21 +114,23 @@ class ChatViewController: UIViewController,UITextViewDelegate,UITableViewDataSou
                 {
                     let getheight = cvChat.frame.height - keyboardSize.height
                     cvChat.heightAnchor.constraint(equalTo: VContainer.heightAnchor, multiplier: getheight/VContainer.frame.height , constant: 0).isActive=true
-                    vBottomconstraints.isActive = false;
+                    // vBottomconstraints.isActive = false;
+                    //cvHeightConstrinat.constant =  cvHeightConstrinat.multiplier - getheight
                     self.view.layoutIfNeeded()
+                    print(getheight/VContainer.frame.height)
                     
                 }else if(ShareData.isIPhoneX()){
                     
-                   let getheight = (cvChat.frame.height - keyboardSize.height)+30
+                    let getheight = (cvChat.frame.height - keyboardSize.height)+30
                     cvChat.heightAnchor.constraint(equalTo: VContainer.heightAnchor, multiplier: getheight/VContainer.frame.height , constant: 0).isActive=true
-                    vBottomconstraints.isActive = false;
+                    // vBottomconstraints.isActive = false;
                     self.view.layoutIfNeeded()
                     
                 }else if(ShareData.isIpad()){
                     
                     let getheight = (cvChat.frame.height - keyboardSize.height)
                     cvChat.heightAnchor.constraint(equalTo: VContainer.heightAnchor, multiplier: getheight/VContainer.frame.height , constant: 0).isActive=true
-                    vBottomconstraints.isActive = false;
+                    // vBottomconstraints.isActive = false;
                     self.view.layoutIfNeeded()
                     
                 }
@@ -133,15 +145,18 @@ class ChatViewController: UIViewController,UITextViewDelegate,UITableViewDataSou
     }
     @objc func keyboardWillHide(notification: NSNotification){
         print("keyboardWillHide")
-        if vBottomconstraints.isActive==false{
-            
+        
+        if frameheight != nil{
             cvChat.heightAnchor.constraint(equalTo: VContainer.heightAnchor, multiplier: frameheight!/VContainer.frame.height , constant: 0).isActive=true
-            vBottomconstraints.isActive=true;
+            vBottomHeight.constant =  vBottomHeight.constant - CGFloat(frameheightKeyboard);
+            frameheightKeyboard = 0
+            
         }
     }
     
-   
+    //MARK: -TEXTVIEWDELEGATE
     func textViewDidBeginEditing(_ textView: UITextView) {
+        
         
     }
     func textViewShouldBeginEditing(_ textView: UITextView) -> Bool {
@@ -150,79 +165,43 @@ class ChatViewController: UIViewController,UITextViewDelegate,UITableViewDataSou
         return true
     }
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        if(text == "\n"){
+            print("\n" + "is printed")
+            let getheight =  cvChat.frame.height - 15
+            if(frameheight != nil){
+                if(frameheight!/2.5<cvChat.frame.height-15)
+                {
+                    cvChat.heightAnchor.constraint(equalTo: VContainer.heightAnchor, multiplier: getheight/VContainer.frame.height , constant: 0).isActive=true
+                    frameheightKeyboard = frameheightKeyboard + 15;
+                    vBottomHeight.constant =  vBottomHeight.constant+15;
+                }
+            }
+        }
         
         return true
     }
-    
+    //MARK:-ButtonAction
     @IBAction func SendButtonAction(_ sender: Any) {
         if  tvchatInput.text.trimmingCharacters(in: .whitespacesAndNewlines).count>0{
-            var bools = true;
             let value = chatItem[chatItem.count-1]
-            var items =  ChatData();
-            items.chatMessage = tvchatInput.text.trimmingCharacters(in: .whitespacesAndNewlines);
-            items.date = "date"
-            items.userName = "Jack123456"
-            items.IsSender = value.IsSender == true ? false:true
+            let items =  ChatModel.init(chatMessage: tvchatInput.text.trimmingCharacters(in: .whitespacesAndNewlines), userName:"Jack123456", IsSender: value.IsSender == true ? false:true, date: "12/03/1990",imageUrl: "", mType: MessageType.text);
             chatItem.append(items)
-            print(tvchatInput.text)
+            // print(tvchatInput.text)
             tvchatInput.text = ""
             //self.dataSource = ChatTblSource(item: chatItem)
-             //cvChat.dataSource = dataSource
+            //cvChat.dataSource = dataSource
             UIView.performWithoutAnimation {
-                 self.dataSource?.chatItem = chatItem
+                self.dataSource?.chatItem = chatItem
+                self.dataDelegate?.chatItem = chatItem
                 let index = IndexPath(item: chatItem.count-1, section: 0)
                 cvChat.insertRows(at: [index], with: UITableViewRowAnimation.fade)
                 cvChat.scrollToRow(at: index, at: UITableViewScrollPosition.bottom, animated: false)
             }
         }
-       
+        
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
-        return chatItem.count
-    }
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        
-        if let messagetext = chatItem[indexPath.row].chatMessage{
-            
-            print(messagetext);
-            let estimatedFramemessage = ShareData.sharedInstance.GetStringCGSize(stringValue: messagetext, font: UIFont.systemFont(ofSize: ShareData.SetFont13(), weight: UIFont.Weight.regular))
-            
-            let estimatedFramename = ShareData.sharedInstance.GetStringCGSize(stringValue:chatItem[indexPath.row].userName!, font:UIFont.systemFont(ofSize: ShareData.SetFont14(), weight: UIFont.Weight.semibold))
-            
-            let estimatedFramedate = ShareData.sharedInstance.GetStringCGSize(stringValue:chatItem[indexPath.row].userName!, font:UIFont.systemFont(ofSize: ShareData.SetFont12(), weight: UIFont.Weight.semibold))
-            
-            return estimatedFramemessage.height+estimatedFramedate.height+estimatedFramename.height+30;
-        }else{
-             print("error")
-            return 0
-           
-        }
-    }
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-        var cell = cvChat.dequeueReusableCell(withIdentifier: cellIdentifier) as! ChatCell
-        let item = chatItem[indexPath.row]
-        cell.BindValue(chatitem: item)
-        return cell
-        
-    }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-    
-   
 }

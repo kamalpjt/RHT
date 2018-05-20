@@ -8,13 +8,17 @@
 
 import UIKit
 
-struct ChatData {
-    var chatMessage:String?
-    var userName:String?
-    var IsSender:Bool?
-    var date:String?
+//struct ChatData {
+//    var chatMessage:String?
+//    var userName:String?
+//    var IsSender:Bool?
+//    var date:String?
+//    var mType:Int
+//}
+enum MessageType{
+    case image
+    case text
 }
-
 
 class ChatCell: UITableViewCell {
     
@@ -38,6 +42,7 @@ class ChatCell: UITableViewCell {
         txView.textColor = UIColor.white
         txView.isEditable = false;
         txView.isScrollEnabled = false;
+        txView.dataDetectorTypes = UIDataDetectorTypes.all
        // txView.lineBreakMode = NSLineBreakMode.ByWordWrapping
         return txView;
     }()
@@ -83,7 +88,7 @@ class ChatCell: UITableViewCell {
         lblDate.topAnchor.constraint(equalTo: tvChat.bottomAnchor, constant: 4).isActive=true;
     
     }
-    public func BindValue(chatitem:ChatData)
+    public func BindValue(chatitem:ChatModel)
     {
         tvChat.text = chatitem.chatMessage
         lblUserName.text = chatitem.userName
