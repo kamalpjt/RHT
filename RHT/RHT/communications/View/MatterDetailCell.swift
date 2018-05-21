@@ -33,7 +33,7 @@ class MatterDetailCell: UITableViewCell {
     }
     @IBAction func CommentButtonAction(_ sender: Any) {
         
-       
+       NotificationCenter.default.post(name: Notification.Name(AppConstant.sharedInstance.commentListAction), object: nil, userInfo: ["Sender":sender])
         
     }
    

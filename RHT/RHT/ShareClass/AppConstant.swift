@@ -17,7 +17,8 @@ class AppConstant  {
     let borderChat = UIColor.init(red: 154/255.0, green: 154/255.0, blue: 154/255.0, alpha: 0.3)
     let textline = UIColor.init(red: 218/255.0, green: 219/255.0, blue: 220/255.0, alpha: 1.0)
     let viewEmailBoder = UIColor.init(red: 211/255.0, green: 211/255.0, blue: 211/255.0, alpha: 1.0)
-    
+    //MARK:-POST Notfication
+    let commentListAction = "commentListAction"
     
     
 }

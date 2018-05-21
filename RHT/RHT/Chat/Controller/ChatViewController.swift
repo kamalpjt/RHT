@@ -152,6 +152,11 @@ class ChatViewController: UIViewController,UITextViewDelegate,UITableViewDelegat
             frameheightKeyboard = 0
             
         }
+        if(chatItem.count>0)
+        {
+            let index = IndexPath(item: chatItem.count-1, section: 0)
+            cvChat.scrollToRow(at: index, at: UITableViewScrollPosition.top, animated: true)
+        }
     }
     
     //MARK: -TEXTVIEWDELEGATE
