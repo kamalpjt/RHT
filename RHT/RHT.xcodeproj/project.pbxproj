@@ -18,6 +18,7 @@
 		8A3B3F2B20AB22DB0003AD22 /* CommunicationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A3B3F2A20AB22DB0003AD22 /* CommunicationController.swift */; };
 		8A6C0EFB20AF14E8004B13DE /* MatterDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A6C0EFA20AF14E8004B13DE /* MatterDetailCell.swift */; };
 		8A6C0EFD20AF15E4004B13DE /* MatterDetailDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A6C0EFC20AF15E4004B13DE /* MatterDetailDataSource.swift */; };
+		8AD251F020B2F4CB00F77994 /* DesignableTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AD251EF20B2F4CB00F77994 /* DesignableTextView.swift */; };
 		8AD69C0E20A5BC8500F2E135 /* ChatCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AD69C0D20A5BC8500F2E135 /* ChatCell.swift */; };
 		8ADC021520AEB85500EE03DA /* DesignableButon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ADC021420AEB85500EE03DA /* DesignableButon.swift */; };
 		8AEB4DD920AE04240045DBD2 /* CommunicationDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AEB4DD820AE04240045DBD2 /* CommunicationDetailController.swift */; };
@@ -90,6 +91,7 @@
 		8A3B3F2A20AB22DB0003AD22 /* CommunicationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunicationController.swift; sourceTree = "<group>"; };
 		8A6C0EFA20AF14E8004B13DE /* MatterDetailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatterDetailCell.swift; sourceTree = "<group>"; };
 		8A6C0EFC20AF15E4004B13DE /* MatterDetailDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatterDetailDataSource.swift; sourceTree = "<group>"; };
+		8AD251EF20B2F4CB00F77994 /* DesignableTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignableTextView.swift; sourceTree = "<group>"; };
 		8AD69C0D20A5BC8500F2E135 /* ChatCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatCell.swift; sourceTree = "<group>"; };
 		8ADC021420AEB85500EE03DA /* DesignableButon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignableButon.swift; sourceTree = "<group>"; };
 		8AEB4DD820AE04240045DBD2 /* CommunicationDetailController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunicationDetailController.swift; sourceTree = "<group>"; };
@@ -340,6 +342,7 @@
 				8ADC021420AEB85500EE03DA /* DesignableButon.swift */,
 				8AFC65D720B1CF2E00865555 /* DesignableView.swift */,
 				8AFED3F820B2ABC50094F1DA /* CustomText.swift */,
+				8AD251EF20B2F4CB00F77994 /* DesignableTextView.swift */,
 			);
 			path = ShareClass;
 			sourceTree = "<group>";
@@ -686,6 +689,7 @@
 				A921F835207755640042738A /* SharedNavigation.swift in Sources */,
 				A91F3E5720AA92D70080B8E9 /* ChatTblSource.swift in Sources */,
 				8AFC65DA20B1D6DD00865555 /* ImageListController.swift in Sources */,
+				8AD251F020B2F4CB00F77994 /* DesignableTextView.swift in Sources */,
 				8AFED3F720B27EEE0094F1DA /* AddCommunicationController.swift in Sources */,
 				A9182483206CBF6500B358D8 /* LoginViewController.swift in Sources */,
 				A921F83220774C120042738A /* RECommonFunctions.m in Sources */,
