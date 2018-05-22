@@ -9,6 +9,7 @@
 import UIKit
 
 class RegisterViewController: BaseViewController ,UITextFieldDelegate{
+    @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var txtEmail: CustomTextField!
     @IBOutlet weak var txtPhoneNumber: CustomTextField!
     @IBOutlet weak var txtConfirmPassowrd: CustomTextField!
@@ -18,6 +19,7 @@ class RegisterViewController: BaseViewController ,UITextFieldDelegate{
     @IBOutlet weak var butRegister: UIButton!
     @IBOutlet weak var vShadowView: UIView!
     @IBOutlet weak var vRegister: UIView!
+    //MARK:- ViewcontrollerLifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Register"
@@ -33,12 +35,13 @@ class RegisterViewController: BaseViewController ,UITextFieldDelegate{
         txtPassowrd.delegate = self
         txtConfirmPassowrd.delegate = self;
         txtPhoneNumber.delegate = self;
+        CloseKeyboard(bool: true)
         // Do any additional setup after loading the view.
     }
-    
-    @objc func buttonAction(_ sender:UIButton!)
-    {
-        print("Button tapped")
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+      //  AddKeyboardObserver()
+        basescrollView = self.scrollView
     }
     @IBAction func RegisterAction(_ sender: Any) {
         SetResidemenu()
@@ -73,7 +76,6 @@ class RegisterViewController: BaseViewController ,UITextFieldDelegate{
         }
         return true;
     }
-    
     
     /*
      // MARK: - Navigation

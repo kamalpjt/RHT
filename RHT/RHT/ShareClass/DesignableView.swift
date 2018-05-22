@@ -11,26 +11,16 @@ import UIKit
 @IBDesignable
 class DesignableView: UIView {
     
-    @IBInspectable var roundCornerRadius:Bool = false {
-        didSet{
-            if(roundCornerRadius)
-            {
-                self.layer.cornerRadius = self.frame.height/2.0
-            }
-            
-        }
-        
-    }
-    @IBInspectable var CornerRadius:CGFloat = 0.0 {
-        didSet{
-            
-                self.layer.cornerRadius = CornerRadius
-        
-            
-        }
-        
-    }
+    @IBInspectable var CornerRadius: CGFloat = 0
     override func draw(_ rect: CGRect) {
+        addCirle(arcRadius: CornerRadius)
+    }
+    func addCirle(arcRadius: CGFloat) {
+        let corner:UIRectCorner = [UIRectCorner.allCorners]
+        let path = UIBezierPath(roundedRect: self.bounds, byRoundingCorners:corner , cornerRadii: CGSize(width: arcRadius, height: arcRadius))
+        let mask = CAShapeLayer()
+        mask.path = path.cgPath
+        self.layer.mask = mask
         
     }
     /*

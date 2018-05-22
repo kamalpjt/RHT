@@ -22,7 +22,7 @@ class ChatTblDelegate: NSObject,UITableViewDelegate {
             let estimatedFramename = ShareData.sharedInstance.GetStringCGSize(stringValue:chatItem[indexPath.row].userName!, font:UIFont.systemFont(ofSize: ShareData.SetFont14(), weight: UIFont.Weight.semibold))
             
             let estimatedFramedate = ShareData.sharedInstance.GetStringCGSize(stringValue:chatItem[indexPath.row].userName!, font:UIFont.systemFont(ofSize: ShareData.SetFont12(), weight: UIFont.Weight.semibold))
-            return estimatedFramemessage.height+estimatedFramedate.height+estimatedFramename.height+30;
+            return estimatedFramemessage.height+estimatedFramedate.height+estimatedFramename.height+35;
         }else{
             return UIScreen.main.bounds.size.width/2
         }

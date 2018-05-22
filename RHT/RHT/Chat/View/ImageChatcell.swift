@@ -32,14 +32,14 @@ class ImageChatcell: UITableViewCell {
     }
     func BindValue(item:ChatModel){
         if(item.IsSender!){
-            imageBackGroundView.frame = CGRect(x: 10, y: 0, width: UIScreen.main.bounds.size.width/2, height: UIScreen.main.bounds.size.width/2)
+            imageBackGroundView.frame = CGRect(x: 10, y: 5, width: UIScreen.main.bounds.size.width/2, height: UIScreen.main.bounds.size.width/2-5)
         }else{
-            imageBackGroundView.frame = CGRect(x: UIScreen.main.bounds.size.width/2-10, y:0 , width: UIScreen.main.bounds.size.width/2, height: UIScreen.main.bounds.size.width/2)
+            imageBackGroundView.frame = CGRect(x: UIScreen.main.bounds.size.width/2-10, y:5 , width: UIScreen.main.bounds.size.width/2, height: UIScreen.main.bounds.size.width/2-5)
         }
         addSubview(imageBackGroundView)
         imageview.image = UIImage.init(named: item.imageUrl!)
         imageview.contentMode = UIViewContentMode.scaleToFill
-        imageview.frame = CGRect(x: 5, y: 5, width: UIScreen.main.bounds.size.width/2-10, height: UIScreen.main.bounds.size.width/2-10)
+        imageview.frame = CGRect(x: 5, y: 5, width: UIScreen.main.bounds.size.width/2-10, height: UIScreen.main.bounds.size.width/2-15)
         imageBackGroundView.addSubview(imageview)
     }
 

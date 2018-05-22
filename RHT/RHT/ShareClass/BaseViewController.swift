@@ -10,11 +10,17 @@ import UIKit
 
 class BaseViewController: UIViewController {
 
+   public var basescrollView:UIScrollView?
     override func viewDidLoad() {
         super.viewDidLoad()
 
         //SetBackGroundColor()
         // Do any additional setup after loading the view.
+        AddKeyboardObserver()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        RemoveKeyboardObserver()
     }
     
     func  SetBackGroundColor(color: UIColor) -> Void {
@@ -31,41 +37,24 @@ class BaseViewController: UIViewController {
     }
     @objc func keyboardWillShow(notification: NSNotification) {
         print("keyboardWillShow")
-        
-//        let userInfo: NSDictionary = notification.userInfo!
-//        let keyboardInfoFrame = userInfo.objectForKey(UIKeyboardFrameEndUserInfoKey)?.CGRectValue()
-//
-//        let windowFrame = (UIApplication.sharedApplication().keyWindow!.convertRect(self.view.frame, fromView:self.view))
-//        let keyboardFrame = CGRectIntersection(windowFrame, keyboardInfoFrame!)
-//
-//        let coveredFrame = UIApplication.sharedApplication().keyWindow!.convertRect(keyboardFrame, toView:self.view)
-//
-//
-//        let contentInsets = UIEdgeInsetsMake(0, 0, (coveredFrame.size.height), 0.0)
-//        self.scrollView .contentInset = contentInsets;
-//        self.scrollView.scrollIndicatorInsets = contentInsets;
-//        self.scrollView.contentSize = CGSizeMake((self.scrollView.contentSize.width), (self.scrollView.contentSize.height))
-        
-//        let userinfo = notification.userInfo! as NSDictionary
-//        let keyboardInfoFrame = userinfo.object(forKey: UIKeyboardFrameEndUserInfoKey)
-//        let windowFrame  =  (UIApplication.shared.keyWindow!.convert(self.view.frame, from: self.view))
-        
-        
-        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
-            if self.view.frame.origin.y == 0{
-                self.view.frame.origin.y -= keyboardSize.height
-            }
+        if(basescrollView != nil){
+            let keyboardInfoFrame = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue
+            let windowFrame  =  (UIApplication.shared.keyWindow!.convert(self.view.frame, from: self.view))
+            let keyboardFrame = CGRect(origin: windowFrame.origin, size: (keyboardInfoFrame?.size)!)
+            let coveredFrame = UIApplication.shared.keyWindow!.convert(keyboardFrame, to: self.view)
+            let contentInsets = UIEdgeInsetsMake(0, 0, (coveredFrame.size.height), 0.0)
+            self.basescrollView? .contentInset = contentInsets;
+            self.basescrollView?.scrollIndicatorInsets = contentInsets;
+            self.basescrollView?.contentSize = CGSize(width: (self.basescrollView?.contentSize.width)!, height: (self.basescrollView?.contentSize.height)!)
+
         }
-        
     }
-    
     
     @objc func keyboardWillHide(notification: NSNotification){
         print("keyboardWillHide")
-        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
-            if self.view.frame.origin.y != 0{
-                self.view.frame.origin.y += keyboardSize.height
-            }
+         if(basescrollView != nil){
+            let contentInsets = UIEdgeInsetsMake(0, 0, 0, 0.0)
+            self.basescrollView? .contentInset = contentInsets;
         }
     }
     func CloseKeyboard(bool:Bool) -> Void {

@@ -13,8 +13,18 @@ class AddCommunicationController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-      
+      navigationItem.rightBarButtonItems = [SubmitButton()]
         // Do any additional setup after loading the view.
+    }
+    func SubmitButton() -> UIBarButtonItem{
+        let menuButton = UIButton.init(type: UIButtonType.custom)
+        menuButton.setTitle("Submit", for: UIControlState.normal)
+         menuButton.addTarget(self, action:#selector(SubmitAction), for: UIControlEvents.touchUpInside)
+        let barbutton = UIBarButtonItem.init(customView: menuButton)
+        return barbutton
+    }
+    @objc func SubmitAction() -> Void{
+        
     }
 
     override func didReceiveMemoryWarning() {
