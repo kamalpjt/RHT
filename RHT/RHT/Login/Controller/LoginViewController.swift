@@ -29,12 +29,12 @@ class LoginViewController: BaseViewController,UITextFieldDelegate,GIDSignInDeleg
         SetUpView()
         SetTextFieldImage()
         CloseKeyboard(bool: true);
-        let tapgoogle = UITapGestureRecognizer(target: self, action:#selector(GoogleTap))
-        tapgoogle.numberOfTapsRequired=1;
-        vGoogle.addGestureRecognizer(tapgoogle)
-        let tapfacebook = UITapGestureRecognizer(target: self, action:#selector(FacebookTap))
-        tapfacebook.numberOfTapsRequired=1;
-        vFacebook.addGestureRecognizer(tapfacebook)
+//        let tapgoogle = UITapGestureRecognizer(target: self, action:#selector(GoogleTap))
+//        tapgoogle.numberOfTapsRequired=1;
+//        vGoogle.addGestureRecognizer(tapgoogle)
+//        let tapfacebook = UITapGestureRecognizer(target: self, action:#selector(FacebookTap))
+//        tapfacebook.numberOfTapsRequired=1;
+//        vFacebook.addGestureRecognizer(tapfacebook)
         
         // Do any additional setup after loading the view.
     }
@@ -53,6 +53,10 @@ class LoginViewController: BaseViewController,UITextFieldDelegate,GIDSignInDeleg
         ShareData.sharedInstance.SetCornerRadius(view: vShadowView, radius: 15)
         ShareData.sharedInstance.SetCornerRadiusButton(view: butLogin, radius: 10)
         ShareData.sharedInstance.DrawBorder(view: vEmail, color: AppConstant.sharedInstance.viewEmailBoder);
+                let borderWidth: CGFloat = 1
+                vEmail.frame = vEmail.frame.insetBy(dx: -borderWidth, dy: -borderWidth)
+                vEmail.layer.borderColor =  AppConstant.sharedInstance.viewEmailBoder.cgColor;
+                vEmail.layer.borderWidth = borderWidth
         if ShareData.isIPhone5() {
             ShareData.sharedInstance.SetCornerRadius(view: vEmail, radius: 18)
         }else if ShareData.isIPhone6(){
