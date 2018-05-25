@@ -1,4 +1,5 @@
 PODS:
+  - Alamofire (4.7.2)
   - Bolts (1.9.0):
     - Bolts/AppLinks (= 1.9.0)
     - Bolts/Tasks (= 1.9.0)
@@ -39,12 +40,14 @@ PODS:
     - GTMSessionFetcher/Core (= 1.1.15)
 
 DEPENDENCIES:
+  - Alamofire (~> 4.7)
   - FacebookCore
   - FacebookLogin
   - GoogleSignIn
 
 SPEC REPOS:
-  https://github.com/CocoaPods/Specs.git:
+  https://github.com/cocoapods/specs.git:
+    - Alamofire
     - Bolts
     - FacebookCore
     - FacebookLogin
@@ -56,6 +59,7 @@ SPEC REPOS:
     - GTMSessionFetcher
 
 SPEC CHECKSUMS:
+  Alamofire: e4fa87002c137ba2d8d634d2c51fabcda0d5c223
   Bolts: ac6567323eac61e203f6a9763667d0f711be34c8
   FacebookCore: 3ffa190a3f1f96cec0e44d3fc221bc322c595ffa
   FacebookLogin: 0af839ea858faef99550d16596b87b4a8e8906e6
@@ -66,6 +70,6 @@ SPEC CHECKSUMS:
   GTMOAuth2: c77fe325e4acd453837e72d91e3b5f13116857b2
   GTMSessionFetcher: 5fa5b80fd20e439ef5f545fb2cb3ca6c6714caa2
 
-PODFILE CHECKSUM: 8e56ba7f5db4963919b35487647000b9a49fa162
+PODFILE CHECKSUM: 00fbecf225a38443cc6c0724d44fef29da310ab3
 
-COCOAPODS: 1.5.0
+COCOAPODS: 1.5.3
