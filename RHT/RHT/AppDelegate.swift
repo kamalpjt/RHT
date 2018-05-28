@@ -9,6 +9,7 @@
 import UIKit
 import GoogleSignIn;
 import Foundation
+import Alamofire
 
 
 @UIApplicationMain
