@@ -37,6 +37,11 @@ class LoginViewController: BaseViewController,UITextFieldDelegate,GIDSignInDeleg
 //        vFacebook.addGestureRecognizer(tapfacebook)
         
         // Do any additional setup after loading the view.
+        
+        
+        HttpRequestMethod.sharedInstance.getMethod(url: "https://api.letsbuildthatapp.com/jsondecodable/courses_snake_case", responseBlcok: { response in
+            
+        })
     }
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.navigationBar.isHidden=true;
