@@ -15,6 +15,7 @@
 		8A01B5F820B1576F00096FBE /* MasterDetailDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A01B5F720B1576F00096FBE /* MasterDetailDelegate.swift */; };
 		8A01B5FA20B165DF00096FBE /* MaterDetailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A01B5F920B165DF00096FBE /* MaterDetailModel.swift */; };
 		8A08AA1620A32F0000C3B6A8 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A08AA1520A32F0000C3B6A8 /* ChatViewController.swift */; };
+		8A20477020BD506E006ED5AA /* CSSwiftApiHttpRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A20476F20BD506E006ED5AA /* CSSwiftApiHttpRequest.swift */; };
 		8A3B3F2B20AB22DB0003AD22 /* CommunicationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A3B3F2A20AB22DB0003AD22 /* CommunicationController.swift */; };
 		8A6AEB8E20B8262C00D89295 /* HttpRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A6AEB8D20B8262C00D89295 /* HttpRequest.swift */; };
 		8A6AEB9020B82C7100D89295 /* SessionManagers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A6AEB8F20B82C7100D89295 /* SessionManagers.swift */; };
@@ -90,6 +91,7 @@
 		8A01B5F720B1576F00096FBE /* MasterDetailDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterDetailDelegate.swift; sourceTree = "<group>"; };
 		8A01B5F920B165DF00096FBE /* MaterDetailModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaterDetailModel.swift; sourceTree = "<group>"; };
 		8A08AA1520A32F0000C3B6A8 /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
+		8A20476F20BD506E006ED5AA /* CSSwiftApiHttpRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CSSwiftApiHttpRequest.swift; sourceTree = "<group>"; };
 		8A3B3F2A20AB22DB0003AD22 /* CommunicationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunicationController.swift; sourceTree = "<group>"; };
 		8A6AEB8D20B8262C00D89295 /* HttpRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HttpRequest.swift; sourceTree = "<group>"; };
 		8A6AEB8F20B82C7100D89295 /* SessionManagers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionManagers.swift; sourceTree = "<group>"; };
@@ -228,6 +230,7 @@
 		8A6AEB8C20B8257200D89295 /* ApiRequest */ = {
 			isa = PBXGroup;
 			children = (
+				8A20476F20BD506E006ED5AA /* CSSwiftApiHttpRequest.swift */,
 				8A6AEB8D20B8262C00D89295 /* HttpRequest.swift */,
 				8A6AEB8F20B82C7100D89295 /* SessionManagers.swift */,
 			);
@@ -704,6 +707,7 @@
 				8A01B5FA20B165DF00096FBE /* MaterDetailModel.swift in Sources */,
 				8A01B5F620B145C000096FBE /* ChatTblDelegate.swift in Sources */,
 				A921F835207755640042738A /* SharedNavigation.swift in Sources */,
+				8A20477020BD506E006ED5AA /* CSSwiftApiHttpRequest.swift in Sources */,
 				A91F3E5720AA92D70080B8E9 /* ChatTblSource.swift in Sources */,
 				8AFC65DA20B1D6DD00865555 /* ImageListController.swift in Sources */,
 				8AD251F020B2F4CB00F77994 /* DesignableTextView.swift in Sources */,

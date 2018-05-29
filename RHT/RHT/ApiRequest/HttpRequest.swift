@@ -8,10 +8,11 @@
 
 import Foundation
 import Alamofire
-typealias response = AnyObject
+typealias responseBlock = [AnyObject,AnyObject]
 class HttpRequest {
     
-    func getMethod(url:String,Parameter:[String:String],responseBlcok:response) -> Void{
+    func getMethod(url:String,parameter:[String:String],responseBlcok:response) -> Void{
+        
         
     }
     func postMethod(url:String,Parameter:[String:String]) -> Void{
