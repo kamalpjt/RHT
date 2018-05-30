@@ -10,6 +10,7 @@ import UIKit
 import FacebookCore
 import FacebookLogin
 import GoogleSignIn
+import ApiAI
 
 
 class LoginViewController: BaseViewController,UITextFieldDelegate,GIDSignInDelegate,GIDSignInUIDelegate {

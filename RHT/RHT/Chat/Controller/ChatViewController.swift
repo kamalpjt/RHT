@@ -7,18 +7,15 @@
 //
 
 import UIKit
+import ApiAI
 
 protocol UpdateCons {
-    
     func update()
 }
 class ChatViewController: UIViewController,UITextViewDelegate,UITableViewDelegate {
     
     @IBOutlet weak var vChatInnerView: UIView!
-    
     @IBOutlet weak var vBottomHeight: NSLayoutConstraint!
-    
-    var delegate: UpdateCons?
     @IBOutlet weak var addButton: UIButton!
     @IBOutlet var vBottomconstraints: NSLayoutConstraint!
     @IBOutlet weak var vBottom: UIView!
@@ -26,6 +23,8 @@ class ChatViewController: UIViewController,UITextViewDelegate,UITableViewDelegat
     @IBOutlet weak var tvchatInput: UITextView!
     @IBOutlet weak var cvChat: UITableView!
     @IBOutlet weak var VContainer: UIView!
+    
+    var delegate: UpdateCons?
     var frameheight:CGFloat?
     var frameheightKeyboard:Int = 0;
     var cell:ChatCell?
@@ -34,17 +33,10 @@ class ChatViewController: UIViewController,UITextViewDelegate,UITableViewDelegat
     private let cellIdentifier = "ChatCell"
     private let cellIdentifierimage = "imagecell"
     var chatItem = [ChatModel]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        tvchatInput.textContainerInset = UIEdgeInsets.init(top: 5, left: 5, bottom: 5, right: 5)
-        tvchatInput.textContainer.lineBreakMode = NSLineBreakMode.byWordWrapping
-        tvchatInput.textContainer.lineFragmentPadding = 0;
-        //tvchatInput.layer.cornerRadius=5;
-        tvchatInput.layer.masksToBounds = true;
-        cvChat.tableFooterView = UIView(frame: .zero)
-        cvChat.separatorStyle = .none
-        tvchatInput.font = UIFont.systemFont(ofSize: ShareData.SetFont13(), weight: UIFont.Weight.regular)
         // frameheightKeyboard = vBottomHeight.multiplier
         //  cvChat.contentInset = UIEdgeInsetsMake(5, 5, 5, 5)
         
@@ -53,17 +45,29 @@ class ChatViewController: UIViewController,UITextViewDelegate,UITableViewDelegat
         //        tvchatInput.layer.borderColor =  AppConstant.sharedInstance.borderChat.cgColor;
         //        tvchatInput.layer.borderWidth = borderWidth
         
-        vChatInnerView.layer.cornerRadius = 20;
         let chat = ChatModel.init(chatMessage: "Hi", userName: "john", IsSender: true, date:"12/100/201",imageUrl: "" , mType: MessageType.text)
         let chat1 = ChatModel.init(chatMessage: "Hi", userName: "john", IsSender: false, date:"12/100/201",imageUrl: "Dravid" , mType: MessageType.image)
-         let chat2 = ChatModel.init(chatMessage: "Hi", userName: "john", IsSender: true, date:"12/100/201",imageUrl: "Pdf" , mType: MessageType.image)
+        let chat2 = ChatModel.init(chatMessage: "Hi", userName: "john", IsSender: true, date:"12/100/201",imageUrl: "Pdf" , mType: MessageType.image)
         chatItem.append(chat)
         chatItem.append(chat1)
-         chatItem.append(chat2)
+        chatItem.append(chat2)
+        setUpChatTbl()
+        setUpTextView()
+        // Do any additional setup after loading the view.
         
         
-        
-        
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        //AddKeyboardObserver()
+        AddKeyboardObserver()
+    }
+    override func viewWillDisappear(_ animated: Bool) {
+        RemoveKeyboardObserver()
+    }
+    
+    func setUpChatTbl() -> Void{
+        cvChat.tableFooterView = UIView(frame: .zero)
+        cvChat.separatorStyle = .none
         cvChat.register(ChatCell.self, forCellReuseIdentifier: cellIdentifier)
         cvChat.register(ImageChatcell.self, forCellReuseIdentifier: cellIdentifierimage)
         self.dataSource = ChatTblSource()
@@ -74,9 +78,15 @@ class ChatViewController: UIViewController,UITextViewDelegate,UITableViewDelegat
         cvChat.delegate =  self.dataDelegate
         cvChat.reloadData()
         CloseKeyboard(bool: true)
-        // Do any additional setup after loading the view.
-        
-        
+    }
+    func setUpTextView() -> Void{
+        tvchatInput.textContainerInset = UIEdgeInsets.init(top: 5, left: 5, bottom: 5, right: 5)
+        tvchatInput.textContainer.lineBreakMode = NSLineBreakMode.byWordWrapping
+        tvchatInput.textContainer.lineFragmentPadding = 0;
+        //tvchatInput.layer.cornerRadius=5;
+        tvchatInput.layer.masksToBounds = true;
+        tvchatInput.font = UIFont.systemFont(ofSize: ShareData.SetFont13(), weight: UIFont.Weight.regular)
+        vChatInnerView.layer.cornerRadius = 20;
     }
     func CloseKeyboard(bool:Bool) -> Void {
         if(bool){
@@ -88,13 +98,7 @@ class ChatViewController: UIViewController,UITextViewDelegate,UITableViewDelegat
     @objc func handleTap(sender: UITapGestureRecognizer) {
         self.view.endEditing(true)
     }
-    override func viewWillAppear(_ animated: Bool) {
-        //AddKeyboardObserver()
-        AddKeyboardObserver()
-    }
-    override func viewWillDisappear(_ animated: Bool) {
-        RemoveKeyboardObserver()
-    }
+    
     //M
     func RemoveKeyboardObserver() -> Void {
         NotificationCenter.default.removeObserver(self, name: .UIKeyboardWillShow, object: nil)
@@ -188,20 +192,30 @@ class ChatViewController: UIViewController,UITextViewDelegate,UITableViewDelegat
     //MARK:-ButtonAction
     @IBAction func SendButtonAction(_ sender: Any) {
         if  tvchatInput.text.trimmingCharacters(in: .whitespacesAndNewlines).count>0{
-            let value = chatItem[chatItem.count-1]
-            let items =  ChatModel.init(chatMessage: tvchatInput.text.trimmingCharacters(in: .whitespacesAndNewlines), userName:"Jack123456", IsSender: value.IsSender == true ? false:true, date: "12/03/1990",imageUrl: "", mType: MessageType.text);
-            chatItem.append(items)
-            // print(tvchatInput.text)
-            tvchatInput.text = ""
-            //self.dataSource = ChatTblSource(item: chatItem)
-            //cvChat.dataSource = dataSource
-            UIView.performWithoutAnimation {
-                self.dataSource?.chatItem = chatItem
-                self.dataDelegate?.chatItem = chatItem
-                let index = IndexPath(item: chatItem.count-1, section: 0)
-                cvChat.insertRows(at: [index], with: UITableViewRowAnimation.fade)
-                cvChat.scrollToRow(at: index, at: UITableViewScrollPosition.bottom, animated: false)
-            }
+            
+            let  request = ApiAI.shared().textRequest()
+            request?.query = [tvchatInput.text!]
+            request?.setMappedCompletionBlockSuccess({ (request, response) in
+                let response = response as! AIResponse
+                print(response)
+            }, failure: { (request, error) in
+                print(error!)
+            })
+            ApiAI.shared().enqueue(request)
+            /*let value = chatItem[chatItem.count-1]
+             let items =  ChatModel.init(chatMessage: tvchatInput.text.trimmingCharacters(in: .whitespacesAndNewlines), userName:"Jack123456", IsSender: value.IsSender == true ? false:true, date: "12/03/1990",imageUrl: "", mType: MessageType.text);
+             chatItem.append(items)
+             // print(tvchatInput.text)
+             tvchatInput.text = ""
+             //self.dataSource = ChatTblSource(item: chatItem)
+             //cvChat.dataSource = dataSource
+             UIView.performWithoutAnimation {
+             self.dataSource?.chatItem = chatItem
+             self.dataDelegate?.chatItem = chatItem
+             let index = IndexPath(item: chatItem.count-1, section: 0)
+             cvChat.insertRows(at: [index], with: UITableViewRowAnimation.fade)
+             cvChat.scrollToRow(at: index, at: UITableViewScrollPosition.bottom, animated: false)
+             }*/
         }
         
     }

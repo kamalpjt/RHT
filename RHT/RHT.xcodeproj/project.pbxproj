@@ -21,6 +21,8 @@
 		8A6AEB9020B82C7100D89295 /* SessionManagers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A6AEB8F20B82C7100D89295 /* SessionManagers.swift */; };
 		8A6C0EFB20AF14E8004B13DE /* MatterDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A6C0EFA20AF14E8004B13DE /* MatterDetailCell.swift */; };
 		8A6C0EFD20AF15E4004B13DE /* MatterDetailDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A6C0EFC20AF15E4004B13DE /* MatterDetailDataSource.swift */; };
+		8AA6E60D20BEC75E00C82BFA /* Enum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AA6E60C20BEC75E00C82BFA /* Enum.swift */; };
+		8AA6E60F20BED78A00C82BFA /* AppConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AA6E60E20BED78A00C82BFA /* AppConfig.swift */; };
 		8AD251F020B2F4CB00F77994 /* DesignableTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AD251EF20B2F4CB00F77994 /* DesignableTextView.swift */; };
 		8AD69C0E20A5BC8500F2E135 /* ChatCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AD69C0D20A5BC8500F2E135 /* ChatCell.swift */; };
 		8ADC021520AEB85500EE03DA /* DesignableButon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ADC021420AEB85500EE03DA /* DesignableButon.swift */; };
@@ -97,6 +99,8 @@
 		8A6AEB8F20B82C7100D89295 /* SessionManagers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionManagers.swift; sourceTree = "<group>"; };
 		8A6C0EFA20AF14E8004B13DE /* MatterDetailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatterDetailCell.swift; sourceTree = "<group>"; };
 		8A6C0EFC20AF15E4004B13DE /* MatterDetailDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatterDetailDataSource.swift; sourceTree = "<group>"; };
+		8AA6E60C20BEC75E00C82BFA /* Enum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enum.swift; sourceTree = "<group>"; };
+		8AA6E60E20BED78A00C82BFA /* AppConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConfig.swift; sourceTree = "<group>"; };
 		8AD251EF20B2F4CB00F77994 /* DesignableTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignableTextView.swift; sourceTree = "<group>"; };
 		8AD69C0D20A5BC8500F2E135 /* ChatCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatCell.swift; sourceTree = "<group>"; };
 		8ADC021420AEB85500EE03DA /* DesignableButon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignableButon.swift; sourceTree = "<group>"; };
@@ -360,6 +364,8 @@
 				8AFC65D720B1CF2E00865555 /* DesignableView.swift */,
 				8AFED3F820B2ABC50094F1DA /* CustomText.swift */,
 				8AD251EF20B2F4CB00F77994 /* DesignableTextView.swift */,
+				8AA6E60C20BEC75E00C82BFA /* Enum.swift */,
+				8AA6E60E20BED78A00C82BFA /* AppConfig.swift */,
 			);
 			path = ShareClass;
 			sourceTree = "<group>";
@@ -636,6 +642,7 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-RHT/Pods-RHT-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/ApiAI/ApiAI.framework",
 				"${BUILT_PRODUCTS_DIR}/Bolts/Bolts.framework",
 				"${BUILT_PRODUCTS_DIR}/FBSDKCoreKit/FBSDKCoreKit.framework",
 				"${BUILT_PRODUCTS_DIR}/FBSDKLoginKit/FBSDKLoginKit.framework",
@@ -648,6 +655,7 @@
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ApiAI.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Bolts.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKCoreKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKLoginKit.framework",
@@ -691,6 +699,7 @@
 				A9209FA820AC30BD00E2F174 /* MatterDataSource.swift in Sources */,
 				8AFED3F920B2ABC50094F1DA /* CustomText.swift in Sources */,
 				A994955220AC1A4F00EECC2B /* MatterCollectionViewCell.swift in Sources */,
+				8AA6E60F20BED78A00C82BFA /* AppConfig.swift in Sources */,
 				8A01B5F220B130C400096FBE /* ChatModel.swift in Sources */,
 				8A6AEB8E20B8262C00D89295 /* HttpRequestMethod.swift in Sources */,
 				A9182488206CC4EC00B358D8 /* SharedData.swift in Sources */,
@@ -719,6 +728,7 @@
 				8AFED3EF20B21F040094F1DA /* ChatListController.swift in Sources */,
 				A914484320700E650031AD30 /* HomeCollectionViewCell.swift in Sources */,
 				8A6C0EFD20AF15E4004B13DE /* MatterDetailDataSource.swift in Sources */,
+				8AA6E60D20BEC75E00C82BFA /* Enum.swift in Sources */,
 				8AEB4DDB20AE047D0045DBD2 /* CommunicationDetailDataSource.swift in Sources */,
 				8A01B5F420B1396300096FBE /* ImageChatcell.swift in Sources */,
 				8ADC021520AEB85500EE03DA /* DesignableButon.swift in Sources */,

@@ -1,5 +1,30 @@
 PODS:
   - Alamofire (4.7.2)
+  - ApiAI (0.7.2):
+    - ApiAI/AudioFileConverter (= 0.7.2)
+    - ApiAI/Core (= 0.7.2)
+    - ApiAI/Events (= 0.7.2)
+    - ApiAI/ResponseMapping (= 0.7.2)
+    - ApiAI/UIKit (= 0.7.2)
+    - ApiAI/UserEntities (= 0.7.2)
+    - ApiAI/VoiceFileRequest (= 0.7.2)
+    - ApiAI/VoiceRequest (= 0.7.2)
+  - ApiAI/AudioFileConverter (0.7.2):
+    - ApiAI/Core
+  - ApiAI/Core (0.7.2)
+  - ApiAI/Events (0.7.2):
+    - ApiAI/Core
+  - ApiAI/ResponseMapping (0.7.2):
+    - ApiAI/Core
+  - ApiAI/UIKit (0.7.2):
+    - ApiAI/Core
+    - ApiAI/VoiceRequest
+  - ApiAI/UserEntities (0.7.2):
+    - ApiAI/Core
+  - ApiAI/VoiceFileRequest (0.7.2):
+    - ApiAI/Core
+  - ApiAI/VoiceRequest (0.7.2):
+    - ApiAI/Core
   - Bolts (1.9.0):
     - Bolts/AppLinks (= 1.9.0)
     - Bolts/Tasks (= 1.9.0)
@@ -41,6 +66,7 @@ PODS:
 
 DEPENDENCIES:
   - Alamofire (~> 4.7)
+  - ApiAI
   - FacebookCore
   - FacebookLogin
   - GoogleSignIn
@@ -48,6 +74,7 @@ DEPENDENCIES:
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - Alamofire
+    - ApiAI
     - Bolts
     - FacebookCore
     - FacebookLogin
@@ -60,6 +87,7 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   Alamofire: e4fa87002c137ba2d8d634d2c51fabcda0d5c223
+  ApiAI: d4b49d3736f33ce6f3ef66dc33c0e0fccb23579e
   Bolts: ac6567323eac61e203f6a9763667d0f711be34c8
   FacebookCore: 3ffa190a3f1f96cec0e44d3fc221bc322c595ffa
   FacebookLogin: 0af839ea858faef99550d16596b87b4a8e8906e6
@@ -70,6 +98,6 @@ SPEC CHECKSUMS:
   GTMOAuth2: c77fe325e4acd453837e72d91e3b5f13116857b2
   GTMSessionFetcher: 5fa5b80fd20e439ef5f545fb2cb3ca6c6714caa2
 
-PODFILE CHECKSUM: 00fbecf225a38443cc6c0724d44fef29da310ab3
+PODFILE CHECKSUM: d088e9bb3e650066d1bfb71368813e74b8d6a424
 
 COCOAPODS: 1.5.3

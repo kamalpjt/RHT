@@ -14,6 +14,8 @@
 #import "RESideMenu.h"
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
 #import <FBSDKLoginKit/FBSDKLoginKit.h>
+#import <ApiAI/ApiAI.h>//ApiAI.AITextRequest
+#import <ApiAI/AITextRequest.h>
 
 
 #endif /* RHT_Bridging_Header_h */

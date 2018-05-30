@@ -8,7 +8,9 @@ target 'RHT' do
    pod 'FacebookCore'
    pod 'FacebookLogin'
    pod 'Alamofire', '~> 4.7'
+ 
   # Pods for RHT
+     pod 'ApiAI'
 
   target 'RHTTests' do
     inherit! :search_paths

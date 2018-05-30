@@ -10,7 +10,7 @@ import UIKit
 import GoogleSignIn;
 import Foundation
 import Alamofire
-
+import ApiAI
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -23,6 +23,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.window?.rootViewController = showLaunchScreen()
         GIDSignIn.sharedInstance().clientID = AppConstant.sharedInstance.gooleplusid;
         setNavigationBar()
+        //Set enviroment
+        AppConfig.sharedInstance.setEnviroment(eBuildEnvironments: eBuildEnvironment.eDev)
+        //SetChat Bot
+        let configuration = AIDefaultConfiguration()
+        configuration.clientAccessToken =  AppConfig.sharedInstance.dialogflowApi!
+        let apiai = ApiAI.shared()
+        apiai?.configuration = configuration
+        
         self.window?.makeKeyAndVisible()
         return true
     }

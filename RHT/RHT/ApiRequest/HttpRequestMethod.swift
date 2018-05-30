@@ -10,11 +10,11 @@ import Foundation
 import Alamofire
 typealias jsonResponseBlock = AnyObject
 struct Courses:Decodable {
-    let id:Int
-    let name:String
-    let link:String
-    let image_url:String
-    let number_of_lessons:Int
+    let id:Int?
+    let name:String?
+    let link:String?
+    let image_url:String?
+    let number_of_lessons:Int?
 }
 class HttpRequestMethod {
     
