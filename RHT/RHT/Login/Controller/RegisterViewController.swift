@@ -40,8 +40,37 @@ class RegisterViewController: BaseViewController ,UITextFieldDelegate{
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-      //  AddKeyboardObserver()
+        //  AddKeyboardObserver()
         basescrollView = self.scrollView
+    }
+    func Vaildation() -> Bool{
+        
+        if txtFirstName.text?.trimmingCharacters(in: .whitespacesAndNewlines).count == 0 {
+            txtFirstName.becomeFirstResponder()
+            return false
+        }else if txtLastName.text?.trimmingCharacters(in: .whitespacesAndNewlines).count == 0 {
+            txtLastName.becomeFirstResponder()
+            return false
+        } else if txtEmail.text?.trimmingCharacters(in: .whitespacesAndNewlines).count == 0 {
+            txtEmail.becomeFirstResponder()
+            return false
+        }else if !ShareData.sharedInstance.emailValidation(emailText: txtEmail.text!) {
+            txtEmail.becomeFirstResponder()
+            return false
+        }else if txtPassowrd.text?.trimmingCharacters(in: .whitespacesAndNewlines).count == 0 {
+            txtPassowrd.becomeFirstResponder()
+            return false
+        }else if txtConfirmPassowrd.text?.trimmingCharacters(in: .whitespacesAndNewlines).count == 0 {
+            txtConfirmPassowrd.becomeFirstResponder()
+            return false
+        }else if txtPassowrd.text != txtConfirmPassowrd.text {
+            txtPassowrd.becomeFirstResponder()
+            return false
+        }else if txtPhoneNumber.text?.trimmingCharacters(in: .whitespacesAndNewlines).count == 0{
+            txtPhoneNumber.becomeFirstResponder()
+            return false
+        }
+        return true
     }
     @IBAction func RegisterAction(_ sender: Any) {
         SetResidemenu()

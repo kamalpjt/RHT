@@ -91,10 +91,20 @@ class LoginViewController: BaseViewController,UITextFieldDelegate,GIDSignInDeleg
         txtPassowrd.leftView = passowordimage
         txtPassowrd.leftViewMode = UITextFieldViewMode.always
         
-        let passowordeye = UIImageView(frame: CGRect(x: 0, y: -15, width: 20, height: 20))
-        passowordeye.contentMode = UIViewContentMode.scaleAspectFit;
-        passowordeye.image = UIImage(named: "eye")
-        txtPassowrd.rightView = passowordeye
+//        let passowordeye = UIImageView(frame: CGRect(x: 0, y: -15, width: 20, height: 20))
+//        passowordeye.contentMode = UIViewContentMode.scaleAspectFit;
+//        passowordeye.image = UIImage(named: "eye")
+//        let tapfacebook = UITapGestureRecognizer(target: self, action:#selector(eyeButtonTap))
+//        tapfacebook.numberOfTapsRequired=1;
+//        txtPassowrd.rightView?.addGestureRecognizer(tapfacebook)
+        
+        let passworbutton = UIButton.init(type: UIButtonType.custom)
+        passworbutton.frame = CGRect(x: 0, y: 0, width: 20, height: 20)
+        passworbutton.setImage(UIImage(named: "eye"), for: UIControlState.normal)
+        passworbutton.addTarget(self, action: #selector(self.eyeButtonTap), for: UIControlEvents.touchUpInside)
+        
+        
+        txtPassowrd.rightView = passworbutton
         txtPassowrd.rightViewMode = UITextFieldViewMode.always
         
         butForgotPassowrd.setAttributedTitle(ShareData.sharedInstance.UnderLineText(text: "Forgot Passowrd?"), for: UIControlState.normal)
@@ -144,9 +154,27 @@ class LoginViewController: BaseViewController,UITextFieldDelegate,GIDSignInDeleg
         GIDSignIn.sharedInstance().uiDelegate=self
         GIDSignIn.sharedInstance().signIn()
     }
-    @IBAction func LoginAction(_ sender: Any) {
+    @objc func eyeButtonTap(sender: UIButton!) {
+        txtPassowrd.isSecureTextEntry = txtPassowrd.isSecureTextEntry == true ? false:true
+    }
+    func Vaildation() -> Bool{
         
-        SetResidemenu()
+        if txtemail.text?.trimmingCharacters(in: .whitespacesAndNewlines).count == 0 {
+            txtemail.becomeFirstResponder()
+            return false
+        }else if !ShareData.sharedInstance.emailValidation(emailText: txtemail.text!) {
+            txtemail.becomeFirstResponder()
+            return false
+        }else if txtPassowrd.text?.trimmingCharacters(in: .whitespacesAndNewlines).count == 0 {
+            txtemail.becomeFirstResponder()
+            return false
+        }
+        return true
+    }
+    @IBAction func LoginAction(_ sender: Any) {
+        if(Vaildation()){
+            SetResidemenu()
+        }
     }
     @IBAction func RegisterButton(_ sender: Any) {
         var storyboardLogin:UIStoryboard;
@@ -160,10 +188,7 @@ class LoginViewController: BaseViewController,UITextFieldDelegate,GIDSignInDeleg
         let VC1 = storyboardLogin.instantiateViewController(withIdentifier: "RegisterViewController") as! RegisterViewController
         self.navigationController?.pushViewController(VC1, animated: true)
     }
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
+   
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
         
@@ -208,7 +233,10 @@ class LoginViewController: BaseViewController,UITextFieldDelegate,GIDSignInDeleg
         self.present(viewController, animated: true, completion: nil)
     }
     
-    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
     
     
 }
