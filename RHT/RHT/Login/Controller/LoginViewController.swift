@@ -27,15 +27,17 @@ class LoginViewController: BaseViewController,UITextFieldDelegate,GIDSignInDeleg
     @IBOutlet weak var vLogin: UIView!
     override func viewDidLoad() {
         super.viewDidLoad()
+        txtPassowrd.text = "gfgfg"
+        txtemail.text = "kamal@gmail.com"
         SetUpView()
         SetTextFieldImage()
         CloseKeyboard(bool: true);
-//        let tapgoogle = UITapGestureRecognizer(target: self, action:#selector(GoogleTap))
-//        tapgoogle.numberOfTapsRequired=1;
-//        vGoogle.addGestureRecognizer(tapgoogle)
-//        let tapfacebook = UITapGestureRecognizer(target: self, action:#selector(FacebookTap))
-//        tapfacebook.numberOfTapsRequired=1;
-//        vFacebook.addGestureRecognizer(tapfacebook)
+        //        let tapgoogle = UITapGestureRecognizer(target: self, action:#selector(GoogleTap))
+        //        tapgoogle.numberOfTapsRequired=1;
+        //        vGoogle.addGestureRecognizer(tapgoogle)
+        //        let tapfacebook = UITapGestureRecognizer(target: self, action:#selector(FacebookTap))
+        //        tapfacebook.numberOfTapsRequired=1;
+        //        vFacebook.addGestureRecognizer(tapfacebook)
         
         // Do any additional setup after loading the view.
         
@@ -46,11 +48,11 @@ class LoginViewController: BaseViewController,UITextFieldDelegate,GIDSignInDeleg
     }
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.navigationBar.isHidden=true;
-         AddKeyboardObserver()
+        AddKeyboardObserver()
     }
     override func viewWillDisappear(_ animated: Bool) {
         self.navigationController?.navigationBar.isHidden=false;
-          RemoveKeyboardObserver()
+        RemoveKeyboardObserver()
     }
     func SetUpView() -> Void {
         
@@ -59,10 +61,10 @@ class LoginViewController: BaseViewController,UITextFieldDelegate,GIDSignInDeleg
         ShareData.sharedInstance.SetCornerRadius(view: vShadowView, radius: 15)
         ShareData.sharedInstance.SetCornerRadiusButton(view: butLogin, radius: 10)
         ShareData.sharedInstance.DrawBorder(view: vEmail, color: AppConstant.sharedInstance.viewEmailBoder);
-                let borderWidth: CGFloat = 1
-                vEmail.frame = vEmail.frame.insetBy(dx: -borderWidth, dy: -borderWidth)
-                vEmail.layer.borderColor =  AppConstant.sharedInstance.viewEmailBoder.cgColor;
-                vEmail.layer.borderWidth = borderWidth
+        let borderWidth: CGFloat = 1
+        vEmail.frame = vEmail.frame.insetBy(dx: -borderWidth, dy: -borderWidth)
+        vEmail.layer.borderColor =  AppConstant.sharedInstance.viewEmailBoder.cgColor;
+        vEmail.layer.borderWidth = borderWidth
         if ShareData.isIPhone5() {
             ShareData.sharedInstance.SetCornerRadius(view: vEmail, radius: 18)
         }else if ShareData.isIPhone6(){
@@ -91,12 +93,12 @@ class LoginViewController: BaseViewController,UITextFieldDelegate,GIDSignInDeleg
         txtPassowrd.leftView = passowordimage
         txtPassowrd.leftViewMode = UITextFieldViewMode.always
         
-//        let passowordeye = UIImageView(frame: CGRect(x: 0, y: -15, width: 20, height: 20))
-//        passowordeye.contentMode = UIViewContentMode.scaleAspectFit;
-//        passowordeye.image = UIImage(named: "eye")
-//        let tapfacebook = UITapGestureRecognizer(target: self, action:#selector(eyeButtonTap))
-//        tapfacebook.numberOfTapsRequired=1;
-//        txtPassowrd.rightView?.addGestureRecognizer(tapfacebook)
+        //        let passowordeye = UIImageView(frame: CGRect(x: 0, y: -15, width: 20, height: 20))
+        //        passowordeye.contentMode = UIViewContentMode.scaleAspectFit;
+        //        passowordeye.image = UIImage(named: "eye")
+        //        let tapfacebook = UITapGestureRecognizer(target: self, action:#selector(eyeButtonTap))
+        //        tapfacebook.numberOfTapsRequired=1;
+        //        txtPassowrd.rightView?.addGestureRecognizer(tapfacebook)
         
         let passworbutton = UIButton.init(type: UIButtonType.custom)
         passworbutton.frame = CGRect(x: 0, y: 0, width: 20, height: 20)
@@ -124,7 +126,7 @@ class LoginViewController: BaseViewController,UITextFieldDelegate,GIDSignInDeleg
                 print(grantedPermissions)
                 print(declinedPermissions)
                 print(accessToken)
-               self.getFbId()
+                self.getFbId()
                 
             }
         }
@@ -136,9 +138,9 @@ class LoginViewController: BaseViewController,UITextFieldDelegate,GIDSignInDeleg
                 
                 let emailUrl = Info.values
                 
-               // let emails = ((Info["email"] as? [String: Any])?["data"] as? [String: Any])?["url"] as? String
+                // let emails = ((Info["email"] as? [String: Any])?["data"] as? [String: Any])?["url"] as? String
                 print(emailUrl)
-            
+                
                 if let imageURL = ((Info["picture"] as? [String: Any])?["data"] as? [String: Any])?["url"] as? String {
                     //Download image from imageURL
                 }
@@ -161,12 +163,15 @@ class LoginViewController: BaseViewController,UITextFieldDelegate,GIDSignInDeleg
         
         if txtemail.text?.trimmingCharacters(in: .whitespacesAndNewlines).count == 0 {
             txtemail.becomeFirstResponder()
+            SharedAlert.instance.ShowAlert(title:StringConstant.instance.ALERTTITLE , message: StringConstant.instance.ENTEREMAIL, viewController: self)
             return false
         }else if !ShareData.sharedInstance.emailValidation(emailText: txtemail.text!) {
             txtemail.becomeFirstResponder()
+            SharedAlert.instance.ShowAlert(title:StringConstant.instance.ALERTTITLE , message: StringConstant.instance.VALIDMAIL, viewController: self)
             return false
         }else if txtPassowrd.text?.trimmingCharacters(in: .whitespacesAndNewlines).count == 0 {
-            txtemail.becomeFirstResponder()
+            txtPassowrd.becomeFirstResponder()
+            SharedAlert.instance.ShowAlert(title:StringConstant.instance.ALERTTITLE , message: StringConstant.instance.ENTERPASSOWRD, viewController: self)
             return false
         }
         return true
@@ -188,7 +193,7 @@ class LoginViewController: BaseViewController,UITextFieldDelegate,GIDSignInDeleg
         let VC1 = storyboardLogin.instantiateViewController(withIdentifier: "RegisterViewController") as! RegisterViewController
         self.navigationController?.pushViewController(VC1, animated: true)
     }
-   
+    
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
         

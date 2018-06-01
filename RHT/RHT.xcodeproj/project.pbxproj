@@ -34,6 +34,7 @@
 		8AFED3EF20B21F040094F1DA /* ChatListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AFED3EE20B21F040094F1DA /* ChatListController.swift */; };
 		8AFED3F720B27EEE0094F1DA /* AddCommunicationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AFED3F620B27EEE0094F1DA /* AddCommunicationController.swift */; };
 		8AFED3F920B2ABC50094F1DA /* CustomText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AFED3F820B2ABC50094F1DA /* CustomText.swift */; };
+		8AFF1B3120C10795005ACCBD /* SharedAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AFF1B3020C10795005ACCBD /* SharedAlert.swift */; };
 		9C1C3FF06EF92C14D965D71D /* Pods_RHTUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 51EE2E4E70A6D36CD1271759 /* Pods_RHTUITests.framework */; };
 		A90BF65B2075F6AB007B8F2B /* RESideMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = A90BF65A2075F6AB007B8F2B /* RESideMenu.m */; };
 		A90BF65E2075F6D1007B8F2B /* UIViewController+RESideMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = A90BF65D2075F6D1007B8F2B /* UIViewController+RESideMenu.m */; };
@@ -113,6 +114,7 @@
 		8AFED3EE20B21F040094F1DA /* ChatListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatListController.swift; sourceTree = "<group>"; };
 		8AFED3F620B27EEE0094F1DA /* AddCommunicationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCommunicationController.swift; sourceTree = "<group>"; };
 		8AFED3F820B2ABC50094F1DA /* CustomText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomText.swift; sourceTree = "<group>"; };
+		8AFF1B3020C10795005ACCBD /* SharedAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedAlert.swift; sourceTree = "<group>"; };
 		A0B23696F8BA6542264D351A /* Pods_RHT.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RHT.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A90BF6592075F695007B8F2B /* RESideMenu.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RESideMenu.h; sourceTree = "<group>"; };
 		A90BF65A2075F6AB007B8F2B /* RESideMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RESideMenu.m; sourceTree = "<group>"; };
@@ -369,6 +371,7 @@
 				8AA6E60C20BEC75E00C82BFA /* Enum.swift */,
 				8AA6E60E20BED78A00C82BFA /* AppConfig.swift */,
 				8A42CC6B20C0198300AC6AB7 /* StringConstant.swift */,
+				8AFF1B3020C10795005ACCBD /* SharedAlert.swift */,
 			);
 			path = ShareClass;
 			sourceTree = "<group>";
@@ -654,6 +657,7 @@
 				"${BUILT_PRODUCTS_DIR}/GTMOAuth2/GTMOAuth2.framework",
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
+				"${BUILT_PRODUCTS_DIR}/ReachabilitySwift/Reachability.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
@@ -667,6 +671,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMOAuth2.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Reachability.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -703,6 +708,7 @@
 				8AFED3F920B2ABC50094F1DA /* CustomText.swift in Sources */,
 				A994955220AC1A4F00EECC2B /* MatterCollectionViewCell.swift in Sources */,
 				8AA6E60F20BED78A00C82BFA /* AppConfig.swift in Sources */,
+				8AFF1B3120C10795005ACCBD /* SharedAlert.swift in Sources */,
 				8A01B5F220B130C400096FBE /* ChatModel.swift in Sources */,
 				8A6AEB8E20B8262C00D89295 /* HttpRequestMethod.swift in Sources */,
 				A9182488206CC4EC00B358D8 /* SharedData.swift in Sources */,

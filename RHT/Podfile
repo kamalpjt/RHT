@@ -8,6 +8,7 @@ target 'RHT' do
    pod 'FacebookCore'
    pod 'FacebookLogin'
    pod 'Alamofire', '~> 4.7'
+   pod 'ReachabilitySwift'
  
   # Pods for RHT
      pod 'ApiAI'

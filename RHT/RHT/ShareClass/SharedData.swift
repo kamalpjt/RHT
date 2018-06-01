@@ -134,4 +134,28 @@ class ShareData {
         let emailPredicate = NSPredicate(format:"SELF MATCHES %@", emailFormat)
         return emailPredicate.evaluate(with: emailText)
     }
+    
+    func GetCurrentDateAndTime() -> String{
+        let formater = DateFormatter()
+        formater.dateFormat = "dd-MM-yyyy h:mm a"
+        formater.locale = Locale(identifier: "en_US_POSIX")
+        let date = Date()
+        let dateString = formater.string(from: date)
+        return dateString
+    }
+    func ChangeUTCDate(utcString:Date) ->String{
+        //convert UTC formate to nsdate
+//        let  dateformaterr = DateFormatter()
+//        dateformaterr.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z"
+//        let timeZones:TimeZone = TimeZone(abbreviation: "UTC")!
+//        dateformaterr.timeZone = timeZones
+//        dateformaterr.locale = Locale(identifier: "en_US_POSIX")
+//        let date = dateformaterr.date(from: utcString)
+        //Convert UTCNdate to string dd-MM-yyyy HH:mm a
+        let formater = DateFormatter()
+        formater.dateFormat = "dd-MM-yyyy h:mm a"
+        formater.locale = Locale(identifier: "en_US_POSIX")
+        let stringDate = formater.string(from: utcString)
+        return stringDate
+    }
 }

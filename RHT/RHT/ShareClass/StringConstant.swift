@@ -9,12 +9,16 @@
 import Foundation
 class StringConstant {
     static let instance = StringConstant()
-    
+    //Alert constant
     let ENTEREMAIL = "Enter email"
+    let VALIDMAIL = "Enter valid email"
     let ENTERPASSOWRD = "Enter passowrd"
     let ENTERCONFIRMPASSOWRD = "Enter confirm passowrd"
     let ENTERFIRSTNAME = "Enter first name"
     let ENTERLASTNAME = "Enter last name"
     let PASSWORDMISMATCHED = "Password mis matched"
     let ENTERPHONENUMBER = "Enter phone number"
+    let OK = "Ok"
+    let ALERTTITLE = "Alert"
+    //
 }
