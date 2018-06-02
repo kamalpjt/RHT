@@ -113,13 +113,13 @@ class ChatCell: UITableViewCell {
         {
             lblUserName.frame = CGRect(x: 15, y: 5, width: ShareData.GetPhoneCurrentScreenWidth(), height: estimatedFramename.height)
             //top =10 ,bottom= 10 == 20
-            tvChat.frame = CGRect(x: 5, y: lblUserName.frame.height+5, width: estimatedFramemessage.width+20, height: estimatedFramemessage.height+20)
-            lblDate .frame = CGRect(x: 14, y: lblUserName.frame.height+3+tvChat.frame.height+3, width: ShareData.GetPhoneCurrentScreenWidth(), height: estimatedFramedate.height)
+            tvChat.frame = CGRect(x: 5, y: lblUserName.frame.height+7, width: estimatedFramemessage.width+20, height: estimatedFramemessage.height+20)
+            lblDate .frame = CGRect(x: 14, y: lblUserName.frame.height+tvChat.frame.height+8, width: ShareData.GetPhoneCurrentScreenWidth(), height: estimatedFramedate.height)
 
         }else{
             lblUserName.frame = CGRect(x:0, y: 5, width: ShareData.GetPhoneCurrentScreenWidth()-15, height: estimatedFramename.height)
-            tvChat.frame = CGRect(x: UIScreen.main.bounds.width-25-estimatedFramemessage.width, y: lblUserName.frame.height+4, width: estimatedFramemessage.width+20, height: estimatedFramemessage.height+20)
-            lblDate .frame = CGRect(x: 0, y: lblUserName.frame.height+5+tvChat.frame.height+3, width: ShareData.GetPhoneCurrentScreenWidth()-15, height: estimatedFramedate.height)
+            tvChat.frame = CGRect(x: UIScreen.main.bounds.width-25-estimatedFramemessage.width, y: lblUserName.frame.height+7, width: estimatedFramemessage.width+20, height: estimatedFramemessage.height+20)
+            lblDate .frame = CGRect(x: 0, y: lblUserName.frame.height+tvChat.frame.height+8, width: ShareData.GetPhoneCurrentScreenWidth()-15, height: estimatedFramedate.height)
         }
        
         

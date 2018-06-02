@@ -862,6 +862,7 @@
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Biv-2Z-Uva">
                                                         <rect key="frame" x="259" y="0.0" width="51" height="45"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <state key="normal" title="Send"/>
                                                         <connections>
                                                             <action selector="SendButtonAction:" destination="S4T-C8-Yxy" eventType="touchUpInside" id="gUI-Sr-gMV"/>
@@ -872,12 +873,12 @@
                                                 <constraints>
                                                     <constraint firstItem="RiX-Wx-hyc" firstAttribute="top" secondItem="j2d-S8-HgT" secondAttribute="top" id="4zb-Zu-Ej7"/>
                                                     <constraint firstAttribute="bottom" secondItem="Biv-2Z-Uva" secondAttribute="bottom" id="BRV-Gt-OOh"/>
-                                                    <constraint firstItem="RiX-Wx-hyc" firstAttribute="leading" secondItem="j2d-S8-HgT" secondAttribute="leading" constant="49" id="Ckj-i8-S2H"/>
                                                     <constraint firstItem="ECx-sU-HtJ" firstAttribute="width" secondItem="j2d-S8-HgT" secondAttribute="width" multiplier="49:310" id="Dus-jT-iPY"/>
                                                     <constraint firstAttribute="trailing" secondItem="Biv-2Z-Uva" secondAttribute="trailing" id="KCe-cY-obe"/>
                                                     <constraint firstAttribute="bottom" secondItem="ECx-sU-HtJ" secondAttribute="bottom" id="MVZ-3K-b6y"/>
                                                     <constraint firstItem="RiX-Wx-hyc" firstAttribute="width" secondItem="j2d-S8-HgT" secondAttribute="width" multiplier="210:310" id="Od3-ap-ejM"/>
                                                     <constraint firstAttribute="bottom" secondItem="RiX-Wx-hyc" secondAttribute="bottom" id="Ypv-aE-ONC"/>
+                                                    <constraint firstItem="RiX-Wx-hyc" firstAttribute="leading" secondItem="ECx-sU-HtJ" secondAttribute="trailing" id="aty-Pa-2zS"/>
                                                     <constraint firstItem="Biv-2Z-Uva" firstAttribute="leading" secondItem="RiX-Wx-hyc" secondAttribute="trailing" id="fkA-t9-fdB"/>
                                                     <constraint firstItem="Biv-2Z-Uva" firstAttribute="top" secondItem="j2d-S8-HgT" secondAttribute="top" id="nUa-OP-gdi"/>
                                                     <constraint firstItem="ECx-sU-HtJ" firstAttribute="top" secondItem="j2d-S8-HgT" secondAttribute="top" id="pjY-LH-zCc"/>

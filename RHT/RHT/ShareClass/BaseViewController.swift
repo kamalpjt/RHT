@@ -7,16 +7,21 @@
 //
 
 import UIKit
-
+import Reachability
 class BaseViewController: UIViewController {
 
    public var basescrollView:UIScrollView?
+   let reachability = Reachability()
     override func viewDidLoad() {
         super.viewDidLoad()
 
+       
         //SetBackGroundColor()
         // Do any additional setup after loading the view.
-        AddKeyboardObserver()
+        if  reachability?.connection == Reachability.Connection.none{
+             SharedAlert.instance.OffLineAlert(viewController: self)
+        }
+         AddKeyboardObserver()
     }
     
     override func viewWillDisappear(_ animated: Bool) {

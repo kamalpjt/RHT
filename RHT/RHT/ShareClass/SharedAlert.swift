@@ -16,4 +16,9 @@ class SharedAlert:UIAlertController {
         alert.addAction(UIAlertAction(title: StringConstant.instance.OK, style: UIAlertActionStyle.default, handler: nil))
         viewController.present(alert, animated: true, completion: nil)
     }
+    func OffLineAlert(viewController:UIViewController) -> Void{
+        let alert = UIAlertController.init(title: "Messasge", message: StringConstant.instance.OFFLINEMESSAGE, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: StringConstant.instance.OK, style: UIAlertActionStyle.default, handler: nil))
+        viewController.present(alert, animated: true, completion: nil)
+    }
 }

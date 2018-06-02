@@ -22,11 +22,6 @@ class HttpRequestMethod {
     
     func getMethod(url:String,responseBlcok:(jsonResponseBlock) -> Void){
         
-        //request(<#T##url: URLConvertible##URLConvertible#>, method_getName(.get))
-       // request(<#T##url: URLConvertible##URLConvertible#>, method: <#T##HTTPMethod#>, parameters: <#T##Parameters?#>, encoding: <#T##ParameterEncoding#>, headers: <#T##HTTPHeaders?#>)
-        // Alamofire 4
-        let parameters: Parameters = ["foo": "bar"]
-        
         Alamofire.request(url).response { response in // method defaults to `.get`
             
             if(response.error == nil){
@@ -35,10 +30,11 @@ class HttpRequestMethod {
                     let course = try JSONDecoder().decode([Courses].self, from: response.data!)
                     print(course)
                 } catch let jsonerror {
-                    
+                    let statuscode = response.response?.statusCode
                     print(jsonerror)
                 }
             }else{
+                
                 print(response.error!)
             }
         }

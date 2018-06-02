@@ -20,5 +20,6 @@ class StringConstant {
     let ENTERPHONENUMBER = "Enter phone number"
     let OK = "Ok"
     let ALERTTITLE = "Alert"
+    let OFFLINEMESSAGE = "The Internet connection appears to be offline."
     //
 }
