@@ -27,8 +27,8 @@ class LoginViewController: BaseViewController,UITextFieldDelegate,GIDSignInDeleg
     @IBOutlet weak var vLogin: UIView!
     override func viewDidLoad() {
         super.viewDidLoad()
-        txtPassowrd.text = "gfgfg"
-        txtemail.text = "kamal@gmail.com"
+        txtPassowrd.text = "1234567890"
+        txtemail.text = "cus2@gg.com"
         SetUpView()
         SetTextFieldImage()
         CloseKeyboard(bool: true);
@@ -42,9 +42,9 @@ class LoginViewController: BaseViewController,UITextFieldDelegate,GIDSignInDeleg
         // Do any additional setup after loading the view.
         
         
-        HttpRequestMethod.sharedInstance.getMethod(url: "https://api.letsbuildthatapp.com/jsondecodable/courses_snake_case", responseBlcok: { response in
-            
-        })
+//        HttpRequestMethod.sharedInstance.getMethod(url: "https://api.letsbuildthatapp.com/jsondecodable/courses_snake_case", responseBlcok: { response in
+//
+//        })
     }
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.navigationBar.isHidden=true;
@@ -178,6 +178,15 @@ class LoginViewController: BaseViewController,UITextFieldDelegate,GIDSignInDeleg
     }
     @IBAction func LoginAction(_ sender: Any) {
         if(Vaildation()){
+            //        HttpRequestMethod.sharedInstance.getMethod(url: "https://api.letsbuildthatapp.com/jsondecodable/courses_snake_case", responseBlcok: { response in
+            //
+            //        })
+            let params:[String:String] = ["name":txtemail.text!,"password":txtPassowrd.text!]
+            
+            LoginParsing.instance.getLoginDetail(url: "/login", param: params, resposneBlock: { response in
+                
+                
+            })
             SetResidemenu()
         }
     }

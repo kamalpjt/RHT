@@ -8,7 +8,8 @@
 
 import Foundation
 import Alamofire
-typealias jsonResponseBlock = AnyObject
+typealias jsonResponseSucessBlock = (Data) -> Void
+typealias jsonResponseFailureBlock = (AnyObject) -> Void
 struct Courses:Decodable {
     let id:Int?
     let name:String?
@@ -20,7 +21,7 @@ class HttpRequestMethod {
     
      static let sharedInstance = HttpRequestMethod()
     
-    func getMethod(url:String,responseBlcok:(jsonResponseBlock) -> Void){
+    func getMethod(url:String,responseBlcok:(jsonResponseSucessBlock) -> Void){
         
         Alamofire.request(url).response { response in // method defaults to `.get`
             
@@ -39,8 +40,27 @@ class HttpRequestMethod {
             }
         }
     }
-    func postMethod(url:String,Parameter:[String:String]) -> Void{
-        
+    func postMethod(url:String,parameters:[String:Any],sucessResponseBlcok:@escaping (jsonResponseSucessBlock),failureResponseBlcok:@escaping (jsonResponseFailureBlock)) -> Void{
+        let headerWithContentType = ["content-type":"application/json"]
+        let ggg = AppConfig.sharedInstance.RHTDDevIp!+url
+        request(AppConfig.sharedInstance.RHTDDevIp!+url, method: HTTPMethod.post, parameters: parameters, encoding: JSONEncoding.default, headers: headerWithContentType).responseData(completionHandler: {response in
+            if(response.error == nil){
+                
+                sucessResponseBlcok(response.data!);
+//                do {
+//
+//                   // let course = try JSONDecoder().decode(UserDetailModel.self, from: response.data!)
+//                    print(course)
+//                } catch let jsonerror {
+//                    let statuscode = response.response?.statusCode
+//                    print(jsonerror)
+//                }
+            }else{
+                
+                print(response.error!)
+                failureResponseBlcok(response.error! as AnyObject)
+            }
+        })
     }
     func putMethod(url:String,Parameter:[String:String]) -> Void{
         
