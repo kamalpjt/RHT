@@ -27,8 +27,8 @@ class LoginViewController: BaseViewController,UITextFieldDelegate,GIDSignInDeleg
     @IBOutlet weak var vLogin: UIView!
     override func viewDidLoad() {
         super.viewDidLoad()
-        txtPassowrd.text = "1234567890"
-        txtemail.text = "cus2@gg.com"
+        txtPassowrd.text = "12345678"
+        txtemail.text = "rht@gmail.com"
         SetUpView()
         SetTextFieldImage()
         CloseKeyboard(bool: true);
@@ -183,11 +183,14 @@ class LoginViewController: BaseViewController,UITextFieldDelegate,GIDSignInDeleg
             //        })
             let params:[String:String] = ["name":txtemail.text!,"password":txtPassowrd.text!]
             
-            LoginParsing.instance.getLoginDetail(url: "/login", param: params, resposneBlock: { response in
-                
-                
+            LoginParsing.instance.getLoginDetail(url: "/login", param: params, resposneBlock: { response , statuscode in
+                if(statuscode == 200){
+                      self.SetResidemenu()
+                }
+//                let res = response as! UserDetailModel
+//                let dfdf = res.user.email
             })
-            SetResidemenu()
+          
         }
     }
     @IBAction func RegisterButton(_ sender: Any) {

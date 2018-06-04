@@ -8,7 +8,7 @@
 
 import Foundation
 import Alamofire
-typealias jsonResponseSucessBlock = (Data) -> Void
+typealias jsonResponseSucessBlock = (Data,Int) -> Void
 typealias jsonResponseFailureBlock = (AnyObject) -> Void
 struct Courses:Decodable {
     let id:Int?
@@ -42,21 +42,11 @@ class HttpRequestMethod {
     }
     func postMethod(url:String,parameters:[String:Any],sucessResponseBlcok:@escaping (jsonResponseSucessBlock),failureResponseBlcok:@escaping (jsonResponseFailureBlock)) -> Void{
         let headerWithContentType = ["content-type":"application/json"]
-        let ggg = AppConfig.sharedInstance.RHTDDevIp!+url
         request(AppConfig.sharedInstance.RHTDDevIp!+url, method: HTTPMethod.post, parameters: parameters, encoding: JSONEncoding.default, headers: headerWithContentType).responseData(completionHandler: {response in
             if(response.error == nil){
+                sucessResponseBlcok(response.data!,(response.response?.statusCode)!);
                 
-                sucessResponseBlcok(response.data!);
-//                do {
-//
-//                   // let course = try JSONDecoder().decode(UserDetailModel.self, from: response.data!)
-//                    print(course)
-//                } catch let jsonerror {
-//                    let statuscode = response.response?.statusCode
-//                    print(jsonerror)
-//                }
             }else{
-                
                 print(response.error!)
                 failureResponseBlcok(response.error! as AnyObject)
             }
