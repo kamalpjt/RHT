@@ -8,13 +8,26 @@
 
 import Foundation
 struct UserDetailModel:Decodable {
+   
+    let response:response
+    init(json:[String:Any]) {
+         response = (json["response"] as? response)!
+    }
+}
+struct response:Decodable{
+    
     let isStaff:Int?
+    let responseCode:Int?
+    let statusCode:Int?
+    let statusMessage:String?
     let user:user
     init(json:[String:Any]) {
         isStaff = json["isStaff"] as? Int ?? 0
         user = (json["user"] as? user)!
+        responseCode = json["responseCode"] as? Int ?? 0
+        statusCode = json["statusCode"] as? Int ?? 0
+        statusMessage = json["statusMessage"] as? String ?? ""
     }
-    
 }
 struct  user:Decodable {
     

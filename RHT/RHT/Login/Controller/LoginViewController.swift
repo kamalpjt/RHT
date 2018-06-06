@@ -178,17 +178,12 @@ class LoginViewController: BaseViewController,UITextFieldDelegate,GIDSignInDeleg
     }
     @IBAction func LoginAction(_ sender: Any) {
         if(Vaildation()){
-            //        HttpRequestMethod.sharedInstance.getMethod(url: "https://api.letsbuildthatapp.com/jsondecodable/courses_snake_case", responseBlcok: { response in
-            //
-            //        })
             let params:[String:String] = ["name":txtemail.text!,"password":txtPassowrd.text!]
             
             LoginParsing.instance.getLoginDetail(url: "/login", param: params, resposneBlock: { response , statuscode in
                 if(statuscode == 200){
                       self.SetResidemenu()
                 }
-//                let res = response as! UserDetailModel
-//                let dfdf = res.user.email
             })
           
         }

@@ -12,7 +12,7 @@ target 'RHT' do
  
   # Pods for RHT
      pod 'ApiAI'
-
+     pod 'SVProgressHUD'
   target 'RHTTests' do
     inherit! :search_paths
     # Pods for testing

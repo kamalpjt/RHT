@@ -11,6 +11,7 @@ import GoogleSignIn;
 import Foundation
 import Alamofire
 import ApiAI
+import SVProgressHUD
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -25,6 +26,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         setNavigationBar()
         //Set enviroment
         AppConfig.sharedInstance.setEnviroment(eBuildEnvironments: eBuildEnvironment.eDev)
+        SVProgressHUD.setBackgroundColor(AppConstant.sharedInstance.backGroundColor)
+        SVProgressHUD.setForegroundColor(UIColor.white)
+        SVProgressHUD.setDefaultAnimationType(SVProgressHUDAnimationType.native)
+        
         //SetChat Bot
         let configuration = AIDefaultConfiguration()
         configuration.clientAccessToken =  AppConfig.sharedInstance.dialogflowApi!
@@ -32,6 +37,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         apiai?.configuration = configuration
         
         self.window?.makeKeyAndVisible()
+         
         return true
     }
     

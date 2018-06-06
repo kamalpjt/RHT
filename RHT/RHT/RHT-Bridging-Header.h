@@ -16,6 +16,7 @@
 #import <FBSDKLoginKit/FBSDKLoginKit.h>
 #import <ApiAI/ApiAI.h>//ApiAI.AITextRequest
 #import <ApiAI/AITextRequest.h>
+#import <SVProgressHUD/SVProgressHUD.h>
 
 
 #endif /* RHT_Bridging_Header_h */
