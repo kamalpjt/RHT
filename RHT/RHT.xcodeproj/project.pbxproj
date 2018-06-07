@@ -16,6 +16,8 @@
 		8A01B5FA20B165DF00096FBE /* MaterDetailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A01B5F920B165DF00096FBE /* MaterDetailModel.swift */; };
 		8A08AA1620A32F0000C3B6A8 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A08AA1520A32F0000C3B6A8 /* ChatViewController.swift */; };
 		8A20477020BD506E006ED5AA /* CSSwiftApiHttpRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A20476F20BD506E006ED5AA /* CSSwiftApiHttpRequest.swift */; };
+		8A2413CB20C904D700033056 /* ImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A2413CA20C904D700033056 /* ImageView.swift */; };
+		8A2413CD20C9061D00033056 /* ImageViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A2413CC20C9061D00033056 /* ImageViewCell.swift */; };
 		8A3B3F2B20AB22DB0003AD22 /* CommunicationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A3B3F2A20AB22DB0003AD22 /* CommunicationController.swift */; };
 		8A42CC6C20C0198300AC6AB7 /* StringConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A42CC6B20C0198300AC6AB7 /* StringConstant.swift */; };
 		8A6AEB8E20B8262C00D89295 /* HttpRequestMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A6AEB8D20B8262C00D89295 /* HttpRequestMethod.swift */; };
@@ -98,6 +100,8 @@
 		8A01B5F920B165DF00096FBE /* MaterDetailModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaterDetailModel.swift; sourceTree = "<group>"; };
 		8A08AA1520A32F0000C3B6A8 /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		8A20476F20BD506E006ED5AA /* CSSwiftApiHttpRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CSSwiftApiHttpRequest.swift; sourceTree = "<group>"; };
+		8A2413CA20C904D700033056 /* ImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageView.swift; sourceTree = "<group>"; };
+		8A2413CC20C9061D00033056 /* ImageViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewCell.swift; sourceTree = "<group>"; };
 		8A3B3F2A20AB22DB0003AD22 /* CommunicationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunicationController.swift; sourceTree = "<group>"; };
 		8A42CC6B20C0198300AC6AB7 /* StringConstant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringConstant.swift; sourceTree = "<group>"; };
 		8A6AEB8D20B8262C00D89295 /* HttpRequestMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HttpRequestMethod.swift; sourceTree = "<group>"; };
@@ -235,6 +239,8 @@
 				A91F3E5B20AABED80080B8E9 /* Communication.storyboard */,
 				A994955120AC1A4F00EECC2B /* MatterCollectionViewCell.swift */,
 				8A6C0EFA20AF14E8004B13DE /* MatterDetailCell.swift */,
+				8A2413CA20C904D700033056 /* ImageView.swift */,
+				8A2413CC20C9061D00033056 /* ImageViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -719,6 +725,7 @@
 				8AFF1B3120C10795005ACCBD /* SharedAlert.swift in Sources */,
 				8A01B5F220B130C400096FBE /* ChatModel.swift in Sources */,
 				8A6AEB8E20B8262C00D89295 /* HttpRequestMethod.swift in Sources */,
+				8A2413CD20C9061D00033056 /* ImageViewCell.swift in Sources */,
 				A9182488206CC4EC00B358D8 /* SharedData.swift in Sources */,
 				8A08AA1620A32F0000C3B6A8 /* ChatViewController.swift in Sources */,
 				A918248A206CC50500B358D8 /* AppConstant.swift in Sources */,
@@ -735,6 +742,7 @@
 				A921F835207755640042738A /* SharedNavigation.swift in Sources */,
 				8A20477020BD506E006ED5AA /* CSSwiftApiHttpRequest.swift in Sources */,
 				A91F3E5720AA92D70080B8E9 /* ChatTblSource.swift in Sources */,
+				8A2413CB20C904D700033056 /* ImageView.swift in Sources */,
 				8AFC65DA20B1D6DD00865555 /* ImageListController.swift in Sources */,
 				8AD251F020B2F4CB00F77994 /* DesignableTextView.swift in Sources */,
 				8AFED3F720B27EEE0094F1DA /* AddCommunicationController.swift in Sources */,

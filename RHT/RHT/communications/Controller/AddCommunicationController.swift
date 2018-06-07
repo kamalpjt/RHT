@@ -10,9 +10,21 @@ import UIKit
 
 class AddCommunicationController: UIViewController {
 
+   
+    @IBOutlet weak var imgCollectionView: UICollectionView!
+    
+    var dataSourceImage = ImageView()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+     // let imageCollectionView = ImageView()
+        
+      
+    
+       // imgCollectionView.register(ImageViewCell.self, forCellWithReuseIdentifier: "ImageViewCell")
+        dataSourceImage.stringImage = [#imageLiteral(resourceName: "PluseWhite")]
+        imgCollectionView.dataSource = dataSourceImage
+       imgCollectionView.reloadData()
       navigationItem.rightBarButtonItems = [SubmitButton()]
         // Do any additional setup after loading the view.
     }
