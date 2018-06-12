@@ -17,6 +17,7 @@ class LoginParsing {
             do {
                 if(statuscode==200){
                     let login = try JSONDecoder().decode(UserDetailModel.self, from: sucessresponse)
+                 
                     resposneBlock(login, statuscode)
                 }
                // let json  = try JSONSerialization.jsonObject(with: sucessresponse, options: .mutableContainers)
