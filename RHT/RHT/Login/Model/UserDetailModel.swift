@@ -7,30 +7,28 @@
 //
 
 import Foundation
-struct UserDetailModel:Decodable {
+struct UserDetailModel:Codable {
    
     let response:response
-    init(json:[String:Any]) {
-         response = (json["response"] as? response)!
-    }
-}
-struct response:Decodable{
-    
-    let isStaff:Int?
     let responseCode:Int?
     let statusCode:Int?
     let statusMessage:String?
-    let user:user
     init(json:[String:Any]) {
-        isStaff = json["isStaff"] as? Int ?? 0
-        user = (json["user"] as? user)!
+         response = (json["response"] as? response)!
         responseCode = json["responseCode"] as? Int ?? 0
         statusCode = json["statusCode"] as? Int ?? 0
         statusMessage = json["statusMessage"] as? String ?? ""
     }
 }
-struct  user:Decodable {
+struct response:Codable{
     
+    let user:user
+    init(json:[String:Any]) {
+        user = (json["user"] as? user)!
+    }
+}
+struct  user:Codable {
+    let isStaff:Int?
     let email:String?
     let phone:String?
     let name:String?
@@ -39,6 +37,7 @@ struct  user:Decodable {
     let userid:String?
     let id:String?
     init(json:[String:Any]) {
+        isStaff = json["isStaff"] as? Int ?? 0
         email = json["email"] as? String ?? ""
         phone = json["phone"] as? String ?? ""
         name = json["name"] as? String ?? ""

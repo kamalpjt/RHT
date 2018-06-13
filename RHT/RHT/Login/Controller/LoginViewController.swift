@@ -11,6 +11,7 @@ import FacebookCore
 import FacebookLogin
 import GoogleSignIn
 import ApiAI
+import SwiftKeychainWrapper
 
 
 class LoginViewController: BaseViewController,UITextFieldDelegate,GIDSignInDelegate,GIDSignInUIDelegate {
@@ -182,7 +183,22 @@ class LoginViewController: BaseViewController,UITextFieldDelegate,GIDSignInDeleg
             
             LoginParsing.instance.getLoginDetail(url: "/login", param: params, resposneBlock: { response , statuscode in
                 if(statuscode == 200){
-                      self.SetResidemenu()
+                    let model = response as! UserDetailModel
+                    do {
+                        //https://www.raywenderlich.com/172145/encoding-decoding-and-serialization-in-swift-4
+                        let jsonEncoder = JSONEncoder()
+                        let jsonData = try jsonEncoder.encode(model)
+                        let json = String(data: jsonData, encoding: String.Encoding.utf8)
+                        print(json!)
+                        let saveSuccessful: Bool = KeychainWrapper.standard.set(json!, forKey: AppConstant.sharedInstance.SAVELOGINDETAIL)
+                        if(saveSuccessful){
+                             self.SetResidemenu()
+                        }
+                        
+                    } catch  let jsonerror{
+                        print(jsonerror)
+                    }
+                    
                 }
             })
           

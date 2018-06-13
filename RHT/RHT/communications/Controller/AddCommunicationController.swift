@@ -13,6 +13,8 @@ class AddCommunicationController: UIViewController {
    
     @IBOutlet weak var imgCollectionView: UICollectionView!
     
+    @IBOutlet weak var tvDescription: DesignableTextView!
+    @IBOutlet weak var txtTittle: CustomTextField!
     var dataSourceImage = ImageView()
     
     override func viewDidLoad() {

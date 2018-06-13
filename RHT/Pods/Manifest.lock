@@ -65,6 +65,7 @@ PODS:
     - GTMSessionFetcher/Core (= 1.1.15)
   - ReachabilitySwift (4.1.0)
   - SVProgressHUD (2.2.5)
+  - SwiftKeychainWrapper (3.0.1)
 
 DEPENDENCIES:
   - Alamofire (~> 4.7)
@@ -74,6 +75,7 @@ DEPENDENCIES:
   - GoogleSignIn
   - ReachabilitySwift
   - SVProgressHUD
+  - SwiftKeychainWrapper
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
@@ -90,6 +92,7 @@ SPEC REPOS:
     - GTMSessionFetcher
     - ReachabilitySwift
     - SVProgressHUD
+    - SwiftKeychainWrapper
 
 SPEC CHECKSUMS:
   Alamofire: e4fa87002c137ba2d8d634d2c51fabcda0d5c223
@@ -105,7 +108,8 @@ SPEC CHECKSUMS:
   GTMSessionFetcher: 5fa5b80fd20e439ef5f545fb2cb3ca6c6714caa2
   ReachabilitySwift: 6849231cd4e06559f3b9ef4a97a0a0f96d41e09f
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
+  SwiftKeychainWrapper: 38952a3636320ae61bad3513cadd870929de7a4a
 
-PODFILE CHECKSUM: c81c70bc89c8a6ef1240ccc097c83569194d8cf9
+PODFILE CHECKSUM: 9b285427851bea0138aeb1e1dc628df502992a15
 
 COCOAPODS: 1.5.3
