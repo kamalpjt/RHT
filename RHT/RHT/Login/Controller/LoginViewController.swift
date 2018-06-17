@@ -43,9 +43,9 @@ class LoginViewController: BaseViewController,UITextFieldDelegate,GIDSignInDeleg
         // Do any additional setup after loading the view.
         
         
-//        HttpRequestMethod.sharedInstance.getMethod(url: "https://api.letsbuildthatapp.com/jsondecodable/courses_snake_case", responseBlcok: { response in
-//
-//        })
+        //        HttpRequestMethod.sharedInstance.getMethod(url: "https://api.letsbuildthatapp.com/jsondecodable/courses_snake_case", responseBlcok: { response in
+        //
+        //        })
     }
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.navigationBar.isHidden=true;
@@ -93,70 +93,61 @@ class LoginViewController: BaseViewController,UITextFieldDelegate,GIDSignInDeleg
         passowordimage.image = UIImage(named: "Email")
         txtPassowrd.leftView = passowordimage
         txtPassowrd.leftViewMode = UITextFieldViewMode.always
-        
-        //        let passowordeye = UIImageView(frame: CGRect(x: 0, y: -15, width: 20, height: 20))
-        //        passowordeye.contentMode = UIViewContentMode.scaleAspectFit;
-        //        passowordeye.image = UIImage(named: "eye")
-        //        let tapfacebook = UITapGestureRecognizer(target: self, action:#selector(eyeButtonTap))
-        //        tapfacebook.numberOfTapsRequired=1;
-        //        txtPassowrd.rightView?.addGestureRecognizer(tapfacebook)
-        
+
         let passworbutton = UIButton.init(type: UIButtonType.custom)
         passworbutton.frame = CGRect(x: 0, y: 0, width: 20, height: 20)
         passworbutton.setImage(UIImage(named: "eye"), for: UIControlState.normal)
         passworbutton.addTarget(self, action: #selector(self.eyeButtonTap), for: UIControlEvents.touchUpInside)
-        
-        
         txtPassowrd.rightView = passworbutton
         txtPassowrd.rightViewMode = UITextFieldViewMode.always
         
         butForgotPassowrd.setAttributedTitle(ShareData.sharedInstance.UnderLineText(text: "Forgot Passowrd?"), for: UIControlState.normal)
         
     }
-    @objc func FacebookTap(sender: UITapGestureRecognizer) {
-        self.view.endEditing(true)
-        let loginManager = LoginManager()
-        loginManager.logIn(readPermissions: [.publicProfile,.email], viewController: self) { (loginResult) in
-            
-            switch loginResult {
-            case .failed(let Error):
-                print(Error)
-            case .cancelled:
-                print("User cancelled login.")
-            case .success(let grantedPermissions, let declinedPermissions, let accessToken):
-                print(grantedPermissions)
-                print(declinedPermissions)
-                print(accessToken)
-                self.getFbId()
-                
-            }
-        }
-    }
-    func getFbId(){
-        if(FBSDKAccessToken.current() != nil){
-            FBSDKGraphRequest(graphPath: "me", parameters: ["fields": "id,name , first_name, last_name , email,picture.type(large)"]).start(completionHandler: { (connection, result, error) in
-                guard let Info = result as? [String: Any] else { return }
-                
-                let emailUrl = Info.values
-                
-                // let emails = ((Info["email"] as? [String: Any])?["data"] as? [String: Any])?["url"] as? String
-                print(emailUrl)
-                
-                if let imageURL = ((Info["picture"] as? [String: Any])?["data"] as? [String: Any])?["url"] as? String {
-                    //Download image from imageURL
-                }
-                if(error == nil){
-                    print("result")
-                }
-            })
-        }
-    }
-    @objc func GoogleTap(sender: UITapGestureRecognizer) {
-        self.view.endEditing(true)
-        GIDSignIn.sharedInstance().delegate=self
-        GIDSignIn.sharedInstance().uiDelegate=self
-        GIDSignIn.sharedInstance().signIn()
-    }
+//    @objc func FacebookTap(sender: UITapGestureRecognizer) {
+//        self.view.endEditing(true)
+//        let loginManager = LoginManager()
+//        loginManager.logIn(readPermissions: [.publicProfile,.email], viewController: self) { (loginResult) in
+//            
+//            switch loginResult {
+//            case .failed(let Error):
+//                print(Error)
+//            case .cancelled:
+//                print("User cancelled login.")
+//            case .success(let grantedPermissions, let declinedPermissions, let accessToken):
+//                print(grantedPermissions)
+//                print(declinedPermissions)
+//                print(accessToken)
+//                self.getFbId()
+//                
+//            }
+//        }
+//    }
+//    func getFbId(){
+//        if(FBSDKAccessToken.current() != nil){
+//            FBSDKGraphRequest(graphPath: "me", parameters: ["fields": "id,name , first_name, last_name , email,picture.type(large)"]).start(completionHandler: { (connection, result, error) in
+//                guard let Info = result as? [String: Any] else { return }
+//                
+//                let emailUrl = Info.values
+//                
+//                // let emails = ((Info["email"] as? [String: Any])?["data"] as? [String: Any])?["url"] as? String
+//                print(emailUrl)
+//                
+//                if let imageURL = ((Info["picture"] as? [String: Any])?["data"] as? [String: Any])?["url"] as? String {
+//                    //Download image from imageURL
+//                }
+//                if(error == nil){
+//                    print("result")
+//                }
+//            })
+//        }
+//    }
+//    @objc func GoogleTap(sender: UITapGestureRecognizer) {
+//        self.view.endEditing(true)
+//        GIDSignIn.sharedInstance().delegate=self
+//        GIDSignIn.sharedInstance().uiDelegate=self
+//        GIDSignIn.sharedInstance().signIn()
+//    }
     @objc func eyeButtonTap(sender: UIButton!) {
         txtPassowrd.isSecureTextEntry = txtPassowrd.isSecureTextEntry == true ? false:true
     }
@@ -191,8 +182,19 @@ class LoginViewController: BaseViewController,UITextFieldDelegate,GIDSignInDeleg
                         let json = String(data: jsonData, encoding: String.Encoding.utf8)
                         print(json!)
                         let saveSuccessful: Bool = KeychainWrapper.standard.set(json!, forKey: AppConstant.sharedInstance.SAVELOGINDETAIL)
+                        let retrievedString: String? = KeychainWrapper.standard.string(forKey: AppConstant.sharedInstance.SAVELOGINDETAIL)
+                        let data = retrievedString?.data(using: .utf8)!
+                        let value = try JSONDecoder().decode(UserDetailModel.self, from: data!)
+                        UserDetail.Instance.isStaff = value.response.user.isStaff!
+                        UserDetail.Instance.email = value.response.user.email!
+                        UserDetail.Instance.phone = value.response.user.phone!
+                        UserDetail.Instance.name = value.response.user.name!
+                        UserDetail.Instance.password = value.response.user.password!
+                        UserDetail.Instance.user_type = value.response.user.user_type!
+                        UserDetail.Instance.userid = value.response.user.userid!
+                        UserDetail.Instance.id = value.response.user.id!
                         if(saveSuccessful){
-                             self.SetResidemenu()
+                            self.SetResidemenu()
                         }
                         
                     } catch  let jsonerror{
@@ -201,8 +203,15 @@ class LoginViewController: BaseViewController,UITextFieldDelegate,GIDSignInDeleg
                     
                 }
             })
-          
+            
         }
+    }
+    @IBAction func ForgotAction(_ sender: Any) {
+        let VC1 = self.storyboard?.instantiateViewController(withIdentifier: "ForgotController") as! ForgotController
+        if (txtemail.text?.trimmingCharacters(in: .whitespacesAndNewlines).count)! > 0 {
+            VC1.emailid = txtemail.text!
+        }
+        self.navigationController?.pushViewController(VC1, animated: true)
     }
     @IBAction func RegisterButton(_ sender: Any) {
         var storyboardLogin:UIStoryboard;

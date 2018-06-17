@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SwiftKeychainWrapper
 
 class RegisterViewController: BaseViewController ,UITextFieldDelegate{
     @IBOutlet weak var scrollView: UIScrollView!
@@ -79,7 +80,32 @@ class RegisterViewController: BaseViewController ,UITextFieldDelegate{
                                           "phone":txtPhoneNumber.text!]
             LoginParsing.instance.getLoginDetail(url: "/signup", param: params, resposneBlock: { response , statuscode in
                 if(statuscode == 200){
-                    self.SetResidemenu()
+                    let model = response as! UserDetailModel
+                    do {
+                        //https://www.raywenderlich.com/172145/encoding-decoding-and-serialization-in-swift-4
+                        let jsonEncoder = JSONEncoder()
+                        let jsonData = try jsonEncoder.encode(model)
+                        let json = String(data: jsonData, encoding: String.Encoding.utf8)
+                        print(json!)
+                        let saveSuccessful: Bool = KeychainWrapper.standard.set(json!, forKey: AppConstant.sharedInstance.SAVELOGINDETAIL)
+                        let retrievedString: String? = KeychainWrapper.standard.string(forKey: AppConstant.sharedInstance.SAVELOGINDETAIL)
+                        let data = retrievedString?.data(using: .utf8)!
+                        let value = try JSONDecoder().decode(UserDetailModel.self, from: data!)
+                        UserDetail.Instance.isStaff = value.response.user.isStaff!
+                        UserDetail.Instance.email = value.response.user.email!
+                        UserDetail.Instance.phone = value.response.user.phone!
+                        UserDetail.Instance.name = value.response.user.name!
+                        UserDetail.Instance.password = value.response.user.password!
+                        UserDetail.Instance.user_type = value.response.user.user_type!
+                        UserDetail.Instance.userid = value.response.user.userid!
+                        UserDetail.Instance.id = value.response.user.id!
+                        if(saveSuccessful){
+                            self.SetResidemenu()
+                        }
+                        
+                    } catch  let jsonerror{
+                        print(jsonerror)
+                    }
                 }
             })
             

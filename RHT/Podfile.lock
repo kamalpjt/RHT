@@ -25,6 +25,9 @@ PODS:
     - ApiAI/Core
   - ApiAI/VoiceRequest (0.7.2):
     - ApiAI/Core
+  - AWSCore (2.6.19)
+  - AWSS3 (2.6.19):
+    - AWSCore (= 2.6.19)
   - Bolts (1.9.0):
     - Bolts/AppLinks (= 1.9.0)
     - Bolts/Tasks (= 1.9.0)
@@ -70,6 +73,7 @@ PODS:
 DEPENDENCIES:
   - Alamofire (~> 4.7)
   - ApiAI
+  - AWSS3
   - FacebookCore
   - FacebookLogin
   - GoogleSignIn
@@ -81,6 +85,8 @@ SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - Alamofire
     - ApiAI
+    - AWSCore
+    - AWSS3
     - Bolts
     - FacebookCore
     - FacebookLogin
@@ -97,6 +103,8 @@ SPEC REPOS:
 SPEC CHECKSUMS:
   Alamofire: e4fa87002c137ba2d8d634d2c51fabcda0d5c223
   ApiAI: d4b49d3736f33ce6f3ef66dc33c0e0fccb23579e
+  AWSCore: 3019940607dee2a467e0a8de638649d9fcb9afc3
+  AWSS3: 003ab3d5b42cd512d812d9227cd927d0345b739b
   Bolts: ac6567323eac61e203f6a9763667d0f711be34c8
   FacebookCore: 3ffa190a3f1f96cec0e44d3fc221bc322c595ffa
   FacebookLogin: 0af839ea858faef99550d16596b87b4a8e8906e6
@@ -110,6 +118,6 @@ SPEC CHECKSUMS:
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
   SwiftKeychainWrapper: 38952a3636320ae61bad3513cadd870929de7a4a
 
-PODFILE CHECKSUM: 9b285427851bea0138aeb1e1dc628df502992a15
+PODFILE CHECKSUM: 6e9e76194b73cb34a257356f2bebd7309f6862e1
 
 COCOAPODS: 1.5.3

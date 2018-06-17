@@ -14,6 +14,7 @@
 		8A01B5F620B145C000096FBE /* ChatTblDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A01B5F520B145C000096FBE /* ChatTblDelegate.swift */; };
 		8A01B5F820B1576F00096FBE /* MasterDetailDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A01B5F720B1576F00096FBE /* MasterDetailDelegate.swift */; };
 		8A01B5FA20B165DF00096FBE /* MaterDetailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A01B5F920B165DF00096FBE /* MaterDetailModel.swift */; };
+		8A05187120D0F82500F65504 /* UserDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A05187020D0F82500F65504 /* UserDetail.swift */; };
 		8A08AA1620A32F0000C3B6A8 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A08AA1520A32F0000C3B6A8 /* ChatViewController.swift */; };
 		8A20477020BD506E006ED5AA /* CSSwiftApiHttpRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A20476F20BD506E006ED5AA /* CSSwiftApiHttpRequest.swift */; };
 		8A2413CB20C904D700033056 /* ImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A2413CA20C904D700033056 /* ImageView.swift */; };
@@ -33,6 +34,10 @@
 		8ADC021520AEB85500EE03DA /* DesignableButon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ADC021420AEB85500EE03DA /* DesignableButon.swift */; };
 		8AEB4DD920AE04240045DBD2 /* CommunicationDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AEB4DD820AE04240045DBD2 /* CommunicationDetailController.swift */; };
 		8AEB4DDB20AE047D0045DBD2 /* CommunicationDetailDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AEB4DDA20AE047D0045DBD2 /* CommunicationDetailDataSource.swift */; };
+		8AF8743A20D6AED500BBFC92 /* PickerControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AF8743920D6AED500BBFC92 /* PickerControllerDelegate.swift */; };
+		8AFC0ACC20D3A975004FA0F5 /* AddModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AFC0ACB20D3A975004FA0F5 /* AddModel.swift */; };
+		8AFC0ACE20D3B2D6004FA0F5 /* CommunicationParsing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AFC0ACD20D3B2D6004FA0F5 /* CommunicationParsing.swift */; };
+		8AFC0AD020D3C9D5004FA0F5 /* ForgotController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AFC0ACF20D3C9D5004FA0F5 /* ForgotController.swift */; };
 		8AFC65D820B1CF2E00865555 /* DesignableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AFC65D720B1CF2E00865555 /* DesignableView.swift */; };
 		8AFC65DA20B1D6DD00865555 /* ImageListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AFC65D920B1D6DD00865555 /* ImageListController.swift */; };
 		8AFED3EF20B21F040094F1DA /* ChatListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AFED3EE20B21F040094F1DA /* ChatListController.swift */; };
@@ -98,6 +103,7 @@
 		8A01B5F520B145C000096FBE /* ChatTblDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatTblDelegate.swift; sourceTree = "<group>"; };
 		8A01B5F720B1576F00096FBE /* MasterDetailDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterDetailDelegate.swift; sourceTree = "<group>"; };
 		8A01B5F920B165DF00096FBE /* MaterDetailModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaterDetailModel.swift; sourceTree = "<group>"; };
+		8A05187020D0F82500F65504 /* UserDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetail.swift; sourceTree = "<group>"; };
 		8A08AA1520A32F0000C3B6A8 /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		8A20476F20BD506E006ED5AA /* CSSwiftApiHttpRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CSSwiftApiHttpRequest.swift; sourceTree = "<group>"; };
 		8A2413CA20C904D700033056 /* ImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageView.swift; sourceTree = "<group>"; };
@@ -117,6 +123,10 @@
 		8ADC021420AEB85500EE03DA /* DesignableButon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignableButon.swift; sourceTree = "<group>"; };
 		8AEB4DD820AE04240045DBD2 /* CommunicationDetailController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunicationDetailController.swift; sourceTree = "<group>"; };
 		8AEB4DDA20AE047D0045DBD2 /* CommunicationDetailDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunicationDetailDataSource.swift; sourceTree = "<group>"; };
+		8AF8743920D6AED500BBFC92 /* PickerControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerControllerDelegate.swift; sourceTree = "<group>"; };
+		8AFC0ACB20D3A975004FA0F5 /* AddModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddModel.swift; sourceTree = "<group>"; };
+		8AFC0ACD20D3B2D6004FA0F5 /* CommunicationParsing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunicationParsing.swift; sourceTree = "<group>"; };
+		8AFC0ACF20D3C9D5004FA0F5 /* ForgotController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotController.swift; sourceTree = "<group>"; };
 		8AFC65D720B1CF2E00865555 /* DesignableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignableView.swift; sourceTree = "<group>"; };
 		8AFC65D920B1D6DD00865555 /* ImageListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageListController.swift; sourceTree = "<group>"; };
 		8AFED3EE20B21F040094F1DA /* ChatListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatListController.swift; sourceTree = "<group>"; };
@@ -354,6 +364,7 @@
 				A9A134DE2078B1930093A78E /* HomeCollectionFlowLayout.swift */,
 				8A6EDB5420C501B700AA9EF7 /* UserDetailModel.swift */,
 				8A6EDB5620C5198F00AA9EF7 /* LoginParsing.swift */,
+				8A05187020D0F82500F65504 /* UserDetail.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -364,6 +375,7 @@
 				A9182482206CBF6500B358D8 /* LoginViewController.swift */,
 				A918248D206CD09800B358D8 /* RegisterViewController.swift */,
 				A914484020700A960031AD30 /* HomeViewController.swift */,
+				8AFC0ACF20D3C9D5004FA0F5 /* ForgotController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -384,6 +396,7 @@
 				8AA6E60E20BED78A00C82BFA /* AppConfig.swift */,
 				8A42CC6B20C0198300AC6AB7 /* StringConstant.swift */,
 				8AFF1B3020C10795005ACCBD /* SharedAlert.swift */,
+				8AF8743920D6AED500BBFC92 /* PickerControllerDelegate.swift */,
 			);
 			path = ShareClass;
 			sourceTree = "<group>";
@@ -407,6 +420,8 @@
 				8A6C0EFC20AF15E4004B13DE /* MatterDetailDataSource.swift */,
 				8A01B5F720B1576F00096FBE /* MasterDetailDelegate.swift */,
 				8A01B5F920B165DF00096FBE /* MaterDetailModel.swift */,
+				8AFC0ACB20D3A975004FA0F5 /* AddModel.swift */,
+				8AFC0ACD20D3B2D6004FA0F5 /* CommunicationParsing.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -659,6 +674,8 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-RHT/Pods-RHT-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/AWSCore/AWSCore.framework",
+				"${BUILT_PRODUCTS_DIR}/AWSS3/AWSS3.framework",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/ApiAI/ApiAI.framework",
 				"${BUILT_PRODUCTS_DIR}/Bolts/Bolts.framework",
@@ -675,6 +692,8 @@
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AWSCore.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AWSS3.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ApiAI.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Bolts.framework",
@@ -726,12 +745,14 @@
 				8AA6E60F20BED78A00C82BFA /* AppConfig.swift in Sources */,
 				8AFF1B3120C10795005ACCBD /* SharedAlert.swift in Sources */,
 				8A01B5F220B130C400096FBE /* ChatModel.swift in Sources */,
+				8AFC0ACE20D3B2D6004FA0F5 /* CommunicationParsing.swift in Sources */,
 				8A6AEB8E20B8262C00D89295 /* HttpRequestMethod.swift in Sources */,
 				8A2413CD20C9061D00033056 /* ImageViewCell.swift in Sources */,
 				A9182488206CC4EC00B358D8 /* SharedData.swift in Sources */,
 				8A08AA1620A32F0000C3B6A8 /* ChatViewController.swift in Sources */,
 				A918248A206CC50500B358D8 /* AppConstant.swift in Sources */,
 				8AEB4DD920AE04240045DBD2 /* CommunicationDetailController.swift in Sources */,
+				8A05187120D0F82500F65504 /* UserDetail.swift in Sources */,
 				A90BF65B2075F6AB007B8F2B /* RESideMenu.m in Sources */,
 				A914484120700A960031AD30 /* HomeViewController.swift in Sources */,
 				A9A134DD2078A6A00093A78E /* SettingViewController.swift in Sources */,
@@ -741,7 +762,9 @@
 				8AFC65D820B1CF2E00865555 /* DesignableView.swift in Sources */,
 				8A01B5FA20B165DF00096FBE /* MaterDetailModel.swift in Sources */,
 				8A01B5F620B145C000096FBE /* ChatTblDelegate.swift in Sources */,
+				8AF8743A20D6AED500BBFC92 /* PickerControllerDelegate.swift in Sources */,
 				A921F835207755640042738A /* SharedNavigation.swift in Sources */,
+				8AFC0ACC20D3A975004FA0F5 /* AddModel.swift in Sources */,
 				8A20477020BD506E006ED5AA /* CSSwiftApiHttpRequest.swift in Sources */,
 				A91F3E5720AA92D70080B8E9 /* ChatTblSource.swift in Sources */,
 				8A2413CB20C904D700033056 /* ImageView.swift in Sources */,
@@ -767,6 +790,7 @@
 				A9A134DF2078B1930093A78E /* HomeCollectionFlowLayout.swift in Sources */,
 				A9182486206CC4AC00B358D8 /* BaseViewController.swift in Sources */,
 				8A6AEB9020B82C7100D89295 /* SessionManagers.swift in Sources */,
+				8AFC0AD020D3C9D5004FA0F5 /* ForgotController.swift in Sources */,
 				A9209FA620AC1D8700E2F174 /* MatterFlowLayout.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

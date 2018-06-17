@@ -11,8 +11,11 @@ import UIKit
 class AppConstant  {
     
     static let sharedInstance = AppConstant()
+    //Response code
+   let INTERNALSUCESSCODE = 1000
     //Chat constanct
     var chatItem = [ChatModel]()
+    var userDetails = UserDetail.self
     //static var appConstant = AppConstant()
     let gooleplusid = "419503471544-0d4f7g754k1nol46catr24u90sjgrq4b.apps.googleusercontent.com"
     let backGroundColor = UIColor.init(red: 223/255.0, green: 52/255.0, blue: 71/255.0, alpha: 1.0)

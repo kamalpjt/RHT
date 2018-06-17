@@ -47,12 +47,20 @@ class HttpRequestMethod {
         request(AppConfig.sharedInstance.RHTDDevIp!+url, method: HTTPMethod.post, parameters: parameters, encoding: JSONEncoding.default, headers: headerWithContentType).responseData(completionHandler: {response in
             if(response.error == nil){
                  SVProgressHUD.dismiss()
-                sucessResponseBlcok(response.data!,(response.response?.statusCode)!);
+                if((response.response?.statusCode)! == 200){
+                     sucessResponseBlcok(response.data!,(response.response?.statusCode)!);
+                }
+               
                 
             }else{
                 print(response.error!)
                  SVProgressHUD.dismiss()
-                failureResponseBlcok(response.error! as AnyObject)
+                if( response.error!.localizedDescription == "The request timed out."){
+                    SharedAlert.instance.ShowAlert(title: StringConstant.instance.ALERTTITLE, message: response.error!.localizedDescription, viewController: (UIApplication.shared.keyWindow?.rootViewController)!)
+                }else{
+                     failureResponseBlcok(response.error! as AnyObject)
+                }
+               
             }
         })
     }

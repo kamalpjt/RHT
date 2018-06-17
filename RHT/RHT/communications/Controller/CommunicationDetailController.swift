@@ -11,28 +11,29 @@ import UIKit
 
 
 class CommunicationDetailController: UIViewController,UITableViewDelegate {
-
-   
+    
+    
     @IBOutlet weak var tblmatterDetail: UITableView!
-      private let cellIdentifier = "MatterCell"
-   // var cell:MatterDetailCell?
+    private let cellIdentifier = "MatterCell"
+    // var cell:MatterDetailCell?
     var dataSource:MatterDetailDataSource?
-     var dataDelegate:MasterDetailDelegate?
+    var dataDelegate:MasterDetailDelegate?
+    var matterType:String = "";
     //MARK:- ViewcontrollerLifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
-
+        
         // Register cell classes
-       // self.collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
-
+        // self.collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
+        
         // Do any additional setup after loading the view.
         //tblmatterDetail.contentInset = UIEdgeInsets.init(top: 10, left: 0, bottom: 0, right: 0);
         configureTableView()
         navigationItem.rightBarButtonItems = [plusButton()]
-       
+        
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -42,8 +43,8 @@ class CommunicationDetailController: UIViewController,UITableViewDelegate {
     }
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-         NotificationCenter.default.removeObserver(self, name: Notification.Name("CommentAction"), object: nil)
-         NotificationCenter.default.removeObserver(self, name: Notification.Name(AppConstant.sharedInstance.commentListAction), object: nil)
+        NotificationCenter.default.removeObserver(self, name: Notification.Name("CommentAction"), object: nil)
+        NotificationCenter.default.removeObserver(self, name: Notification.Name(AppConstant.sharedInstance.commentListAction), object: nil)
     }
     //MARK:Common Funcation
     func configureTableView() -> Void{
@@ -69,6 +70,7 @@ class CommunicationDetailController: UIViewController,UITableViewDelegate {
     //MARK:Action
     @objc func AddButton() -> Void{
         let vc = self.storyboard?.instantiateViewController(withIdentifier:"AddCommunicationController") as! AddCommunicationController
+        vc.matterType = matterType
         navigationController?.pushViewController(vc, animated: true)
         
     }
@@ -84,10 +86,10 @@ class CommunicationDetailController: UIViewController,UITableViewDelegate {
         
     }
     
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
+    
 }

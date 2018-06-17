@@ -10,6 +10,7 @@ target 'RHT' do
    pod 'Alamofire', '~> 4.7'
    pod 'ReachabilitySwift'
    pod 'SwiftKeychainWrapper'
+   pod 'AWSS3'
  
   # Pods for RHT
      pod 'ApiAI'

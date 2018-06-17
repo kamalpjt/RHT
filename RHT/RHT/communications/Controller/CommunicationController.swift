@@ -43,10 +43,18 @@ class CommunicationController: UIViewController,UICollectionViewDelegate {
         // Dispose of any resources that can be recreated.
     }
     
-   func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath)
+    @IBAction func generalAction(_ sender: Any) {
+        
+        let vc = self.storyboard?.instantiateViewController(withIdentifier: "CommunicationDetailController") as! CommunicationDetailController ;
+        vc.matterType = "Gerenal";
+        navigationController?.pushViewController(vc, animated: true)
+        
+    }
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath)
    {
-      let vc = self.storyboard?.instantiateViewController(withIdentifier: "CommunicationDetailController");
-     navigationController?.pushViewController(vc!, animated: true)
+      let vc = self.storyboard?.instantiateViewController(withIdentifier: "CommunicationDetailController") as! CommunicationDetailController ;
+      vc.matterType = "matters";
+      navigationController?.pushViewController(vc, animated: true)
    }
     
        

@@ -581,6 +581,9 @@
                                                         <state key="normal" title="Forgot Passowrd?">
                                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </state>
+                                                        <connections>
+                                                            <action selector="ForgotAction:" destination="m2W-0b-ngg" eventType="touchUpInside" id="oKg-xc-tGr"/>
+                                                        </connections>
                                                     </button>
                                                 </subviews>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -793,7 +796,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ejk-T2-RXM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-4723.125" y="-1972.1830985915494"/>
+            <point key="canvasLocation" x="-5001" y="-1968"/>
         </scene>
         <!--Setting View Controller-->
         <scene sceneID="ZmS-uA-0rc">
@@ -804,7 +807,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="44L-YZ-TOh">
-                                <rect key="frame" x="0.0" y="20" width="180" height="548"/>
+                                <rect key="frame" x="0.0" y="167" width="180" height="401"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </tableView>
                         </subviews>
@@ -813,14 +816,14 @@
                             <constraint firstItem="44L-YZ-TOh" firstAttribute="leading" secondItem="1hq-KK-N12" secondAttribute="leading" id="AyL-tV-IOg"/>
                             <constraint firstItem="1hq-KK-N12" firstAttribute="trailing" secondItem="44L-YZ-TOh" secondAttribute="trailing" constant="140" id="WNw-48-vNF"/>
                             <constraint firstItem="44L-YZ-TOh" firstAttribute="bottom" secondItem="1hq-KK-N12" secondAttribute="bottom" id="liB-my-iDA"/>
-                            <constraint firstItem="44L-YZ-TOh" firstAttribute="top" secondItem="1hq-KK-N12" secondAttribute="top" id="w5s-Xk-ZKJ"/>
+                            <constraint firstItem="44L-YZ-TOh" firstAttribute="top" secondItem="1hq-KK-N12" secondAttribute="top" constant="147" id="w5s-Xk-ZKJ"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="1hq-KK-N12"/>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ibv-1q-TPV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-4723" y="-1311"/>
+            <point key="canvasLocation" x="-5003" y="-1313"/>
         </scene>
         <!--Chat View Controller-->
         <scene sceneID="NoV-p6-yOt">
@@ -950,6 +953,71 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="saO-cG-L0W" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-4050" y="-1313.0281690140846"/>
+        </scene>
+        <!--Forgot Controller-->
+        <scene sceneID="fW5-I9-b3V">
+            <objects>
+                <viewController storyboardIdentifier="ForgotController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="jwZ-EE-R8A" customClass="ForgotController" customModule="RHT" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="YwV-g0-12y">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Itr-3m-L8o">
+                                <rect key="frame" x="20" y="191" width="280" height="100"/>
+                                <subviews>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="69l-33-uma" customClass="CustomTextField" customModule="RHT" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="280" height="44"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" spellCheckingType="no" keyboardType="emailAddress" returnKeyType="next"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="BottomLine" value="YES"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </textField>
+                                    <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y9Z-VA-b1p">
+                                        <rect key="frame" x="68" y="56" width="144" height="44"/>
+                                        <color key="backgroundColor" red="0.87843137250000003" green="0.20392156859999999" blue="0.2901960784" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="14"/>
+                                        <inset key="imageEdgeInsets" minX="3" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        <state key="normal" title="SUBMIT">
+                                            <color key="titleColor" white="1" alpha="0.98210081339999999" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="LoginAction:" destination="m2W-0b-ngg" eventType="touchUpInside" id="74W-IU-zRV"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="Y9Z-VA-b1p" secondAttribute="bottom" id="CYv-yo-5zG"/>
+                                    <constraint firstItem="Y9Z-VA-b1p" firstAttribute="height" secondItem="Itr-3m-L8o" secondAttribute="height" multiplier="44:100" id="Cqs-2n-LJC"/>
+                                    <constraint firstItem="69l-33-uma" firstAttribute="leading" secondItem="Itr-3m-L8o" secondAttribute="leading" id="TLy-Zo-Cu7"/>
+                                    <constraint firstAttribute="trailing" secondItem="Y9Z-VA-b1p" secondAttribute="trailing" constant="68" id="ciG-AV-XNx"/>
+                                    <constraint firstItem="Y9Z-VA-b1p" firstAttribute="leading" secondItem="Itr-3m-L8o" secondAttribute="leading" constant="68" id="jSs-4Z-xLp"/>
+                                    <constraint firstAttribute="trailing" secondItem="69l-33-uma" secondAttribute="trailing" id="szp-tf-Cek"/>
+                                    <constraint firstItem="69l-33-uma" firstAttribute="top" secondItem="Itr-3m-L8o" secondAttribute="top" id="uHe-lT-xFb"/>
+                                    <constraint firstItem="69l-33-uma" firstAttribute="height" secondItem="Itr-3m-L8o" secondAttribute="height" multiplier="44:100" id="zBw-GY-QMG"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="3Cp-XQ-11Z" firstAttribute="trailing" secondItem="Itr-3m-L8o" secondAttribute="trailing" constant="20" id="BJv-9p-9y5"/>
+                            <constraint firstItem="3Cp-XQ-11Z" firstAttribute="bottom" secondItem="Itr-3m-L8o" secondAttribute="bottom" constant="277" id="Btc-NC-CC8"/>
+                            <constraint firstItem="Itr-3m-L8o" firstAttribute="height" secondItem="YwV-g0-12y" secondAttribute="height" multiplier="100:568" id="Eqd-1v-Vrz"/>
+                            <constraint firstItem="Itr-3m-L8o" firstAttribute="leading" secondItem="3Cp-XQ-11Z" secondAttribute="leading" constant="20" id="bex-9r-nYp"/>
+                            <constraint firstItem="Itr-3m-L8o" firstAttribute="top" secondItem="3Cp-XQ-11Z" secondAttribute="top" constant="171" id="pac-DW-w2b"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="3Cp-XQ-11Z"/>
+                    </view>
+                    <connections>
+                        <outlet property="txtEmail" destination="69l-33-uma" id="MvQ-4M-bvu"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="oAp-75-2Qr" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-3363.75" y="-1314.0845070422536"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="UFy-pZ-gCr">
