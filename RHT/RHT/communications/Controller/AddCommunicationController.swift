@@ -11,6 +11,7 @@ import UIKit
 class AddCommunicationController: UIViewController,UICollectionViewDelegate ,UIImagePickerControllerDelegate,UINavigationControllerDelegate{
     
     
+    @IBOutlet weak var cvHeightConstriant: NSLayoutConstraint!
     @IBOutlet weak var imgCollectionView: UICollectionView!
     
     @IBOutlet weak var tvDescription: DesignableTextView!
@@ -74,18 +75,31 @@ class AddCommunicationController: UIViewController,UICollectionViewDelegate ,UII
     }
     public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath)
     {
-        let controller  = UIImagePickerController()
-        controller.delegate = self
-        controller.sourceType = .photoLibrary
-        present(controller, animated: true, completion: nil)
+        if  dataSourceImage.stringImage.count <= 6 {
+            let num = dataSourceImage.stringImage.count-1
+            if num == indexPath.row {
+                let controller  = UIImagePickerController()
+                controller.delegate = self
+                controller.sourceType = .photoLibrary
+                present(controller, animated: true, completion: nil)
+            }
+            
+        }
+       
     }
     public func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]){
      
         if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
-           dataSourceImage.stringImage.append(pickedImage)
-            imgCollectionView.reloadData()
-              self.dismiss(animated: true, completion: nil)
-        }
+           
+                dataSourceImage.stringImage.insert(pickedImage, at: 0)
+                self.dismiss(animated: true, completion: nil)
+                if dataSourceImage.stringImage.count > 3 {
+                    cvHeightConstriant.constant = 230
+                }else{
+                    cvHeightConstriant.constant = 115
+                }
+                imgCollectionView.reloadData()
+      }
     }
     
     public func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
