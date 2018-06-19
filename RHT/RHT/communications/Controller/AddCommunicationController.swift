@@ -85,21 +85,21 @@ class AddCommunicationController: UIViewController,UICollectionViewDelegate ,UII
             }
             
         }
-       
+        
     }
     public func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]){
-     
+        
         if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
-           
-                dataSourceImage.stringImage.insert(pickedImage, at: 0)
-                self.dismiss(animated: true, completion: nil)
-                if dataSourceImage.stringImage.count > 3 {
-                    cvHeightConstriant.constant = 230
-                }else{
-                    cvHeightConstriant.constant = 115
-                }
-                imgCollectionView.reloadData()
-      }
+            
+            dataSourceImage.stringImage.insert(pickedImage, at: 0)
+            self.dismiss(animated: true, completion: nil)
+            if dataSourceImage.stringImage.count > 3 {
+                cvHeightConstriant.constant = 235
+            }else{
+                cvHeightConstriant.constant = 115
+            }
+            imgCollectionView.reloadData()
+        }
     }
     
     public func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
