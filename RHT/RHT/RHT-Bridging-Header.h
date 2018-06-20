@@ -17,6 +17,7 @@
 #import <ApiAI/ApiAI.h>//ApiAI.AITextRequest
 #import <ApiAI/AITextRequest.h>
 #import <SVProgressHUD/SVProgressHUD.h>
+#import <AWSCore/AWSCore.h>
+#import <AWSS3/AWSS3.h>
 
-
-#endif /* RHT_Bridging_Header_h */
+#endif /* RHT_Bridging_Header_h */AWSS3

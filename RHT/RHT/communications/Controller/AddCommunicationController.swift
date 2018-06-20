@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import AWSS3
+import Photos
 
 class AddCommunicationController: UIViewController,UICollectionViewDelegate ,UIImagePickerControllerDelegate,UINavigationControllerDelegate{
     
@@ -18,6 +20,7 @@ class AddCommunicationController: UIViewController,UICollectionViewDelegate ,UII
     @IBOutlet weak var txtTittle: CustomTextField!
     var dataSourceImage = ImageView()
     var matterType:String = "";
+    var selectedImageUrl: NSURL!
     override func viewDidLoad() {
         super.viewDidLoad()
         // let imageCollectionView = ImageView()
@@ -89,8 +92,12 @@ class AddCommunicationController: UIViewController,UICollectionViewDelegate ,UII
     }
     public func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]){
         
+        selectedImageUrl = info[UIImagePickerControllerReferenceURL] as! NSURL
+       // getLocalImageFileName();
+      
         if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
-            
+          let aws = AwsImage.init(selectedImageUrl: selectedImageUrl, selectedImage: pickedImage)
+            aws.getLocalImageFileName()
             dataSourceImage.stringImage.insert(pickedImage, at: 0)
             self.dismiss(animated: true, completion: nil)
             if dataSourceImage.stringImage.count > 3 {
@@ -105,4 +112,5 @@ class AddCommunicationController: UIViewController,UICollectionViewDelegate ,UII
     public func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         self.dismiss(animated: true, completion: nil)
     }
+    
 }

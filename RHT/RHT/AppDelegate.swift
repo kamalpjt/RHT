@@ -12,6 +12,7 @@ import Foundation
 import Alamofire
 import ApiAI
 import SVProgressHUD
+import AWSS3
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -36,11 +37,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let apiai = ApiAI.shared()
         apiai?.configuration = configuration
         
+        //ConfigAWS
+        ConfigAws()
+        
         self.window?.makeKeyAndVisible()
          
         return true
     }
-    
+    func ConfigAws()
+    {
+        let myIdentityPoolId = "ap-southeast-1:a21d3232-dbcf-4b32-81e0-04c3b70cca93"
+        let credentialsProvider = AWSCognitoCredentialsProvider(regionType:.APSoutheast1,
+                                                                identityPoolId:myIdentityPoolId)
+        let configuration = AWSServiceConfiguration(region:.APSoutheast1, credentialsProvider:credentialsProvider)
+        AWSServiceManager.default().defaultServiceConfiguration = configuration
+        
+    }
     func showLaunchScreen() -> UIViewController {
         var storyboard:UIStoryboard ;
         if ShareData.isIpad(){

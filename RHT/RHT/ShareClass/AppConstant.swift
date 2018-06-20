@@ -13,6 +13,9 @@ class AppConstant  {
     static let sharedInstance = AppConstant()
     //Response code
    let INTERNALSUCESSCODE = 1000
+    //BucketName
+    let IMAGEBUCKETNAME = "rhtapp"
+    let PDFEBUCKETNAME  = "rhtapp-pdf"
     //Chat constanct
     var chatItem = [ChatModel]()
     var userDetails = UserDetail.self
