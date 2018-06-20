@@ -12,15 +12,18 @@ import Photos
 import SVProgressHUD
 
 protocol AwsDelegate {
+    func getAwsUrl(url:NSURL)
     
 }
 
 class AwsImage {
     var m_selectedImageUrl:NSURL?
     var m_selectedImage:UIImage?
-    init(selectedImageUrl:NSURL,selectedImage:UIImage) {
+    var m_delegate:AwsDelegate?
+    init(selectedImageUrl:NSURL,selectedImage:UIImage,delegate:AwsDelegate) {
         m_selectedImageUrl = selectedImageUrl
         m_selectedImage = selectedImage
+        m_delegate = delegate
         
     }
     func getLocalImageFileName()  {
@@ -55,6 +58,12 @@ class AwsImage {
         
         let transferManager = AWSS3TransferManager.default()
         
+        uploadRequest?.uploadProgress = {(bytesSent: Int64, totalBytesSent: Int64, totalBytesExpectedToSend: Int64) -> Void in
+            DispatchQueue.main.async(execute: {() -> Void in
+                //Update progress
+                print(String(totalBytesSent) + ":TotalSize:" + String(totalBytesExpectedToSend))
+            })
+        }
         // Perform file upload
         transferManager.upload(uploadRequest!).continueWith { (task) -> AnyObject? in
             
@@ -73,6 +82,7 @@ class AwsImage {
                 
                 let s3URL = NSURL(string: "https://s3-ap-southeast-1.amazonaws.com/\(S3BucketName)/\(uploadRequest?.key! ?? "")")!
                 print("Uploaded to:\n\(s3URL)")
+                self.m_delegate?.getAwsUrl(url: s3URL)
                 // Remove locally stored file
                 self.remoteImageWithUrl(fileName: (uploadRequest?.key!)!)
                 

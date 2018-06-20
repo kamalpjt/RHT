@@ -10,7 +10,9 @@ import UIKit
 import AWSS3
 import Photos
 
-class AddCommunicationController: UIViewController,UICollectionViewDelegate ,UIImagePickerControllerDelegate,UINavigationControllerDelegate{
+class AddCommunicationController: UIViewController,UICollectionViewDelegate ,UIImagePickerControllerDelegate,UINavigationControllerDelegate,AwsDelegate{
+    
+    
     
     
     @IBOutlet weak var cvHeightConstriant: NSLayoutConstraint!
@@ -21,6 +23,7 @@ class AddCommunicationController: UIViewController,UICollectionViewDelegate ,UII
     var dataSourceImage = ImageView()
     var matterType:String = "";
     var selectedImageUrl: NSURL!
+    var m_selectedImage: UIImage!
     override func viewDidLoad() {
         super.viewDidLoad()
         // let imageCollectionView = ImageView()
@@ -93,24 +96,30 @@ class AddCommunicationController: UIViewController,UICollectionViewDelegate ,UII
     public func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]){
         
         selectedImageUrl = info[UIImagePickerControllerReferenceURL] as! NSURL
-       // getLocalImageFileName();
-      
+        // getLocalImageFileName();
+        
         if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
-          let aws = AwsImage.init(selectedImageUrl: selectedImageUrl, selectedImage: pickedImage)
+            m_selectedImage = pickedImage
+            let aws = AwsImage.init(selectedImageUrl: selectedImageUrl, selectedImage: pickedImage,delegate: self)
             aws.getLocalImageFileName()
-            dataSourceImage.stringImage.insert(pickedImage, at: 0)
             self.dismiss(animated: true, completion: nil)
-            if dataSourceImage.stringImage.count > 3 {
-                cvHeightConstriant.constant = 235
-            }else{
-                cvHeightConstriant.constant = 115
-            }
-            imgCollectionView.reloadData()
+            
         }
     }
     
     public func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         self.dismiss(animated: true, completion: nil)
     }
-    
+    func getAwsUrl(url: NSURL) {
+        
+        DispatchQueue.main.async(execute: {() -> Void in
+            self.dataSourceImage.stringImage.insert( self.m_selectedImage, at: 0)
+            if  self.dataSourceImage.stringImage.count > 3 {
+                 self.cvHeightConstriant.constant = 235
+            }else{
+                 self.cvHeightConstriant.constant = 115
+            }
+             self.imgCollectionView.reloadData()
+        })
+    }
 }
