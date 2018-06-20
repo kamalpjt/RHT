@@ -16,6 +16,7 @@ class AppConstant  {
     //BucketName
     let IMAGEBUCKETNAME = "rhtapp"
     let PDFEBUCKETNAME  = "rhtapp-pdf"
+    let CONTENTTYPEIMAGE = "image/jpeg"
     //Chat constanct
     var chatItem = [ChatModel]()
     var userDetails = UserDetail.self

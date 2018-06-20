@@ -20,10 +20,14 @@ class AwsImage {
     var m_selectedImageUrl:NSURL?
     var m_selectedImage:UIImage?
     var m_delegate:AwsDelegate?
-    init(selectedImageUrl:NSURL,selectedImage:UIImage,delegate:AwsDelegate) {
+    var m_contentType:String?
+    var m_S3BucketName:String?
+    init(selectedImageUrl:NSURL,selectedImage:UIImage,contentType:String,S3BucketName:String,delegate:AwsDelegate) {
         m_selectedImageUrl = selectedImageUrl
         m_selectedImage = selectedImage
         m_delegate = delegate
+        m_contentType = contentType
+        m_S3BucketName = S3BucketName
         
     }
     func getLocalImageFileName()  {
@@ -46,14 +50,14 @@ class AwsImage {
     }
     func startUploadingImage(localFileName:String)
     {
-        let S3BucketName = AppConstant.sharedInstance.IMAGEBUCKETNAME
+        let S3BucketName = m_S3BucketName!
         let remoteName = localFileName
         
         let uploadRequest = AWSS3TransferManagerUploadRequest()
         uploadRequest?.body = generateImageUrl(fileName: remoteName)
         uploadRequest?.key = remoteName
         uploadRequest?.bucket = S3BucketName
-        uploadRequest?.contentType = "image/jpeg"
+        uploadRequest?.contentType = m_contentType!
         
         
         let transferManager = AWSS3TransferManager.default()

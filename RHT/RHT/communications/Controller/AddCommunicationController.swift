@@ -24,6 +24,7 @@ class AddCommunicationController: UIViewController,UICollectionViewDelegate ,UII
     var matterType:String = "";
     var selectedImageUrl: NSURL!
     var m_selectedImage: UIImage!
+    var m_selectedImageUrlArray:[String] = []
     override func viewDidLoad() {
         super.viewDidLoad()
         // let imageCollectionView = ImageView()
@@ -68,12 +69,13 @@ class AddCommunicationController: UIViewController,UICollectionViewDelegate ,UII
         
         if validation() {
             let params:[String:Any] = ["title":txtTittle.text!,"content":tvDescription.text!
-                ,"photos":[],"attachment":[],"postType":matterType,"matterId":"","receiverId":"","userType":UserDetail.Instance.user_type ?? 0,"id":UserDetail.Instance.id ?? ""]
+                ,"photos":m_selectedImageUrlArray,"attachment":[],"postType":matterType,"matterId":"","receiverId":"","userType":UserDetail.Instance.user_type ?? 0,"id":UserDetail.Instance.id ?? ""]
             CommunicationParsing.instance.getResponseDetail(url: "/postcommunication", param: params, resposneBlock: { response , statuscode in
                 if(statuscode == 200){
                     let model = response as! AddModel
                     self.tvDescription.text = ""
                     self.txtTittle.text = ""
+                    self.m_selectedImageUrlArray.removeAll()
                     SharedAlert.instance.ShowAlert(title: "Message", message: model.response.msg!, viewController: self)
                 }
             })
@@ -100,7 +102,8 @@ class AddCommunicationController: UIViewController,UICollectionViewDelegate ,UII
         
         if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
             m_selectedImage = pickedImage
-            let aws = AwsImage.init(selectedImageUrl: selectedImageUrl, selectedImage: pickedImage,delegate: self)
+            let aws = AwsImage.init(selectedImageUrl: selectedImageUrl, selectedImage: pickedImage,contentType:AppConstant.sharedInstance.CONTENTTYPEIMAGE,
+                                    S3BucketName:AppConstant.sharedInstance.IMAGEBUCKETNAME ,delegate: self)
             aws.getLocalImageFileName()
             self.dismiss(animated: true, completion: nil)
             
@@ -113,6 +116,8 @@ class AddCommunicationController: UIViewController,UICollectionViewDelegate ,UII
     func getAwsUrl(url: NSURL) {
         
         DispatchQueue.main.async(execute: {() -> Void in
+            print(self.m_selectedImageUrlArray.append(url.absoluteString!))
+            self.m_selectedImageUrlArray.append(url.absoluteString!)
             self.dataSourceImage.stringImage.insert( self.m_selectedImage, at: 0)
             if  self.dataSourceImage.stringImage.count > 3 {
                  self.cvHeightConstriant.constant = 235
