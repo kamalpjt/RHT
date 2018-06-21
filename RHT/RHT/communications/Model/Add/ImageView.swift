@@ -10,22 +10,25 @@ import UIKit
 
 class ImageView: NSObject,UICollectionViewDataSource {
     
-    var stringImage:[UIImage]  = []
-
-//    override init(frame: CGRect, collectionViewLayout collectionViewLayoutlayout: UICollectionViewLayout) {
-//        super.init(frame: frame, collectionViewLayout: collectionViewLayoutlayout)
-//    }
     
-//    required init?(coder aDecoder: NSCoder) {
-//        fatalError("init(coder:) has not been implemented")
-//    }
+   
+    var stringImage:[UIImage]  = []
+    
+    //    override init(frame: CGRect, collectionViewLayout collectionViewLayoutlayout: UICollectionViewLayout) {
+    //        super.init(frame: frame, collectionViewLayout: collectionViewLayoutlayout)
+    //    }
+    
+    //    required init?(coder aDecoder: NSCoder) {
+    //        fatalError("init(coder:) has not been implemented")
+    //    }
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return stringImage.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ImageViewCell", for: indexPath) as! ImageViewCell
-    
+        cell.butDelete.tag = indexPath.row
+        cell.butDelete.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
         let num = stringImage.count-1
         if num == indexPath.row {
             cell.backgroundColor = UIColor.lightGray
@@ -33,7 +36,7 @@ class ImageView: NSObject,UICollectionViewDataSource {
             cell.imgCell.isHidden = true
             cell.butDelete.isHidden = true
         }else{
-              cell.backgroundColor = UIColor.clear
+            cell.backgroundColor = UIColor.clear
             cell.imgCell.image = stringImage[indexPath.row]
             cell.imgCell.isHidden = false
             cell.imgPlus.isHidden = true
@@ -41,14 +44,18 @@ class ImageView: NSObject,UICollectionViewDataSource {
         }
         return cell;
     }
-    
-
-    /*
-    // Only override draw() if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
-    override func draw(_ rect: CGRect) {
-        // Drawing code
+    @objc func buttonAction(sender: UIButton!) {
+        print("Button tapped")
+        print(sender.tag)
     }
-    */
-
+    
+    
+    /*
+     // Only override draw() if you perform custom drawing.
+     // An empty implementation adversely affects performance during animation.
+     override func draw(_ rect: CGRect) {
+     // Drawing code
+     }
+     */
+    
 }

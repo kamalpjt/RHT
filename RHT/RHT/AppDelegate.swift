@@ -46,12 +46,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     func ConfigAws()
     {
-        let myIdentityPoolId = "ap-southeast-1:a21d3232-dbcf-4b32-81e0-04c3b70cca93"
+        let myIdentityPoolId = AppConfig.sharedInstance.AWSSID!
         let credentialsProvider = AWSCognitoCredentialsProvider(regionType:.APSoutheast1,
                                                                 identityPoolId:myIdentityPoolId)
         let configuration = AWSServiceConfiguration(region:.APSoutheast1, credentialsProvider:credentialsProvider)
         AWSServiceManager.default().defaultServiceConfiguration = configuration
-        
+        //AWSDDLog.allLoggers.
     }
     func showLaunchScreen() -> UIViewController {
         var storyboard:UIStoryboard ;

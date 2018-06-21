@@ -76,6 +76,9 @@ class AddCommunicationController: UIViewController,UICollectionViewDelegateFlowL
                     self.tvDescription.text = ""
                     self.txtTittle.text = ""
                     self.m_selectedImageUrlArray.removeAll()
+                    self.dataSourceImage.stringImage.removeAll()
+                    self.dataSourceImage.stringImage = [#imageLiteral(resourceName: "PluseWhite")]
+                    self.imgCollectionView.reloadData()
                     SharedAlert.instance.ShowAlert(title: "Message", message: model.response.msg!, viewController: self)
                 }
             })
