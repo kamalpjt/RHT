@@ -10,7 +10,7 @@ import UIKit
 import AWSS3
 import Photos
 
-class AddCommunicationController: UIViewController,UICollectionViewDelegate ,UIImagePickerControllerDelegate,UINavigationControllerDelegate,AwsDelegate{
+class AddCommunicationController: UIViewController,UICollectionViewDelegateFlowLayout ,UIImagePickerControllerDelegate,UINavigationControllerDelegate,AwsDelegate{
     
     
     
@@ -81,6 +81,7 @@ class AddCommunicationController: UIViewController,UICollectionViewDelegate ,UII
             })
         }
     }
+    
     public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath)
     {
         if  dataSourceImage.stringImage.count <= 6 {

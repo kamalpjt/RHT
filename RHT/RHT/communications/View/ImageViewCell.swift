@@ -11,4 +11,6 @@ import UIKit
 class ImageViewCell: UICollectionViewCell {
     
     @IBOutlet weak var imgCell: UIImageView!
+    @IBOutlet weak var imgPlus: UIImageView!
+    @IBOutlet weak var butDelete: UIButton!
 }

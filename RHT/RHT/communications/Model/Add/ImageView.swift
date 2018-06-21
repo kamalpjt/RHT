@@ -25,7 +25,20 @@ class ImageView: NSObject,UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ImageViewCell", for: indexPath) as! ImageViewCell
-        cell.imgCell.image = stringImage[indexPath.row]
+    
+        let num = stringImage.count-1
+        if num == indexPath.row {
+            cell.backgroundColor = UIColor.lightGray
+            cell.imgPlus.isHidden = false
+            cell.imgCell.isHidden = true
+            cell.butDelete.isHidden = true
+        }else{
+              cell.backgroundColor = UIColor.clear
+            cell.imgCell.image = stringImage[indexPath.row]
+            cell.imgCell.isHidden = false
+            cell.imgPlus.isHidden = true
+            cell.butDelete.isHidden = false
+        }
         return cell;
     }
     
