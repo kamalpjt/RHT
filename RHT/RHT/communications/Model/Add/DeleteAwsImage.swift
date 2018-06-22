@@ -8,6 +8,7 @@
 
 import Foundation
 import AWSS3
+
 class DeleteAwsImage {
     
     static let instance  = DeleteAwsImage()

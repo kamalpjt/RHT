@@ -23,7 +23,14 @@ class BaseViewController: UIViewController {
         }
          AddKeyboardObserver()
     }
-    
+    func checkInternetIsAvailable() -> Bool{
+        if  reachability?.connection != Reachability.Connection.none{
+            return true
+        }else{
+            SharedAlert.instance.OffLineAlert(viewController: self)
+            return false
+        }
+    }
     override func viewWillDisappear(_ animated: Bool) {
         RemoveKeyboardObserver()
     }

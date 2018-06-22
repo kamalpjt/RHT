@@ -8,8 +8,14 @@
 
 import UIKit
 
+protocol AwsDelete {
+    
+    func getTagValue(tagValue:Int)
+    
+}
 class ImageView: NSObject,UICollectionViewDataSource {
     
+    var m_delegate:AwsDelete?
     
    
     var stringImage:[UIImage]  = []
@@ -21,6 +27,9 @@ class ImageView: NSObject,UICollectionViewDataSource {
     //    required init?(coder aDecoder: NSCoder) {
     //        fatalError("init(coder:) has not been implemented")
     //    }
+    func getDelegate (awsDelete:AwsDelete) {
+        m_delegate = awsDelete
+    }
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return stringImage.count
     }
@@ -47,6 +56,7 @@ class ImageView: NSObject,UICollectionViewDataSource {
     @objc func buttonAction(sender: UIButton!) {
         print("Button tapped")
         print(sender.tag)
+        m_delegate?.getTagValue(tagValue: sender.tag)
     }
     
     

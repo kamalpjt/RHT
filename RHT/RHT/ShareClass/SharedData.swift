@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 import SwiftKeychainWrapper
+import Reachability
 
 
 extension ShareData {
@@ -26,11 +27,11 @@ extension ShareData {
     }
     class func isIpad () -> Bool {
         if UIDevice.current.model.hasPrefix("iPad") == true {
-          return true;
+            return true;
         }else{
-        return false;
-       }
-   }
+            return false;
+        }
+    }
     class func SetFont14()-> CGFloat {
         if(!isIpad())
         {
@@ -61,7 +62,7 @@ extension ShareData {
     class func GetPhoneCurrentScreenHeight()-> CGFloat {
         return UIScreen.main.bounds.size.height
     }
-   
+    
     
 }
 extension UIView {
@@ -112,7 +113,7 @@ class ShareData {
     
     func GetStringCGSize(stringValue:String,font:UIFont) -> CGRect {
         
-      //  let size =  CGSize.init(width: UIScreen.main.bounds.size.width, height: 999999)
+        //  let size =  CGSize.init(width: UIScreen.main.bounds.size.width, height: 999999)
         let size  = CGSize.init(width: UIScreen.main.bounds.size.width-90, height: 999999)
         //let size = CGSize(UIScreen.main.bounds.size.width, 999999)
         let options = NSStringDrawingOptions.usesFontLeading.union(.usesLineFragmentOrigin)
@@ -146,12 +147,12 @@ class ShareData {
     }
     func ChangeUTCDate(utcString:Date) ->String{
         //convert UTC formate to nsdate
-//        let  dateformaterr = DateFormatter()
-//        dateformaterr.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z"
-//        let timeZones:TimeZone = TimeZone(abbreviation: "UTC")!
-//        dateformaterr.timeZone = timeZones
-//        dateformaterr.locale = Locale(identifier: "en_US_POSIX")
-//        let date = dateformaterr.date(from: utcString)
+        //        let  dateformaterr = DateFormatter()
+        //        dateformaterr.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z"
+        //        let timeZones:TimeZone = TimeZone(abbreviation: "UTC")!
+        //        dateformaterr.timeZone = timeZones
+        //        dateformaterr.locale = Locale(identifier: "en_US_POSIX")
+        //        let date = dateformaterr.date(from: utcString)
         //Convert UTCNdate to string dd-MM-yyyy HH:mm a
         let formater = DateFormatter()
         formater.dateFormat = "dd-MM-yyyy h:mm a"
@@ -159,4 +160,5 @@ class ShareData {
         let stringDate = formater.string(from: utcString)
         return stringDate
     }
+   
 }

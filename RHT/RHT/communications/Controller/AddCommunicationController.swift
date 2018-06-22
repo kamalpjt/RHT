@@ -10,10 +10,7 @@ import UIKit
 import AWSS3
 import Photos
 
-class AddCommunicationController: UIViewController,UICollectionViewDelegateFlowLayout ,UIImagePickerControllerDelegate,UINavigationControllerDelegate,AwsDelegate{
-    
-    
-    
+class AddCommunicationController: BaseViewController,UICollectionViewDelegateFlowLayout ,UIImagePickerControllerDelegate,UINavigationControllerDelegate,AwsDelegate,AwsDelete{
     
     @IBOutlet weak var cvHeightConstriant: NSLayoutConstraint!
     @IBOutlet weak var imgCollectionView: UICollectionView!
@@ -32,6 +29,7 @@ class AddCommunicationController: UIViewController,UICollectionViewDelegateFlowL
         
         
         // imgCollectionView.register(ImageViewCell.self, forCellWithReuseIdentifier: "ImageViewCell")
+        dataSourceImage.getDelegate(awsDelete: self)
         dataSourceImage.stringImage = [#imageLiteral(resourceName: "PluseWhite")]
         imgCollectionView.dataSource = dataSourceImage
         imgCollectionView.delegate = self
@@ -67,51 +65,58 @@ class AddCommunicationController: UIViewController,UICollectionViewDelegateFlowL
     
     @objc func SubmitAction() -> Void{
         
-        if validation() {
-            let params:[String:Any] = ["title":txtTittle.text!,"content":tvDescription.text!
-                ,"photos":m_selectedImageUrlArray,"attachment":[],"postType":matterType,"matterId":"","receiverId":"","userType":UserDetail.Instance.user_type ?? 0,"id":UserDetail.Instance.id ?? ""]
-            CommunicationParsing.instance.getResponseDetail(url: "/postcommunication", param: params, resposneBlock: { response , statuscode in
-                if(statuscode == 200){
-                    let model = response as! AddModel
-                    self.tvDescription.text = ""
-                    self.txtTittle.text = ""
-                    self.m_selectedImageUrlArray.removeAll()
-                    self.dataSourceImage.stringImage.removeAll()
-                    self.dataSourceImage.stringImage = [#imageLiteral(resourceName: "PluseWhite")]
-                    self.imgCollectionView.reloadData()
-                    SharedAlert.instance.ShowAlert(title: "Message", message: model.response.msg!, viewController: self)
-                }
-            })
+        if(checkInternetIsAvailable()){
+            if validation() {
+                let params:[String:Any] = ["title":txtTittle.text!,"content":tvDescription.text!
+                    ,"photos":m_selectedImageUrlArray,"attachment":[],"postType":matterType,"matterId":"","receiverId":"","userType":UserDetail.Instance.user_type ?? 0,"id":UserDetail.Instance.id ?? ""]
+                CommunicationParsing.instance.getResponseDetail(url: "/postcommunication", param: params, resposneBlock: { response , statuscode in
+                    if(statuscode == 200){
+                        let model = response as! AddModel
+                        self.tvDescription.text = ""
+                        self.txtTittle.text = ""
+                        self.m_selectedImageUrlArray.removeAll()
+                        self.dataSourceImage.stringImage.removeAll()
+                        self.dataSourceImage.stringImage = [#imageLiteral(resourceName: "PluseWhite")]
+                        self.imgCollectionView.reloadData()
+                        SharedAlert.instance.ShowAlert(title: "Message", message: model.response.msg!, viewController: self)
+                    }
+                })
+            }
         }
     }
     
     public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath)
     {
-        if  dataSourceImage.stringImage.count <= 6 {
-            let num = dataSourceImage.stringImage.count-1
-            if num == indexPath.row {
-                let controller  = UIImagePickerController()
-                controller.delegate = self
-                controller.sourceType = .photoLibrary
-                present(controller, animated: true, completion: nil)
+        if(checkInternetIsAvailable()){
+            if  dataSourceImage.stringImage.count <= 6 {
+                let num = dataSourceImage.stringImage.count-1
+                if num == indexPath.row {
+                    let controller  = UIImagePickerController()
+                    controller.delegate = self
+                    controller.sourceType = .photoLibrary
+                    present(controller, animated: true, completion: nil)
+                }
+                
             }
-            
         }
+        
         
     }
     public func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]){
         
-        selectedImageUrl = info[UIImagePickerControllerReferenceURL] as! NSURL
-        // getLocalImageFileName();
-        
-        if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
-            m_selectedImage = pickedImage
-            let aws = AwsImage.init(selectedImageUrl: selectedImageUrl, selectedImage: pickedImage,contentType:AppConstant.sharedInstance.CONTENTTYPEIMAGE,
-                                    S3BucketName:AppConstant.sharedInstance.IMAGEBUCKETNAME ,delegate: self)
-            aws.getLocalImageFileName()
-            self.dismiss(animated: true, completion: nil)
+            selectedImageUrl = info[UIImagePickerControllerReferenceURL] as! NSURL
+            // getLocalImageFileName();
             
-        }
+            if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
+                m_selectedImage = pickedImage
+                let aws = AwsImage.init(selectedImageUrl: selectedImageUrl, selectedImage: pickedImage,contentType:AppConstant.sharedInstance.CONTENTTYPEIMAGE,
+                                        S3BucketName:AppConstant.sharedInstance.IMAGEBUCKETNAME ,delegate: self)
+                aws.getLocalImageFileName()
+                self.dismiss(animated: true, completion: nil)
+                
+            }
+        
+        
     }
     
     public func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
@@ -124,11 +129,24 @@ class AddCommunicationController: UIViewController,UICollectionViewDelegateFlowL
             self.m_selectedImageUrlArray.append(url.absoluteString!)
             self.dataSourceImage.stringImage.insert( self.m_selectedImage, at: 0)
             if  self.dataSourceImage.stringImage.count > 3 {
-                 self.cvHeightConstriant.constant = 235
+                self.cvHeightConstriant.constant = 235
             }else{
-                 self.cvHeightConstriant.constant = 115
+                self.cvHeightConstriant.constant = 115
             }
-             self.imgCollectionView.reloadData()
+            self.imgCollectionView.reloadData()
         })
+    }
+    func getTagValue(tagValue: Int) {
+        
+        let stringUrl = self.m_selectedImageUrlArray[0];
+        // let fullName : String = "First Last"
+        let getImageName : [String] = stringUrl.components(separatedBy: "/")
+        DeleteAwsImage.instance.DeleteImage(imageName: getImageName[getImageName.count-1])
+        m_selectedImageUrlArray.remove(at: tagValue)
+        dataSourceImage.stringImage.remove(at: tagValue)
+        // let indexpath = IndexPath.init(row: tagValue, section: 0)
+        // self.imgCollectionView.deleteItems(at: [indexpath])
+        self.imgCollectionView.reloadData()
+        
     }
 }

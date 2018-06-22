@@ -12,6 +12,7 @@ import Photos
 import SVProgressHUD
 
 protocol AwsDelegate {
+
     func getAwsUrl(url:NSURL)
     
 }
