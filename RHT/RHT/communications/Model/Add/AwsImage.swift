@@ -77,6 +77,7 @@ class AwsImage {
             }
             if let error = task.error {
                 print("Upload failed with error: (\(error.localizedDescription))")
+                 SVProgressHUD.dismiss()
             }
             
             //            if let exception = task.exe {

@@ -12,9 +12,11 @@ import Photos
 
 class AddCommunicationController: BaseViewController,UICollectionViewDelegateFlowLayout ,UIImagePickerControllerDelegate,UINavigationControllerDelegate,AwsDelegate,AwsDelete{
     
+    @IBOutlet weak var svMain: UIScrollView!
     @IBOutlet weak var cvHeightConstriant: NSLayoutConstraint!
     @IBOutlet weak var imgCollectionView: UICollectionView!
     
+    @IBOutlet weak var vPDFBottomConstriants: NSLayoutConstraint!
     @IBOutlet weak var tvDescription: DesignableTextView!
     @IBOutlet weak var txtTittle: CustomTextField!
     var dataSourceImage = ImageView()
@@ -129,11 +131,15 @@ class AddCommunicationController: BaseViewController,UICollectionViewDelegateFlo
             self.m_selectedImageUrlArray.append(url.absoluteString!)
             self.dataSourceImage.stringImage.insert( self.m_selectedImage, at: 0)
             if  self.dataSourceImage.stringImage.count > 3 {
+                self.vPDFBottomConstriants.constant = self.view.frame.height-44 + 115
                 self.cvHeightConstriant.constant = 235
+                 self.svMain.contentSize =  CGSize(width: self.view.frame.width, height: self.vPDFBottomConstriants.constant)
             }else{
-                self.cvHeightConstriant.constant = 115
+                // self.cvHeightConstriant.constant = 115
+                // self.vPDFBottomConstriants.constant = self.view.frame.height - 115
             }
             self.imgCollectionView.reloadData()
+           
         })
     }
     func getTagValue(tagValue: Int) {
@@ -147,6 +153,10 @@ class AddCommunicationController: BaseViewController,UICollectionViewDelegateFlo
         // let indexpath = IndexPath.init(row: tagValue, section: 0)
         // self.imgCollectionView.deleteItems(at: [indexpath])
         self.imgCollectionView.reloadData()
+        if  self.dataSourceImage.stringImage.count < 3 {
+             self.cvHeightConstriant.constant = 115
+             self.vPDFBottomConstriants.constant = self.view.frame.height - 115
+        }
         
     }
 }

@@ -1,5 +1,5 @@
 # Uncomment the next line to define a global platform for your project
-# platform :ios, '9.0'
+# platform :ios, '10.0'
 
 target 'RHT' do
   # Comment the next line if you're not using Swift and don't want to use dynamic frameworks
@@ -11,9 +11,10 @@ target 'RHT' do
    pod 'ReachabilitySwift'
    pod 'SwiftKeychainWrapper'
    pod 'AWSS3'
+   pod 'ApiAI'
  
   # Pods for RHT
-     pod 'ApiAI'
+    
      pod 'SVProgressHUD'
   target 'RHTTests' do
     inherit! :search_paths
@@ -25,4 +26,10 @@ target 'RHT' do
     # Pods for testing
   end
 
+end
+post_install do |installer|
+    installer.pods_project.build_configurations.each do |config|
+        config.build_settings.delete('CODE_SIGNING_ALLOWED')
+        config.build_settings.delete('CODE_SIGNING_REQUIRED')
+    end
 end

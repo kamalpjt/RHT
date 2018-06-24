@@ -23,7 +23,7 @@ class ImageFlowLayout: UICollectionViewFlowLayout {
         minimumLineSpacing = 1
         scrollDirection = .vertical
         //to set top padding
-        sectionInset =  UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+        sectionInset =  UIEdgeInsets(top: 0, left: 1, bottom: 0, right: 0)
     }
     override var itemSize: CGSize {
         set {
@@ -36,7 +36,7 @@ class ImageFlowLayout: UICollectionViewFlowLayout {
             // let  screenHeight = screenSize.height
             
             //let itemWidth = (self.collectionView?.frame.width)!/2
-        return CGSize(width: (screenWidth/3)-1, height: 115)
+        return CGSize(width: (screenWidth/3)-2, height: 115)
             
             
         }

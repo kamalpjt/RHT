@@ -820,10 +820,81 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="1hq-KK-N12"/>
                     </view>
+                    <connections>
+                        <outlet property="tblView" destination="44L-YZ-TOh" id="5NU-Rq-4bK"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ibv-1q-TPV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-5003" y="-1313"/>
+        </scene>
+        <!--Change Password Controller-->
+        <scene sceneID="NgB-BH-bye">
+            <objects>
+                <viewController storyboardIdentifier="ChangePasswordController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="wtt-tw-c8Q" customClass="ChangePasswordController" customModule="RHT" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="He8-TS-qAB">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="f7t-Hh-nBU">
+                                <rect key="frame" x="10" y="130" width="300" height="165"/>
+                                <subviews>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Old passowrd" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="N1B-Uv-FAD" customClass="CustomTextField" customModule="RHT" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="300" height="48.5"/>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="BottomLine" value="YES"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </textField>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="New passowrd" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="tQc-t9-0pL" customClass="CustomTextField" customModule="RHT" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="58.5" width="300" height="48"/>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="BottomLine" value="YES"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </textField>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Confirm password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rs2-li-Nnw" customClass="CustomTextField" customModule="RHT" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="116.5" width="300" height="48.5"/>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="BottomLine" value="YES"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </textField>
+                                </subviews>
+                            </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AHS-zO-Uqn">
+                                <rect key="frame" x="67" y="318" width="186" height="45"/>
+                                <color key="backgroundColor" red="0.87843137250000003" green="0.20392156859999999" blue="0.2901960784" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
+                                <state key="normal" title="Submit">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="NYs-vr-y5U" firstAttribute="trailing" secondItem="AHS-zO-Uqn" secondAttribute="trailing" constant="67" id="Rc0-Cs-WL2"/>
+                            <constraint firstItem="f7t-Hh-nBU" firstAttribute="centerX" secondItem="He8-TS-qAB" secondAttribute="centerX" id="SCQ-M2-uyi"/>
+                            <constraint firstItem="AHS-zO-Uqn" firstAttribute="height" secondItem="He8-TS-qAB" secondAttribute="height" multiplier="45:568" id="VRK-Zv-hFC"/>
+                            <constraint firstItem="NYs-vr-y5U" firstAttribute="trailing" secondItem="f7t-Hh-nBU" secondAttribute="trailing" constant="10" id="Vtc-QG-98b"/>
+                            <constraint firstItem="AHS-zO-Uqn" firstAttribute="top" secondItem="f7t-Hh-nBU" secondAttribute="bottom" constant="23" id="bKg-5j-YuN"/>
+                            <constraint firstItem="AHS-zO-Uqn" firstAttribute="leading" secondItem="NYs-vr-y5U" secondAttribute="leading" constant="67" id="bgq-UP-Iu4"/>
+                            <constraint firstItem="f7t-Hh-nBU" firstAttribute="leading" secondItem="NYs-vr-y5U" secondAttribute="leading" constant="10" id="c9s-29-UGh"/>
+                            <constraint firstItem="f7t-Hh-nBU" firstAttribute="top" secondItem="NYs-vr-y5U" secondAttribute="top" constant="110" id="gLe-nz-1ji"/>
+                            <constraint firstItem="NYs-vr-y5U" firstAttribute="bottom" secondItem="f7t-Hh-nBU" secondAttribute="bottom" constant="273" id="lNK-aw-Nm2"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="NYs-vr-y5U"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7jJ-rk-B1F" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-5004.375" y="-648.5915492957746"/>
         </scene>
         <!--Chat View Controller-->
         <scene sceneID="NoV-p6-yOt">

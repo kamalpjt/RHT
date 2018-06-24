@@ -91,7 +91,7 @@ class RegisterViewController: BaseViewController ,UITextFieldDelegate{
                         let retrievedString: String? = KeychainWrapper.standard.string(forKey: AppConstant.sharedInstance.SAVELOGINDETAIL)
                         let data = retrievedString?.data(using: .utf8)!
                         let value = try JSONDecoder().decode(UserDetailModel.self, from: data!)
-                        UserDetail.Instance.isStaff = value.response.user.isStaff!
+                       // UserDetail.Instance.isStaff = value.response.user.isStaff!
                         UserDetail.Instance.email = value.response.user.email!
                         UserDetail.Instance.phone = value.response.user.phone!
                         UserDetail.Instance.name = value.response.user.name!

@@ -37,6 +37,8 @@ class ImageView: NSObject,UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ImageViewCell", for: indexPath) as! ImageViewCell
         cell.butDelete.tag = indexPath.row
+        cell.imgCell.layer.cornerRadius = 2;
+       // cell.imgCell.layer.masksToBounds = false;
         cell.butDelete.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
         let num = stringImage.count-1
         if num == indexPath.row {

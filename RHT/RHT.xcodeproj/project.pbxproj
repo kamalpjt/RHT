@@ -31,6 +31,7 @@
 		8A6EDB5720C5198F00AA9EF7 /* LoginParsing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A6EDB5620C5198F00AA9EF7 /* LoginParsing.swift */; };
 		8AA6E60D20BEC75E00C82BFA /* Enum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AA6E60C20BEC75E00C82BFA /* Enum.swift */; };
 		8AA6E60F20BED78A00C82BFA /* AppConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AA6E60E20BED78A00C82BFA /* AppConfig.swift */; };
+		8AB8769E20E003AB00EF992E /* ChangePasswordController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AB8769D20E003AB00EF992E /* ChangePasswordController.swift */; };
 		8AD251F020B2F4CB00F77994 /* DesignableTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AD251EF20B2F4CB00F77994 /* DesignableTextView.swift */; };
 		8AD69C0E20A5BC8500F2E135 /* ChatCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AD69C0D20A5BC8500F2E135 /* ChatCell.swift */; };
 		8ADC021520AEB85500EE03DA /* DesignableButon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ADC021420AEB85500EE03DA /* DesignableButon.swift */; };
@@ -123,6 +124,7 @@
 		8A6EDB5620C5198F00AA9EF7 /* LoginParsing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginParsing.swift; sourceTree = "<group>"; };
 		8AA6E60C20BEC75E00C82BFA /* Enum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enum.swift; sourceTree = "<group>"; };
 		8AA6E60E20BED78A00C82BFA /* AppConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConfig.swift; sourceTree = "<group>"; };
+		8AB8769D20E003AB00EF992E /* ChangePasswordController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordController.swift; sourceTree = "<group>"; };
 		8AD251EF20B2F4CB00F77994 /* DesignableTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignableTextView.swift; sourceTree = "<group>"; };
 		8AD69C0D20A5BC8500F2E135 /* ChatCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatCell.swift; sourceTree = "<group>"; };
 		8ADC021420AEB85500EE03DA /* DesignableButon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignableButon.swift; sourceTree = "<group>"; };
@@ -392,6 +394,7 @@
 				A918248D206CD09800B358D8 /* RegisterViewController.swift */,
 				A914484020700A960031AD30 /* HomeViewController.swift */,
 				8AFC0ACF20D3C9D5004FA0F5 /* ForgotController.swift */,
+				8AB8769D20E003AB00EF992E /* ChangePasswordController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -765,6 +768,7 @@
 				8AFC0ACE20D3B2D6004FA0F5 /* CommunicationParsing.swift in Sources */,
 				8A6AEB8E20B8262C00D89295 /* HttpRequestMethod.swift in Sources */,
 				8A2413CD20C9061D00033056 /* ImageViewCell.swift in Sources */,
+				8AB8769E20E003AB00EF992E /* ChangePasswordController.swift in Sources */,
 				8A30B2CB20DBEE880048B84C /* DeleteAwsImage.swift in Sources */,
 				A9182488206CC4EC00B358D8 /* SharedData.swift in Sources */,
 				8A08AA1620A32F0000C3B6A8 /* ChatViewController.swift in Sources */,

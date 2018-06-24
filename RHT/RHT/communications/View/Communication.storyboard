@@ -548,19 +548,7 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You can add up to six image" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vww-pG-hKg">
-                                                <rect key="frame" x="10" y="404" width="300" height="12"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="12" id="Se3-yq-6JR"/>
-                                                </constraints>
-                                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="10"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                                <variation key="heightClass=regular-widthClass=regular">
-                                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
-                                                </variation>
-                                            </label>
-                                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="0kV-7j-GLO">
+                                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" showsVerticalScrollIndicator="NO" keyboardDismissMode="onDrag" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="0kV-7j-GLO">
                                                 <rect key="frame" x="10" y="269" width="300" height="115"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
@@ -620,11 +608,46 @@
                                                     </collectionViewCell>
                                                 </cells>
                                             </collectionView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You can add up to six image" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vww-pG-hKg">
+                                                <rect key="frame" x="10" y="404" width="300" height="12"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="12" id="Se3-yq-6JR"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="10"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                                <variation key="heightClass=regular-widthClass=regular">
+                                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
+                                                </variation>
+                                            </label>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="owv-zA-RYn" userLabel="vPDF">
+                                                <rect key="frame" x="10" y="426" width="300" height="31"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="PDF Attachment" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AMc-Ps-e13">
+                                                        <rect key="frame" x="3" y="7" width="265" height="15"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Rn-NW-0Io">
+                                                        <rect key="frame" x="271" y="0.0" width="30" height="30"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        <state key="normal" image="Add"/>
+                                                    </button>
+                                                </subviews>
+                                                <color key="backgroundColor" red="0.0" green="0.56284224989999998" blue="0.31881666180000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="31" id="nHj-kV-vSt"/>
+                                                </constraints>
+                                            </view>
                                         </subviews>
                                         <color key="backgroundColor" red="0.94901960784313721" green="0.94901960784313721" blue="0.95294117647058818" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
+                                            <constraint firstItem="owv-zA-RYn" firstAttribute="top" secondItem="vww-pG-hKg" secondAttribute="bottom" constant="10" id="0n3-YB-bth"/>
                                             <constraint firstItem="a09-f0-GOh" firstAttribute="leading" secondItem="Sln-2P-71S" secondAttribute="leading" constant="10" id="3MC-VO-7ey"/>
                                             <constraint firstItem="4rc-pq-3Is" firstAttribute="top" secondItem="a09-f0-GOh" secondAttribute="bottom" constant="20" id="3iu-8e-GMa"/>
+                                            <constraint firstAttribute="height" constant="548" id="8go-2q-pON"/>
                                             <constraint firstAttribute="trailing" secondItem="a09-f0-GOh" secondAttribute="trailing" constant="10" id="EI4-ap-NSf"/>
                                             <constraint firstAttribute="trailing" secondItem="0kV-7j-GLO" secondAttribute="trailing" constant="10" id="HwJ-vX-gFt"/>
                                             <constraint firstItem="jfD-Nb-Zgb" firstAttribute="leading" secondItem="Sln-2P-71S" secondAttribute="leading" constant="10" id="K6k-3F-aRN"/>
@@ -634,7 +657,9 @@
                                             <constraint firstAttribute="trailing" secondItem="vww-pG-hKg" secondAttribute="trailing" constant="10" id="Qbx-42-PKb"/>
                                             <constraint firstItem="a09-f0-GOh" firstAttribute="top" secondItem="jfD-Nb-Zgb" secondAttribute="bottom" constant="20" id="TZh-6b-seM"/>
                                             <constraint firstItem="0kV-7j-GLO" firstAttribute="top" secondItem="4rc-pq-3Is" secondAttribute="bottom" constant="20" id="VTT-mg-DXj"/>
+                                            <constraint firstItem="owv-zA-RYn" firstAttribute="leading" secondItem="Sln-2P-71S" secondAttribute="leading" constant="10" id="Wv4-0u-zJu"/>
                                             <constraint firstItem="4rc-pq-3Is" firstAttribute="leading" secondItem="Sln-2P-71S" secondAttribute="leading" constant="10" id="ZRE-iB-uey"/>
+                                            <constraint firstAttribute="trailing" secondItem="owv-zA-RYn" secondAttribute="trailing" constant="10" id="czF-cb-AIC"/>
                                             <constraint firstItem="vww-pG-hKg" firstAttribute="leading" secondItem="Sln-2P-71S" secondAttribute="leading" constant="10" id="daQ-Kt-A7p"/>
                                             <constraint firstItem="jfD-Nb-Zgb" firstAttribute="top" secondItem="Sln-2P-71S" secondAttribute="top" constant="20" id="iFm-Pf-Vvj"/>
                                             <constraint firstAttribute="trailing" secondItem="vww-pG-hKg" secondAttribute="trailing" constant="10" id="jgo-WN-iTO"/>
@@ -666,8 +691,10 @@
                     <connections>
                         <outlet property="cvHeightConstriant" destination="mvx-BH-scr" id="H1J-eR-lfE"/>
                         <outlet property="imgCollectionView" destination="0kV-7j-GLO" id="D4h-UP-Z1e"/>
+                        <outlet property="svMain" destination="N02-7d-zla" id="nSP-BY-HEo"/>
                         <outlet property="tvDescription" destination="ag0-8g-SUD" id="7hB-4B-XUf"/>
                         <outlet property="txtTittle" destination="jfD-Nb-Zgb" id="571-G2-rLj"/>
+                        <outlet property="vPDFBottomConstriants" destination="8go-2q-pON" id="7PL-46-MRI"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rqp-O9-rdQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -676,6 +703,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="Add" width="16" height="16"/>
         <image name="Dravid" width="155" height="130"/>
         <image name="Globe" width="32" height="32"/>
         <image name="Pdf" width="64" height="64"/>
