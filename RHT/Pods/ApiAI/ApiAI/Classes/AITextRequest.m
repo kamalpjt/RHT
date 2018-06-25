@@ -118,7 +118,6 @@
                            [NSJSONSerialization JSONObjectWithData:data
                                                            options:0
                                                              error:&responseSerializeError];
-                           NSLog(@"%@",responseData);
                            
                            if (!responseSerializeError) {
                                [self handleResponse:responseData];

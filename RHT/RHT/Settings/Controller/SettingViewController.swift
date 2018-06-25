@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SettingViewController: UIViewController,UITableViewDataSource,UITableViewDelegate {
+class SettingViewController: BaseViewController,UITableViewDataSource,UITableViewDelegate {
     
     var data:[String] = []
     @IBOutlet weak var tblView: UITableView!
@@ -42,7 +42,24 @@ class SettingViewController: UIViewController,UITableViewDataSource,UITableViewD
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-    }
+        if indexPath.row == 0 {
+           self.sideMenuViewController.hideViewController()
+            NotificationCenter.default.post(name: Notification.Name(AppConstant.sharedInstance.SELECTEDINDEXPATH), object: nil, userInfo: ["Indexpath":indexPath.row])
+        }else if indexPath.row == 1 {
+            
+            var storyboard:UIStoryboard ;
+            if ShareData.isIpad(){
+                storyboard = UIStoryboard.init(name: "Loginipad", bundle: Bundle.main)
+            }else{
+                storyboard = UIStoryboard.init(name: "Login", bundle: Bundle.main)
+            }
+            
+            let rootViewController = storyboard.instantiateViewController(withIdentifier: "LoginViewController")
+            let navController = UINavigationController(rootViewController: rootViewController)
+            UIApplication.shared.keyWindow?.rootViewController  = navController;
+            
+        }
+   }
 
     /*
     // MARK: - Navigation

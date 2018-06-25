@@ -29,6 +29,6 @@ class AppConstant  {
     let SAVELOGINDETAIL = "save"
     //MARK:-POST Notfication
     let commentListAction = "commentListAction"
-    
+    let SELECTEDINDEXPATH = "selectedindexpath"
     
 }

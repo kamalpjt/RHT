@@ -26,6 +26,7 @@ class HomeViewController: BaseViewController,UICollectionViewDataSource,UICollec
         ConfigureColectionView()
         // navigationItem.leftBarButtonItems = [SharedNavigation.sharedInstance.menuButton()]
         navigationItem.leftBarButtonItems = [menuButton()]
+        NotificationCenter.default.addObserver(self, selector: #selector(self.SettingSelectedAction(notification:)), name: Notification.Name(AppConstant.sharedInstance.SELECTEDINDEXPATH), object: nil)
        //butChat.layer.cornerRadius = 25
       //  butChat.layer.masksToBounds = false
         // Do any additional setup after loading the view.
@@ -88,6 +89,16 @@ class HomeViewController: BaseViewController,UICollectionViewDataSource,UICollec
         let num =   self.storyboard?.instantiateViewController(withIdentifier: "ChatViewController") as! ChatViewController
         self.navigationController?.pushViewController(num, animated: true)
         
+    }
+    @objc func SettingSelectedAction(notification: Notification){
+       
+        let userInfo = notification.userInfo
+        let index = userInfo!["Indexpath"] as! Int
+        if index == 0 {
+            let VC = self.storyboard?.instantiateViewController(withIdentifier: "ChangePasswordController") as! ChangePasswordController
+            self.navigationController?.pushViewController(VC, animated: true)
+        }
+        print(index)
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

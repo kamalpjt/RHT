@@ -106,7 +106,8 @@ class BaseViewController: UIViewController {
         let VC1 = storyboardLogin.instantiateViewController(withIdentifier: "HomeViewController") as! HomeViewController
         let navi = UINavigationController.init(rootViewController: VC1)
         let  leftmenu = storyboardLogin.instantiateViewController(withIdentifier: "SettingViewController") as! SettingViewController
-        let resdidemenu = RESideMenu.init(contentViewController: navi, leftMenuViewController: leftmenu, rightMenuViewController: nil)
+         let navi2 = UINavigationController.init(rootViewController: leftmenu)
+        let resdidemenu = RESideMenu.init(contentViewController: navi, leftMenuViewController: navi2, rightMenuViewController: nil)
         UIApplication.shared.keyWindow?.rootViewController  = resdidemenu;
     }
 
