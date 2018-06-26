@@ -13,6 +13,8 @@ class StringConstant {
     let ENTEREMAIL = "Enter email"
     let VALIDMAIL = "Enter valid email"
     let ENTERPASSOWRD = "Enter passowrd"
+    let ENTEROLDPASSOWRD = "Enter old passowrd"
+    let ENTERNEWPASSOWRD = "Enter new passowrd"
     let ENTERCONFIRMPASSOWRD = "Enter confirm passowrd"
     let ENTERFIRSTNAME = "Enter first name"
     let ENTERLASTNAME = "Enter last name"

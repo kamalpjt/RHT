@@ -45,16 +45,11 @@ class ChatViewController: UIViewController,UITextViewDelegate,UITableViewDelegat
         //        tvchatInput.layer.borderColor =  AppConstant.sharedInstance.borderChat.cgColor;
         //        tvchatInput.layer.borderWidth = borderWidth
         
-        let chat = ChatModel.init(chatMessage: "Hi", userName: "john", IsSender: true, date:ShareData.sharedInstance.GetCurrentDateAndTime(),imageUrl: "" , mType: MessageType.text)
-        let chat1 = ChatModel.init(chatMessage: "Hi", userName: "john", IsSender: false, date:"12/100/201",imageUrl: "Dravid" , mType: MessageType.image)
-        let chat2 = ChatModel.init(chatMessage: "Hi", userName: "john", IsSender: true, date:"12/100/201",imageUrl: "Pdf" , mType: MessageType.image)
-        if   AppConstant.sharedInstance.chatItem.count == 0{
-            AppConstant.sharedInstance.chatItem.append(chat)
-            //AppConstant.sharedInstance.chatItem.append(chat1)
-            // AppConstant.sharedInstance.chatItem.append(chat2)
-        }
         
-        setUpChatTbl()
+       
+       
+        
+      
         setUpTextView()
         // Do any additional setup after loading the view.
         
@@ -62,6 +57,19 @@ class ChatViewController: UIViewController,UITextViewDelegate,UITableViewDelegat
     }
     override func viewWillAppear(_ animated: Bool) {
         //AddKeyboardObserver()
+        if   AppConstant.sharedInstance.chatItem.count == 0{
+            let chat = ChatModel.init(chatMessage: "Hi", userName: "john", IsSender: true, date:ShareData.sharedInstance.GetCurrentDateAndTime(),imageUrl: "" , mType: MessageType.text)
+            AppConstant.sharedInstance.chatItem.append(chat)
+             setUpChatTbl()
+        }else{
+             setUpChatTbl()
+            if(AppConstant.sharedInstance.chatItem.count>0)
+            {
+                let index = IndexPath(item: AppConstant.sharedInstance.chatItem.count-1, section: 0)
+                cvChat.scrollToRow(at: index, at: UITableViewScrollPosition.top, animated: true)
+            }
+        }
+        
         AddKeyboardObserver()
     }
     override func viewWillDisappear(_ animated: Bool) {
@@ -212,6 +220,12 @@ class ChatViewController: UIViewController,UITextViewDelegate,UITableViewDelegat
     func ChatResponse (chatText:String){
         let  request = ApiAI.shared().textRequest()
         request?.query = [chatText]
+//        request?.setCompletionBlockSuccess({ (request, response) in
+//            
+//            print(response )
+//        }, failure: { (request, error) in
+//            
+//        })
         request?.setMappedCompletionBlockSuccess({ (request, response) in
            // print(response)
             let response = response as! AIResponse

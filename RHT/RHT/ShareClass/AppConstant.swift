@@ -31,4 +31,5 @@ class AppConstant  {
     let commentListAction = "commentListAction"
     let SELECTEDINDEXPATH = "selectedindexpath"
     
+    
 }

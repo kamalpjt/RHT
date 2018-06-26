@@ -26,16 +26,29 @@ class ForgotController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    func Vaildation() -> Bool{
+        
+        if txtEmail.text?.trimmingCharacters(in: .whitespacesAndNewlines).count == 0 {
+            txtEmail.becomeFirstResponder()
+            SharedAlert.instance.ShowAlert(title:StringConstant.instance.ALERTTITLE , message: StringConstant.instance.ENTEREMAIL, viewController: self)
+            return false
+        }else if !ShareData.sharedInstance.emailValidation(emailText: txtEmail.text!) {
+            txtEmail.becomeFirstResponder()
+            SharedAlert.instance.ShowAlert(title:StringConstant.instance.ALERTTITLE , message: StringConstant.instance.VALIDMAIL, viewController: self)
+            return false
+        }
+        return true
     }
-    */
+   
+    @IBAction func SubmitAction(_ sender: Any) {
+        
+        //var param:[String:Any] = ["":]
+        if(Vaildation())
+        {
+            
+        }
+    }
+    
+   
 
 }
