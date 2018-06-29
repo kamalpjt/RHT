@@ -23,5 +23,6 @@ class StringConstant {
     let OK = "Ok"
     let ALERTTITLE = "Alert"
     let OFFLINEMESSAGE = "The Internet connection appears to be offline."
+    let NOACESSTOPHOTO = "No access to photo libary."
     //
 }

@@ -89,34 +89,37 @@ class AddCommunicationController: BaseViewController,UICollectionViewDelegateFlo
     
     public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath)
     {
-        if(checkInternetIsAvailable()){
-            if  dataSourceImage.stringImage.count <= 6 {
-                let num = dataSourceImage.stringImage.count-1
-                if num == indexPath.row {
-                    let controller  = UIImagePickerController()
-                    controller.delegate = self
-                    controller.sourceType = .photoLibrary
-                    present(controller, animated: true, completion: nil)
+        
+        if PHPhotoLibrary.authorizationStatus() == .denied || PHPhotoLibrary.authorizationStatus() == .notDetermined || PHPhotoLibrary.authorizationStatus() == .restricted {
+            SharedAlert.instance.MoveToSetting(viewController: self, message: StringConstant.instance.NOACESSTOPHOTO)
+            
+        }else{
+            if(self.checkInternetIsAvailable()){
+                if  self.dataSourceImage.stringImage.count <= 6 {
+                    let num = self.dataSourceImage.stringImage.count-1
+                    if num == indexPath.row {
+                        let controller  = UIImagePickerController()
+                        controller.delegate = self
+                        controller.sourceType = .photoLibrary
+                        self.present(controller, animated: true, completion: nil)
+                    }
                 }
-                
             }
         }
-        
-        
     }
     public func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]){
         
-            selectedImageUrl = info[UIImagePickerControllerReferenceURL] as! NSURL
-            // getLocalImageFileName();
+        selectedImageUrl = info[UIImagePickerControllerReferenceURL] as! NSURL
+        // getLocalImageFileName();
+        
+        if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
+            m_selectedImage = pickedImage
+            let aws = AwsImage.init(selectedImageUrl: selectedImageUrl, selectedImage: pickedImage,contentType:AppConstant.sharedInstance.CONTENTTYPEIMAGE,
+                                    S3BucketName:AppConstant.sharedInstance.IMAGEBUCKETNAME ,delegate: self)
+            aws.getLocalImageFileName()
+            self.dismiss(animated: true, completion: nil)
             
-            if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
-                m_selectedImage = pickedImage
-                let aws = AwsImage.init(selectedImageUrl: selectedImageUrl, selectedImage: pickedImage,contentType:AppConstant.sharedInstance.CONTENTTYPEIMAGE,
-                                        S3BucketName:AppConstant.sharedInstance.IMAGEBUCKETNAME ,delegate: self)
-                aws.getLocalImageFileName()
-                self.dismiss(animated: true, completion: nil)
-                
-            }
+        }
         
         
     }
@@ -133,13 +136,13 @@ class AddCommunicationController: BaseViewController,UICollectionViewDelegateFlo
             if  self.dataSourceImage.stringImage.count > 3 {
                 self.vPDFBottomConstriants.constant = self.view.frame.height-44 + 115
                 self.cvHeightConstriant.constant = 235
-                 self.svMain.contentSize =  CGSize(width: self.view.frame.width, height: self.vPDFBottomConstriants.constant)
+                self.svMain.contentSize =  CGSize(width: self.view.frame.width, height: self.vPDFBottomConstriants.constant)
             }else{
                 // self.cvHeightConstriant.constant = 115
                 // self.vPDFBottomConstriants.constant = self.view.frame.height - 115
             }
             self.imgCollectionView.reloadData()
-           
+            
         })
     }
     func getTagValue(tagValue: Int) {
@@ -154,8 +157,8 @@ class AddCommunicationController: BaseViewController,UICollectionViewDelegateFlo
         // self.imgCollectionView.deleteItems(at: [indexpath])
         self.imgCollectionView.reloadData()
         if  self.dataSourceImage.stringImage.count < 3 {
-             self.cvHeightConstriant.constant = 115
-             self.vPDFBottomConstriants.constant = self.view.frame.height - 115
+            self.cvHeightConstriant.constant = 115
+            self.vPDFBottomConstriants.constant = self.view.frame.height - 115
         }
         
     }
