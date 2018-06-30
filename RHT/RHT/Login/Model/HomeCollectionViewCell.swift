@@ -10,5 +10,8 @@ import UIKit
 
 class HomeCollectionViewCell: UICollectionViewCell {
     
+    @IBOutlet weak var lblName: UILabel!
+    @IBOutlet weak var vShadowView: UIView!
+    @IBOutlet weak var vCornerView: UIView!
     @IBOutlet weak var imgCollection: UIImageView!
 }

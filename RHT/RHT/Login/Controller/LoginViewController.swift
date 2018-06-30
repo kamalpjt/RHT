@@ -16,6 +16,7 @@ import SwiftKeychainWrapper
 
 class LoginViewController: BaseViewController,UITextFieldDelegate,GIDSignInDelegate,GIDSignInUIDelegate {
     
+    @IBOutlet weak var vEmailmultiplier: NSLayoutConstraint!
     @IBOutlet weak var vFacebook: UIView!
     @IBOutlet weak var vGoogle: UIView!
     @IBOutlet weak var butLogin: UIButton!
@@ -28,6 +29,8 @@ class LoginViewController: BaseViewController,UITextFieldDelegate,GIDSignInDeleg
     @IBOutlet weak var vLogin: UIView!
     override func viewDidLoad() {
         super.viewDidLoad()
+       // vEmailmultiplier.constant = 0
+//        vEmail.heightAnchor.constraint(equalTo: vLogin.heightAnchor, multiplier: 0.1/vLogin.frame.height , constant: 0).isActive=true
         txtPassowrd.text = "12345678"
         txtemail.text = "rht@gmail.com"
         SetUpView()

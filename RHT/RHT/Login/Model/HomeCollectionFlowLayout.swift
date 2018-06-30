@@ -21,11 +21,11 @@ class HomeCollectionFlowLayout: UICollectionViewFlowLayout {
         setupLayout()
     }
     func setupLayout() {
-        minimumInteritemSpacing = 1
-        minimumLineSpacing = 1
+        minimumInteritemSpacing = 0
+        minimumLineSpacing = 20
         scrollDirection = .vertical
         //to set top padding
-        sectionInset =  UIEdgeInsets(top: 5, left: 5, bottom: 15, right: 0)
+        sectionInset =  UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20)
     }
     override var itemSize: CGSize {
         set {
@@ -38,10 +38,13 @@ class HomeCollectionFlowLayout: UICollectionViewFlowLayout {
          // let  screenHeight = screenSize.height
             
             //let itemWidth = (self.collectionView?.frame.width)!/2
+           // let leftpadding = 5;
+           // let rightPadding = 5
+            
             if ShareData.isIpad(){
-                 return CGSize(width: (screenWidth/3)-6, height: (screenWidth/3)-6)
+                 return CGSize(width: (screenWidth/3)-30, height: (screenWidth/3)-30)
             }else{
-                 return CGSize(width: (screenWidth/2)-6, height: (screenWidth/2)-6)
+                 return CGSize(width: (screenWidth/2)-30, height: (screenWidth/2)-30)
             }
            
         }

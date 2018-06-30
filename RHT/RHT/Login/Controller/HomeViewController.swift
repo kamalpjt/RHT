@@ -16,7 +16,7 @@ class HomeViewController: BaseViewController,UICollectionViewDataSource,UICollec
     @IBOutlet weak var butChat: UIButton!
     @IBOutlet weak var homeCollectionView: UICollectionView!
     
-    var CollectionModel:[String] = [];
+    var CollectionModel:[ListMdoel] = [];
     
     
     
@@ -27,8 +27,8 @@ class HomeViewController: BaseViewController,UICollectionViewDataSource,UICollec
         // navigationItem.leftBarButtonItems = [SharedNavigation.sharedInstance.menuButton()]
         navigationItem.leftBarButtonItems = [menuButton()]
         NotificationCenter.default.addObserver(self, selector: #selector(self.SettingSelectedAction(notification:)), name: Notification.Name(AppConstant.sharedInstance.SELECTEDINDEXPATH), object: nil)
-       //butChat.layer.cornerRadius = 25
-      //  butChat.layer.masksToBounds = false
+        //butChat.layer.cornerRadius = 25
+        //  butChat.layer.masksToBounds = false
         // Do any additional setup after loading the view.
         
     }
@@ -43,9 +43,9 @@ class HomeViewController: BaseViewController,UICollectionViewDataSource,UICollec
         view.addSubview(imageView)
         self.navigationItem.titleView?.frame = CGRect(x: -400, y: 0, width: 50, height: 50)
         self.navigationItem.titleView = view
-//        if ShareData.isIPhone5() {
-//            butChat.layer.cornerRadius = butChat.layer.frame.height/8.0;
-//        }
+        //        if ShareData.isIPhone5() {
+        //            butChat.layer.cornerRadius = butChat.layer.frame.height/8.0;
+        //        }
         
     }
     
@@ -54,12 +54,23 @@ class HomeViewController: BaseViewController,UICollectionViewDataSource,UICollec
         setTittleView()
         homeCollectionView.delegate = self;
         homeCollectionView.dataSource = self;
-      //  CollectionModel.append("ChatBhot")
-        CollectionModel.append("Communications")
-        CollectionModel.append("News")
-        CollectionModel.append("Annonce")
-        CollectionModel.append("File")
-        CollectionModel.append("note")
+        var communi = ListMdoel()
+        communi.imageName = "Communications"
+        communi.name = "Communication"
+        var News = ListMdoel()
+        News.imageName = "News"
+        News.name = "News"
+        var Annonce = ListMdoel()
+        Annonce.imageName = "Annonce"
+        Annonce.name = "Annoncement"
+        var Leadership = ListMdoel()
+        Leadership.imageName = "Leadership"
+        Leadership.name = "Leadership"
+        CollectionModel.append(communi)
+        CollectionModel.append(News)
+        CollectionModel.append(Annonce)
+        CollectionModel.append(Leadership)
+        
         
     }
     // MARK: -DataSource
@@ -70,14 +81,30 @@ class HomeViewController: BaseViewController,UICollectionViewDataSource,UICollec
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "HomeCollectionViewCell", for: indexPath) as! HomeCollectionViewCell
-        cell.imgCollection.image = UIImage.init(named: CollectionModel[indexPath.row]);
+        let modle = CollectionModel[indexPath.row];
+        cell.imgCollection.image = UIImage.init(named: modle.imageName);
+        cell.lblName.text = modle.name;
+        
+        cell.contentView.layer.cornerRadius = 10
+        cell.contentView.layer.borderWidth = 1.0
+        cell.contentView.layer.borderColor = UIColor.clear.cgColor
+        cell.contentView.layer.masksToBounds = true
+        
+        cell.layer.shadowColor = UIColor.lightGray.cgColor
+        cell.layer.shadowOffset = CGSize(width: 0, height: 2.0)
+        cell.layer.shadowRadius = 2.0
+        cell.layer.shadowOpacity = 1.0
+        cell.layer.masksToBounds = false
+        cell.layer.shadowPath = UIBezierPath(roundedRect:cell.bounds, cornerRadius:cell.contentView.layer.cornerRadius).cgPath
+        
+        
         return cell
         
     }
     // MARK: -Delegate
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let name = CollectionModel[indexPath.row]
-        if  name == "Communications" {
+         let modle = CollectionModel[indexPath.row];
+        if  modle.name == "Communication" {
             let storyboardLogin:UIStoryboard = UIStoryboard(name: "Communication", bundle: nil)
             let VC1 = storyboardLogin.instantiateViewController(withIdentifier: "CommunicationController") as! CommunicationController
             self.navigationController?.pushViewController(VC1, animated: true)
@@ -91,7 +118,7 @@ class HomeViewController: BaseViewController,UICollectionViewDataSource,UICollec
         
     }
     @objc func SettingSelectedAction(notification: Notification){
-       
+        
         let userInfo = notification.userInfo
         let index = userInfo!["Indexpath"] as! Int
         if index == 0 {

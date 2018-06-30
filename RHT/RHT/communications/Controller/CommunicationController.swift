@@ -15,12 +15,19 @@ class CommunicationController: UIViewController,UICollectionViewDelegate {
     @IBOutlet weak var cvMatter: UICollectionView!
     var dataSource:MatterDataSource?
 
+    @IBOutlet weak var vContainer: UIView!
     override func viewDidLoad() {
         super.viewDidLoad()
 
         vTop.layer.cornerRadius = 15;
         sbSearchMatter.layer.cornerRadius = 15;
         sbSearchMatter.layer.masksToBounds = false
+        if UserDetail.Instance.isStaff != 1{
+            vTop.heightAnchor.constraint(equalTo: vContainer.heightAnchor, multiplier: 0.1/vContainer.frame.height , constant: 0).isActive=true
+        }else{
+              vTop.heightAnchor.constraint(equalTo: vContainer.heightAnchor, multiplier: 44/vContainer.frame.height , constant: 0).isActive=true
+        }
+        
         // Do any additional setup after loading the view.
     }
     override func viewWillAppear(_ animated: Bool) {
