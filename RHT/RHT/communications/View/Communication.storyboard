@@ -28,7 +28,7 @@
                                         <textInputTraits key="textInputTraits"/>
                                     </searchBar>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="n2P-pA-8i3" userLabel="vTop">
-                                        <rect key="frame" x="10" y="56" width="300" height="44"/>
+                                        <rect key="frame" x="10" y="58" width="300" height="44"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZvU-hM-x5T">
                                                 <rect key="frame" x="0.0" y="0.0" width="300" height="44"/>
@@ -53,7 +53,7 @@
                                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </imageView>
                                         </subviews>
-                                        <color key="backgroundColor" red="0.87450980392156863" green="0.20392156862745098" blue="0.27843137254901962" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="backgroundColor" red="0.87450980389999999" green="0.20392156859999999" blue="0.2784313725" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstItem="dyY-AI-f29" firstAttribute="leading" secondItem="OIV-SO-boN" secondAttribute="trailing" id="8e9-5o-5aD"/>
                                             <constraint firstItem="ZvU-hM-x5T" firstAttribute="top" secondItem="n2P-pA-8i3" secondAttribute="top" id="Gd0-fS-cZF"/>
@@ -74,8 +74,15 @@
                                             <constraint firstItem="dyY-AI-f29" firstAttribute="centerY" secondItem="n2P-pA-8i3" secondAttribute="centerY" id="vYh-ca-HpN"/>
                                         </constraints>
                                     </view>
-                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="eTj-OY-3SO">
-                                        <rect key="frame" x="0.0" y="100" width="320" height="448"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="No Record Found" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hUc-yz-Yzk">
+                                        <rect key="frame" x="0.0" y="263" width="320" height="16"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" keyboardDismissMode="onDrag" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="eTj-OY-3SO">
+                                        <rect key="frame" x="0.0" y="102" width="320" height="446"/>
                                         <color key="backgroundColor" red="0.96470588239999999" green="0.96862745100000003" blue="0.97647058819999999" alpha="1" colorSpace="calibratedRGB"/>
                                         <collectionViewLayout key="collectionViewLayout" id="XOH-hT-RzB" customClass="MatterFlowLayout" customModule="RHT" customModuleProvider="target"/>
                                         <cells>
@@ -174,6 +181,9 @@
                                                 </constraints>
                                                 <size key="customSize" width="320" height="70"/>
                                                 <connections>
+                                                    <outlet property="lblDescription" destination="0yl-mA-0Nr" id="KsK-tn-LUe"/>
+                                                    <outlet property="lblSubName" destination="ZDN-fT-KIM" id="uXB-w7-8r4"/>
+                                                    <outlet property="lblmattername" destination="UlU-ol-Ntq" id="3zN-d4-Gtz"/>
                                                     <outlet property="vCorner" destination="8mD-w8-X7F" id="zol-4r-03E"/>
                                                     <outlet property="vImageView" destination="Lhz-OR-AhM" id="bto-TL-Zgo"/>
                                                     <outlet property="vTop" destination="Dhh-Ul-8il" id="aEw-rh-8HP"/>
@@ -185,7 +195,7 @@
                                 <color key="backgroundColor" red="0.96470588235294119" green="0.96862745098039216" blue="0.97647058823529409" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstItem="eTj-OY-3SO" firstAttribute="leading" secondItem="zcu-f4-OXn" secondAttribute="leading" id="4Vt-Og-wVu"/>
-                                    <constraint firstItem="n2P-pA-8i3" firstAttribute="top" secondItem="pg8-AG-7l6" secondAttribute="bottom" id="5QE-Ii-E9Y"/>
+                                    <constraint firstItem="n2P-pA-8i3" firstAttribute="top" secondItem="pg8-AG-7l6" secondAttribute="bottom" constant="2" id="5QE-Ii-E9Y"/>
                                     <constraint firstItem="n2P-pA-8i3" firstAttribute="leading" secondItem="zcu-f4-OXn" secondAttribute="leading" constant="10" id="AZL-Cg-Dw3"/>
                                     <constraint firstItem="pg8-AG-7l6" firstAttribute="leading" secondItem="zcu-f4-OXn" secondAttribute="leading" id="CSP-SI-Gqh"/>
                                     <constraint firstAttribute="bottom" secondItem="eTj-OY-3SO" secondAttribute="bottom" id="F3C-Hg-acA"/>
@@ -212,7 +222,9 @@
                     </view>
                     <connections>
                         <outlet property="cvMatter" destination="eTj-OY-3SO" id="ZMg-Hg-uZG"/>
+                        <outlet property="lblNoRecord" destination="hUc-yz-Yzk" id="LtK-vE-iLh"/>
                         <outlet property="sbSearchMatter" destination="pg8-AG-7l6" id="D6G-GU-TB9"/>
+                        <outlet property="txtSearchBar" destination="pg8-AG-7l6" id="EGV-Yi-tFv"/>
                         <outlet property="vContainer" destination="zcu-f4-OXn" id="hcG-Ag-aBt"/>
                         <outlet property="vTop" destination="n2P-pA-8i3" id="P2G-ev-pm8"/>
                     </connections>
@@ -713,4 +725,5 @@
         <image name="comment" width="32" height="32"/>
         <image name="updelete" width="18" height="24"/>
     </resources>
+    <color key="tintColor" red="0.87450980389999999" green="0.20392156859999999" blue="0.2784313725" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
 </document>

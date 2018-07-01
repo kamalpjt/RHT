@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		41274DCF767A1BE7A80664EF /* Pods_RHTTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC4023868CCA04E85029133C /* Pods_RHTTests.framework */; };
 		70EB24AA65E633B82DD184C7 /* Pods_RHT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A0B23696F8BA6542264D351A /* Pods_RHT.framework */; };
+		8A0114E620E87B560097A23D /* CommunicationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A0114E520E87B560097A23D /* CommunicationModel.swift */; };
+		8A0114E820E881360097A23D /* MatterParsing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A0114E720E881360097A23D /* MatterParsing.swift */; };
 		8A01779120DA126900F680CF /* AwsImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A01779020DA126900F680CF /* AwsImage.swift */; };
 		8A01B5F220B130C400096FBE /* ChatModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A01B5F120B130C400096FBE /* ChatModel.swift */; };
 		8A01B5F420B1396300096FBE /* ImageChatcell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A01B5F320B1396300096FBE /* ImageChatcell.swift */; };
@@ -102,6 +104,8 @@
 		51C99EB4291957B471CC89F1 /* Pods-RHTUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RHTUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RHTUITests/Pods-RHTUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		51EE2E4E70A6D36CD1271759 /* Pods_RHTUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RHTUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7B2CDDDB8AFBA956B6E3AD4B /* Pods-RHTTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RHTTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-RHTTests/Pods-RHTTests.release.xcconfig"; sourceTree = "<group>"; };
+		8A0114E520E87B560097A23D /* CommunicationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunicationModel.swift; sourceTree = "<group>"; };
+		8A0114E720E881360097A23D /* MatterParsing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatterParsing.swift; sourceTree = "<group>"; };
 		8A01779020DA126900F680CF /* AwsImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AwsImage.swift; sourceTree = "<group>"; };
 		8A01B5F120B130C400096FBE /* ChatModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatModel.swift; sourceTree = "<group>"; };
 		8A01B5F320B1396300096FBE /* ImageChatcell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageChatcell.swift; sourceTree = "<group>"; };
@@ -221,9 +225,29 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		8A0114E420E87B1B0097A23D /* Communication */ = {
+			isa = PBXGroup;
+			children = (
+				A9209FA520AC1D8700E2F174 /* MatterFlowLayout.swift */,
+				A9209FA720AC30BD00E2F174 /* MatterDataSource.swift */,
+				8A0114E520E87B560097A23D /* CommunicationModel.swift */,
+				8A0114E720E881360097A23D /* MatterParsing.swift */,
+			);
+			path = Communication;
+			sourceTree = "<group>";
+		};
+		8A0114E920E8997A0097A23D /* Detail */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Detail;
+			sourceTree = "<group>";
+		};
 		8A01778F20DA11F300F680CF /* Add */ = {
 			isa = PBXGroup;
 			children = (
+				8AFC0ACD20D3B2D6004FA0F5 /* CommunicationParsing.swift */,
+				8AFC0ACB20D3A975004FA0F5 /* AddModel.swift */,
 				8A2413CA20C904D700033056 /* ImageView.swift */,
 				8A01779020DA126900F680CF /* AwsImage.swift */,
 				8AFE8A4C20DB884200E24511 /* ImageFlowLayout.swift */,
@@ -433,15 +457,13 @@
 		A994954F20AC18DB00EECC2B /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				8A0114E920E8997A0097A23D /* Detail */,
+				8A0114E420E87B1B0097A23D /* Communication */,
 				8A01778F20DA11F300F680CF /* Add */,
-				A9209FA720AC30BD00E2F174 /* MatterDataSource.swift */,
-				A9209FA520AC1D8700E2F174 /* MatterFlowLayout.swift */,
 				8AEB4DDA20AE047D0045DBD2 /* CommunicationDetailDataSource.swift */,
 				8A6C0EFC20AF15E4004B13DE /* MatterDetailDataSource.swift */,
 				8A01B5F720B1576F00096FBE /* MasterDetailDelegate.swift */,
 				8A01B5F920B165DF00096FBE /* MaterDetailModel.swift */,
-				8AFC0ACB20D3A975004FA0F5 /* AddModel.swift */,
-				8AFC0ACD20D3B2D6004FA0F5 /* CommunicationParsing.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -769,6 +791,7 @@
 				8A6AEB8E20B8262C00D89295 /* HttpRequestMethod.swift in Sources */,
 				8A2413CD20C9061D00033056 /* ImageViewCell.swift in Sources */,
 				8AB8769E20E003AB00EF992E /* ChangePasswordController.swift in Sources */,
+				8A0114E820E881360097A23D /* MatterParsing.swift in Sources */,
 				8A30B2CB20DBEE880048B84C /* DeleteAwsImage.swift in Sources */,
 				A9182488206CC4EC00B358D8 /* SharedData.swift in Sources */,
 				8A08AA1620A32F0000C3B6A8 /* ChatViewController.swift in Sources */,
@@ -807,6 +830,7 @@
 				8A01B5F420B1396300096FBE /* ImageChatcell.swift in Sources */,
 				8ADC021520AEB85500EE03DA /* DesignableButon.swift in Sources */,
 				8A01779120DA126900F680CF /* AwsImage.swift in Sources */,
+				8A0114E620E87B560097A23D /* CommunicationModel.swift in Sources */,
 				8A6EDB5520C501B700AA9EF7 /* UserDetailModel.swift in Sources */,
 				A918248E206CD09800B358D8 /* RegisterViewController.swift in Sources */,
 				8AFE8A4D20DB884200E24511 /* ImageFlowLayout.swift in Sources */,

@@ -11,38 +11,31 @@ import UIKit
 class MatterCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var vTop: UIView!
     
+    @IBOutlet weak var lblDescription: UILabel!
+    @IBOutlet weak var lblSubName: UILabel!
+    @IBOutlet weak var lblmattername: UILabel!
     @IBOutlet weak var vImageView: UIView!
     @IBOutlet weak var vCorner: UIView!
-//    override init(frame: CGRect) {
-//        super.init(frame: frame)
-//       // self.backgroundColor = UIColor.orange
-//
-//       // vCorner.layer.cornerRadius = 5;
-//        //vCorner.layer.masksToBounds = false;
-//    }
     
-//    required init?(coder aDecoder: NSCoder) {
-//        fatalError("init(coder:) has not been implemented")
-//    }
-    
-    func SetUpView() -> Void {
-        vCorner.layer.cornerRadius = 15;
-        vCorner.layer.masksToBounds = false;
-        vImageView.layer.cornerRadius = 15;
-        let path = UIBezierPath(roundedRect:vImageView.frame,byRoundingCorners:[.topLeft, .bottomLeft],
-                                cornerRadii: CGSize(width: 15, height:  vImageView.frame.height))
-        let maskLayer = CAShapeLayer()
-        maskLayer.path = path.cgPath
-       // vImageView.layer.mask = maskLayer
-    //  setupShadow()
-       //self.layer.masksToBounds = false;
+    func SetUpView(matterData:matters) -> Void {
+        setupShadow()
+        lblmattername.text = matterData.matterid
+        lblSubName.text = matterData.name
+        lblDescription.text = matterData.description
         
     }
     private func setupShadow() {
-        vTop.layer.shadowColor = UIColor.black.cgColor
-        vTop.layer.shadowOffset = CGSize(width: 15.0, height: 20.0)
-        vTop.layer.shadowOpacity = 0.3;
-        vTop.layer.masksToBounds = false;
+        self.contentView.layer.cornerRadius = 10
+        self.contentView.layer.borderWidth = 1.0
+        self.contentView.layer.borderColor = UIColor.clear.cgColor
+        self.contentView.layer.masksToBounds = true
+        
+        self.layer.shadowColor = UIColor.lightGray.cgColor
+        self.layer.shadowOffset = CGSize(width: 0, height: 2.0)
+        self.layer.shadowRadius = 2.0
+        self.layer.shadowOpacity = 1.0
+        self.layer.masksToBounds = false
+        self.layer.shadowPath = UIBezierPath(roundedRect:self.bounds, cornerRadius:self.contentView.layer.cornerRadius).cgPath
        
     }
 }

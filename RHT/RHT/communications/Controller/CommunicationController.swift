@@ -8,24 +8,27 @@
 
 import UIKit
 
-class CommunicationController: UIViewController,UICollectionViewDelegate {
+class CommunicationController: UIViewController,UICollectionViewDelegate,UISearchBarDelegate {
+    @IBOutlet weak var txtSearchBar: UISearchBar!
+    @IBOutlet weak var lblNoRecord: UILabel!
     @IBOutlet weak var vImageView: UIView!
     @IBOutlet weak var vTop: UIView!
     @IBOutlet weak var sbSearchMatter: UISearchBar!
     @IBOutlet weak var cvMatter: UICollectionView!
     var dataSource:MatterDataSource?
-
+    
     @IBOutlet weak var vContainer: UIView!
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        vTop.layer.cornerRadius = 15;
-        sbSearchMatter.layer.cornerRadius = 15;
+        
+        txtSearchBar.delegate = self
+        vTop.layer.cornerRadius = 10;
+        sbSearchMatter.layer.cornerRadius = 10;
         sbSearchMatter.layer.masksToBounds = false
         if UserDetail.Instance.isStaff != 1{
             vTop.heightAnchor.constraint(equalTo: vContainer.heightAnchor, multiplier: 0.1/vContainer.frame.height , constant: 0).isActive=true
         }else{
-              vTop.heightAnchor.constraint(equalTo: vContainer.heightAnchor, multiplier: 44/vContainer.frame.height , constant: 0).isActive=true
+            vTop.heightAnchor.constraint(equalTo: vContainer.heightAnchor, multiplier: 44/vContainer.frame.height , constant: 0).isActive=true
         }
         
         // Do any additional setup after loading the view.
@@ -37,14 +40,70 @@ class CommunicationController: UIViewController,UICollectionViewDelegate {
     }
     func SetUpCollectionView()
     {
-        self.dataSource = MatterDataSource()
-        cvMatter.dataSource = dataSource
-        cvMatter.delegate = self
-        cvMatter.reloadData()
-        
+        let params:[String:String] = ["id":UserDetail.Instance.id!,"userid":UserDetail.Instance.userid!,
+                                      "sessionid":"1","page":"1","pagesize":"10","user_type":UserDetail.Instance.user_type!,
+                                      "posttype":"general","matterid": ""]
+        MatterParsing.instance.getMatterList(url: "/getmatters", param: params, resposneBlock: { responsedata , statuscode in
+            if(statuscode == 200){
+                let model = responsedata as! CommunicationModel
+                if(model.response.matters.count>0){
+                    self.cvMatter.isHidden = false;
+                    self.lblNoRecord.isHidden = true
+                    self.dataSource = MatterDataSource.init(model: model)
+                    self.cvMatter.dataSource = self.dataSource
+                    self.cvMatter.delegate = self
+                    self.cvMatter.reloadData()
+                }else{
+                    self.cvMatter.isHidden = true;
+                    self.lblNoRecord.isHidden = false
+                }
+            }
+        })
+    }
+    func MatterSearch(text:String) -> Void{
+        let params:[String:String] = ["id":UserDetail.Instance.id!,"userid":UserDetail.Instance.userid!,
+                                      "sessionid":"1","page":"1","pagesize":"10","user_type":UserDetail.Instance.user_type!,
+                                      "posttype":"general","matterid": "" ,"keyword":text]
+        MatterParsing.instance.getMatterList(url: "/getmatters", param: params, resposneBlock: { responsedata , statuscode in
+            if(statuscode == 200){
+                let model = responsedata as! CommunicationModel
+                if(model.response.matters.count>0){
+                    self.cvMatter.isHidden = false;
+                    self.lblNoRecord.isHidden = true
+                    self.dataSource = MatterDataSource.init(model: model)
+                    self.cvMatter.dataSource = self.dataSource
+                    self.cvMatter.delegate = self
+                    self.cvMatter.reloadData()
+                }else{
+                    self.cvMatter.isHidden = true;
+                    self.lblNoRecord.isHidden = false
+                }
+            }
+        })
     }
     
-
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        txtSearchBar.showsCancelButton = true
+    }
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        MatterSearch(text: searchBar.text!)
+        view.endEditing(true)
+        txtSearchBar.showsCancelButton = false
+    }
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        txtSearchBar.showsCancelButton = false
+        txtSearchBar.text = ""
+        view.endEditing(true)
+    }
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        if(txtSearchBar.text?.count==0){
+            SetUpCollectionView()
+        }
+    }
+    func searchBar(_ searchBar: UISearchBar, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        
+        return true;
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -58,23 +117,23 @@ class CommunicationController: UIViewController,UICollectionViewDelegate {
         
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath)
-   {
-      let vc = self.storyboard?.instantiateViewController(withIdentifier: "CommunicationDetailController") as! CommunicationDetailController ;
-      vc.matterType = "matters";
-      navigationController?.pushViewController(vc, animated: true)
-   }
-    
-       
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    {
+        let vc = self.storyboard?.instantiateViewController(withIdentifier: "CommunicationDetailController") as! CommunicationDetailController ;
+        vc.matterType = "matters";
+        navigationController?.pushViewController(vc, animated: true)
     }
-    */
-
+    
+    
+    
+    
+    /*
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     // Get the new view controller using segue.destinationViewController.
+     // Pass the selected object to the new view controller.
+     }
+     */
+    
 }
