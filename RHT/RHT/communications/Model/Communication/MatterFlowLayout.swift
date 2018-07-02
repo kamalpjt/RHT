@@ -49,7 +49,7 @@ class MatterFlowLayout: UICollectionViewFlowLayout {
             
             //let itemWidth = (self.collectionView?.frame.width)!/2
             if !ShareData.isIpad(){
-                return CGSize(width: (screenWidth)-16, height: (self.collectionView?.frame.height)!/7)
+                return CGSize(width: (screenWidth)-16, height: (self.collectionView?.frame.height)!/5)
             }else{
                 return CGSize(width: (screenWidth/2)-16, height: 100)
                 // return CGSize(width: (screenWidth)-16, height: 100)

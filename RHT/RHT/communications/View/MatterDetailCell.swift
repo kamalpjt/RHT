@@ -7,8 +7,16 @@
 //
 
 import Foundation
+import SDWebImage
 class MatterDetailCell: UITableViewCell {
     
+    @IBOutlet weak var vimages: UIView!
+    @IBOutlet weak var lblDate: UILabel!
+    @IBOutlet weak var lblDocument: UILabel!
+    @IBOutlet weak var lblDescription: UILabel!
+    @IBOutlet weak var imgcontent: UIImageView!
+    @IBOutlet weak var lblName: UILabel!
+    @IBOutlet weak var lbltitle: UILabel!
     @IBOutlet weak var lblComment: UILabel!
     @IBOutlet weak var imgComment: UIImageView!
     @IBOutlet weak var vMoreDetail: UIView!
@@ -24,12 +32,46 @@ class MatterDetailCell: UITableViewCell {
         
     }
     
-    func SetUpView()
+    func SetUpView(postData:Post)
     {
         vContainer.layer.cornerRadius = 5;
         vContainer.backgroundColor = UIColor.white
         self.selectionStyle = UITableViewCellSelectionStyle.none;
-       // lblComment.addGestureRecognizer(tapCommentTap)
+        lblName.text = postData.sendername
+        lbltitle.text = postData.title
+        lblDescription.text = postData.content ?? ""
+        lblDate.text = postData.createddate
+        lblComment.text = String(postData.unreadcount!) + " " + "comment"
+        if(postData.attachment != nil){
+            let counts  = postData.attachment?.count
+            lblDocument.text = String(counts!) + " " + "Attachment"
+        }else{
+            lblDocument.text = String(0) + " " + "Attachment"
+        }
+        if(postData.photos != nil){
+            let countValue = (postData.photos?.count)!
+            if(countValue==1)
+            {
+                
+                vimages.isHidden = false
+                vMoreDetail.isHidden = true
+                let imageurl = postData.photos![0]
+                imgcontent.sd_setImage(with: URL(string: imageurl), placeholderImage: UIImage(named: "placeholder"))
+            }else if ((postData.photos?.count)! > 1){
+                vMoreDetail.isHidden = true
+                vimages.isHidden = false
+                let imageurl = postData.photos![0]
+                imgcontent.sd_setImage(with: URL(string: imageurl), placeholderImage: UIImage(named: "placeholder"))
+            }else{
+                vimages.isHidden = false
+                vMoreDetail.isHidden = true
+                imgcontent.sd_setImage(with: URL(string: ""), placeholderImage: UIImage(named: "placeholder"))
+            }
+        }else{
+            vimages.isHidden = false
+            vMoreDetail.isHidden = true
+            imgcontent.sd_setImage(with: URL(string: ""), placeholderImage: UIImage(named: "placeholder"))
+        }
     }
     @IBAction func CommentButtonAction(_ sender: Any) {
         

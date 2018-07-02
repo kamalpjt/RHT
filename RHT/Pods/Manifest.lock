@@ -67,6 +67,9 @@ PODS:
   - GTMSessionFetcher/Full (1.1.15):
     - GTMSessionFetcher/Core (= 1.1.15)
   - ReachabilitySwift (4.1.0)
+  - SDWebImage (4.4.1):
+    - SDWebImage/Core (= 4.4.1)
+  - SDWebImage/Core (4.4.1)
   - SVProgressHUD (2.2.5)
   - SwiftKeychainWrapper (3.0.1)
 
@@ -78,6 +81,7 @@ DEPENDENCIES:
   - FacebookLogin
   - GoogleSignIn
   - ReachabilitySwift
+  - SDWebImage (~> 4.0)
   - SVProgressHUD
   - SwiftKeychainWrapper
 
@@ -97,6 +101,7 @@ SPEC REPOS:
     - GTMOAuth2
     - GTMSessionFetcher
     - ReachabilitySwift
+    - SDWebImage
     - SVProgressHUD
     - SwiftKeychainWrapper
 
@@ -115,9 +120,10 @@ SPEC CHECKSUMS:
   GTMOAuth2: c77fe325e4acd453837e72d91e3b5f13116857b2
   GTMSessionFetcher: 5fa5b80fd20e439ef5f545fb2cb3ca6c6714caa2
   ReachabilitySwift: 6849231cd4e06559f3b9ef4a97a0a0f96d41e09f
+  SDWebImage: 47e9b5b925cbce75946c23f0c42dd19464189af4
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
   SwiftKeychainWrapper: 38952a3636320ae61bad3513cadd870929de7a4a
 
-PODFILE CHECKSUM: ab6d2772f702039e48a3d27039b4557689511d44
+PODFILE CHECKSUM: 33a53db8bb301bce8f65d8beacf73282619908f3
 
 COCOAPODS: 1.5.3

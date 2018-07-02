@@ -12,6 +12,7 @@ import UIKit
 
 class CommunicationDetailController: UIViewController,UITableViewDelegate {
     
+    @IBOutlet weak var lblNoRecordFound: UILabel!
     
     @IBOutlet weak var tblmatterDetail: UITableView!
     private let cellIdentifier = "MatterCell"
@@ -19,6 +20,7 @@ class CommunicationDetailController: UIViewController,UITableViewDelegate {
     var dataSource:MatterDetailDataSource?
     var dataDelegate:MasterDetailDelegate?
     var matterType:String = "";
+    var receverid:String = "";
     //MARK:- ViewcontrollerLifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,11 +52,32 @@ class CommunicationDetailController: UIViewController,UITableViewDelegate {
     func configureTableView() -> Void{
         tblmatterDetail.separatorStyle = .none
         //tblmatterDetail.estimatedRowHeight = 150;
-        self.dataSource = MatterDetailDataSource()
-        self.dataDelegate = MasterDetailDelegate()
-        tblmatterDetail.dataSource = dataSource
-        tblmatterDetail.delegate = dataDelegate
-        tblmatterDetail.reloadData()
+        let params:[String:String] = ["id":UserDetail.Instance.id!,"userid":UserDetail.Instance.userid!,
+                                      "sessionid":"1","page":"1","pagesize":"10","user_type":UserDetail.Instance.user_type!,
+                                      "posttype":matterType,"receiverid":receverid,"matterid": ""]
+        MatterParsing.instance.getCommunicationDetailList(url: "/getcommunication", param: params, resposneBlock: { responsedata , statuscode in
+            if(statuscode == 200){
+                let model = responsedata as! MatterDetailModel
+                if((model.response?.posts?.count)!>0){
+                    self.tblmatterDetail.isHidden = false;
+                    self.lblNoRecordFound.isHidden = true;
+                    self.dataSource = MatterDetailDataSource(matterDetail: model)
+                    self.dataDelegate = MasterDetailDelegate()
+                    self.tblmatterDetail.dataSource = self.dataSource
+                    self.tblmatterDetail.delegate = self.dataSource
+                    self.tblmatterDetail.reloadData()
+                }else{
+                    self.tblmatterDetail.isHidden = true;
+                    self.lblNoRecordFound.isHidden = false;
+//                    self.cvMatter.isHidden = true;
+//                    self.lblNoRecord.isHidden = false
+                }
+            }
+        })
+        
+    }
+    func SetUpCollectionView()
+    {
         
     }
     func plusButton() -> UIBarButtonItem{

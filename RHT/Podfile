@@ -12,6 +12,7 @@ target 'RHT' do
    pod 'SwiftKeychainWrapper'
    pod 'AWSS3'
    pod 'ApiAI'
+   pod 'SDWebImage', '~> 4.0'
  
   # Pods for RHT
     

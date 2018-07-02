@@ -19,5 +19,6 @@
 #import <SVProgressHUD/SVProgressHUD.h>
 #import <AWSCore/AWSCore.h>
 #import <AWSS3/AWSS3.h>
+#import <SDWebImage/SDImageCache.h>
 
 #endif /* RHT_Bridging_Header_h */AWSS3

@@ -111,7 +111,7 @@ class CommunicationController: UIViewController,UICollectionViewDelegate,UISearc
     
     @IBAction func generalAction(_ sender: Any) {
         
-        let vc = self.storyboard?.instantiateViewController(withIdentifier: "CommunicationDetailController") as! CommunicationDetailController ;
+        let vc = self.storyboard?.instantiateViewController(withIdentifier: "ClientListController") as! ClientListController ;
         vc.matterType = "Gerenal";
         navigationController?.pushViewController(vc, animated: true)
         

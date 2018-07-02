@@ -11,6 +11,11 @@
 		70EB24AA65E633B82DD184C7 /* Pods_RHT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A0B23696F8BA6542264D351A /* Pods_RHT.framework */; };
 		8A0114E620E87B560097A23D /* CommunicationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A0114E520E87B560097A23D /* CommunicationModel.swift */; };
 		8A0114E820E881360097A23D /* MatterParsing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A0114E720E881360097A23D /* MatterParsing.swift */; };
+		8A0114EB20E904290097A23D /* ClientListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A0114EA20E904290097A23D /* ClientListController.swift */; };
+		8A0114ED20E9073B0097A23D /* ClientListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A0114EC20E9073B0097A23D /* ClientListCell.swift */; };
+		8A0114F020E9096B0097A23D /* ClientFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A0114EF20E9096B0097A23D /* ClientFlowLayout.swift */; };
+		8A0114F220E909820097A23D /* ClientModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A0114F120E909820097A23D /* ClientModel.swift */; };
+		8A0114F420E90EFB0097A23D /* ClientDatatSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A0114F320E90EFB0097A23D /* ClientDatatSource.swift */; };
 		8A01779120DA126900F680CF /* AwsImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A01779020DA126900F680CF /* AwsImage.swift */; };
 		8A01B5F220B130C400096FBE /* ChatModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A01B5F120B130C400096FBE /* ChatModel.swift */; };
 		8A01B5F420B1396300096FBE /* ImageChatcell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A01B5F320B1396300096FBE /* ImageChatcell.swift */; };
@@ -106,6 +111,11 @@
 		7B2CDDDB8AFBA956B6E3AD4B /* Pods-RHTTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RHTTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-RHTTests/Pods-RHTTests.release.xcconfig"; sourceTree = "<group>"; };
 		8A0114E520E87B560097A23D /* CommunicationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunicationModel.swift; sourceTree = "<group>"; };
 		8A0114E720E881360097A23D /* MatterParsing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatterParsing.swift; sourceTree = "<group>"; };
+		8A0114EA20E904290097A23D /* ClientListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientListController.swift; sourceTree = "<group>"; };
+		8A0114EC20E9073B0097A23D /* ClientListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientListCell.swift; sourceTree = "<group>"; };
+		8A0114EF20E9096B0097A23D /* ClientFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientFlowLayout.swift; sourceTree = "<group>"; };
+		8A0114F120E909820097A23D /* ClientModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientModel.swift; sourceTree = "<group>"; };
+		8A0114F320E90EFB0097A23D /* ClientDatatSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientDatatSource.swift; sourceTree = "<group>"; };
 		8A01779020DA126900F680CF /* AwsImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AwsImage.swift; sourceTree = "<group>"; };
 		8A01B5F120B130C400096FBE /* ChatModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatModel.swift; sourceTree = "<group>"; };
 		8A01B5F320B1396300096FBE /* ImageChatcell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageChatcell.swift; sourceTree = "<group>"; };
@@ -239,8 +249,21 @@
 		8A0114E920E8997A0097A23D /* Detail */ = {
 			isa = PBXGroup;
 			children = (
+				8A01B5F920B165DF00096FBE /* MaterDetailModel.swift */,
+				8A01B5F720B1576F00096FBE /* MasterDetailDelegate.swift */,
+				8A6C0EFC20AF15E4004B13DE /* MatterDetailDataSource.swift */,
 			);
 			path = Detail;
+			sourceTree = "<group>";
+		};
+		8A0114EE20E909320097A23D /* ClientList */ = {
+			isa = PBXGroup;
+			children = (
+				8A0114EF20E9096B0097A23D /* ClientFlowLayout.swift */,
+				8A0114F120E909820097A23D /* ClientModel.swift */,
+				8A0114F320E90EFB0097A23D /* ClientDatatSource.swift */,
+			);
+			path = ClientList;
 			sourceTree = "<group>";
 		};
 		8A01778F20DA11F300F680CF /* Add */ = {
@@ -282,6 +305,7 @@
 				8AFC65D920B1D6DD00865555 /* ImageListController.swift */,
 				8AFED3EE20B21F040094F1DA /* ChatListController.swift */,
 				8AFED3F620B27EEE0094F1DA /* AddCommunicationController.swift */,
+				8A0114EA20E904290097A23D /* ClientListController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -293,6 +317,7 @@
 				A994955120AC1A4F00EECC2B /* MatterCollectionViewCell.swift */,
 				8A6C0EFA20AF14E8004B13DE /* MatterDetailCell.swift */,
 				8A2413CC20C9061D00033056 /* ImageViewCell.swift */,
+				8A0114EC20E9073B0097A23D /* ClientListCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -457,13 +482,11 @@
 		A994954F20AC18DB00EECC2B /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				8A0114EE20E909320097A23D /* ClientList */,
 				8A0114E920E8997A0097A23D /* Detail */,
 				8A0114E420E87B1B0097A23D /* Communication */,
 				8A01778F20DA11F300F680CF /* Add */,
 				8AEB4DDA20AE047D0045DBD2 /* CommunicationDetailDataSource.swift */,
-				8A6C0EFC20AF15E4004B13DE /* MatterDetailDataSource.swift */,
-				8A01B5F720B1576F00096FBE /* MasterDetailDelegate.swift */,
-				8A01B5F920B165DF00096FBE /* MaterDetailModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -729,6 +752,7 @@
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
 				"${BUILT_PRODUCTS_DIR}/ReachabilitySwift/Reachability.framework",
+				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
 				"${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftKeychainWrapper/SwiftKeychainWrapper.framework",
 			);
@@ -747,6 +771,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Reachability.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SVProgressHUD.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftKeychainWrapper.framework",
 			);
@@ -792,6 +817,7 @@
 				8A2413CD20C9061D00033056 /* ImageViewCell.swift in Sources */,
 				8AB8769E20E003AB00EF992E /* ChangePasswordController.swift in Sources */,
 				8A0114E820E881360097A23D /* MatterParsing.swift in Sources */,
+				8A0114F420E90EFB0097A23D /* ClientDatatSource.swift in Sources */,
 				8A30B2CB20DBEE880048B84C /* DeleteAwsImage.swift in Sources */,
 				A9182488206CC4EC00B358D8 /* SharedData.swift in Sources */,
 				8A08AA1620A32F0000C3B6A8 /* ChatViewController.swift in Sources */,
@@ -803,6 +829,7 @@
 				A9A134DD2078A6A00093A78E /* SettingViewController.swift in Sources */,
 				A90BF65E2075F6D1007B8F2B /* UIViewController+RESideMenu.m in Sources */,
 				8A01B5F820B1576F00096FBE /* MasterDetailDelegate.swift in Sources */,
+				8A0114F020E9096B0097A23D /* ClientFlowLayout.swift in Sources */,
 				8A6C0EFB20AF14E8004B13DE /* MatterDetailCell.swift in Sources */,
 				8AFC65D820B1CF2E00865555 /* DesignableView.swift in Sources */,
 				8A01B5FA20B165DF00096FBE /* MaterDetailModel.swift in Sources */,
@@ -820,6 +847,7 @@
 				A9182483206CBF6500B358D8 /* LoginViewController.swift in Sources */,
 				A921F83220774C120042738A /* RECommonFunctions.m in Sources */,
 				8A42CC6C20C0198300AC6AB7 /* StringConstant.swift in Sources */,
+				8A0114ED20E9073B0097A23D /* ClientListCell.swift in Sources */,
 				8A3B3F2B20AB22DB0003AD22 /* CommunicationController.swift in Sources */,
 				8AD69C0E20A5BC8500F2E135 /* ChatCell.swift in Sources */,
 				8AFED3EF20B21F040094F1DA /* ChatListController.swift in Sources */,
@@ -838,8 +866,10 @@
 				A9A134DF2078B1930093A78E /* HomeCollectionFlowLayout.swift in Sources */,
 				A9182486206CC4AC00B358D8 /* BaseViewController.swift in Sources */,
 				8A6AEB9020B82C7100D89295 /* SessionManagers.swift in Sources */,
+				8A0114F220E909820097A23D /* ClientModel.swift in Sources */,
 				8AFC0AD020D3C9D5004FA0F5 /* ForgotController.swift in Sources */,
 				A9209FA620AC1D8700E2F174 /* MatterFlowLayout.swift in Sources */,
+				8A0114EB20E904290097A23D /* ClientListController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
