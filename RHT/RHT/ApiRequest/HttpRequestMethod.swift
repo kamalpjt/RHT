@@ -53,7 +53,11 @@ class HttpRequestMethod {
                
                 
             }else{
-                print(response.error!)
+                //https://stackoverflow.com/questions/42698516/trying-to-access-error-code-in-alamofire
+//                print(response.result.ifSuccess {
+//                    <#code#>
+//                })
+                print(response.response?.statusCode)
                  SVProgressHUD.dismiss()
                 if( response.error!.localizedDescription == "The request timed out."){
                     SharedAlert.instance.ShowAlert(title: StringConstant.instance.ALERTTITLE, message: response.error!.localizedDescription, viewController: (UIApplication.shared.keyWindow?.rootViewController)!)
