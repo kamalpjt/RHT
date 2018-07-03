@@ -58,7 +58,7 @@ class MatterDetailCell: UITableViewCell {
                 let imageurl = postData.photos![0]
                 imgcontent.sd_setImage(with: URL(string: imageurl), placeholderImage: UIImage(named: "placeholder"))
             }else if ((postData.photos?.count)! > 1){
-                vMoreDetail.isHidden = true
+                vMoreDetail.isHidden = false
                 vimages.isHidden = false
                 let imageurl = postData.photos![0]
                 imgcontent.sd_setImage(with: URL(string: imageurl), placeholderImage: UIImage(named: "placeholder"))

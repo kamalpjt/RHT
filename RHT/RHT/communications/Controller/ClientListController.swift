@@ -95,8 +95,8 @@ class ClientListController: UIViewController,UICollectionViewDelegate,UISearchBa
     func GetSelectedRecevierId(receverid: String) {
         
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "CommunicationDetailController") as! CommunicationDetailController ;
-        vc.matterType = matterType!
-        vc.receverid = receverid
+        vc.m_matterType = matterType!
+        vc.m_receverid = receverid
         navigationController?.pushViewController(vc, animated: true)
     }
     

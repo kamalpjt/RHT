@@ -21,6 +21,7 @@ class AddCommunicationController: BaseViewController,UICollectionViewDelegateFlo
     @IBOutlet weak var txtTittle: CustomTextField!
     var dataSourceImage = ImageView()
     var matterType:String = "";
+    var recevierId:String = "";
     var selectedImageUrl: NSURL!
     var m_selectedImage: UIImage!
     var m_selectedImageUrlArray:[String] = []
@@ -69,8 +70,16 @@ class AddCommunicationController: BaseViewController,UICollectionViewDelegateFlo
         
         if(checkInternetIsAvailable()){
             if validation() {
-                let params:[String:Any] = ["title":txtTittle.text!,"content":tvDescription.text!
-                    ,"photos":m_selectedImageUrlArray,"attachment":[],"postType":matterType,"matterId":"","receiverId":"","userType":UserDetail.Instance.user_type ?? 0,"id":UserDetail.Instance.id ?? ""]
+                let params:[String:Any] = ["userid":UserDetail.Instance.userid!,
+                                           "title":txtTittle.text!,
+                                           "content":tvDescription.text!,
+                                           "photos":m_selectedImageUrlArray,
+                                           "attachment":[],
+                                           "posttype":matterType,
+                                           "receiverid":recevierId,
+                                           "user_type":UserDetail.Instance.user_type! ,
+                                           "id":UserDetail.Instance.id!,
+                                           "sendername":UserDetail.Instance.name!]
                 CommunicationParsing.instance.getResponseDetail(url: "/postcommunication", param: params, resposneBlock: { response , statuscode in
                     if(statuscode == 200){
                         let model = response as! AddModel
@@ -130,7 +139,8 @@ class AddCommunicationController: BaseViewController,UICollectionViewDelegateFlo
     func getAwsUrl(url: NSURL) {
         
         DispatchQueue.main.async(execute: {() -> Void in
-            print(self.m_selectedImageUrlArray.append(url.absoluteString!))
+           // print(self.m_selectedImageUrlArray.append(url.absoluteString!))
+            print(url.absoluteString)
             self.m_selectedImageUrlArray.append(url.absoluteString!)
             self.dataSourceImage.stringImage.insert( self.m_selectedImage, at: 0)
             if  self.dataSourceImage.stringImage.count > 3 {
@@ -147,10 +157,10 @@ class AddCommunicationController: BaseViewController,UICollectionViewDelegateFlo
     }
     func getTagValue(tagValue: Int) {
         
-        let stringUrl = self.m_selectedImageUrlArray[0];
+        //let stringUrl = self.m_selectedImageUrlArray[0];
         // let fullName : String = "First Last"
-        let getImageName : [String] = stringUrl.components(separatedBy: "/")
-        DeleteAwsImage.instance.DeleteImage(imageName: getImageName[getImageName.count-1])
+        //let getImageName : [String] = stringUrl.components(separatedBy: "/")
+        //DeleteAwsImage.instance.DeleteImage(imageName: getImageName[getImageName.count-1])
         m_selectedImageUrlArray.remove(at: tagValue)
         dataSourceImage.stringImage.remove(at: tagValue)
         // let indexpath = IndexPath.init(row: tagValue, section: 0)

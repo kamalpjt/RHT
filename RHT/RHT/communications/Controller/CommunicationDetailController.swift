@@ -19,8 +19,10 @@ class CommunicationDetailController: UIViewController,UITableViewDelegate {
     // var cell:MatterDetailCell?
     var dataSource:MatterDetailDataSource?
     var dataDelegate:MasterDetailDelegate?
-    var matterType:String = "";
-    var receverid:String = "";
+    var m_matterType:String = "";
+    var m_receverid:String = "";
+    var m_pageCount:Int = 0
+    var m_matterArray:[Post] = []
     //MARK:- ViewcontrollerLifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -52,25 +54,37 @@ class CommunicationDetailController: UIViewController,UITableViewDelegate {
     func configureTableView() -> Void{
         tblmatterDetail.separatorStyle = .none
         //tblmatterDetail.estimatedRowHeight = 150;
-        let params:[String:String] = ["id":UserDetail.Instance.id!,"userid":UserDetail.Instance.userid!,
-                                      "sessionid":"1","page":"1","pagesize":"10","user_type":UserDetail.Instance.user_type!,
-                                      "posttype":matterType,"receiverid":receverid,"matterid": ""]
+        m_pageCount  = m_pageCount + 1
+        let params:[String:String] = ["id":UserDetail.Instance.id!,
+                                      "userid":UserDetail.Instance.userid!,
+                                      "sessionid":"1",
+                                      "page":String(m_pageCount),
+                                      "pagesize":"10",
+                                      "user_type":UserDetail.Instance.user_type!,
+                                      "posttype":m_matterType,
+                                      "receiverid":m_receverid,
+                                      "matterid": ""]
         MatterParsing.instance.getCommunicationDetailList(url: "/getcommunication", param: params, resposneBlock: { responsedata , statuscode in
             if(statuscode == 200){
                 let model = responsedata as! MatterDetailModel
                 if((model.response?.posts?.count)!>0){
                     self.tblmatterDetail.isHidden = false;
                     self.lblNoRecordFound.isHidden = true;
-                    self.dataSource = MatterDetailDataSource(matterDetail: model)
+                    
+                    self.dataSource = MatterDetailDataSource()
+                    self.m_matterArray.append(contentsOf: (model.response?.posts)!)
+                    self.dataSource?.m_matterPostDetail = self.m_matterArray
+                    self.dataSource?.m_matterTotalCount = model.response?.count
                     self.dataDelegate = MasterDetailDelegate()
+                    
                     self.tblmatterDetail.dataSource = self.dataSource
                     self.tblmatterDetail.delegate = self.dataSource
                     self.tblmatterDetail.reloadData()
+                    
                 }else{
                     self.tblmatterDetail.isHidden = true;
                     self.lblNoRecordFound.isHidden = false;
-//                    self.cvMatter.isHidden = true;
-//                    self.lblNoRecord.isHidden = false
+
                 }
             }
         })
@@ -93,7 +107,8 @@ class CommunicationDetailController: UIViewController,UITableViewDelegate {
     //MARK:Action
     @objc func AddButton() -> Void{
         let vc = self.storyboard?.instantiateViewController(withIdentifier:"AddCommunicationController") as! AddCommunicationController
-        vc.matterType = matterType
+        vc.matterType = m_matterType
+        vc.recevierId = m_receverid
         navigationController?.pushViewController(vc, animated: true)
         
     }

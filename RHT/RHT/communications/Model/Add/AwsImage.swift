@@ -12,7 +12,7 @@ import Photos
 import SVProgressHUD
 
 protocol AwsDelegate {
-
+    
     func getAwsUrl(url:NSURL)
     
 }
@@ -42,12 +42,28 @@ class AwsImage {
                     if let fileName = (info?["PHImageFileURLKey"] as? NSURL)?.lastPathComponent {
                         //do sth with file name
                         print(fileName)
-                        self.startUploadingImage(localFileName: fileName)
+                        let randomString = self.randomString(length: 5) + ".jpg";
+                        self.startUploadingImage(localFileName: randomString)
                     }
                 })
             }
             
         }
+    }
+    func randomString(length: Int) -> String {
+        
+        let letters : NSString = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
+        let len = UInt32(letters.length)
+        
+        var randomString = ""
+        
+        for _ in 0 ..< length {
+            let rand = arc4random_uniform(len)
+            var nextChar = letters.character(at: Int(rand))
+            randomString += NSString(characters: &nextChar, length: 1) as String
+        }
+        
+        return randomString
     }
     func startUploadingImage(localFileName:String)
     {
@@ -77,7 +93,7 @@ class AwsImage {
             }
             if let error = task.error {
                 print("Upload failed with error: (\(error.localizedDescription))")
-                 SVProgressHUD.dismiss()
+                SVProgressHUD.dismiss()
             }
             
             //            if let exception = task.exe {

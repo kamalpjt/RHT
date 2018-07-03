@@ -15,6 +15,7 @@ class CommunicationController: UIViewController,UICollectionViewDelegate,UISearc
     @IBOutlet weak var vTop: UIView!
     @IBOutlet weak var sbSearchMatter: UISearchBar!
     @IBOutlet weak var cvMatter: UICollectionView!
+    var m_MattersDetail:[matters] = []
     var dataSource:MatterDataSource?
     
     @IBOutlet weak var vContainer: UIView!
@@ -46,10 +47,12 @@ class CommunicationController: UIViewController,UICollectionViewDelegate,UISearc
         MatterParsing.instance.getMatterList(url: "/getmatters", param: params, resposneBlock: { responsedata , statuscode in
             if(statuscode == 200){
                 let model = responsedata as! CommunicationModel
+                self.m_MattersDetail = model.response.matters
                 if(model.response.matters.count>0){
                     self.cvMatter.isHidden = false;
                     self.lblNoRecord.isHidden = true
-                    self.dataSource = MatterDataSource.init(model: model)
+                    self.dataSource = MatterDataSource()
+                    self.dataSource?.m_MatterModel = model.response.matters
                     self.cvMatter.dataSource = self.dataSource
                     self.cvMatter.delegate = self
                     self.cvMatter.reloadData()
@@ -70,7 +73,8 @@ class CommunicationController: UIViewController,UICollectionViewDelegate,UISearc
                 if(model.response.matters.count>0){
                     self.cvMatter.isHidden = false;
                     self.lblNoRecord.isHidden = true
-                    self.dataSource = MatterDataSource.init(model: model)
+                    self.dataSource = MatterDataSource()
+                    self.dataSource?.m_MatterModel = model.response.matters
                     self.cvMatter.dataSource = self.dataSource
                     self.cvMatter.delegate = self
                     self.cvMatter.reloadData()
@@ -112,14 +116,16 @@ class CommunicationController: UIViewController,UICollectionViewDelegate,UISearc
     @IBAction func generalAction(_ sender: Any) {
         
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "ClientListController") as! ClientListController ;
-        vc.matterType = "Gerenal";
+        vc.matterType = "general";
         navigationController?.pushViewController(vc, animated: true)
         
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath)
     {
+        let modeldata = m_MattersDetail[indexPath.row]
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "CommunicationDetailController") as! CommunicationDetailController ;
-        vc.matterType = "matters";
+        vc.m_matterType = "matters";
+        vc.m_receverid = modeldata.id!
         navigationController?.pushViewController(vc, animated: true)
     }
     

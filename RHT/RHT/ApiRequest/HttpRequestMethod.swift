@@ -19,7 +19,7 @@ struct Courses:Decodable {
 }
 class HttpRequestMethod {
     
-     static let sharedInstance = HttpRequestMethod()
+    static let sharedInstance = HttpRequestMethod()
     
     func getMethod(url:String,responseBlcok:(jsonResponseSucessBlock) -> Void){
         
@@ -41,31 +41,53 @@ class HttpRequestMethod {
         }
     }
     func postMethod(url:String,parameters:[String:Any],sucessResponseBlcok:@escaping (jsonResponseSucessBlock),failureResponseBlcok:@escaping (jsonResponseFailureBlock)) -> Void{
-      
-         SVProgressHUD.show()
+        
+        SVProgressHUD.show()
         let headerWithContentType = ["content-type":"application/json"]
         request(AppConfig.sharedInstance.RHTDDevIp!+url, method: HTTPMethod.post, parameters: parameters, encoding: JSONEncoding.default, headers: headerWithContentType).responseData(completionHandler: {response in
-            if(response.error == nil){
-                 SVProgressHUD.dismiss()
-                if((response.response?.statusCode)! == 200){
-                     sucessResponseBlcok(response.data!,(response.response?.statusCode)!);
+            if (response.result.isSuccess){
+                SVProgressHUD.dismiss()
+                sucessResponseBlcok(response.data!,(response.response?.statusCode)!);
+                //do your json stuff
+            } else if (response.result.isFailure) {
+                SVProgressHUD.dismiss()
+                //Manager your error
+                switch (response.error!._code){
+                case NSURLErrorTimedOut:
+                    //Manager your time out error
+                    SharedAlert.instance.ShowAlert(title: StringConstant.instance.ALERTTITLE, message: StringConstant.instance.TIMEOUT, viewController: (UIApplication.shared.keyWindow?.rootViewController)!)
+                    break
+                case NSURLErrorNotConnectedToInternet:
+                    SharedAlert.instance.OffLineAlert(viewController: (UIApplication.shared.keyWindow?.rootViewController)!)
+                    //Manager your not connected to internet error
+                    break
+                default:
+                    //manager your default case
+                    failureResponseBlcok(response.error! as AnyObject)
+                    break
                 }
-               
-                
-            }else{
-                //https://stackoverflow.com/questions/42698516/trying-to-access-error-code-in-alamofire
-//                print(response.result.ifSuccess {
-//                    <#code#>
-//                })
-                print(response.response?.statusCode)
-                 SVProgressHUD.dismiss()
-                if( response.error!.localizedDescription == "The request timed out."){
-                    SharedAlert.instance.ShowAlert(title: StringConstant.instance.ALERTTITLE, message: response.error!.localizedDescription, viewController: (UIApplication.shared.keyWindow?.rootViewController)!)
-                }else{
-                     failureResponseBlcok(response.error! as AnyObject)
-                }
-               
             }
+            /*if(response.error == nil){
+             
+             if((response.response?.statusCode)! == 200){
+             
+             }
+             
+             
+             }else{
+             //https://stackoverflow.com/questions/42698516/trying-to-access-error-code-in-alamofire
+             //                print(response.result.ifSuccess {
+             //                    <#code#>
+             //                })
+             print(response.response?.statusCode)
+             SVProgressHUD.dismiss()
+             if( response.error!.localizedDescription == "The request timed out."){
+             SharedAlert.instance.ShowAlert(title: StringConstant.instance.ALERTTITLE, message: response.error!.localizedDescription, viewController: (UIApplication.shared.keyWindow?.rootViewController)!)
+             }else{
+             failureResponseBlcok(response.error! as AnyObject)
+             }
+             
+             }*/
         })
     }
     func putMethod(url:String,Parameter:[String:String]) -> Void{

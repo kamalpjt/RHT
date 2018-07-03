@@ -45,16 +45,6 @@ class ClientFlowLayout: UICollectionViewFlowLayout {
             //let numberOfColumns: CGFloat = 3
             let screenSize = UIScreen.main.bounds
             let screenWidth = screenSize.width
-            // let  screenHeight = screenSize.height
-            
-            //let itemWidth = (self.collectionView?.frame.width)!/2
-//            if !ShareData.isIpad(){
-//                return CGSize(width: (screenWidth)-10, height:50)
-//            }else{
-//                return CGSize(width: (screenWidth)-10, height: 100)
-//                // return CGSize(width: (screenWidth)-16, height: 100)
-//            }
-            
             if !ShareData.isIpad(){
                 return CGSize(width: (screenWidth)-16, height: 70)
             }else{
