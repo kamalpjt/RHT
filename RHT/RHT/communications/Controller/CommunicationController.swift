@@ -26,11 +26,7 @@ class CommunicationController: UIViewController,UICollectionViewDelegate,UISearc
         vTop.layer.cornerRadius = 10;
         sbSearchMatter.layer.cornerRadius = 10;
         sbSearchMatter.layer.masksToBounds = false
-        if UserDetail.Instance.isStaff != 1{
-            vTop.heightAnchor.constraint(equalTo: vContainer.heightAnchor, multiplier: 0.1/vContainer.frame.height , constant: 0).isActive=true
-        }else{
-            vTop.heightAnchor.constraint(equalTo: vContainer.heightAnchor, multiplier: 44/vContainer.frame.height , constant: 0).isActive=true
-        }
+        ShowAndHideGeneral()
         
         // Do any additional setup after loading the view.
     }
@@ -38,6 +34,14 @@ class CommunicationController: UIViewController,UICollectionViewDelegate,UISearc
         super.viewWillAppear(animated)
         SetUpCollectionView()
         
+    }
+    func ShowAndHideGeneral() -> Void{
+        
+        if UserDetail.Instance.isStaff != 1{
+            vTop.heightAnchor.constraint(equalTo: vContainer.heightAnchor, multiplier: 0.1/vContainer.frame.height , constant: 0).isActive=true
+        }else{
+            vTop.heightAnchor.constraint(equalTo: vContainer.heightAnchor, multiplier: 44/vContainer.frame.height , constant: 0).isActive=true
+        }
     }
     func SetUpCollectionView()
     {
@@ -125,7 +129,7 @@ class CommunicationController: UIViewController,UICollectionViewDelegate,UISearc
         let modeldata = m_MattersDetail[indexPath.row]
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "CommunicationDetailController") as! CommunicationDetailController ;
         vc.m_matterType = "matters";
-        vc.m_receverid = modeldata.id!
+        //vc.m_receverid = modeldata.id!
         navigationController?.pushViewController(vc, animated: true)
     }
     

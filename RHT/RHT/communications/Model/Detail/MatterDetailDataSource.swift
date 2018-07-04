@@ -8,14 +8,19 @@
 
 import UIKit
 
+protocol PageNationDelegate {
+    func pageNationAction()
+}
+
 class MatterDetailDataSource: NSObject,UITableViewDataSource,UITableViewDelegate {
     
     private let cellIdentifier = "MatterDetailCell"
     public var m_matterPostDetail:[Post]?
     public var m_matterTotalCount:Int?
-//    init(matterDetail:MatterDetailModel) {
-//        m_matterDetail = matterDetail
-//    }
+    let m_pageNationDelgate:PageNationDelegate?
+    init(delegate:PageNationDelegate) {
+        m_pageNationDelgate = delegate
+    }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return (m_matterPostDetail?.count)!
     }
@@ -32,16 +37,19 @@ class MatterDetailDataSource: NSObject,UITableViewDataSource,UITableViewDelegate
         cell.SetUpView(postData: data!)
         return cell
     }
-    
-    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        if(m_matterTotalCount != m_matterPostDetail?.count)
-        {
-            if((m_matterPostDetail?.count)! - 1 == indexPath.row)
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        //scrollView.contentOffset.y
+       // print(scrollView.contentOffset.y)
+        if (scrollView.contentOffset.y >= (scrollView.contentSize.height - scrollView.frame.size.height)) {
+            //reach bottom
+            if(m_matterTotalCount != m_matterPostDetail?.count)
             {
-                print("Last row called")
+                  print("Last row called")
+                m_pageNationDelgate?.pageNationAction()
+            }else{
+                 print("Last row completed")
             }
         }
-        
     }
     
 

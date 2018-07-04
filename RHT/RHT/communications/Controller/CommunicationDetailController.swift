@@ -10,7 +10,9 @@ import UIKit
 
 
 
-class CommunicationDetailController: UIViewController,UITableViewDelegate {
+class CommunicationDetailController: UIViewController,UITableViewDelegate,PageNationDelegate {
+   
+    
     
     @IBOutlet weak var lblNoRecordFound: UILabel!
     
@@ -59,7 +61,7 @@ class CommunicationDetailController: UIViewController,UITableViewDelegate {
                                       "userid":UserDetail.Instance.userid!,
                                       "sessionid":"1",
                                       "page":String(m_pageCount),
-                                      "pagesize":"10",
+                                      "pagesize":"5",
                                       "user_type":UserDetail.Instance.user_type!,
                                       "posttype":m_matterType,
                                       "receiverid":m_receverid,
@@ -71,7 +73,7 @@ class CommunicationDetailController: UIViewController,UITableViewDelegate {
                     self.tblmatterDetail.isHidden = false;
                     self.lblNoRecordFound.isHidden = true;
                     
-                    self.dataSource = MatterDetailDataSource()
+                    self.dataSource = MatterDetailDataSource.init(delegate: self)
                     self.m_matterArray.append(contentsOf: (model.response?.posts)!)
                     self.dataSource?.m_matterPostDetail = self.m_matterArray
                     self.dataSource?.m_matterTotalCount = model.response?.count
@@ -89,6 +91,9 @@ class CommunicationDetailController: UIViewController,UITableViewDelegate {
             }
         })
         
+    }
+    func pageNationAction() {
+        configureTableView()
     }
     func SetUpCollectionView()
     {
