@@ -108,6 +108,16 @@ class HomeViewController: BaseViewController,UICollectionViewDataSource,UICollec
             let storyboardLogin:UIStoryboard = UIStoryboard(name: "Communication", bundle: nil)
             let VC1 = storyboardLogin.instantiateViewController(withIdentifier: "CommunicationController") as! CommunicationController
             self.navigationController?.pushViewController(VC1, animated: true)
+        } else if modle.name == "News"{
+               let storyboardLogin:UIStoryboard = UIStoryboard(name: "Communication", bundle: nil)
+                let VC = storyboardLogin.instantiateViewController(withIdentifier: "NewsController") as! NewsController
+                self.navigationController?.pushViewController(VC, animated: true)
+            
+        }else if modle.name == "Leadership" {
+            
+            let storyboardLogin:UIStoryboard = UIStoryboard(name: "Communication", bundle: nil)
+            let VC = storyboardLogin.instantiateViewController(withIdentifier: "LeadershipController") as! LeadershipController
+            self.navigationController?.pushViewController(VC, animated: true)
         }
     }
     // MARK: - ACTION

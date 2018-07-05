@@ -27,13 +27,14 @@ struct DetailResponse: Codable {
         count = json["responseCode"] as? Int ?? 0
         page = json["page"] as? String ?? ""
         pagesize = json["pagesize"] as? String ?? ""
-        posts = [(json["Post"] as? Post)!]
+        posts = [(json["posts"] as? Post)!]
     }
 }
 struct Post:Codable {
     let id, userid, matterid, title: String?
     let content: String?
-    let photos, attachment: [String]?
+    let photos:[Photos]?
+    let attachment: [String]?
     let receiverid, userType, sendername, dateCreated: String?
     let createddate: String?
     let unreadcount: Int?
@@ -44,7 +45,7 @@ struct Post:Codable {
         matterid = json["matterid"] as? String ?? ""
         title = json["title"] as? String ?? ""
         content = json["content"] as? String ?? ""
-        photos = json["photos"] as? [String] ?? []
+        photos = [(json["photos"] as? Photos)!]
         attachment = json["photos"] as? [String] ?? []
         receiverid = json["content"] as? String ?? ""
         userType = json["content"] as? String ?? ""
@@ -53,4 +54,11 @@ struct Post:Codable {
         createddate = json["content"] as? String ?? ""
     }
     
+}
+struct Photos:Codable {
+    let name,url:String?
+    init(json:[String:Any]) {
+        name = json["name"] as? String ?? ""
+        url = json["url"] as? String ?? ""
+    }
 }

@@ -1,22 +1,21 @@
 //
-//  NewsController.swift
+//  LeadershipController.swift
 //  RHT
 //
-//  Created by kamal on 04/07/18.
+//  Created by kamal on 05/07/18.
 //  Copyright © 2018 rht. All rights reserved.
 //
 
 import UIKit
-
-class NewsController: UIViewController,PageNationDelegate,GetIDDelegate {
-   
+import SafariServices
+class LeadershipController: UIViewController,GetIDDelegate,PageNationDelegate {
     
-   
-    @IBOutlet weak var lblNoRecord: UILabel!
-    @IBOutlet weak var newsCollectionView: UICollectionView!
-    var dataSource:NewsDataSource?
-     var m_NewsArray:[posts] = []
-     var m_pageCount:Int = 0
+    
+
+    @IBOutlet weak var cvCollectionView: UICollectionView!
+    var dataSource:LeaderDataSource?
+    var m_NewsArray:[Leaderposts] = []
+    var m_pageCount:Int = 0
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -27,7 +26,6 @@ class NewsController: UIViewController,PageNationDelegate,GetIDDelegate {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
-        
     }
     func SetUpCollectionView()
     {
@@ -37,22 +35,22 @@ class NewsController: UIViewController,PageNationDelegate,GetIDDelegate {
                                       "sessionid":"1",
                                       "page": String(m_pageCount),
                                       "pagesize":"8"]
-        MatterParsing.instance.getNewsList(url: "/getnews", param: params, resposneBlock: { responsedata , statuscode in
+        MatterParsing.instance.getLeaderList(url: "/getleadership", param: params, resposneBlock: { responsedata , statuscode in
             if(statuscode == 200){
-                let model = responsedata as! NewsModel
+                let model = responsedata as! LeaderModel
                 if((model.response.posts?.count)!>0){
-                    self.newsCollectionView.isHidden = false;
-                    self.lblNoRecord.isHidden = true
-                    self.dataSource = NewsDataSource.init(delegate: self,htmlDelgate: self)
+                    self.cvCollectionView.isHidden = false;
+                    //self.lblNoRecord.isHidden = true
+                    self.dataSource = LeaderDataSource.init(delegate: self,htmlDelgate: self)
                     self.m_NewsArray = self.m_NewsArray +  model.response.posts!
                     self.dataSource?.m_matterPostDetail = self.m_NewsArray
-                   self.dataSource?.m_matterTotalCount = model.response.count
-                    self.newsCollectionView.dataSource = self.dataSource
-                    self.newsCollectionView.delegate = self.dataSource
-                    self.newsCollectionView.reloadData()
+                    self.dataSource?.m_matterTotalCount = model.response.count
+                    self.cvCollectionView.dataSource = self.dataSource
+                    self.cvCollectionView.delegate = self.dataSource
+                    self.cvCollectionView.reloadData()
                 }else{
-                     self.newsCollectionView.isHidden = true;
-                     self.lblNoRecord.isHidden = false
+                    self.cvCollectionView.isHidden = true;
+                    //self.lblNoRecord.isHidden = false
                 }
             }
         })
@@ -61,10 +59,10 @@ class NewsController: UIViewController,PageNationDelegate,GetIDDelegate {
         SetUpCollectionView()
     }
     func GetSelectedRecevierId(receverid: String) {
-        let vc = self.storyboard?.instantiateViewController(withIdentifier: "NewsWebviewController") as! NewsWebviewController
-        vc.m_HtmlString = receverid
-        navigationController?.pushViewController(vc, animated: true)
         
+       let vc = self.storyboard?.instantiateViewController(withIdentifier: "LeaderWebViewController") as! LeaderWebViewController
+        vc.pdfurl = receverid
+        navigationController?.pushViewController(vc, animated: true)
     }
     /*
     // MARK: - Navigation

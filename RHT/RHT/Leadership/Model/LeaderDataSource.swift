@@ -1,48 +1,48 @@
 //
-//  NewsDataSource.swift
+//  LeaderDataSource.swift
 //  RHT
 //
-//  Created by kamal on 04/07/18.
+//  Created by kamal on 05/07/18.
 //  Copyright © 2018 rht. All rights reserved.
 //
 
 import UIKit
 
-class NewsDataSource: NSObject,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout {
-   
-    private let cellIdentifier = "NewsCollectionViewCell"
-    public var m_matterPostDetail:[posts]?
+class LeaderDataSource: NSObject ,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout{
+
+    private let cellIdentifier = "LeaderCollectionCell"
+    public var m_matterPostDetail:[Leaderposts]?
     public var m_matterTotalCount:Int?
     let m_pageNationDelgate:PageNationDelegate?
-    let m_HtmlString:GetIDDelegate
+    let m_PdfUrl:GetIDDelegate
     init(delegate:PageNationDelegate,htmlDelgate:GetIDDelegate) {
         m_pageNationDelgate = delegate
-        m_HtmlString = htmlDelgate
+        m_PdfUrl = htmlDelgate
     }
     
-   
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return (m_matterPostDetail?.count)!
     }
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellIdentifier, for: indexPath) as! NewsCollectionViewCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellIdentifier, for: indexPath) as! LeaderCollectionCell
         let data = m_matterPostDetail?[indexPath.row]
-        cell.SetUpView(newsData: data!)
+        cell.SetUpView(LeaderData: data!)
         return cell
     }
-
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         if !ShareData.isIpad(){
-             return CGSize(width: collectionView.frame.width-40, height: 114)
+            return CGSize(width: collectionView.frame.width-40, height: 104)
         }else{
-             return CGSize(width: collectionView.frame.width-40, height: 134)
+            return CGSize(width: collectionView.frame.width-40, height: 134)
         }
-       
+        
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let data = m_matterPostDetail?[indexPath.row]
-        m_HtmlString.GetSelectedRecevierId(receverid:(data?.description)!)
+        m_PdfUrl.GetSelectedRecevierId(receverid:(data?.pdfurl)!)
     }
     
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {

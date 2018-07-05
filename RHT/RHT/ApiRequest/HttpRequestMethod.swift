@@ -47,6 +47,12 @@ class HttpRequestMethod {
         request(AppConfig.sharedInstance.RHTDDevIp!+url, method: HTTPMethod.post, parameters: parameters, encoding: JSONEncoding.default, headers: headerWithContentType).responseData(completionHandler: {response in
             if (response.result.isSuccess){
                 SVProgressHUD.dismiss()
+//                do{
+//                        let oobj = try JSONSerialization.jsonObject(with: response.data!, options: JSONSerialization.ReadingOptions.mutableContainers)
+//                        print(oobj)
+//                } catch (let eror){
+//                    
+//                }
                 sucessResponseBlcok(response.data!,(response.response?.statusCode)!);
                 //do your json stuff
             } else if (response.result.isFailure) {

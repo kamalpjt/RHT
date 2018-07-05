@@ -8,11 +8,16 @@
 
 import UIKit
 
-class NewsWebviewController: UIViewController {
-
+class NewsWebviewController: UIViewController,UIWebViewDelegate {
+    @IBOutlet weak var wvNews: UIWebView!
+    var m_HtmlString:String?
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        wvNews.delegate = self
+        print(m_HtmlString!)
+        wvNews.loadHTMLString(m_HtmlString!, baseURL: nil)
+      //  wvNews.st
         // Do any additional setup after loading the view.
     }
 
@@ -20,7 +25,12 @@ class NewsWebviewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
+    func webViewDidStartLoad(_ webView: UIWebView) {
+        
+    }
+    func webViewDidFinishLoad(_ webView: UIWebView) {
+        
+    }
 
     /*
     // MARK: - Navigation

@@ -15,15 +15,13 @@ class NewsCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var lblDate: UILabel!
     
     
-    func SetUpView(newsData:NewsPost) -> Void {
+    func SetUpView(newsData:posts) -> Void {
         setupShadow()
         lblHeader.text = newsData.title!
-        lblDescription.text = newsData.description!
         lblDate.text = newsData.postdate!
-        //        lblmattername.text = matterData.matterid
-        //        lblSubName.text = matterData.name
-        //        lblDescription.text = matterData.description
-        
+         let str = newsData.description!.replacingOccurrences(of:"<[^>]+>" , with: "", options: .regularExpression, range: nil)
+        lblDescription.text = str
+        //print(str)
     }
     private func setupShadow() {
         self.contentView.layer.cornerRadius = 10
@@ -39,4 +37,5 @@ class NewsCollectionViewCell: UICollectionViewCell {
         self.layer.shadowPath = UIBezierPath(roundedRect:self.bounds, cornerRadius:self.contentView.layer.cornerRadius).cgPath
         
     }
+    
 }

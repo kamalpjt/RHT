@@ -33,6 +33,7 @@ class BaseViewController: UIViewController {
     }
     override func viewWillDisappear(_ animated: Bool) {
         RemoveKeyboardObserver()
+        SVProgressHUD.dismiss()
     }
     
     func  SetBackGroundColor(color: UIColor) -> Void {
