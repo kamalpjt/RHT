@@ -129,6 +129,7 @@ class CommunicationController: UIViewController,UICollectionViewDelegate,UISearc
         let modeldata = m_MattersDetail[indexPath.row]
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "CommunicationDetailController") as! CommunicationDetailController ;
         vc.m_matterType = "matters";
+        vc.m_matterid = modeldata.matterid!
         //vc.m_receverid = modeldata.id!
         navigationController?.pushViewController(vc, animated: true)
     }

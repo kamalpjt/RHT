@@ -23,6 +23,7 @@ class CommunicationDetailController: UIViewController,UITableViewDelegate,PageNa
     var dataDelegate:MasterDetailDelegate?
     var m_matterType:String = "";
     var m_receverid:String = "";
+    var m_matterid:String = "";
     var m_pageCount:Int = 0
     var m_matterArray:[Post] = []
     //MARK:- ViewcontrollerLifeCycle
@@ -65,7 +66,7 @@ class CommunicationDetailController: UIViewController,UITableViewDelegate,PageNa
                                       "user_type":UserDetail.Instance.user_type!,
                                       "posttype":m_matterType,
                                       "receiverid":m_receverid,
-                                      "matterid": ""]
+                                      "matterid": m_matterid]
         MatterParsing.instance.getCommunicationDetailList(url: "/getcommunication", param: params, resposneBlock: { responsedata , statuscode in
             if(statuscode == 200){
                 let model = responsedata as! MatterDetailModel
@@ -95,6 +96,9 @@ class CommunicationDetailController: UIViewController,UITableViewDelegate,PageNa
     func pageNationAction() {
         configureTableView()
     }
+    func GetPhotoArray(index: NSArray) {
+        
+    }
     func SetUpCollectionView()
     {
         
@@ -119,11 +123,17 @@ class CommunicationDetailController: UIViewController,UITableViewDelegate,PageNa
     }
     
     @objc func CommentAction(notification: Notification){
+       // let imgd  = notification.userInfo;
+        //let dfdf =  (UIButton)imgd!["Sender"]
+         let image = notification.userInfo?["Sender"] as? UIButton
+        let arrayphoto = self.m_matterArray[(image?.tag)!].photos;
         let VC = ImageListController()
+         VC.m_PhotosArray = arrayphoto
         navigationController?.pushViewController(VC, animated: true)
         
     }
     @objc func CommentListAction(notification: Notification){
+        
         let VC = ChatListController()
         navigationController?.pushViewController(VC, animated: true)
         

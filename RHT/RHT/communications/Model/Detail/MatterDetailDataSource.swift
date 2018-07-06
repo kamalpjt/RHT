@@ -8,8 +8,10 @@
 
 import UIKit
 
-protocol PageNationDelegate {
+@objc protocol PageNationDelegate {
     func pageNationAction()
+    @objc optional func GetPhotoArray(index:NSArray)
+    
 }
 
 class MatterDetailDataSource: NSObject,UITableViewDataSource,UITableViewDelegate {
@@ -33,6 +35,8 @@ class MatterDetailDataSource: NSObject,UITableViewDataSource,UITableViewDelegate
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier) as! MatterDetailCell
+        cell.butMoreButton.tag = indexPath.row
+        cell.butComment.tag = indexPath.row
         let data = m_matterPostDetail?[indexPath.row]
         cell.SetUpView(postData: data!)
         return cell

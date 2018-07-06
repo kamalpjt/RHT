@@ -9,7 +9,9 @@
 import Foundation
 import SDWebImage
 class MatterDetailCell: UITableViewCell {
+    @IBOutlet weak var butMoreButton: UIButton!
     
+    @IBOutlet weak var butComment: UIButton!
     @IBOutlet weak var vimages: UIView!
     @IBOutlet weak var lblDate: UILabel!
     @IBOutlet weak var lblDocument: UILabel!
