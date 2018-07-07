@@ -74,7 +74,7 @@ class CommunicationDetailController: UIViewController,UITableViewDelegate,PageNa
                     self.tblmatterDetail.isHidden = false;
                     self.lblNoRecordFound.isHidden = true;
                     
-                    self.dataSource = MatterDetailDataSource.init(delegate: self)
+                    self.dataSource = MatterDetailDataSource.init(delegate: self,tableViews: self.tblmatterDetail)
                     self.m_matterArray.append(contentsOf: (model.response?.posts)!)
                     self.dataSource?.m_matterPostDetail = self.m_matterArray
                     self.dataSource?.m_matterTotalCount = model.response?.count
@@ -93,8 +93,50 @@ class CommunicationDetailController: UIViewController,UITableViewDelegate,PageNa
         })
         
     }
+    //MARK:Common Funcation
+    func configureTableViewPageNation() -> Void{
+        tblmatterDetail.separatorStyle = .none
+        //tblmatterDetail.estimatedRowHeight = 150;
+        m_pageCount  = m_pageCount + 1
+        let params:[String:String] = ["id":UserDetail.Instance.id!,
+                                      "userid":UserDetail.Instance.userid!,
+                                      "sessionid":"1",
+                                      "page":String(m_pageCount),
+                                      "pagesize":"5",
+                                      "user_type":UserDetail.Instance.user_type!,
+                                      "posttype":m_matterType,
+                                      "receiverid":m_receverid,
+                                      "matterid": m_matterid]
+        MatterParsing.instance.getCommunicationDetailList(url: "/getcommunication", param: params, resposneBlock: { responsedata , statuscode in
+            if(statuscode == 200){
+                let model = responsedata as! MatterDetailModel
+                if((model.response?.posts?.count)!>0){
+                    self.tblmatterDetail.isHidden = false;
+                    self.lblNoRecordFound.isHidden = true;
+                    
+                  //  self.dataSource = MatterDetailDataSource.init(delegate: self)
+                    self.m_matterArray.append(contentsOf: (model.response?.posts)!)
+                    self.dataSource?.m_matterPostDetail = self.m_matterArray
+                    self.dataSource?.m_matterTotalCount = model.response?.count
+                    self.dataDelegate = MasterDetailDelegate()
+                    
+                   // self.tblmatterDetail.dataSource = self.dataSource
+                   // self.tblmatterDetail.delegate = self.dataSource
+                    self.tblmatterDetail.reloadData()
+                    
+                }else{
+                    self.tblmatterDetail.isHidden = true;
+                    self.lblNoRecordFound.isHidden = false;
+                    
+                }
+            }
+        })
+        
+    }
+
     func pageNationAction() {
-        configureTableView()
+       // configureTableView()
+        configureTableViewPageNation()
     }
     func GetPhotoArray(index: NSArray) {
         
@@ -133,8 +175,10 @@ class CommunicationDetailController: UIViewController,UITableViewDelegate,PageNa
         
     }
     @objc func CommentListAction(notification: Notification){
-        
+        let image = notification.userInfo?["Sender"] as? UIButton
+        let arrayid = self.m_matterArray[(image?.tag)!].id;
         let VC = ChatListController()
+        VC.m_postId = arrayid!
         navigationController?.pushViewController(VC, animated: true)
         
     }

@@ -26,7 +26,7 @@ class CommunicationController: UIViewController,UICollectionViewDelegate,UISearc
         vTop.layer.cornerRadius = 10;
         sbSearchMatter.layer.cornerRadius = 10;
         sbSearchMatter.layer.masksToBounds = false
-        ShowAndHideGeneral()
+       // ShowAndHideGeneral()
         
         // Do any additional setup after loading the view.
     }
@@ -119,9 +119,18 @@ class CommunicationController: UIViewController,UICollectionViewDelegate,UISearc
     
     @IBAction func generalAction(_ sender: Any) {
         
-        let vc = self.storyboard?.instantiateViewController(withIdentifier: "ClientListController") as! ClientListController ;
-        vc.matterType = "general";
-        navigationController?.pushViewController(vc, animated: true)
+        if(UserDetail.Instance.user_type != "customer"){
+            let vc = self.storyboard?.instantiateViewController(withIdentifier: "ClientListController") as! ClientListController ;
+            vc.matterType = "general";
+            navigationController?.pushViewController(vc, animated: true)
+        }else{
+            let vc = self.storyboard?.instantiateViewController(withIdentifier: "CommunicationDetailController") as! CommunicationDetailController ;
+            vc.m_matterType = "general";
+            vc.m_matterid = ""
+            vc.m_receverid = ""
+            navigationController?.pushViewController(vc, animated: true)
+        }
+       
         
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath)

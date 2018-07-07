@@ -19,12 +19,20 @@ class MatterDetailDataSource: NSObject,UITableViewDataSource,UITableViewDelegate
     private let cellIdentifier = "MatterDetailCell"
     public var m_matterPostDetail:[Post]?
     public var m_matterTotalCount:Int?
+    var m_tableView:UITableView?
     let m_pageNationDelgate:PageNationDelegate?
-    init(delegate:PageNationDelegate) {
+    init(delegate:PageNationDelegate,tableViews:UITableView) {
         m_pageNationDelgate = delegate
+        m_tableView = tableViews;
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return (m_matterPostDetail?.count)!
+        if(m_matterPostDetail != nil)
+        {
+            return (m_matterPostDetail?.count)!
+        }else{
+            return 0 ;
+        }
+        
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         
@@ -41,20 +49,17 @@ class MatterDetailDataSource: NSObject,UITableViewDataSource,UITableViewDelegate
         cell.SetUpView(postData: data!)
         return cell
     }
+    
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-        //scrollView.contentOffset.y
-       // print(scrollView.contentOffset.y)
-        if (scrollView.contentOffset.y >= (scrollView.contentSize.height - scrollView.frame.size.height)) {
-            //reach bottom
-            if(m_matterTotalCount != m_matterPostDetail?.count)
-            {
-                  print("Last row called")
-                m_pageNationDelgate?.pageNationAction()
-            }else{
-                 print("Last row completed")
-            }
+        var getLastRow =  m_tableView?.indexPathsForVisibleRows?.last
+        if(getLastRow?.row == ((m_matterPostDetail?.count)! - 1) && (m_matterPostDetail?.count)! < m_matterTotalCount!)
+        {
+            print("Called" + String((getLastRow?.row)! + 1))
+          //  print(m_matterTotalCount)
+           // print(m_matterPostDetail?.count)
+            m_pageNationDelgate?.pageNationAction()
         }
     }
     
-
+    
 }

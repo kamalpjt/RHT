@@ -12,7 +12,7 @@ class ImageListController: UIViewController {
     
     var svImageList = UIScrollView()
     var vContainer = UIView()
-    var m_PhotosArray:[Photos]?
+    var m_PhotosArray:[String]?
     //MARK:- ViewcontrollerLifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -68,17 +68,17 @@ class ImageListController: UIViewController {
     func AddImage() -> Void{
       //  let image = ["sample1","sample2","sample3","sample4","sample5"]
         let height =  UIScreen.main.bounds.size.height/2-64
-        var yvalue  = 0
+        var yvalue  = 1
         for index in 0...(m_PhotosArray?.count)!-1 {
             print("\(index) times 5 is \(index * 5)")
             let view = UIView()
             view.frame = CGRect(x: 0, y: CGFloat(yvalue), width: UIScreen.main.bounds.size.width, height: height)
             
             let imageview = UIImageView()
-            imageview.frame = CGRect(x: 0, y: CGFloat(0), width: UIScreen.main.bounds.size.width, height: height)
+            imageview.frame = CGRect(x: 5, y: CGFloat(5), width: UIScreen.main.bounds.size.width-10, height: height-5)
             print("sample"+String(index+1))
            // imageview.image = UIImage.init(named: "sample"+String(index+1))
-            imageview.sd_setImage(with: URL(string: m_PhotosArray![index].url!), placeholderImage: UIImage(named: "placeholder"))
+            imageview.sd_setImage(with: URL(string: m_PhotosArray![index]), placeholderImage: UIImage(named: "placeholder"))
             
             view.addSubview(imageview)
             self.svImageList.addSubview(view)

@@ -15,13 +15,15 @@ class ChatListController: UIViewController,UITextViewDelegate{
     var vTextContainer = UIView()
     var tvTextInPutContainer = UITextView()
     var  butSend = UIButton(type: UIButtonType.custom) as UIButton
-    var chatItem = [ChatModel]()
-    var dataSource:ChatTblSource?
-    var dataDelegate:ChatTblDelegate?
-    private let cellIdentifier = "ChatCell"
+    var chatItem = [CommetList]()
+    var dataSource:CommentTblSource?
+    var dataDelegate:ChatCommentDelegate?
+    private let cellIdentifier = "CommentCell"
     var frameheight:CGFloat?
     var frameheightKeyboard:CGFloat = 0.0;
     var vBottomConstrainr:NSLayoutConstraint?
+    var m_pageCount = 0
+    var m_postId:String?
     
     
     //MARK:- ViewcontrollerLifeCycle
@@ -41,6 +43,7 @@ class ChatListController: UIViewController,UITextViewDelegate{
         SetUpList()
         SetUpTextView()
         CloseKeyboard(bool: true)
+        SetUpCommentList()
     }
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
@@ -56,15 +59,15 @@ class ChatListController: UIViewController,UITextViewDelegate{
     func SetUpList()
     {
         let chat = ChatModel.init(chatMessage: "Hi", userName: "john", IsSender: true, date:"12/100/201",imageUrl: "" , mType: MessageType.text)
-        chatItem.append(chat)
-        tblCommentList.register(ChatCell.self, forCellReuseIdentifier: cellIdentifier)
-        self.dataSource = ChatTblSource()
-        self.dataDelegate = ChatTblDelegate()
-        self.dataSource?.chatItem = chatItem
-        self.dataDelegate?.chatItem = chatItem
-        tblCommentList.dataSource =  self.dataSource
-        tblCommentList.delegate =  self.dataDelegate
-        tblCommentList.reloadData()
+        //chatItem.append(chat)
+        tblCommentList.register(CommentCell.self, forCellReuseIdentifier: cellIdentifier)
+//        self.dataSource = CommentTblSource()
+//        self.dataDelegate = ChatCommentDelegate()
+//        self.dataSource?.chatItem = chatItem
+//        self.dataDelegate?.chatItem = chatItem
+//        tblCommentList.dataSource =  self.dataSource
+//        tblCommentList.delegate =  self.dataDelegate
+//        tblCommentList.reloadData()
         tblCommentList.tableFooterView = UIView(frame: .zero)
         tblCommentList.separatorStyle = .none
     }
@@ -87,6 +90,42 @@ class ChatListController: UIViewController,UITextViewDelegate{
         }
         tvTextInPutContainer.textContainer.lineBreakMode = NSLineBreakMode.byWordWrapping
         tvTextInPutContainer.textContainer.lineFragmentPadding = 0;
+    }
+    func SetUpCommentList()
+    {
+        m_pageCount  = m_pageCount + 1
+        let params:[String:String] = ["id":UserDetail.Instance.id!,
+                                      "userid":UserDetail.Instance.userid!,
+                                      "sessionid":"1",
+                                      "page": String(m_pageCount),
+                                      "user_type": UserDetail.Instance.user_type!,
+                                      "postid": m_postId!,
+                                      "pagesize":"10"]
+        MatterParsing.instance.getCommentList(url: "/getcomment", param: params, resposneBlock: { responsedata , statuscode in
+            if(statuscode == 200){
+                let model = responsedata as! CommentListModel
+                if((model.response.comments?.count)!>0){
+//                    self.cvCollectionView.isHidden = false;
+//                    //self.lblNoRecord.isHidden = true
+//                    self.dataSource = LeaderDataSource.init(delegate: self,htmlDelgate: self)
+//                    self.m_NewsArray = self.m_NewsArray +  model.response.posts!
+                      self.dataSource = CommentTblSource()
+                      self.dataDelegate = ChatCommentDelegate()
+                      self.dataSource?.chatItem = model.response.comments!;
+                      self.dataDelegate?.chatItem = model.response.comments!;
+                      self.dataSource?.m_TotalCount = model.response.count;
+                      self.tblCommentList.dataSource = self.dataSource;
+                      self.tblCommentList.delegate = self.dataDelegate;
+                      self.tblCommentList.reloadData()
+                    //self.cvt.dataSource = self.dataSource
+//                    self.cvCollectionView.delegate = self.dataSource
+//                    self.cvCollectionView.reloadData()
+                }else{
+                   // self.cvCollectionView.isHidden = true;
+                    //self.lblNoRecord.isHidden = false
+                }
+            }
+        })
     }
     func CloseKeyboard(bool:Bool) -> Void {
         if(bool){
@@ -256,8 +295,8 @@ class ChatListController: UIViewController,UITextViewDelegate{
     @objc func messageSendAction(sender:UIButton!) {
         if  tvTextInPutContainer.text.trimmingCharacters(in: .whitespacesAndNewlines).count>0{
          //   let value = chatItem[chatItem.count-1]
-            let items =  ChatModel.init(chatMessage: tvTextInPutContainer.text.trimmingCharacters(in: .whitespacesAndNewlines), userName:"Jack123456", IsSender: true, date: "12/03/1990",imageUrl: "", mType: MessageType.text);
-            chatItem.append(items)
+//            let items =  ChatModel.init(chatMessage: tvTextInPutContainer.text.trimmingCharacters(in: .whitespacesAndNewlines), userName:"Jack123456", IsSender: true, date: "12/03/1990",imageUrl: "", mType: MessageType.text);
+//            chatItem.append(items)
             // print(tvchatInput.text)
             tvTextInPutContainer.text = ""
             //self.dataSource = ChatTblSource(item: chatItem)

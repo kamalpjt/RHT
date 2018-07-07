@@ -33,35 +33,35 @@ struct DetailResponse: Codable {
 struct Post:Codable {
     let id, userid, matterid, title: String?
     let content: String?
-    let photos:[Photos]?
+    let photos:[String]?
     let attachment: [Attachment]?
-    let receiverid, userType, sendername, dateCreated: String?
+    let receiverid, user_type, sendername, date_created: String?
     let createddate: String?
-    let unreadcount: Int?
+    let unreadcommentcount: Int?
     init(json:[String:Any]) {
-        unreadcount = json["responseCode"] as? Int ?? 0
+        unreadcommentcount = json["unreadcommentcount"] as? Int ?? 0
         id = json["id"] as? String ?? ""
         userid = json["userid"] as? String ?? ""
         matterid = json["matterid"] as? String ?? ""
         title = json["title"] as? String ?? ""
         content = json["content"] as? String ?? ""
-        photos = [(json["photos"] as? Photos)!]
+        photos = json["photos"] as? [String] ?? []
         attachment = [(json["attachment"] as? Attachment)!]
-        receiverid = json["content"] as? String ?? ""
-        userType = json["content"] as? String ?? ""
-        sendername = json["content"] as? String ?? ""
-        dateCreated = json["content"] as? String ?? ""
-        createddate = json["content"] as? String ?? ""
+        receiverid = json["receiverid"] as? String ?? ""
+        user_type = json["user_type"] as? String ?? ""
+        sendername = json["sendername"] as? String ?? ""
+        date_created = json["date_created"] as? String ?? ""
+        createddate = json["createddate"] as? String ?? ""
     }
     
 }
-struct Photos:Codable {
-    let name,url:String?
-    init(json:[String:Any]) {
-        name = json["name"] as? String ?? ""
-        url = json["url"] as? String ?? ""
-    }
-}
+//struct Photos:Codable {
+//    let name,url:String?
+//    init(json:[String:Any]) {
+//        name = json["name"] as? String ?? ""
+//        url = json["url"] as? String ?? ""
+//    }
+//}
 struct Attachment:Codable {
     let name,url:String?
     init(json:[String:Any]) {
