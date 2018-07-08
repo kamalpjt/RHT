@@ -78,7 +78,7 @@ class RegisterViewController: BaseViewController ,UITextFieldDelegate{
             let params:[String:String] = ["email":txtEmail.text!,"password":txtPassowrd.text!,
                                           "first_name":txtFirstName.text!,"last_name":txtLastName.text!,
                                           "phone":txtPhoneNumber.text!]
-            LoginParsing.instance.getLoginDetail(url: "/signup", param: params, resposneBlock: { response , statuscode in
+            LoginParsing.instance.getLoginDetail(url: "/signup",withLoader:true, param: params, resposneBlock: { response , statuscode in
                 if(statuscode == 200){
                     let model = response as! UserDetailModel
                     do {

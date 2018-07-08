@@ -35,7 +35,7 @@ class LeadershipController: UIViewController,GetIDDelegate,PageNationDelegate {
                                       "sessionid":"1",
                                       "page": String(m_pageCount),
                                       "pagesize":"8"]
-        MatterParsing.instance.getLeaderList(url: "/getleadership", param: params, resposneBlock: { responsedata , statuscode in
+        MatterParsing.instance.getLeaderList(url: "/getleadership",withLoader: true, param: params, resposneBlock: { responsedata , statuscode in
             if(statuscode == 200){
                 let model = responsedata as! LeaderModel
                 if((model.response.posts?.count)!>0){

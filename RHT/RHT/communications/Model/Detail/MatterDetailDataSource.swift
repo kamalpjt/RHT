@@ -11,7 +11,7 @@ import UIKit
 @objc protocol PageNationDelegate {
     func pageNationAction()
     @objc optional func GetPhotoArray(index:NSArray)
-    
+    @objc optional func DeleteTableRow(indexPath:IndexPath)
 }
 
 class MatterDetailDataSource: NSObject,UITableViewDataSource,UITableViewDelegate {
@@ -49,7 +49,12 @@ class MatterDetailDataSource: NSObject,UITableViewDataSource,UITableViewDelegate
         cell.SetUpView(postData: data!)
         return cell
     }
-    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if(editingStyle == .delete)
+        {
+            m_pageNationDelgate?.DeleteTableRow!(indexPath: indexPath)
+        }
+    }
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         var getLastRow =  m_tableView?.indexPathsForVisibleRows?.last
         if(getLastRow?.row == ((m_matterPostDetail?.count)! - 1) && (m_matterPostDetail?.count)! < m_matterTotalCount!)

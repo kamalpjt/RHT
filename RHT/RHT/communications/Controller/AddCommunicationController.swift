@@ -80,7 +80,7 @@ class AddCommunicationController: BaseViewController,UICollectionViewDelegateFlo
                                            "user_type":UserDetail.Instance.user_type! ,
                                            "id":UserDetail.Instance.id!,
                                            "sendername":UserDetail.Instance.name!]
-                CommunicationParsing.instance.getResponseDetail(url: "/postcommunication", param: params, resposneBlock: { response , statuscode in
+                CommunicationParsing.instance.getResponseDetail(url: "/postcommunication",withLoader:true, param: params, resposneBlock: { response , statuscode in
                     if(statuscode == 200){
                         let model = response as! AddModel
                         self.tvDescription.text = ""

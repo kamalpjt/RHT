@@ -37,7 +37,7 @@ class NewsController: UIViewController,PageNationDelegate,GetIDDelegate {
                                       "sessionid":"1",
                                       "page": String(m_pageCount),
                                       "pagesize":"8"]
-        MatterParsing.instance.getNewsList(url: "/getnews", param: params, resposneBlock: { responsedata , statuscode in
+        MatterParsing.instance.getNewsList(url: "/getnews",withLoader: true, param: params, resposneBlock: { responsedata , statuscode in
             if(statuscode == 200){
                 let model = responsedata as! NewsModel
                 if((model.response.posts?.count)!>0){

@@ -9,9 +9,9 @@
 import Foundation
 class CommunicationParsing {
     static let instance = CommunicationParsing()
-    func getResponseDetail (url:String,param:[String:Any],resposneBlock:@escaping(parsedJsonData)) -> Void{
+    func getResponseDetail (url:String,withLoader:Bool,param:[String:Any],resposneBlock:@escaping(parsedJsonData)) -> Void{
         
-        HttpRequestMethod.sharedInstance.postMethod(url: url, parameters: param, sucessResponseBlcok: {sucessresponse, statuscode in
+        HttpRequestMethod.sharedInstance.postMethod(url: url,withLoader:withLoader, parameters: param, sucessResponseBlcok: {sucessresponse, statuscode in
             do {
                 if(statuscode==200){
                     let model = try JSONDecoder().decode(AddModel.self, from: sucessresponse)

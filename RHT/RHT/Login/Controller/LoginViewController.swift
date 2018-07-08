@@ -177,7 +177,7 @@ class LoginViewController: BaseViewController,UITextFieldDelegate,GIDSignInDeleg
         if(Vaildation()){
             let params:[String:String] = ["name":txtemail.text!,"password":txtPassowrd.text!]
             
-            LoginParsing.instance.getLoginDetail(url: "/login", param: params, resposneBlock: { response , statuscode in
+            LoginParsing.instance.getLoginDetail(url: "/login",withLoader:true, param: params, resposneBlock: { response , statuscode in
                 if(statuscode == 200){
                     let model = response as! UserDetailModel
                     do {

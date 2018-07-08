@@ -40,9 +40,11 @@ class HttpRequestMethod {
             }
         }
     }
-    func postMethod(url:String,parameters:[String:Any],sucessResponseBlcok:@escaping (jsonResponseSucessBlock),failureResponseBlcok:@escaping (jsonResponseFailureBlock)) -> Void{
+    func postMethod(url:String,withLoader:Bool,parameters:[String:Any],sucessResponseBlcok:@escaping (jsonResponseSucessBlock),failureResponseBlcok:@escaping (jsonResponseFailureBlock)) -> Void{
+        if withLoader {
+            SVProgressHUD.show()
+        }
         
-        SVProgressHUD.show()
         let headerWithContentType = ["content-type":"application/json"]
         request(AppConfig.sharedInstance.RHTDDevIp!+url, method: HTTPMethod.post, parameters: parameters, encoding: JSONEncoding.default, headers: headerWithContentType).responseData(completionHandler: {response in
             if (response.result.isSuccess){

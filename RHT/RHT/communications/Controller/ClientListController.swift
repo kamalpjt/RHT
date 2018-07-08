@@ -33,7 +33,7 @@ class ClientListController: UIViewController,UICollectionViewDelegate,UISearchBa
     {
         let params:[String:String] = ["id":UserDetail.Instance.id!,"userid":UserDetail.Instance.userid!,
                                       "sessionid":"1","page":"1","pagesize":"10","user_type":UserDetail.Instance.user_type!]
-        MatterParsing.instance.getClientList(url: "/getclientlist", param: params, resposneBlock: { responsedata , statuscode in
+        MatterParsing.instance.getClientList(url: "/getclientlist",withLoader: true, param: params, resposneBlock: { responsedata , statuscode in
             if(statuscode == 200){
                 let model = responsedata as! ClientModel
                 if(model.response.userlist.count>0){
@@ -53,7 +53,7 @@ class ClientListController: UIViewController,UICollectionViewDelegate,UISearchBa
     func MatterSearch(text:String) -> Void{
         let params:[String:String] = ["id":UserDetail.Instance.id!,"userid":UserDetail.Instance.userid!,
                             "sessionid":"1","page":"1","pagesize":"10","user_type":UserDetail.Instance.user_type!,"keyword":text]
-        MatterParsing.instance.getClientList(url: "/getclientlist", param: params, resposneBlock: { responsedata , statuscode in
+        MatterParsing.instance.getClientList(url: "/getclientlist",withLoader: true, param: params, resposneBlock: { responsedata , statuscode in
             if(statuscode == 200){
                 let model = responsedata as! ClientModel
                 if(model.response.userlist.count>0){

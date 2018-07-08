@@ -10,7 +10,7 @@ import UIKit
 
 
 
-class CommunicationDetailController: UIViewController,UITableViewDelegate,PageNationDelegate {
+class CommunicationDetailController: UIViewController,UITableViewDelegate,PageNationDelegate,UpdateApiDelegate {
    
     
     
@@ -25,6 +25,7 @@ class CommunicationDetailController: UIViewController,UITableViewDelegate,PageNa
     var m_receverid:String = "";
     var m_matterid:String = "";
     var m_pageCount:Int = 0
+    var m_deleteCount:Int = 0
     var m_matterArray:[Post] = []
     //MARK:- ViewcontrollerLifeCycle
     override func viewDidLoad() {
@@ -38,7 +39,7 @@ class CommunicationDetailController: UIViewController,UITableViewDelegate,PageNa
         
         // Do any additional setup after loading the view.
         //tblmatterDetail.contentInset = UIEdgeInsets.init(top: 10, left: 0, bottom: 0, right: 0);
-        configureTableView()
+        configureTableView(WithLoader: true)
         navigationItem.rightBarButtonItems = [plusButton()]
         
     }
@@ -54,7 +55,7 @@ class CommunicationDetailController: UIViewController,UITableViewDelegate,PageNa
         NotificationCenter.default.removeObserver(self, name: Notification.Name(AppConstant.sharedInstance.commentListAction), object: nil)
     }
     //MARK:Common Funcation
-    func configureTableView() -> Void{
+    func configureTableView(WithLoader:Bool) -> Void{
         tblmatterDetail.separatorStyle = .none
         //tblmatterDetail.estimatedRowHeight = 150;
         m_pageCount  = m_pageCount + 1
@@ -67,7 +68,7 @@ class CommunicationDetailController: UIViewController,UITableViewDelegate,PageNa
                                       "posttype":m_matterType,
                                       "receiverid":m_receverid,
                                       "matterid": m_matterid]
-        MatterParsing.instance.getCommunicationDetailList(url: "/getcommunication", param: params, resposneBlock: { responsedata , statuscode in
+        MatterParsing.instance.getCommunicationDetailList(url: "/getcommunication",withLoader:WithLoader, param: params, resposneBlock: { responsedata , statuscode in
             if(statuscode == 200){
                 let model = responsedata as! MatterDetailModel
                 if((model.response?.posts?.count)!>0){
@@ -107,7 +108,7 @@ class CommunicationDetailController: UIViewController,UITableViewDelegate,PageNa
                                       "posttype":m_matterType,
                                       "receiverid":m_receverid,
                                       "matterid": m_matterid]
-        MatterParsing.instance.getCommunicationDetailList(url: "/getcommunication", param: params, resposneBlock: { responsedata , statuscode in
+        MatterParsing.instance.getCommunicationDetailList(url: "/getcommunication",withLoader: true, param: params, resposneBlock: { responsedata , statuscode in
             if(statuscode == 200){
                 let model = responsedata as! MatterDetailModel
                 if((model.response?.posts?.count)!>0){
@@ -118,7 +119,7 @@ class CommunicationDetailController: UIViewController,UITableViewDelegate,PageNa
                     self.m_matterArray.append(contentsOf: (model.response?.posts)!)
                     self.dataSource?.m_matterPostDetail = self.m_matterArray
                     self.dataSource?.m_matterTotalCount = model.response?.count
-                    self.dataDelegate = MasterDetailDelegate()
+                   // self.dataDelegate = MasterDetailDelegate()
                     
                    // self.tblmatterDetail.dataSource = self.dataSource
                    // self.tblmatterDetail.delegate = self.dataSource
@@ -141,8 +142,34 @@ class CommunicationDetailController: UIViewController,UITableViewDelegate,PageNa
     func GetPhotoArray(index: NSArray) {
         
     }
-    func SetUpCollectionView()
+    func DeleteTableRow(indexPath: IndexPath) {
+        UIView.performWithoutAnimation {
+           // m_deleteCount = m_deleteCount + 1
+            let object = self.m_matterArray[indexPath.row]
+            self.m_matterArray.remove(at: indexPath.row)
+            self.dataSource?.m_matterPostDetail?.remove(at: indexPath.row)
+            let count = (self.dataSource?.m_matterTotalCount)! - 1
+            self.dataSource?.m_matterTotalCount?  = count
+            tblmatterDetail.deleteRows(at: [indexPath], with: UITableViewRowAnimation.fade)
+            let param:[String:String] = ["id":UserDetail.Instance.id!,
+                                         "userid":UserDetail.Instance.userid!,
+                                         "postid":object.id!,
+                                         "posttype":m_matterType,
+                                         "sessionid":"1"]
+           DeleteRow(params: param)
+         
+        }
+      
+    }
+    func DeleteRow(params:[String:String])
     {
+        MatterParsing.instance.deleteCommunicationPost(url: "/deletepost",withLoader: true, param: params, resposneBlock: { responsedata , statuscode in
+            if(statuscode == 200){
+                let model = responsedata as! CommentPostModel
+                print(model.response.msg!)
+                
+            }
+        })
         
     }
     func plusButton() -> UIBarButtonItem{
@@ -178,11 +205,16 @@ class CommunicationDetailController: UIViewController,UITableViewDelegate,PageNa
         let image = notification.userInfo?["Sender"] as? UIButton
         let arrayid = self.m_matterArray[(image?.tag)!].id;
         let VC = ChatListController()
+        VC.m_updateApiDelegate = self
         VC.m_postId = arrayid!
         navigationController?.pushViewController(VC, animated: true)
         
     }
-    
+    func UPdateApi() {
+        m_pageCount = 0;
+        self.m_matterArray.removeAll()
+        configureTableView(WithLoader:false)
+    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

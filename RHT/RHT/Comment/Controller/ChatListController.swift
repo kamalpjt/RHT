@@ -7,7 +7,10 @@
 //
 
 import UIKit
-
+protocol UpdateApiDelegate {
+    
+    func UPdateApi()
+}
 class ChatListController: UIViewController,UITextViewDelegate{
     
     var vContainer = UIView()
@@ -15,6 +18,7 @@ class ChatListController: UIViewController,UITextViewDelegate{
     var vTextContainer = UIView()
     var tvTextInPutContainer = UITextView()
     var  butSend = UIButton(type: UIButtonType.custom) as UIButton
+  //  var m_CommentArray = [CommetList]
     var chatItem = [CommetList]()
     var dataSource:CommentTblSource?
     var dataDelegate:ChatCommentDelegate?
@@ -24,6 +28,7 @@ class ChatListController: UIViewController,UITextViewDelegate{
     var vBottomConstrainr:NSLayoutConstraint?
     var m_pageCount = 0
     var m_postId:String?
+    var m_updateApiDelegate:UpdateApiDelegate?
     
     
     //MARK:- ViewcontrollerLifeCycle
@@ -100,8 +105,8 @@ class ChatListController: UIViewController,UITextViewDelegate{
                                       "page": String(m_pageCount),
                                       "user_type": UserDetail.Instance.user_type!,
                                       "postid": m_postId!,
-                                      "pagesize":"10"]
-        MatterParsing.instance.getCommentList(url: "/getcomment", param: params, resposneBlock: { responsedata , statuscode in
+                                      "pagesize":"1000000"]
+        MatterParsing.instance.getCommentList(url: "/getcomment",withLoader: true, param: params, resposneBlock: { responsedata , statuscode in
             if(statuscode == 200){
                 let model = responsedata as! CommentListModel
                 if((model.response.comments?.count)!>0){
@@ -111,8 +116,10 @@ class ChatListController: UIViewController,UITextViewDelegate{
 //                    self.m_NewsArray = self.m_NewsArray +  model.response.posts!
                       self.dataSource = CommentTblSource()
                       self.dataDelegate = ChatCommentDelegate()
-                      self.dataSource?.chatItem = model.response.comments!;
-                      self.dataDelegate?.chatItem = model.response.comments!;
+                       self.chatItem = self.chatItem + model.response.comments!
+                    
+                      self.dataSource?.chatItem = self.chatItem;
+                      self.dataDelegate?.chatItem = self.chatItem
                       self.dataSource?.m_TotalCount = model.response.count;
                       self.tblCommentList.dataSource = self.dataSource;
                       self.tblCommentList.delegate = self.dataDelegate;
@@ -294,20 +301,46 @@ class ChatListController: UIViewController,UITextViewDelegate{
     }
     @objc func messageSendAction(sender:UIButton!) {
         if  tvTextInPutContainer.text.trimmingCharacters(in: .whitespacesAndNewlines).count>0{
-         //   let value = chatItem[chatItem.count-1]
-//            let items =  ChatModel.init(chatMessage: tvTextInPutContainer.text.trimmingCharacters(in: .whitespacesAndNewlines), userName:"Jack123456", IsSender: true, date: "12/03/1990",imageUrl: "", mType: MessageType.text);
-//            chatItem.append(items)
-            // print(tvchatInput.text)
-            tvTextInPutContainer.text = ""
-            //self.dataSource = ChatTblSource(item: chatItem)
-            //cvChat.dataSource = dataSource
-            UIView.performWithoutAnimation {
-                self.dataSource?.chatItem = chatItem
-                self.dataDelegate?.chatItem = chatItem
-                let index = IndexPath(item: chatItem.count-1, section: 0)
-                tblCommentList.insertRows(at: [index], with: UITableViewRowAnimation.fade)
-                tblCommentList.scrollToRow(at: index, at: UITableViewScrollPosition.bottom, animated: false)
+            let commmentText =    tvTextInPutContainer.text.trimmingCharacters(in: .whitespacesAndNewlines)
+            let commentdata:[String:Any] = ["comment":commmentText ,"sendername":UserDetail.Instance.name ?? "","createddate":"12/34/1212" ]
+            chatItem.append(CommetList.init(json:commentdata ))
+             tvTextInPutContainer.text = ""
+            let param:[String:String] = ["id":UserDetail.Instance.id!,
+                                         "userid":UserDetail.Instance.userid!,
+                                         "comment":commmentText,
+                                         "postid":m_postId!,
+                                         "user_type":UserDetail.Instance.user_type!,
+                                         "sendername":UserDetail.Instance.name!]
+            if(chatItem.count>1)
+            {
+                UIView.performWithoutAnimation {
+                    self.dataSource?.chatItem = chatItem
+                    self.dataDelegate?.chatItem = chatItem
+                    let index = IndexPath(item: chatItem.count-1, section: 0)
+                    tblCommentList.insertRows(at: [index], with: UITableViewRowAnimation.fade)
+                    tblCommentList.scrollToRow(at: index, at: UITableViewScrollPosition.bottom, animated: false)
+                }
+                
+            }else{
+                self.dataSource = CommentTblSource()
+                self.dataDelegate = ChatCommentDelegate()
+               // self.chatItem = self.chatItem + model.response.comments!
+                self.dataSource?.chatItem = self.chatItem;
+                self.dataDelegate?.chatItem = self.chatItem
+                self.dataSource?.m_TotalCount = self.chatItem.count
+                self.tblCommentList.dataSource = self.dataSource;
+                self.tblCommentList.delegate = self.dataDelegate;
+                self.tblCommentList.reloadData()
             }
+           
+            MatterParsing.instance.addCommentPost(url: "/postcomment",withLoader: true, param: param, resposneBlock: { responsedata , statuscode in
+                if(statuscode == 200){
+                    let model = responsedata as! CommentPostModel
+                    print(model.response.msg!)
+                    self.m_updateApiDelegate?.UPdateApi()
+                    
+                }
+            })
         }
         
         

@@ -48,7 +48,7 @@ class CommunicationController: UIViewController,UICollectionViewDelegate,UISearc
         let params:[String:String] = ["id":UserDetail.Instance.id!,"userid":UserDetail.Instance.userid!,
                                       "sessionid":"1","page":"1","pagesize":"10","user_type":UserDetail.Instance.user_type!,
                                       "posttype":"general","matterid": ""]
-        MatterParsing.instance.getMatterList(url: "/getmatters", param: params, resposneBlock: { responsedata , statuscode in
+        MatterParsing.instance.getMatterList(url: "/getmatters",withLoader: true, param: params, resposneBlock: { responsedata , statuscode in
             if(statuscode == 200){
                 let model = responsedata as! CommunicationModel
                 self.m_MattersDetail = model.response.matters
@@ -71,7 +71,7 @@ class CommunicationController: UIViewController,UICollectionViewDelegate,UISearc
         let params:[String:String] = ["id":UserDetail.Instance.id!,"userid":UserDetail.Instance.userid!,
                                       "sessionid":"1","page":"1","pagesize":"10","user_type":UserDetail.Instance.user_type!,
                                       "posttype":"general","matterid": "" ,"keyword":text]
-        MatterParsing.instance.getMatterList(url: "/getmatters", param: params, resposneBlock: { responsedata , statuscode in
+        MatterParsing.instance.getMatterList(url: "/getmatters",withLoader: true, param: params, resposneBlock: { responsedata , statuscode in
             if(statuscode == 200){
                 let model = responsedata as! CommunicationModel
                 if(model.response.matters.count>0){

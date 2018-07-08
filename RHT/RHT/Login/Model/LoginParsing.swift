@@ -11,9 +11,9 @@ typealias parsedJsonData = (Any ,Int) -> Void
 class LoginParsing {
     
     static let instance = LoginParsing()
-    func getLoginDetail (url:String,param:[String:String],resposneBlock:@escaping(parsedJsonData)) -> Void{
+    func getLoginDetail (url:String,withLoader:Bool,param:[String:String],resposneBlock:@escaping(parsedJsonData)) -> Void{
         
-        HttpRequestMethod.sharedInstance.postMethod(url: url, parameters: param, sucessResponseBlcok: {sucessresponse, statuscode in
+        HttpRequestMethod.sharedInstance.postMethod(url: url,withLoader:withLoader, parameters: param, sucessResponseBlcok: {sucessresponse, statuscode in
             do {
                 if(statuscode==200){
                     let login = try JSONDecoder().decode(UserDetailModel.self, from: sucessresponse)

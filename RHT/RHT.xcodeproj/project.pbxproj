@@ -32,6 +32,7 @@
 		8A058E1820F1288400DF0FD0 /* CommentTblSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A058E1720F1288400DF0FD0 /* CommentTblSource.swift */; };
 		8A058E1A20F12E4C00DF0FD0 /* CommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A058E1920F12E4C00DF0FD0 /* CommentCell.swift */; };
 		8A058E1C20F1471300DF0FD0 /* ChatCommentDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A058E1B20F1471300DF0FD0 /* ChatCommentDelegate.swift */; };
+		8A073A1420F1D90E006C4D73 /* CommentPostModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A073A1320F1D90E006C4D73 /* CommentPostModel.swift */; };
 		8A08AA1620A32F0000C3B6A8 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A08AA1520A32F0000C3B6A8 /* ChatViewController.swift */; };
 		8A20477020BD506E006ED5AA /* CSSwiftApiHttpRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A20476F20BD506E006ED5AA /* CSSwiftApiHttpRequest.swift */; };
 		8A2413CB20C904D700033056 /* ImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A2413CA20C904D700033056 /* ImageView.swift */; };
@@ -146,6 +147,7 @@
 		8A058E1720F1288400DF0FD0 /* CommentTblSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentTblSource.swift; sourceTree = "<group>"; };
 		8A058E1920F12E4C00DF0FD0 /* CommentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentCell.swift; sourceTree = "<group>"; };
 		8A058E1B20F1471300DF0FD0 /* ChatCommentDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatCommentDelegate.swift; sourceTree = "<group>"; };
+		8A073A1320F1D90E006C4D73 /* CommentPostModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentPostModel.swift; sourceTree = "<group>"; };
 		8A08AA1520A32F0000C3B6A8 /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		8A20476F20BD506E006ED5AA /* CSSwiftApiHttpRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CSSwiftApiHttpRequest.swift; sourceTree = "<group>"; };
 		8A2413CA20C904D700033056 /* ImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageView.swift; sourceTree = "<group>"; };
@@ -374,6 +376,7 @@
 				8A058E1B20F1471300DF0FD0 /* ChatCommentDelegate.swift */,
 				8A058E1720F1288400DF0FD0 /* CommentTblSource.swift */,
 				8A058E1320F09E2E00DF0FD0 /* CommentListModel.swift */,
+				8A073A1320F1D90E006C4D73 /* CommentPostModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1002,6 +1005,7 @@
 				8A01B5F420B1396300096FBE /* ImageChatcell.swift in Sources */,
 				8ADC021520AEB85500EE03DA /* DesignableButon.swift in Sources */,
 				8A058E1C20F1471300DF0FD0 /* ChatCommentDelegate.swift in Sources */,
+				8A073A1420F1D90E006C4D73 /* CommentPostModel.swift in Sources */,
 				8A01779120DA126900F680CF /* AwsImage.swift in Sources */,
 				8A0114E620E87B560097A23D /* CommunicationModel.swift in Sources */,
 				8A03582E20ECB7F800D7F3A5 /* NewsCollectionViewCell.swift in Sources */,
