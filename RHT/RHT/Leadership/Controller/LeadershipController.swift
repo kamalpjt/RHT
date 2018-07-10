@@ -8,10 +8,8 @@
 
 import UIKit
 import SafariServices
-class LeadershipController: UIViewController,GetIDDelegate,PageNationDelegate {
+class LeadershipController: UIViewController,PageNationDelegate,LeaderShipSelectionDelegate {
     
-    
-
     @IBOutlet weak var cvCollectionView: UICollectionView!
     var dataSource:LeaderDataSource?
     var m_NewsArray:[Leaderposts] = []
@@ -58,12 +56,13 @@ class LeadershipController: UIViewController,GetIDDelegate,PageNationDelegate {
     func pageNationAction() {
         SetUpCollectionView()
     }
-    func GetSelectedRecevierId(receverid: String) {
+    func GetSelectedRowDetail(pdfUrl: String, indexPath: IndexPath) {
         
-       let vc = self.storyboard?.instantiateViewController(withIdentifier: "LeaderWebViewController") as! LeaderWebViewController
-        vc.pdfurl = receverid
+        let vc = self.storyboard?.instantiateViewController(withIdentifier: "LeaderWebViewController") as! LeaderWebViewController
+        vc.pdfurl = pdfUrl
         navigationController?.pushViewController(vc, animated: true)
     }
+    
     /*
     // MARK: - Navigation
 

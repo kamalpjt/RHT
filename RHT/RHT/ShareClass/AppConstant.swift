@@ -17,6 +17,7 @@ class AppConstant  {
     let IMAGEBUCKETNAME = "rhtapp"
     let PDFEBUCKETNAME  = "rhtapp-pdf"
     let CONTENTTYPEIMAGE = "image/jpeg"
+    let LOCALPDFFOLDER = "/RHTPDf"
     //Chat constanct
     var chatItem = [ChatModel]()
     var userDetails = UserDetail.self
@@ -30,6 +31,7 @@ class AppConstant  {
     //MARK:-POST Notfication
     let commentListAction = "commentListAction"
     let SELECTEDINDEXPATH = "selectedindexpath"
+    let COMMONPARAM:[String:String] = ["DeviceType":"ios"]
     
     
 }

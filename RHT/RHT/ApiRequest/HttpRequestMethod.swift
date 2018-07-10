@@ -104,4 +104,10 @@ class HttpRequestMethod {
     func deleteMethod(url:String,Parameter:[String:String]) -> Void{
         
     }
+    func downloadFile(url:String) -> Void{
+        
+        download(URLRequestConvertible., to: <#T##DownloadRequest.DownloadFileDestination?##DownloadRequest.DownloadFileDestination?##(URL, HTTPURLResponse) -> (destinationURL: URL, options: DownloadRequest.DownloadOptions)#>).downloadProgress { (bytes) in
+            <#code#>
+        }
+    }
 }

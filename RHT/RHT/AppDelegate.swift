@@ -40,6 +40,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //ConfigAWS
         ConfigAws()
         CheckPhotoAutorizsation()
+        createPdfFolder()
         self.window?.makeKeyAndVisible()
          
         return true
@@ -75,6 +76,27 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     func CheckPhotoAutorizsation() -> Void {
          PHPhotoLibrary.requestAuthorization { (status) in
+        }
+    }
+    private func createPdfFolder() {
+        // path to documents directory
+        let documentDirectoryPath = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first
+        if let documentDirectoryPath = documentDirectoryPath {
+            // create the custom folder path
+            let imagesDirectoryPath = documentDirectoryPath.appending(AppConstant.sharedInstance.LOCALPDFFOLDER)
+            let fileManager = FileManager.default
+            if !fileManager.fileExists(atPath: imagesDirectoryPath) {
+                do {
+                    try fileManager.createDirectory(atPath: imagesDirectoryPath,
+                                                    withIntermediateDirectories: false,
+                                                    attributes: nil)
+                } catch {
+                    print("Error creating images folder in documents dir: \(error)")
+                }
+            }else{
+                 print("FilePath:" + imagesDirectoryPath)
+            }
+           
         }
     }
     func applicationWillResignActive(_ application: UIApplication) {

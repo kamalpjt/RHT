@@ -7,6 +7,9 @@
 //
 
 import UIKit
+protocol LeaderShipSelectionDelegate {
+    func GetSelectedRowDetail(pdfUrl:String,indexPath:IndexPath)
+}
 
 class LeaderDataSource: NSObject ,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout{
 
@@ -14,8 +17,8 @@ class LeaderDataSource: NSObject ,UICollectionViewDataSource,UICollectionViewDel
     public var m_matterPostDetail:[Leaderposts]?
     public var m_matterTotalCount:Int?
     let m_pageNationDelgate:PageNationDelegate?
-    let m_PdfUrl:GetIDDelegate
-    init(delegate:PageNationDelegate,htmlDelgate:GetIDDelegate) {
+    let m_PdfUrl:LeaderShipSelectionDelegate?
+    init(delegate:PageNationDelegate,htmlDelgate:LeaderShipSelectionDelegate) {
         m_pageNationDelgate = delegate
         m_PdfUrl = htmlDelgate
     }
@@ -42,7 +45,8 @@ class LeaderDataSource: NSObject ,UICollectionViewDataSource,UICollectionViewDel
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let data = m_matterPostDetail?[indexPath.row]
-        m_PdfUrl.GetSelectedRecevierId(receverid:(data?.pdfurl)!)
+        m_PdfUrl?.GetSelectedRowDetail(pdfUrl:(data?.pdfurl)! , indexPath: indexPath)
+       // m_PdfUrl.GetSelectedRecevierId(receverid:(data?.pdfurl)!)
     }
     
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {

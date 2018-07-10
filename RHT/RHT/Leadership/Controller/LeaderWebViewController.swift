@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import Alamofire
 class LeaderWebViewController: BaseViewController,UIWebViewDelegate {
     @IBOutlet weak var wvPdfWebView: UIWebView!
     var pdfurl:String?
@@ -18,6 +18,7 @@ class LeaderWebViewController: BaseViewController,UIWebViewDelegate {
         //wvPdfWebView.loadRequest(URLRequest(url: URL(string:pdfurl!)!))
         //wvPdfWebView.request?.cachePolicy = .returnCacheDataElseLoad
 
+        
         let urls = URL(string:pdfurl!)!
         var urlRequest = URLRequest(url: urls)
         urlRequest.cachePolicy = .reloadIgnoringLocalAndRemoteCacheData
