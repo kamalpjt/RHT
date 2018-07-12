@@ -20,10 +20,13 @@ class MatterDetailDataSource: NSObject,UITableViewDataSource,UITableViewDelegate
     public var m_matterPostDetail:[Post]?
     public var m_matterTotalCount:Int?
     var m_tableView:UITableView?
+    public var m_announce:Bool?
     let m_pageNationDelgate:PageNationDelegate?
-    init(delegate:PageNationDelegate,tableViews:UITableView) {
+  
+    init(delegate:PageNationDelegate,tableViews:UITableView ,fromAnnoune:Bool) {
         m_pageNationDelgate = delegate
         m_tableView = tableViews;
+        m_announce = fromAnnoune
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if(m_matterPostDetail != nil)
@@ -46,7 +49,7 @@ class MatterDetailDataSource: NSObject,UITableViewDataSource,UITableViewDelegate
         cell.butMoreButton.tag = indexPath.row
         cell.butComment.tag = indexPath.row
         let data = m_matterPostDetail?[indexPath.row]
-        cell.SetUpView(postData: data!)
+        cell.SetUpView(postData: data! ,fromAnnoune: m_announce!)
         return cell
     }
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {

@@ -27,6 +27,7 @@ class CommunicationDetailController: UIViewController,UITableViewDelegate,PageNa
     var m_pageCount:Int = 0
     var m_deleteCount:Int = 0
     var m_matterArray:[Post] = []
+    var m_FromAnnocument = false
     //MARK:- ViewcontrollerLifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -58,6 +59,12 @@ class CommunicationDetailController: UIViewController,UITableViewDelegate,PageNa
     func configureTableView(WithLoader:Bool) -> Void{
         tblmatterDetail.separatorStyle = .none
         //tblmatterDetail.estimatedRowHeight = 150;
+        var url:String?
+        if (m_FromAnnocument){
+            url = "/getannouncement"
+        }else{
+            url = "/getcommunication"
+        }
         m_pageCount  = m_pageCount + 1
         let params:[String:String] = ["id":UserDetail.Instance.id!,
                                       "userid":UserDetail.Instance.userid!,
@@ -68,14 +75,14 @@ class CommunicationDetailController: UIViewController,UITableViewDelegate,PageNa
                                       "posttype":m_matterType,
                                       "receiverid":m_receverid,
                                       "matterid": m_matterid]
-        MatterParsing.instance.getCommunicationDetailList(url: "/getcommunication",withLoader:WithLoader, param: params, resposneBlock: { responsedata , statuscode in
+        MatterParsing.instance.getCommunicationDetailList(url: url!,withLoader:WithLoader, param: params, resposneBlock: { responsedata , statuscode in
             if(statuscode == 200){
                 let model = responsedata as! MatterDetailModel
                 if((model.response?.posts?.count)!>0){
                     self.tblmatterDetail.isHidden = false;
                     self.lblNoRecordFound.isHidden = true;
                     
-                    self.dataSource = MatterDetailDataSource.init(delegate: self,tableViews: self.tblmatterDetail)
+                    self.dataSource = MatterDetailDataSource.init(delegate: self,tableViews: self.tblmatterDetail, fromAnnoune: self.m_FromAnnocument)
                     self.m_matterArray.append(contentsOf: (model.response?.posts)!)
                     self.dataSource?.m_matterPostDetail = self.m_matterArray
                     self.dataSource?.m_matterTotalCount = model.response?.count
@@ -97,6 +104,12 @@ class CommunicationDetailController: UIViewController,UITableViewDelegate,PageNa
     //MARK:Common Funcation
     func configureTableViewPageNation() -> Void{
         tblmatterDetail.separatorStyle = .none
+        var url:String?
+        if (m_FromAnnocument){
+            url = "/getannouncement"
+        }else{
+            url = "/getcommunication"
+        }
         //tblmatterDetail.estimatedRowHeight = 150;
         m_pageCount  = m_pageCount + 1
         let params:[String:String] = ["id":UserDetail.Instance.id!,
@@ -108,7 +121,7 @@ class CommunicationDetailController: UIViewController,UITableViewDelegate,PageNa
                                       "posttype":m_matterType,
                                       "receiverid":m_receverid,
                                       "matterid": m_matterid]
-        MatterParsing.instance.getCommunicationDetailList(url: "/getcommunication",withLoader: true, param: params, resposneBlock: { responsedata , statuscode in
+        MatterParsing.instance.getCommunicationDetailList(url: url!,withLoader: true, param: params, resposneBlock: { responsedata , statuscode in
             if(statuscode == 200){
                 let model = responsedata as! MatterDetailModel
                 if((model.response?.posts?.count)!>0){

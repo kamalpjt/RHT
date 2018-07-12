@@ -34,7 +34,7 @@ class MatterDetailCell: UITableViewCell {
         
     }
     
-    func SetUpView(postData:Post)
+    func SetUpView(postData:Post,fromAnnoune:Bool)
     {
         vContainer.layer.cornerRadius = 5;
         vContainer.backgroundColor = UIColor.white

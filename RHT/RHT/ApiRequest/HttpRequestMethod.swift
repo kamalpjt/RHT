@@ -106,8 +106,17 @@ class HttpRequestMethod {
     }
     func downloadFile(url:String) -> Void{
         
-        download(URLRequestConvertible., to: <#T##DownloadRequest.DownloadFileDestination?##DownloadRequest.DownloadFileDestination?##(URL, HTTPURLResponse) -> (destinationURL: URL, options: DownloadRequest.DownloadOptions)#>).downloadProgress { (bytes) in
-            <#code#>
-        }
+//        request("").downloadProgress { (progrrgd) in
+//
+//            }.response { (ressddata) in
+//
+//        }
+        let documentDirectoryPath = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first
+        let imagesDirectoryPath = documentDirectoryPath?.appending(AppConstant.sharedInstance.LOCALPDFFOLDER)
+        print(imagesDirectoryPath!)
+        
+       // download("", to: imagesDirectoryPath).downloadProgress(queue: OperationQueue()) { (cxcxc) in
+            
+       // }
     }
 }
