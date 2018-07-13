@@ -11,53 +11,34 @@ import Alamofire
 class LeaderWebViewController: BaseViewController,UIWebViewDelegate,URLSessionDelegate,URLSessionDownloadDelegate {
     @IBOutlet weak var wvPdfWebView: UIWebView!
     var pdfurl:String?
+    var destinationFileUrl:URL?
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         wvPdfWebView.delegate = self
-        //wvPdfWebView.loadRequest(URLRequest(url: URL(string:pdfurl!)!))
-        //wvPdfWebView.request?.cachePolicy = .returnCacheDataElseLoad
-
-      //  HttpRequestMethod.sharedInstance.downloadFile(url: pdfurl!)
-//        let urls = URL(string:pdfurl!)!
-//        var urlRequest = URLRequest(url: urls)
-//        urlRequest.cachePolicy = .reloadIgnoringLocalAndRemoteCacheData
-        //wvPdfWebView.loadRequest(urlRequest)
-        // Do any additional setup after loading the view.
-      //  let documentDirectoryPath = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first
-       // let imagesDirectoryPath = documentDirectoryPath?.appending(AppConstant.sharedInstance.LOCALPDFFOLDER)
+        
+         let pdfArray = pdfurl?.components(separatedBy: "/")
         let documentsUrl:URL =  (FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first as URL?)!
-        let destinationFileUrl = documentsUrl.appendingPathComponent(AppConstant.sharedInstance.LOCALPDFFOLDER);
-        let gffgf = destinationFileUrl.appendingPathComponent("downloadedFile.pdf")
+        let FileUrl = documentsUrl.appendingPathComponent(AppConstant.sharedInstance.LOCALPDFFOLDER);
+        destinationFileUrl = FileUrl.appendingPathComponent((pdfArray?.last)!)
         
-        //Create URL to the source file you want to download
-        let fileURL = URL(string: pdfurl!)
+        if FileManager.default.fileExists(atPath: (destinationFileUrl?.path)!){
+            let  getUrl = URLRequest.init(url: destinationFileUrl!)
+            wvPdfWebView.loadRequest(getUrl)
+        }else{
+            //Create URL to the source file you want to download
+            let fileURL = URL(string: pdfurl!)
+            let sessionConfig = URLSessionConfiguration.default
+            let session = URLSession.init(configuration: sessionConfig, delegate: self, delegateQueue: OperationQueue())
+            let request = URLRequest(url:fileURL!)
+            let task  = session.downloadTask(with: request)
+            task.resume()
+        }
         
-        let sessionConfig = URLSessionConfiguration.default
-        let session = URLSession.init(configuration: sessionConfig, delegate: self, delegateQueue: OperationQueue())
-        let request = URLRequest(url:fileURL!)
-        let task  = session.downloadTask(with: request)
-//        let task = session.downloadTask(with: request) { (tempLocalUrl, response, error) in
-//            if let tempLocalUrl = tempLocalUrl, error == nil {
-//                // Success
-//                if let statusCode = (response as? HTTPURLResponse)?.statusCode {
-//                    print("Successfully downloaded. Status code: \(statusCode)")
-//                }
-//
-//                do {
-//                    try FileManager.default.copyItem(at: tempLocalUrl, to: gffgf)
-//                } catch (let writeError) {
-//                    print("Error creating a file \(destinationFileUrl) : \(writeError)")
-//                }
-//
-//            } else {
-//                print("Error took place while downloading a file. Error description: %@", error?.localizedDescription);
-//            }
-//        }
-        task.resume()
+       
         
     }
-    private func calculateProgress(session : URLSession, completionHandler : @escaping (Float) -> ()) {
+    private func calculateProgress(session : URLSession) {
         session.getTasksWithCompletionHandler { (tasks, uploads, downloads) in
             let progress = downloads.map({ (task) -> Float in
                 if task.countOfBytesExpectedToReceive > 0 {
@@ -66,29 +47,48 @@ class LeaderWebViewController: BaseViewController,UIWebViewDelegate,URLSessionDe
                     return 0.0
                 }
             })
-          //  completionHandler(progress.reduce(0.0, +))
+            print(progress.reduce(0.0, +))
+            //completionHandler(progress.reduce(0.0, +))
         }
     }
     func urlSession(_ session: URLSession, downloadTask: URLSessionDownloadTask, didWriteData bytesWritten: Int64, totalBytesWritten: Int64, totalBytesExpectedToWrite: Int64) {
+        let progress1 =  Float(bytesWritten) / Float(totalBytesWritten)
+        DispatchQueue.main.async{
+            /*Write your thread code here*/
+            SVProgressHUD.showProgress(progress1 * 100)
+        }
         
-        //if totalBytesExpectedToWrite > 0 {
-//            if let onProgress = onProgress {
-//                //calculateProgress(session: session, completionHandler: onProgress)
-//            }
-        print(totalBytesExpectedToWrite * 1024 * 20124)
-            let progress = Float(bytesWritten) / Float(totalBytesWritten)
-           // debugPrint("Progress \(downloadTask) \(progress)")
-            
-      //  }
+        
     }
     
     func urlSession(_ session: URLSession, downloadTask: URLSessionDownloadTask, didFinishDownloadingTo location: URL) {
         debugPrint("Download finished: \(location)")
+        
+        do {
+            try FileManager.default.copyItem(at: location, to: destinationFileUrl!)
+            let  getUrl = URLRequest.init(url: destinationFileUrl!)
+            DispatchQueue.main.async{
+                    /*Write your thread code here*/
+                self.wvPdfWebView.loadRequest(getUrl)
+            }
+          
+        } catch (let writeError) {
+            print("Error creating a file \(String(describing: destinationFileUrl)) : \(writeError)")
+        }
         try? FileManager.default.removeItem(at: location)
+       
+        DispatchQueue.main.async{
+            /*Write your thread code here*/
+            SVProgressHUD.dismiss()
+        }
     }
     
     func urlSession(_ session: URLSession, task: URLSessionTask, didCompleteWithError error: Error?) {
-        debugPrint("Task completed: \(task), error: \(error)")
+        debugPrint("Task completed: \(task), error: \(String(describing: error))")
+        DispatchQueue.main.async{
+            /*Write your thread code here*/
+            SVProgressHUD.dismiss()
+        }
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -104,15 +104,15 @@ class LeaderWebViewController: BaseViewController,UIWebViewDelegate,URLSessionDe
         SVProgressHUD.dismiss()
         SharedAlert.instance.ShowAlert(title: StringConstant.instance.ALERTTITLE, message: "Try again", viewController: self)
     }
-
+    
     /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     // Get the new view controller using segue.destinationViewController.
+     // Pass the selected object to the new view controller.
+     }
+     */
+    
 }

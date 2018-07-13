@@ -20,6 +20,9 @@ class LeadershipController: UIViewController,PageNationDelegate,LeaderShipSelect
         SetUpCollectionView()
         // Do any additional setup after loading the view.
     }
+    override func viewWillAppear(_ animated: Bool) {
+        
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

@@ -39,6 +39,15 @@ class MatterDetailCell: UITableViewCell {
         vContainer.layer.cornerRadius = 5;
         vContainer.backgroundColor = UIColor.white
         self.selectionStyle = UITableViewCellSelectionStyle.none;
+        if fromAnnoune {
+            lblComment.isHidden = true;
+            butComment.isHidden = true;
+            imgComment.isHidden = true
+        }else{
+            lblComment.isHidden = false;
+            butComment.isHidden = false;
+            imgComment.isHidden = false;
+        }
         lblName.text = postData.sendername
         lbltitle.text = postData.title
         lblDescription.text = postData.content ?? ""

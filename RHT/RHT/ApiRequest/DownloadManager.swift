@@ -56,6 +56,7 @@ class DownloadManager : NSObject, URLSessionDelegate, URLSessionDownloadDelegate
 
     func urlSession(_ session: URLSession, downloadTask: URLSessionDownloadTask, didFinishDownloadingTo location: URL) {
         debugPrint("Download finished: \(location)")
+        
         try? FileManager.default.removeItem(at: location)
     }
 
