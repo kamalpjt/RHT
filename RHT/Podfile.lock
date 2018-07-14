@@ -28,44 +28,6 @@ PODS:
   - AWSCore (2.6.22)
   - AWSS3 (2.6.22):
     - AWSCore (= 2.6.22)
-  - Bolts (1.9.0):
-    - Bolts/AppLinks (= 1.9.0)
-    - Bolts/Tasks (= 1.9.0)
-  - Bolts/AppLinks (1.9.0):
-    - Bolts/Tasks
-  - Bolts/Tasks (1.9.0)
-  - FacebookCore (0.3.1):
-    - Bolts (~> 1.8)
-    - FBSDKCoreKit (~> 4.33)
-  - FacebookLogin (0.3.1):
-    - Bolts (~> 1.8)
-    - FacebookCore (~> 0.3.1)
-    - FBSDKCoreKit (~> 4.33)
-    - FBSDKLoginKit (~> 4.33)
-  - FBSDKCoreKit (4.34.0):
-    - Bolts (~> 1.7)
-  - FBSDKLoginKit (4.34.0):
-    - FBSDKCoreKit
-  - GoogleSignIn (4.1.2):
-    - "GoogleToolboxForMac/NSDictionary+URLArguments (~> 2.1)"
-    - "GoogleToolboxForMac/NSString+URLArguments (~> 2.1)"
-    - GTMOAuth2 (~> 1.0)
-    - GTMSessionFetcher/Core (~> 1.1)
-  - GoogleToolboxForMac/DebugUtils (2.1.4):
-    - GoogleToolboxForMac/Defines (= 2.1.4)
-  - GoogleToolboxForMac/Defines (2.1.4)
-  - "GoogleToolboxForMac/NSDictionary+URLArguments (2.1.4)":
-    - GoogleToolboxForMac/DebugUtils (= 2.1.4)
-    - GoogleToolboxForMac/Defines (= 2.1.4)
-    - "GoogleToolboxForMac/NSString+URLArguments (= 2.1.4)"
-  - "GoogleToolboxForMac/NSString+URLArguments (2.1.4)"
-  - GTMOAuth2 (1.1.6):
-    - GTMSessionFetcher (~> 1.1)
-  - GTMSessionFetcher (1.1.15):
-    - GTMSessionFetcher/Full (= 1.1.15)
-  - GTMSessionFetcher/Core (1.1.15)
-  - GTMSessionFetcher/Full (1.1.15):
-    - GTMSessionFetcher/Core (= 1.1.15)
   - ReachabilitySwift (4.1.0)
   - SDWebImage (4.4.1):
     - SDWebImage/Core (= 4.4.1)
@@ -77,9 +39,6 @@ DEPENDENCIES:
   - Alamofire (~> 4.7)
   - ApiAI
   - AWSS3
-  - FacebookCore
-  - FacebookLogin
-  - GoogleSignIn
   - ReachabilitySwift
   - SDWebImage (~> 4.0)
   - SVProgressHUD
@@ -91,15 +50,6 @@ SPEC REPOS:
     - ApiAI
     - AWSCore
     - AWSS3
-    - Bolts
-    - FacebookCore
-    - FacebookLogin
-    - FBSDKCoreKit
-    - FBSDKLoginKit
-    - GoogleSignIn
-    - GoogleToolboxForMac
-    - GTMOAuth2
-    - GTMSessionFetcher
     - ReachabilitySwift
     - SDWebImage
     - SVProgressHUD
@@ -110,20 +60,11 @@ SPEC CHECKSUMS:
   ApiAI: d4b49d3736f33ce6f3ef66dc33c0e0fccb23579e
   AWSCore: faae134779f0f6e46a8d426c0ccc02e34466b785
   AWSS3: 2b70463225a455ba26494f06346bddb74dedf73d
-  Bolts: ac6567323eac61e203f6a9763667d0f711be34c8
-  FacebookCore: 33078ef1d7d76b73f7e8c990dca7d3ea6db8d22f
-  FacebookLogin: 6f15bf4fefd7a8865abbfa8fcd7f3dfd87aa275f
-  FBSDKCoreKit: 0ff57f093b85c8c9d5aba697d3edf68a8960ce78
-  FBSDKLoginKit: 8c78f57a145afb756e4755e69195ebe08a42466e
-  GoogleSignIn: d9ef55b10f0aa401a5de2747f59b725e4b9732ac
-  GoogleToolboxForMac: 91c824d21e85b31c2aae9bb011c5027c9b4e738f
-  GTMOAuth2: c77fe325e4acd453837e72d91e3b5f13116857b2
-  GTMSessionFetcher: 5fa5b80fd20e439ef5f545fb2cb3ca6c6714caa2
   ReachabilitySwift: 6849231cd4e06559f3b9ef4a97a0a0f96d41e09f
   SDWebImage: 47e9b5b925cbce75946c23f0c42dd19464189af4
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
   SwiftKeychainWrapper: 38952a3636320ae61bad3513cadd870929de7a4a
 
-PODFILE CHECKSUM: 33a53db8bb301bce8f65d8beacf73282619908f3
+PODFILE CHECKSUM: d040d6fd2cb6816357f19bf7a3822a3a66fb7230
 
 COCOAPODS: 1.5.3
