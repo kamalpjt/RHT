@@ -36,6 +36,9 @@ struct  user:Codable {
     let user_type:String?
     let userid:String?
     let id:String?
+    let isHeadStaff:Int?
+    let genPostAdmin:Int?
+    let isVerified:Int?
     init(json:[String:Any]) {
         isStaff = json["isStaff"] as? Int ?? 0
         email = json["email"] as? String ?? ""
@@ -45,5 +48,8 @@ struct  user:Codable {
         user_type = json["user_type"] as? String ?? ""
         userid = json["userid"] as? String ?? ""
         id = json["id"] as? String ?? ""
+        isHeadStaff = json["isHeadStaff"] as? Int
+        genPostAdmin = json["genPostAdmin"] as? Int
+        isVerified = json["isVerified"] as? Int
     }
 }

@@ -18,6 +18,9 @@ class UserDetail {
     var user_type:String? = ""
     var userid:String? = ""
     var id:String? = ""
+    var isHeadStaff:Int? = 0
+    var genPostAdmin:Int? = 0
+    var isVerified:Int? = 0
 }
 
 // static let Instance = UserDetail(isStaff: Int, email: String, phone: String, name: String, password: String, user_type: String, userid: String, id: String)

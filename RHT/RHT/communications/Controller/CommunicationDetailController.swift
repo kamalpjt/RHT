@@ -41,7 +41,12 @@ class CommunicationDetailController: UIViewController,UITableViewDelegate,PageNa
         // Do any additional setup after loading the view.
         //tblmatterDetail.contentInset = UIEdgeInsets.init(top: 10, left: 0, bottom: 0, right: 0);
         configureTableView(WithLoader: true)
-        navigationItem.rightBarButtonItems = [plusButton()]
+        if !m_FromAnnocument {
+            navigationItem.rightBarButtonItems = [plusButton()]
+        }else if m_FromAnnocument == true && UserDetail.Instance.genPostAdmin == 1{
+             navigationItem.rightBarButtonItems = [plusButton()]
+        }
+        
         
     }
     override func viewWillAppear(_ animated: Bool) {
@@ -164,25 +169,48 @@ class CommunicationDetailController: UIViewController,UITableViewDelegate,PageNa
             let count = (self.dataSource?.m_matterTotalCount)! - 1
             self.dataSource?.m_matterTotalCount?  = count
             tblmatterDetail.deleteRows(at: [indexPath], with: UITableViewRowAnimation.fade)
-            let param:[String:String] = ["id":UserDetail.Instance.id!,
-                                         "userid":UserDetail.Instance.userid!,
-                                         "postid":object.id!,
-                                         "posttype":m_matterType,
-                                         "sessionid":"1"]
-           DeleteRow(params: param)
+            if !m_FromAnnocument {
+                let param:[String:String] = ["id":UserDetail.Instance.id!,
+                                             "userid":UserDetail.Instance.userid!,
+                                             "postid":object.id!,
+                                             "posttype":m_matterType,
+                                             "sessionid":"1"]
+                 DeleteRow(params: param)
+            }else{
+                let param:[String:String] = ["id":UserDetail.Instance.id!,
+                                             "userid":UserDetail.Instance.userid!,
+                                             "postid":object.id!,
+                                             "sessionid":"1"]
+                DeleteRow(params: param)
+            }
+            
+          
          
         }
       
     }
     func DeleteRow(params:[String:String])
     {
-        MatterParsing.instance.deleteCommunicationPost(url: "/deletepost",withLoader: true, param: params, resposneBlock: { responsedata , statuscode in
-            if(statuscode == 200){
-                let model = responsedata as! CommentPostModel
-                print(model.response.msg!)
-                
-            }
-        })
+        if !m_FromAnnocument{
+            
+            MatterParsing.instance.deleteCommunicationPost(url: "/deletepost",withLoader: true, param: params, resposneBlock: { responsedata , statuscode in
+                if(statuscode == 200){
+                    let model = responsedata as! CommentPostModel
+                    print(model.response.msg!)
+                    
+                }
+            })
+        }else{
+            MatterParsing.instance.deleteAnnouncementPost(url: "/deleteannouncement",withLoader: true, param: params, resposneBlock: { responsedata , statuscode in
+                if(statuscode == 200){
+                    let model = responsedata as! CommentPostModel
+                    print(model.response.msg!)
+                    
+                }
+            })
+            
+        }
+        
         
     }
     func plusButton() -> UIBarButtonItem{

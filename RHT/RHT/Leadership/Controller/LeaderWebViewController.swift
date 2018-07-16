@@ -33,10 +33,14 @@ class LeaderWebViewController: BaseViewController,UIWebViewDelegate,URLSessionDe
             let request = URLRequest(url:fileURL!)
             let task  = session.downloadTask(with: request)
             task.resume()
+
         }
         
        
         
+    }
+    override func viewWillDisappear(_ animated: Bool) {
+        SVProgressHUD.dismiss()
     }
     private func calculateProgress(session : URLSession) {
         session.getTasksWithCompletionHandler { (tasks, uploads, downloads) in
@@ -55,7 +59,10 @@ class LeaderWebViewController: BaseViewController,UIWebViewDelegate,URLSessionDe
         let progress1 =  Float(bytesWritten) / Float(totalBytesWritten)
         DispatchQueue.main.async{
             /*Write your thread code here*/
-            SVProgressHUD.showProgress(progress1 * 100)
+            if( self.navigationController != nil){
+                 SVProgressHUD.showProgress(progress1 * 100)
+            }
+           
         }
         
         

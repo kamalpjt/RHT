@@ -7,14 +7,14 @@
 //
 
 import UIKit
-import FacebookCore
-import FacebookLogin
-import GoogleSignIn
+//import FacebookCore
+//import FacebookLogin
+//import GoogleSignIn
 import ApiAI
 import SwiftKeychainWrapper
 
 
-class LoginViewController: BaseViewController,UITextFieldDelegate,GIDSignInDelegate,GIDSignInUIDelegate {
+class LoginViewController: BaseViewController,UITextFieldDelegate {
     
     @IBOutlet weak var vEmailmultiplier: NSLayoutConstraint!
     @IBOutlet weak var vFacebook: UIView!
@@ -198,6 +198,9 @@ class LoginViewController: BaseViewController,UITextFieldDelegate,GIDSignInDeleg
                         UserDetail.Instance.user_type = value.response.user.user_type!
                         UserDetail.Instance.userid = value.response.user.userid!
                         UserDetail.Instance.id = value.response.user.id!
+                        UserDetail.Instance.isHeadStaff = value.response.user.isHeadStaff!
+                        UserDetail.Instance.genPostAdmin = value.response.user.genPostAdmin!
+                        UserDetail.Instance.isVerified = value.response.user.isVerified!
                         if(saveSuccessful){
                             self.SetResidemenu()
                         }
@@ -251,29 +254,29 @@ class LoginViewController: BaseViewController,UITextFieldDelegate,GIDSignInDeleg
         }
         return true
     }
-    func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
-        
-        if let error = error {
-            print("\(error.localizedDescription)")
-        } else {
-            
-            // Perform any operations on signed in user here.
-            let userId = user.userID                  // For client-side use only!
-            let idToken = user.authentication.idToken // Safe to send to the server
-            let fullName = user.profile.name
-            let givenName = user.profile.givenName
-            let familyName = user.profile.familyName
-            let email = user.profile.email
-            // ...
-        }
-    }
-    func sign(_ signIn: GIDSignIn!,dismiss viewController: UIViewController!) {
-        self.dismiss(animated: true, completion: nil)
-    }
-    
-    func sign(_ signIn: GIDSignIn!, present viewController: UIViewController!) {
-        self.present(viewController, animated: true, completion: nil)
-    }
+//    func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
+//        
+//        if let error = error {
+//            print("\(error.localizedDescription)")
+//        } else {
+//            
+//            // Perform any operations on signed in user here.
+//            let userId = user.userID                  // For client-side use only!
+//            let idToken = user.authentication.idToken // Safe to send to the server
+//            let fullName = user.profile.name
+//            let givenName = user.profile.givenName
+//            let familyName = user.profile.familyName
+//            let email = user.profile.email
+//            // ...
+//        }
+//    }
+//    func sign(_ signIn: GIDSignIn!,dismiss viewController: UIViewController!) {
+//        self.dismiss(animated: true, completion: nil)
+//    }
+//    
+//    func sign(_ signIn: GIDSignIn!, present viewController: UIViewController!) {
+//        self.present(viewController, animated: true, completion: nil)
+//    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

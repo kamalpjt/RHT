@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import GoogleSignIn;
+//import GoogleSignIn;
 import Foundation
 import Alamofire
 import ApiAI
@@ -23,7 +23,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
         self.window?.rootViewController = showLaunchScreen()
-        GIDSignIn.sharedInstance().clientID = AppConstant.sharedInstance.gooleplusid;
+      //  GIDSignIn.sharedInstance().clientID = AppConstant.sharedInstance.gooleplusid;
         setNavigationBar()
         //Set enviroment
         AppConfig.sharedInstance.setEnviroment(eBuildEnvironments: eBuildEnvironment.eDev)
@@ -121,9 +121,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
     
-    func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
-        return GIDSignIn.sharedInstance().handle(url, sourceApplication:sourceApplication , annotation: annotation)
-    }
+//    func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
+//        return GIDSignIn.sharedInstance().handle(url, sourceApplication:sourceApplication , annotation: annotation)
+//    }
     
 }
 

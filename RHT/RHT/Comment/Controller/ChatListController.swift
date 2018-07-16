@@ -11,7 +11,9 @@ protocol UpdateApiDelegate {
     
     func UPdateApi()
 }
-class ChatListController: UIViewController,UITextViewDelegate{
+class ChatListController: UIViewController,UITextViewDelegate,DeleteCommentdelegate{
+    
+    
     
     var vContainer = UIView()
     var tblCommentList = UITableView()
@@ -114,7 +116,7 @@ class ChatListController: UIViewController,UITextViewDelegate{
 //                    //self.lblNoRecord.isHidden = true
 //                    self.dataSource = LeaderDataSource.init(delegate: self,htmlDelgate: self)
 //                    self.m_NewsArray = self.m_NewsArray +  model.response.posts!
-                      self.dataSource = CommentTblSource()
+                      self.dataSource = CommentTblSource(delegate: self)
                       self.dataDelegate = ChatCommentDelegate()
                        self.chatItem = self.chatItem + model.response.comments!
                     
@@ -133,6 +135,31 @@ class ChatListController: UIViewController,UITextViewDelegate{
                 }
             }
         })
+    }
+    func DeleteComment(indexPath: IndexPath) {
+         UIView.performWithoutAnimation {
+            let object  = self.dataSource?.chatItem[indexPath.row]
+            self.dataSource?.chatItem.remove(at: indexPath.row)
+            self.dataDelegate?.chatItem.remove(at: indexPath.row)
+            tblCommentList.reloadData()
+            //tblCommentList.deleteRows(at: [indexPath], with: UITableViewRowAnimation.none)
+            let param:[String:String] = ["id":UserDetail.Instance.id!,
+                                         "userid":UserDetail.Instance.userid!,
+                                         "commentid":object!.id!,
+                                         "sessionid":"1"]
+            DeleteRow(params: param)
+        }
+    }
+    func DeleteRow(params:[String:String])
+    {
+            MatterParsing.instance.deleteCommentPost(url: "/deletecomment",withLoader: true, param: params, resposneBlock: { responsedata , statuscode in
+                if(statuscode == 200){
+                    let model = responsedata as! CommentPostModel
+                    print(model.response.msg!)
+                    
+                }
+            })
+        
     }
     func CloseKeyboard(bool:Bool) -> Void {
         if(bool){
@@ -322,7 +349,7 @@ class ChatListController: UIViewController,UITextViewDelegate{
                 }
                 
             }else{
-                self.dataSource = CommentTblSource()
+                self.dataSource = CommentTblSource(delegate: self)
                 self.dataDelegate = ChatCommentDelegate()
                // self.chatItem = self.chatItem + model.response.comments!
                 self.dataSource?.chatItem = self.chatItem;

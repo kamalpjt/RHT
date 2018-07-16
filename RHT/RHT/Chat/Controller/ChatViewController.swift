@@ -97,6 +97,17 @@ class ChatViewController: UIViewController,UITextViewDelegate,UITableViewDelegat
         //tvchatInput.layer.cornerRadius=5;
         tvchatInput.layer.masksToBounds = true;
         tvchatInput.font = UIFont.systemFont(ofSize: ShareData.SetFont13(), weight: UIFont.Weight.regular)
+        if(ShareData.isIPhone5()){
+            tvchatInput.textContainerInset = UIEdgeInsets.init(top: 10, left: 10, bottom: 10, right: 10)
+        }else if(ShareData.isIPhone6()){
+            tvchatInput.textContainerInset = UIEdgeInsets.init(top: 15, left: 10, bottom: 10, right: 10)
+        }else if(ShareData.isIPhoneX()){
+            tvchatInput.textContainerInset = UIEdgeInsets.init(top: 20, left: 10, bottom: 10, right: 10)
+        }else if(ShareData.isIPhone6Plus()){
+            tvchatInput.textContainerInset = UIEdgeInsets.init(top: 20, left: 10, bottom: 10, right: 10)
+        }else{
+            tvchatInput.textContainerInset = UIEdgeInsets.init(top: 25, left: 10, bottom: 10, right: 10)
+        }
         // vChatInnerView.layer.cornerRadius = 20;
     }
     func CloseKeyboard(bool:Bool) -> Void {
@@ -163,9 +174,9 @@ class ChatViewController: UIViewController,UITextViewDelegate,UITableViewDelegat
         
         if frameheight != nil{
             cvChat.heightAnchor.constraint(equalTo: VContainer.heightAnchor, multiplier: frameheight!/VContainer.frame.height , constant: 0).isActive=true
-            vBottomHeight.constant =  vBottomHeight.constant - CGFloat(frameheightKeyboard);
-            frameheightKeyboard = 0
-            
+           // vBottomHeight.constant =  CGFloat(countheitn) CGFloat(frameheightKeyboard);
+//frameheightKeyboard = 0
+
         }
         if(AppConstant.sharedInstance.chatItem.count>0)
         {
@@ -175,6 +186,45 @@ class ChatViewController: UIViewController,UITextViewDelegate,UITableViewDelegat
     }
     
     //MARK: -TEXTVIEWDELEGATE
+    var previousRect = CGRect.zero
+    func textViewDidChange(_ textView: UITextView) {
+        let pos = textView.endOfDocument
+        let currentRect = textView.caretRect(for: pos)
+        self.previousRect = self.previousRect.origin.y == 0.0 ? currentRect : previousRect
+        if(currentRect.origin.y > previousRect.origin.y){
+            //new line reached, write your code
+            print("Started New Line")
+//            let sizes = ShareData.sharedInstance.GetchatStringCGSize(stringValue:tvchatInput.text , font: UIFont.systemFont(ofSize: ShareData.SetFont13(), weight: UIFont.Weight.regular), width: Int(tvchatInput.frame.width))
+            ////  let countheitn = Int(sizes.height)
+            let getheight =  cvChat.frame.height - 15
+           
+            if(frameheight != nil){
+                if(frameheight!/2.5<cvChat.frame.height-15)
+                {
+                    cvChat.heightAnchor.constraint(equalTo: VContainer.heightAnchor, multiplier: getheight/VContainer.frame.height , constant: 0).isActive=true
+                    frameheightKeyboard = frameheightKeyboard + 15;
+                    vBottomHeight.constant =  vBottomHeight.constant + 15;
+                }
+            }
+        }else if(currentRect.origin.y < previousRect.origin.y) {
+            
+            let getheight =  cvChat.frame.height + 15
+            
+            if(frameheight != nil){
+                if(frameheight!/2.5<cvChat.frame.height+15)
+                {
+                    cvChat.heightAnchor.constraint(equalTo: VContainer.heightAnchor, multiplier: getheight/VContainer.frame.height , constant: 0).isActive=true
+                    frameheightKeyboard = frameheightKeyboard - 15;
+                    vBottomHeight.constant =  vBottomHeight.constant - 15;
+                }
+            }
+            
+        }
+        previousRect = currentRect
+    }
+    func textViewDidEndEditing(_ textView: UITextView) {
+        
+    }
     func textViewDidBeginEditing(_ textView: UITextView) {
         
         
@@ -197,7 +247,6 @@ class ChatViewController: UIViewController,UITextViewDelegate,UITableViewDelegat
                 }
             }
         }
-        
         return true
     }
     //MARK:-ButtonAction
