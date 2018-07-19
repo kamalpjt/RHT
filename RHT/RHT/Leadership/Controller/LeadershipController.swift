@@ -62,7 +62,7 @@ class LeadershipController: UIViewController,PageNationDelegate,LeaderShipSelect
     func GetSelectedRowDetail(pdfUrl: String, indexPath: IndexPath) {
         
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "LeaderWebViewController") as! LeaderWebViewController
-        vc.pdfurl = pdfUrl
+        vc.m_pdfurl = pdfUrl
         navigationController?.pushViewController(vc, animated: true)
     }
     

@@ -174,8 +174,8 @@ class ChatViewController: UIViewController,UITextViewDelegate,UITableViewDelegat
         
         if frameheight != nil{
             cvChat.heightAnchor.constraint(equalTo: VContainer.heightAnchor, multiplier: frameheight!/VContainer.frame.height , constant: 0).isActive=true
-           // vBottomHeight.constant =  CGFloat(countheitn) CGFloat(frameheightKeyboard);
-//frameheightKeyboard = 0
+            vBottomHeight.constant =   vBottomHeight.constant - CGFloat(frameheightKeyboard);
+         frameheightKeyboard = 0
 
         }
         if(AppConstant.sharedInstance.chatItem.count>0)
@@ -197,7 +197,7 @@ class ChatViewController: UIViewController,UITextViewDelegate,UITableViewDelegat
 //            let sizes = ShareData.sharedInstance.GetchatStringCGSize(stringValue:tvchatInput.text , font: UIFont.systemFont(ofSize: ShareData.SetFont13(), weight: UIFont.Weight.regular), width: Int(tvchatInput.frame.width))
             ////  let countheitn = Int(sizes.height)
             let getheight =  cvChat.frame.height - 15
-           
+           //frameheight = cvChat.frame.height - 15
             if(frameheight != nil){
                 if(frameheight!/2.5<cvChat.frame.height-15)
                 {
