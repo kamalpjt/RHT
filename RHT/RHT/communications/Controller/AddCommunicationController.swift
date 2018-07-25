@@ -9,8 +9,9 @@
 import UIKit
 import AWSS3
 import Photos
+import MobileCoreServices
 
-class AddCommunicationController: BaseViewController,UICollectionViewDelegateFlowLayout ,UIImagePickerControllerDelegate,UINavigationControllerDelegate,AwsDelegate,AwsDelete{
+class AddCommunicationController: BaseViewController,UICollectionViewDelegateFlowLayout ,UIImagePickerControllerDelegate,UINavigationControllerDelegate,AwsDelegate,AwsDelete,UIDocumentPickerDelegate{
     
     @IBOutlet weak var svMain: UIScrollView!
     @IBOutlet weak var cvHeightConstriant: NSLayoutConstraint!
@@ -120,7 +121,7 @@ class AddCommunicationController: BaseViewController,UICollectionViewDelegateFlo
         
         selectedImageUrl = info[UIImagePickerControllerReferenceURL] as! NSURL
         // getLocalImageFileName();
-        
+       
         if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
             m_selectedImage = pickedImage
             let aws = AwsImage.init(selectedImageUrl: selectedImageUrl, selectedImage: pickedImage,contentType:AppConstant.sharedInstance.CONTENTTYPEIMAGE,
@@ -170,6 +171,20 @@ class AddCommunicationController: BaseViewController,UICollectionViewDelegateFlo
             self.cvHeightConstriant.constant = 115
             self.vPDFBottomConstriants.constant = self.view.frame.height - 115
         }
+        
+    }
+    @IBAction func uploadPdfAction(_ sender: Any) {
+        
+        let documentPicker: UIDocumentPickerViewController = UIDocumentPickerViewController(documentTypes: [(kUTTypeText as NSString) as String], in: UIDocumentPickerMode.import)
+        documentPicker.delegate = self
+        documentPicker.modalPresentationStyle = UIModalPresentationStyle.formSheet
+        self.present(documentPicker, animated: true, completion: nil)
+        
+    }
+    func documentPickerWasCancelled(_ controller: UIDocumentPickerViewController) {
+        
+    }
+    func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentAt url: URL) {
         
     }
 }
