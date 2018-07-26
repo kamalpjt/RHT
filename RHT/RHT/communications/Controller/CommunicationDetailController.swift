@@ -11,7 +11,7 @@ import UIKit
 
 
 class CommunicationDetailController: UIViewController,UITableViewDelegate,PageNationDelegate,UpdateApiDelegate {
-   
+    
     
     
     @IBOutlet weak var lblNoRecordFound: UILabel!
@@ -44,7 +44,7 @@ class CommunicationDetailController: UIViewController,UITableViewDelegate,PageNa
         if !m_FromAnnocument {
             navigationItem.rightBarButtonItems = [plusButton()]
         }else if m_FromAnnocument == true && UserDetail.Instance.genPostAdmin == 1{
-             navigationItem.rightBarButtonItems = [plusButton()]
+            navigationItem.rightBarButtonItems = [plusButton()]
         }
         
         
@@ -103,7 +103,7 @@ class CommunicationDetailController: UIViewController,UITableViewDelegate,PageNa
                 }else{
                     self.tblmatterDetail.isHidden = true;
                     self.lblNoRecordFound.isHidden = false;
-
+                    
                 }
             }
         })
@@ -136,14 +136,14 @@ class CommunicationDetailController: UIViewController,UITableViewDelegate,PageNa
                     self.tblmatterDetail.isHidden = false;
                     self.lblNoRecordFound.isHidden = true;
                     
-                  //  self.dataSource = MatterDetailDataSource.init(delegate: self)
+                    //  self.dataSource = MatterDetailDataSource.init(delegate: self)
                     self.m_matterArray.append(contentsOf: (model.response?.posts)!)
                     self.dataSource?.m_matterPostDetail = self.m_matterArray
                     self.dataSource?.m_matterTotalCount = model.response?.count
-                   // self.dataDelegate = MasterDetailDelegate()
+                    // self.dataDelegate = MasterDetailDelegate()
                     
-                   // self.tblmatterDetail.dataSource = self.dataSource
-                   // self.tblmatterDetail.delegate = self.dataSource
+                    // self.tblmatterDetail.dataSource = self.dataSource
+                    // self.tblmatterDetail.delegate = self.dataSource
                     self.tblmatterDetail.reloadData()
                     
                 }else{
@@ -155,9 +155,9 @@ class CommunicationDetailController: UIViewController,UITableViewDelegate,PageNa
         })
         
     }
-
+    
     func pageNationAction() {
-       // configureTableView()
+        // configureTableView()
         configureTableViewPageNation()
     }
     func GetPhotoArray(index: NSArray) {
@@ -165,7 +165,7 @@ class CommunicationDetailController: UIViewController,UITableViewDelegate,PageNa
     }
     func DeleteTableRow(indexPath: IndexPath) {
         UIView.performWithoutAnimation {
-           // m_deleteCount = m_deleteCount + 1
+            // m_deleteCount = m_deleteCount + 1
             let object = self.m_matterArray[indexPath.row]
             self.m_matterArray.remove(at: indexPath.row)
             self.dataSource?.m_matterPostDetail?.remove(at: indexPath.row)
@@ -178,7 +178,7 @@ class CommunicationDetailController: UIViewController,UITableViewDelegate,PageNa
                                              "postid":object.id!,
                                              "posttype":m_matterType,
                                              "sessionid":"1"]
-                 DeleteRow(params: param)
+                DeleteRow(params: param)
             }else{
                 let param:[String:String] = ["id":UserDetail.Instance.id!,
                                              "userid":UserDetail.Instance.userid!,
@@ -187,10 +187,10 @@ class CommunicationDetailController: UIViewController,UITableViewDelegate,PageNa
                 DeleteRow(params: param)
             }
             
-          
-         
+            
+            
         }
-      
+        
     }
     func DeleteRow(params:[String:String])
     {
@@ -236,12 +236,12 @@ class CommunicationDetailController: UIViewController,UITableViewDelegate,PageNa
     }
     
     @objc func CommentAction(notification: Notification){
-       // let imgd  = notification.userInfo;
+        // let imgd  = notification.userInfo;
         //let dfdf =  (UIButton)imgd!["Sender"]
-         let image = notification.userInfo?["Sender"] as? UIButton
+        let image = notification.userInfo?["Sender"] as? UIButton
         let arrayphoto = self.m_matterArray[(image?.tag)!].photos;
         let VC = ImageListController()
-         VC.m_PhotosArray = arrayphoto
+        VC.m_PhotosArray = arrayphoto
         navigationController?.pushViewController(VC, animated: true)
         
     }

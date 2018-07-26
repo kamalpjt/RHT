@@ -178,6 +178,9 @@ class AddCommunicationController: BaseViewController,UICollectionViewDelegateFlo
     }
     @IBAction func uploadPdfAction(_ sender: Any) {
         
+        if #available(iOS 11.0, *) {
+            UINavigationBar.appearance(whenContainedInInstancesOf: [UIDocumentBrowserViewController.self]).tintColor = nil
+        }
         let documentPicker: UIDocumentPickerViewController = UIDocumentPickerViewController(documentTypes: [(kUTTypeText as NSString) as String], in: UIDocumentPickerMode.import)
         documentPicker.delegate = self
         documentPicker.modalPresentationStyle = UIModalPresentationStyle.formSheet
