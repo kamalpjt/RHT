@@ -79,7 +79,10 @@ class CommunicationDetailController: UIViewController,UITableViewDelegate,PageNa
                                       "user_type":UserDetail.Instance.user_type!,
                                       "posttype":m_matterType,
                                       "receiverid":m_receverid,
-                                      "matterid": m_matterid]
+                                      "matterid": m_matterid,"ostype":"ios",
+                                      "appversion":(Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String)!,
+                                      "devicetype":"mobile",
+                                      "osversion":UIDevice.current.systemVersion]
         MatterParsing.instance.getCommunicationDetailList(url: url!,withLoader:WithLoader, param: params, resposneBlock: { responsedata , statuscode in
             if(statuscode == 200){
                 let model = responsedata as! MatterDetailModel

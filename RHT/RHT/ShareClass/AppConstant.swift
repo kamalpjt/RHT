@@ -31,7 +31,11 @@ class AppConstant  {
     //MARK:-POST Notfication
     let commentListAction = "commentListAction"
     let SELECTEDINDEXPATH = "selectedindexpath"
-    let COMMONPARAM:[String:String] = ["DeviceType":"ios"]
+        
+    let COMMONPARAM:[String:String] = ["ostype":"ios",
+                                       "appversion":(Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String)!,
+                                       "devicetype":"mobile",
+                                       "osversion":UIDevice.current.systemVersion]
     
     
 }

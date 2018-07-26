@@ -47,7 +47,10 @@ class CommunicationController: UIViewController,UICollectionViewDelegate,UISearc
     {
         let params:[String:String] = ["id":UserDetail.Instance.id!,"userid":UserDetail.Instance.userid!,
                                       "sessionid":"1","page":"1","pagesize":"10","user_type":UserDetail.Instance.user_type!,
-                                      "posttype":"general","matterid": ""]
+                                      "posttype":"general","matterid": "","ostype":"ios",
+                                      "appversion":(Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String)!,
+                                      "devicetype":"mobile",
+                                      "osversion":UIDevice.current.systemVersion]
         MatterParsing.instance.getMatterList(url: "/getmatters",withLoader: true, param: params, resposneBlock: { responsedata , statuscode in
             if(statuscode == 200){
                 let model = responsedata as! CommunicationModel
@@ -70,7 +73,10 @@ class CommunicationController: UIViewController,UICollectionViewDelegate,UISearc
     func MatterSearch(text:String) -> Void{
         let params:[String:String] = ["id":UserDetail.Instance.id!,"userid":UserDetail.Instance.userid!,
                                       "sessionid":"1","page":"1","pagesize":"10","user_type":UserDetail.Instance.user_type!,
-                                      "posttype":"general","matterid": "" ,"keyword":text]
+                                      "posttype":"general","matterid": "" ,"keyword":text,"ostype":"ios",
+                                      "appversion":(Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String)!,
+                                      "devicetype":"mobile",
+                                      "osversion":UIDevice.current.systemVersion]
         MatterParsing.instance.getMatterList(url: "/getmatters",withLoader: true, param: params, resposneBlock: { responsedata , statuscode in
             if(statuscode == 200){
                 let model = responsedata as! CommunicationModel

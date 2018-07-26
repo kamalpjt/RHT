@@ -35,7 +35,10 @@ class LeadershipController: UIViewController,PageNationDelegate,LeaderShipSelect
                                       "userid":UserDetail.Instance.userid!,
                                       "sessionid":"1",
                                       "page": String(m_pageCount),
-                                      "pagesize":"8"]
+                                      "pagesize":"8","ostype":"ios",
+                                      "appversion":(Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String)!,
+                                      "devicetype":"mobile",
+                                      "osversion":UIDevice.current.systemVersion]
         MatterParsing.instance.getLeaderList(url: "/getleadership",withLoader: true, param: params, resposneBlock: { responsedata , statuscode in
             if(statuscode == 200){
                 let model = responsedata as! LeaderModel

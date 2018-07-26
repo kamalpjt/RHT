@@ -52,7 +52,11 @@ class ClientListController: UIViewController,UICollectionViewDelegate,UISearchBa
     }
     func MatterSearch(text:String) -> Void{
         let params:[String:String] = ["id":UserDetail.Instance.id!,"userid":UserDetail.Instance.userid!,
-                            "sessionid":"1","page":"1","pagesize":"10","user_type":UserDetail.Instance.user_type!,"keyword":text]
+                            "sessionid":"1","page":"1","pagesize":"10","user_type":UserDetail.Instance.user_type!,"keyword":text,
+                            "ostype":"ios",
+                            "appversion":(Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String)!,
+                            "devicetype":"mobile",
+                            "osversion":UIDevice.current.systemVersion]
         MatterParsing.instance.getClientList(url: "/getclientlist",withLoader: true, param: params, resposneBlock: { responsedata , statuscode in
             if(statuscode == 200){
                 let model = responsedata as! ClientModel

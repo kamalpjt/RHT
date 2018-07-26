@@ -13,7 +13,13 @@ import UIKit
 import ApiAI
 import SwiftKeychainWrapper
 
-
+extension Dictionary {
+    mutating func merge123(dict: [Key: Value]){
+        for (k, v) in dict {
+            updateValue(v, forKey: k)
+        }
+    }
+}
 class LoginViewController: BaseViewController,UITextFieldDelegate {
     
     @IBOutlet weak var vEmailmultiplier: NSLayoutConstraint!
@@ -175,7 +181,13 @@ class LoginViewController: BaseViewController,UITextFieldDelegate {
     }
     @IBAction func LoginAction(_ sender: Any) {
         if(Vaildation()){
-            let params:[String:String] = ["name":txtemail.text!,"password":txtPassowrd.text!]
+            let params:Dictionary = ["name":txtemail.text!,"password":txtPassowrd.text!,"ostype":"ios",
+                                    "appversion":(Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String)!,
+                                     "devicetype":"mobile",
+                                    "osversion":UIDevice.current.systemVersion]
+           
+            //params = params + AppConstant.sharedInstance.COMMONPARAM
+            
             
             LoginParsing.instance.getLoginDetail(url: "/login",withLoader:true, param: params, resposneBlock: { response , statuscode in
                 if(statuscode == 200){

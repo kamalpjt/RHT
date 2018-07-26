@@ -50,8 +50,12 @@ class ChangePasswordController: UIViewController {
     
     @IBAction func SubmitAction(_ sender: Any) {
         
-        var param:[String:Any] = ["email":UserDetail.Instance.email!,"userid":UserDetail.Instance.id!,
-                                     "oldPassword":txtOldPassowrd.text!,"newPassword":txtOldPassowrd.text!]
+        let param:[String:Any] = ["email":UserDetail.Instance.email!,"userid":UserDetail.Instance.id!,
+                                     "oldPassword":txtOldPassowrd.text!,"newPassword":txtOldPassowrd.text!,
+                                     "ostype":"ios",
+                                      "appversion":(Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String)!,
+                                      "devicetype":"mobile",
+                                       "osversion":UIDevice.current.systemVersion]
         if Vaildation() {
             
         }

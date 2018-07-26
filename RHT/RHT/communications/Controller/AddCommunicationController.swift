@@ -80,7 +80,10 @@ class AddCommunicationController: BaseViewController,UICollectionViewDelegateFlo
                                            "receiverid":recevierId,
                                            "user_type":UserDetail.Instance.user_type! ,
                                            "id":UserDetail.Instance.id!,
-                                           "sendername":UserDetail.Instance.name!]
+                                           "sendername":UserDetail.Instance.name!,"ostype":"ios",
+                                           "appversion":(Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String)!,
+                                           "devicetype":"mobile",
+                                           "osversion":UIDevice.current.systemVersion]
                 CommunicationParsing.instance.getResponseDetail(url: "/postcommunication",withLoader:true, param: params, resposneBlock: { response , statuscode in
                     if(statuscode == 200){
                         let model = response as! AddModel

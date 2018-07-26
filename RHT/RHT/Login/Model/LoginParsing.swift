@@ -35,4 +35,28 @@ class LoginParsing {
             SharedAlert.instance.ShowAlert(title: StringConstant.instance.ALERTTITLE, message: failureResponse.description, viewController: (UIApplication.shared.keyWindow?.rootViewController)!)
         })
     }
+    func getLoginOut (url:String,withLoader:Bool,param:[String:String],resposneBlock:@escaping(parsedJsonData)) -> Void{
+        
+        HttpRequestMethod.sharedInstance.postMethod(url: url,withLoader:withLoader, parameters: param, sucessResponseBlcok: {sucessresponse, statuscode in
+            do {
+                if(statuscode==200){
+                    let login = try JSONDecoder().decode(UserDetailModel.self, from: sucessresponse)
+                    
+                    if login.statusCode == AppConstant.sharedInstance.INTERNALSUCESSCODE {
+                        
+                        resposneBlock(login, statuscode)
+                        
+                    }else{
+                        SharedAlert.instance.ShowAlert(title: StringConstant.instance.ALERTTITLE, message: login.statusMessage!, viewController: (UIApplication.shared.keyWindow?.rootViewController)!)
+                    }
+                }
+                
+            } catch let jsonerror {
+                print(jsonerror)
+            }
+        }, failureResponseBlcok: {failureResponse in
+            
+            SharedAlert.instance.ShowAlert(title: StringConstant.instance.ALERTTITLE, message: failureResponse.description, viewController: (UIApplication.shared.keyWindow?.rootViewController)!)
+        })
+    }
 }

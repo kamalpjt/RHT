@@ -17,6 +17,14 @@ struct Courses:Decodable {
     let image_url:String?
     let number_of_lessons:Int?
 }
+extension Dictionary {
+    mutating func unionInPlace(
+        dictionary: Dictionary<Key, Value>) {
+        for (key, value) in dictionary {
+            self[key] = value
+        }
+    }
+}
 class HttpRequestMethod {
     
     static let sharedInstance = HttpRequestMethod()
@@ -40,7 +48,16 @@ class HttpRequestMethod {
             }
         }
     }
-    func postMethod(url:String,withLoader:Bool,parameters:[String:Any],sucessResponseBlcok:@escaping (jsonResponseSucessBlock),failureResponseBlcok:@escaping (jsonResponseFailureBlock)) -> Void{
+    
+    func postMethod(url:String,withLoader:Bool, parameters:[String:Any],sucessResponseBlcok:@escaping (jsonResponseSucessBlock),failureResponseBlcok:@escaping (jsonResponseFailureBlock)) -> Void{
+        
+//        var dict:Dictionary = ["ostype":"ios",
+//                               "appversion":(Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String)!,
+//                               "devicetype":"mobile",
+//                               "osversion":UIDevice.current.systemVersion]
+//         dict.unionInPlace(dictionary: parameters)
+        
+       
         if withLoader {
             SVProgressHUD.show()
         }
