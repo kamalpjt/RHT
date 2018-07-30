@@ -53,12 +53,14 @@ class CommunicationDetailController: UIViewController,UITableViewDelegate,PageNa
         super.viewWillAppear(animated)
         
         NotificationCenter.default.addObserver(self, selector: #selector(self.CommentAction(notification:)), name: Notification.Name("CommentAction"), object: nil)
+         NotificationCenter.default.addObserver(self, selector: #selector(self.attachmentAction(notification:)), name: Notification.Name("AttachAction"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.CommentListAction(notification:)), name: Notification.Name(AppConstant.sharedInstance.commentListAction), object: nil)
     }
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         NotificationCenter.default.removeObserver(self, name: Notification.Name("CommentAction"), object: nil)
         NotificationCenter.default.removeObserver(self, name: Notification.Name(AppConstant.sharedInstance.commentListAction), object: nil)
+        NotificationCenter.default.removeObserver(self, name: Notification.Name("AttachAction"), object: nil)
     }
     //MARK:Common Funcation
     func configureTableView(WithLoader:Bool) -> Void{
@@ -252,6 +254,12 @@ class CommunicationDetailController: UIViewController,UITableViewDelegate,PageNa
         VC.m_updateApiDelegate = self
         VC.m_postId = arrayid!
         navigationController?.pushViewController(VC, animated: true)
+        
+    }
+    @objc func attachmentAction(notification: Notification){
+        let image = notification.userInfo?["Sender"] as? UIButton
+        debugPrint(image?.tag)
+        let attachment = self.m_matterArray[(image?.tag)!].attachment;
         
     }
     func UPdateApi() {

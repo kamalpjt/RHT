@@ -785,6 +785,12 @@
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hIT-H6-9mN">
                                                             <rect key="frame" x="5" y="302" width="290" height="35"/>
                                                             <subviews>
+                                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="efG-AX-Mgt">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="290" height="35"/>
+                                                                    <connections>
+                                                                        <action selector="attachmentaction:" destination="Krd-vJ-nZE" eventType="touchUpInside" id="PPn-J8-ocF"/>
+                                                                    </connections>
+                                                                </button>
                                                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Pdf" translatesAutoresizingMaskIntoConstraints="NO" id="l4L-Vg-F4E">
                                                                     <rect key="frame" x="0.0" y="6" width="20" height="20"/>
                                                                     <constraints>
@@ -801,13 +807,21 @@
                                                             </subviews>
                                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <constraints>
+                                                                <constraint firstItem="efG-AX-Mgt" firstAttribute="top" secondItem="hIT-H6-9mN" secondAttribute="top" id="0y6-60-XCq"/>
                                                                 <constraint firstItem="nKv-ea-Nhh" firstAttribute="trailing" secondItem="hIT-H6-9mN" secondAttribute="trailingMargin" id="4Uc-aC-Dtm"/>
+                                                                <constraint firstAttribute="trailing" secondItem="efG-AX-Mgt" secondAttribute="trailing" id="5Vg-K1-NwR"/>
+                                                                <constraint firstItem="efG-AX-Mgt" firstAttribute="leading" secondItem="hIT-H6-9mN" secondAttribute="leading" id="8fo-MB-b9I"/>
                                                                 <constraint firstItem="nKv-ea-Nhh" firstAttribute="top" secondItem="hIT-H6-9mN" secondAttribute="topMargin" id="B3P-hX-gx7"/>
                                                                 <constraint firstItem="nKv-ea-Nhh" firstAttribute="leading" secondItem="l4L-Vg-F4E" secondAttribute="trailing" constant="8" symbolic="YES" id="C0K-Rz-XRb"/>
                                                                 <constraint firstItem="l4L-Vg-F4E" firstAttribute="top" secondItem="hIT-H6-9mN" secondAttribute="top" constant="6" id="DlD-LG-zOZ"/>
                                                                 <constraint firstItem="nKv-ea-Nhh" firstAttribute="centerY" secondItem="l4L-Vg-F4E" secondAttribute="centerY" id="E9g-sX-9nT"/>
+                                                                <constraint firstItem="efG-AX-Mgt" firstAttribute="top" secondItem="hIT-H6-9mN" secondAttribute="top" id="MhT-R1-2j0"/>
+                                                                <constraint firstAttribute="bottom" secondItem="efG-AX-Mgt" secondAttribute="bottom" id="Nfa-qG-xD1"/>
                                                                 <constraint firstAttribute="height" constant="35" id="Qet-LR-CFS"/>
                                                                 <constraint firstItem="l4L-Vg-F4E" firstAttribute="leading" secondItem="hIT-H6-9mN" secondAttribute="leading" id="doL-tB-drs"/>
+                                                                <constraint firstAttribute="trailing" secondItem="efG-AX-Mgt" secondAttribute="trailing" id="e5P-nD-haK"/>
+                                                                <constraint firstAttribute="bottom" secondItem="efG-AX-Mgt" secondAttribute="bottom" id="nmQ-KN-Dan"/>
+                                                                <constraint firstItem="efG-AX-Mgt" firstAttribute="leading" secondItem="hIT-H6-9mN" secondAttribute="leading" id="opv-7i-6eK"/>
                                                             </constraints>
                                                         </view>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0BS-Nd-dnd">
@@ -896,6 +910,7 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="butAttachment" destination="efG-AX-Mgt" id="ZgP-qy-nog"/>
                                             <outlet property="butComment" destination="SUK-qk-lgy" id="dK6-rc-5zV"/>
                                             <outlet property="butMoreButton" destination="fvQ-bJ-bgs" id="G6h-kE-Pqs"/>
                                             <outlet property="imgComment" destination="Go6-i1-rjL" id="Rrd-la-BKT"/>
@@ -1154,6 +1169,7 @@
                     <connections>
                         <outlet property="cvHeightConstriant" destination="mvx-BH-scr" id="H1J-eR-lfE"/>
                         <outlet property="imgCollectionView" destination="0kV-7j-GLO" id="D4h-UP-Z1e"/>
+                        <outlet property="lblAttachement" destination="AMc-Ps-e13" id="Voj-9J-1Bt"/>
                         <outlet property="svMain" destination="N02-7d-zla" id="nSP-BY-HEo"/>
                         <outlet property="tvDescription" destination="ag0-8g-SUD" id="7hB-4B-XUf"/>
                         <outlet property="txtTittle" destination="jfD-Nb-Zgb" id="571-G2-rLj"/>

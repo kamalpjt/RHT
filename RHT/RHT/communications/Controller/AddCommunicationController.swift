@@ -11,8 +11,11 @@ import AWSS3
 import Photos
 import MobileCoreServices
 
-class AddCommunicationController: BaseViewController,UICollectionViewDelegateFlowLayout ,UIImagePickerControllerDelegate,UINavigationControllerDelegate,AwsDelegate,AwsDelete,UIDocumentPickerDelegate{
+class AddCommunicationController: BaseViewController,UICollectionViewDelegateFlowLayout ,UIImagePickerControllerDelegate,UINavigationControllerDelegate,AwsDelegate,AwsPdfDelegate,AwsDelete,UIDocumentPickerDelegate{
     
+    
+    
+    @IBOutlet weak var lblAttachement: UILabel!
     @IBOutlet weak var svMain: UIScrollView!
     @IBOutlet weak var cvHeightConstriant: NSLayoutConstraint!
     @IBOutlet weak var imgCollectionView: UICollectionView!
@@ -26,6 +29,7 @@ class AddCommunicationController: BaseViewController,UICollectionViewDelegateFlo
     var selectedImageUrl: NSURL!
     var m_selectedImage: UIImage!
     var m_selectedImageUrlArray:[String] = []
+    var m_selectedPdfUrlArray:[String] = []
     override func viewDidLoad() {
         super.viewDidLoad()
         // let imageCollectionView = ImageView()
@@ -75,7 +79,7 @@ class AddCommunicationController: BaseViewController,UICollectionViewDelegateFlo
                                            "title":txtTittle.text!,
                                            "content":tvDescription.text!,
                                            "photos":m_selectedImageUrlArray,
-                                           "attachment":[],
+                                           "attachment":m_selectedPdfUrlArray,
                                            "posttype":matterType,
                                            "receiverid":recevierId,
                                            "user_type":UserDetail.Instance.user_type! ,
@@ -90,6 +94,7 @@ class AddCommunicationController: BaseViewController,UICollectionViewDelegateFlo
                         self.tvDescription.text = ""
                         self.txtTittle.text = ""
                         self.m_selectedImageUrlArray.removeAll()
+                        self.m_selectedPdfUrlArray.removeAll()
                         self.dataSourceImage.stringImage.removeAll()
                         self.dataSourceImage.stringImage = [#imageLiteral(resourceName: "PluseWhite")]
                         self.imgCollectionView.reloadData()
@@ -144,7 +149,7 @@ class AddCommunicationController: BaseViewController,UICollectionViewDelegateFlo
         
         DispatchQueue.main.async(execute: {() -> Void in
            // print(self.m_selectedImageUrlArray.append(url.absoluteString!))
-            print(url.absoluteString)
+            debugPrint(url.absoluteString)
             self.m_selectedImageUrlArray.append(url.absoluteString!)
             self.dataSourceImage.stringImage.insert( self.m_selectedImage, at: 0)
             if  self.dataSourceImage.stringImage.count > 3 {
@@ -181,16 +186,24 @@ class AddCommunicationController: BaseViewController,UICollectionViewDelegateFlo
         if #available(iOS 11.0, *) {
             UINavigationBar.appearance(whenContainedInInstancesOf: [UIDocumentBrowserViewController.self]).tintColor = nil
         }
-        let documentPicker: UIDocumentPickerViewController = UIDocumentPickerViewController(documentTypes: [(kUTTypeText as NSString) as String], in: UIDocumentPickerMode.import)
+        let documentPicker: UIDocumentPickerViewController = UIDocumentPickerViewController(documentTypes: [(kUTTypePDF as NSString) as String], in: UIDocumentPickerMode.import)
         documentPicker.delegate = self
+        
         documentPicker.modalPresentationStyle = UIModalPresentationStyle.formSheet
         self.present(documentPicker, animated: true, completion: nil)
         
+    }
+    func getAwsPdfUrl(url: NSURL) {
+        debugPrint(url.absoluteString!)
+        m_selectedPdfUrlArray.append(url.absoluteString!)
+        lblAttachement.text = String(m_selectedPdfUrlArray.count) + " Attachment"
     }
     func documentPickerWasCancelled(_ controller: UIDocumentPickerViewController) {
         
     }
     func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentAt url: URL) {
-        
+    
+        let aws = AwsPdf.init(selectedImageUrl: url, delegate: self)
+            aws.getLocalImageFileName()
     }
 }

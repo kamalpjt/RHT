@@ -50,6 +50,7 @@
 		8AA6E60D20BEC75E00C82BFA /* Enum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AA6E60C20BEC75E00C82BFA /* Enum.swift */; };
 		8AA6E60F20BED78A00C82BFA /* AppConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AA6E60E20BED78A00C82BFA /* AppConfig.swift */; };
 		8AB8769E20E003AB00EF992E /* ChangePasswordController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AB8769D20E003AB00EF992E /* ChangePasswordController.swift */; };
+		8AD0720A210CDB0D00BCF172 /* AwsPdf.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AD07209210CDB0D00BCF172 /* AwsPdf.swift */; };
 		8AD251F020B2F4CB00F77994 /* DesignableTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AD251EF20B2F4CB00F77994 /* DesignableTextView.swift */; };
 		8AD69C0E20A5BC8500F2E135 /* ChatCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AD69C0D20A5BC8500F2E135 /* ChatCell.swift */; };
 		8ADC021520AEB85500EE03DA /* DesignableButon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ADC021420AEB85500EE03DA /* DesignableButon.swift */; };
@@ -166,6 +167,7 @@
 		8AA6E60C20BEC75E00C82BFA /* Enum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enum.swift; sourceTree = "<group>"; };
 		8AA6E60E20BED78A00C82BFA /* AppConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConfig.swift; sourceTree = "<group>"; };
 		8AB8769D20E003AB00EF992E /* ChangePasswordController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordController.swift; sourceTree = "<group>"; };
+		8AD07209210CDB0D00BCF172 /* AwsPdf.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AwsPdf.swift; sourceTree = "<group>"; };
 		8AD251EF20B2F4CB00F77994 /* DesignableTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignableTextView.swift; sourceTree = "<group>"; };
 		8AD69C0D20A5BC8500F2E135 /* ChatCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatCell.swift; sourceTree = "<group>"; };
 		8ADC021420AEB85500EE03DA /* DesignableButon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignableButon.swift; sourceTree = "<group>"; };
@@ -304,6 +306,7 @@
 				8AFC0ACB20D3A975004FA0F5 /* AddModel.swift */,
 				8A2413CA20C904D700033056 /* ImageView.swift */,
 				8A01779020DA126900F680CF /* AwsImage.swift */,
+				8AD07209210CDB0D00BCF172 /* AwsPdf.swift */,
 				8AFE8A4C20DB884200E24511 /* ImageFlowLayout.swift */,
 				8A30B2CA20DBEE880048B84C /* DeleteAwsImage.swift */,
 			);
@@ -992,6 +995,7 @@
 				8A6AEB9020B82C7100D89295 /* SessionManagers.swift in Sources */,
 				8A058E1820F1288400DF0FD0 /* CommentTblSource.swift in Sources */,
 				8A0114F220E909820097A23D /* ClientModel.swift in Sources */,
+				8AD0720A210CDB0D00BCF172 /* AwsPdf.swift in Sources */,
 				8AFC0AD020D3C9D5004FA0F5 /* ForgotController.swift in Sources */,
 				A9209FA620AC1D8700E2F174 /* MatterFlowLayout.swift in Sources */,
 				8A0114EB20E904290097A23D /* ClientListController.swift in Sources */,

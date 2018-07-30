@@ -17,6 +17,7 @@ class AppConstant  {
     let IMAGEBUCKETNAME = "rhtapp"
     let PDFEBUCKETNAME  = "rhtapp-pdf"
     let CONTENTTYPEIMAGE = "image/jpeg"
+    let CONTENTTYPEPDF = "pdf"
     let LOCALPDFFOLDER = "/RHTPDf"
     //Chat constanct
     var chatItem = [ChatModel]()

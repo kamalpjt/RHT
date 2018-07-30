@@ -48,6 +48,7 @@ class MatterDetailDataSource: NSObject,UITableViewDataSource,UITableViewDelegate
         let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier) as! MatterDetailCell
         cell.butMoreButton.tag = indexPath.row
         cell.butComment.tag = indexPath.row
+        cell.butAttachment.tag = indexPath.row
         let data = m_matterPostDetail?[indexPath.row]
         cell.SetUpView(postData: data! ,fromAnnoune: m_announce!)
         return cell

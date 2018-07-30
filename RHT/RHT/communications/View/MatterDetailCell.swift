@@ -11,6 +11,7 @@ import SDWebImage
 class MatterDetailCell: UITableViewCell {
     @IBOutlet weak var butMoreButton: UIButton!
     
+    @IBOutlet weak var butAttachment: UIButton!
     @IBOutlet weak var butComment: UIButton!
     @IBOutlet weak var vimages: UIView!
     @IBOutlet weak var lblDate: UILabel!
@@ -115,6 +116,9 @@ class MatterDetailCell: UITableViewCell {
    
     @IBAction func MoreButtonAction(_ sender: Any) {
          NotificationCenter.default.post(name: Notification.Name("CommentAction"), object: nil, userInfo: ["Sender":sender])
+    }
+    @IBAction func attachmentaction(_ sender: Any) {
+         NotificationCenter.default.post(name: Notification.Name("AttachAction"), object: nil, userInfo: ["Sender":sender])
     }
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
