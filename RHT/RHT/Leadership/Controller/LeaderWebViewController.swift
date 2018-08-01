@@ -26,7 +26,7 @@ class LeaderWebViewController: BaseViewController,UIWebViewDelegate,URLSessionDe
             wvPdfWebView.loadRequest(getUrl)
         }else{
             //Create URL to the source file you want to download
-            let fileURL = URL(string: m_pdfurl!)
+            let fileURL = URL(string: m_pdfurl!.replacingOccurrences(of:  " ", with: "%20"))
             let sessionConfig = URLSessionConfiguration.default
             let session = URLSession.init(configuration: sessionConfig, delegate: self, delegateQueue: OperationQueue())
             let request = URLRequest(url:fileURL!)
