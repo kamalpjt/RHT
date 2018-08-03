@@ -10,10 +10,12 @@ target 'RHT' do
    pod 'AWSS3'
    pod 'ApiAI'
    pod 'SDWebImage', '~> 4.0'
+   pod "CTKFlagPhoneNumber"
  
   # Pods for RHT
     
      pod 'SVProgressHUD'
+
   target 'RHTTests' do
     inherit! :search_paths
     # Pods for testing
