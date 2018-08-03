@@ -56,7 +56,6 @@
                                                                     <textField opaque="NO" tag="2" contentMode="scaleToFill" semanticContentAttribute="forceRightToLeft" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="First Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Jlg-hE-gKi" customClass="CustomTextField" customModule="RHT" customModuleProvider="target">
                                                                         <rect key="frame" x="0.0" y="0.0" width="116" height="44"/>
                                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                        <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                         <textInputTraits key="textInputTraits" autocorrectionType="no" returnKeyType="next"/>
                                                                         <userDefinedRuntimeAttributes>
@@ -81,7 +80,6 @@
                                                                     <textField opaque="NO" contentMode="scaleToFill" semanticContentAttribute="forceRightToLeft" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Last Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="tx8-0b-jH9" customClass="CustomTextField" customModule="RHT" customModuleProvider="target">
                                                                         <rect key="frame" x="0.0" y="0.0" width="116" height="44"/>
                                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                        <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                         <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="emailAddress" returnKeyType="next"/>
                                                                         <userDefinedRuntimeAttributes>
@@ -193,7 +191,7 @@
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0Fq-Ab-kf0" userLabel="vPhoneNumber">
                                                         <rect key="frame" x="20" y="304" width="248" height="44"/>
                                                         <subviews>
-                                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Phone Number" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="FXP-xd-Cyk" customClass="CustomTextField" customModule="RHT" customModuleProvider="target">
+                                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Phone Number" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="FXP-xd-Cyk" customClass="CTKFlagPhoneNumberTextField" customModule="CTKFlagPhoneNumber">
                                                                 <rect key="frame" x="0.0" y="0.0" width="248" height="44"/>
                                                                 <nil key="textColor"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -202,17 +200,27 @@
                                                                     <userDefinedRuntimeAttribute type="boolean" keyPath="BottomLine" value="YES"/>
                                                                 </userDefinedRuntimeAttributes>
                                                             </textField>
+                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GW2-vx-KXC">
+                                                                <rect key="frame" x="0.0" y="43" width="248" height="1"/>
+                                                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="height" constant="1" id="5PX-xs-F12"/>
+                                                                </constraints>
+                                                            </view>
                                                         </subviews>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
                                                             <constraint firstItem="FXP-xd-Cyk" firstAttribute="top" secondItem="0Fq-Ab-kf0" secondAttribute="top" id="0dn-vJ-Rpn"/>
+                                                            <constraint firstAttribute="trailing" secondItem="GW2-vx-KXC" secondAttribute="trailing" id="7vM-Tr-ePN"/>
                                                             <constraint firstAttribute="bottom" secondItem="FXP-xd-Cyk" secondAttribute="bottom" id="Bb6-1Y-Q6K"/>
                                                             <constraint firstAttribute="trailing" secondItem="FXP-xd-Cyk" secondAttribute="trailing" id="GY9-4G-gMX"/>
                                                             <constraint firstItem="FXP-xd-Cyk" firstAttribute="top" secondItem="0Fq-Ab-kf0" secondAttribute="top" id="M6O-Wg-eRD"/>
                                                             <constraint firstItem="FXP-xd-Cyk" firstAttribute="leading" secondItem="0Fq-Ab-kf0" secondAttribute="leading" id="ToO-EI-xlr"/>
                                                             <constraint firstAttribute="bottom" secondItem="FXP-xd-Cyk" secondAttribute="bottom" id="aEo-c8-wgX"/>
+                                                            <constraint firstAttribute="bottom" secondItem="GW2-vx-KXC" secondAttribute="bottom" id="c9Q-9l-TvD"/>
                                                             <constraint firstAttribute="trailing" secondItem="FXP-xd-Cyk" secondAttribute="trailing" id="cxC-6C-aZS"/>
                                                             <constraint firstItem="FXP-xd-Cyk" firstAttribute="leading" secondItem="0Fq-Ab-kf0" secondAttribute="leading" id="fbC-sC-fEg"/>
+                                                            <constraint firstItem="GW2-vx-KXC" firstAttribute="leading" secondItem="0Fq-Ab-kf0" secondAttribute="leading" id="tAA-AE-DiS"/>
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="m5F-pm-AHA" userLabel="VRegister">
@@ -315,7 +323,7 @@
                         <outlet property="txtFirstName" destination="Jlg-hE-gKi" id="XG2-rg-UZw"/>
                         <outlet property="txtLastName" destination="tx8-0b-jH9" id="9nk-xZ-8Na"/>
                         <outlet property="txtPassowrd" destination="SvW-yb-PtW" id="Q2Q-HG-9Lj"/>
-                        <outlet property="txtPhoneNumber" destination="FXP-xd-Cyk" id="F5R-d8-ICy"/>
+                        <outlet property="txtPhoneNumber" destination="FXP-xd-Cyk" id="7E9-6S-kQV"/>
                         <outlet property="vRegister" destination="1gd-t9-8cP" id="SwS-1U-Giz"/>
                         <outlet property="vShadowView" destination="Myv-nh-GrG" id="NR8-Zm-LJM"/>
                     </connections>

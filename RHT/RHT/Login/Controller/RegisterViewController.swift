@@ -8,11 +8,11 @@
 
 import UIKit
 import SwiftKeychainWrapper
-
+import CTKFlagPhoneNumber
 class RegisterViewController: BaseViewController ,UITextFieldDelegate{
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var txtEmail: CustomTextField!
-    @IBOutlet weak var txtPhoneNumber: CustomTextField!
+    @IBOutlet weak var txtPhoneNumber: CTKFlagPhoneNumberTextField!
     @IBOutlet weak var txtConfirmPassowrd: CustomTextField!
     @IBOutlet weak var txtPassowrd: CustomTextField!
     @IBOutlet weak var txtLastName: CustomTextField!
@@ -35,14 +35,34 @@ class RegisterViewController: BaseViewController ,UITextFieldDelegate{
         txtLastName.delegate = self;
         txtPassowrd.delegate = self
         txtConfirmPassowrd.delegate = self;
-        txtPhoneNumber.delegate = self;
+        //txtPhoneNumber.delegate = self;
         CloseKeyboard(bool: true)
         // Do any additional setup after loading the view.
+         txtPhoneNumber.setFlag(with: "SG")
+        let items = [
+            UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.save, target: self, action: nil),
+            UIBarButtonItem(title: "Item 1", style: .plain, target: self, action: nil),
+            UIBarButtonItem(title: "Item 2", style: .plain, target: self, action: nil)
+        ]
+       // txtPhoneNumber.textFieldInputAccessoryView = getCustomTextFieldInputAccessoryView(with: items)
+        txtPhoneNumber.parentViewController = self
+        txtPhoneNumber.placeholder = "Phone Number"
+        txtPhoneNumber.borderStyle = UITextBorderStyle.none
+         basescrollView = self.scrollView
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         //  AddKeyboardObserver()
-        basescrollView = self.scrollView
+      
+    }
+    private func getCustomTextFieldInputAccessoryView(with items: [UIBarButtonItem]) -> UIToolbar {
+        let toolbar: UIToolbar = UIToolbar()
+        
+        toolbar.barStyle = UIBarStyle.default
+        toolbar.items = items
+        toolbar.sizeToFit()
+        
+        return toolbar
     }
     func Vaildation() -> Bool{
         
@@ -77,7 +97,7 @@ class RegisterViewController: BaseViewController ,UITextFieldDelegate{
         if(Vaildation()){
             let params:[String:String] = ["email":txtEmail.text!,"password":txtPassowrd.text!,
                                           "first_name":txtFirstName.text!,"last_name":txtLastName.text!,
-                                          "phone":txtPhoneNumber.text!,"ostype":"ios",
+                                          "phone":txtPhoneNumber.getRawPhoneNumber()!,"ostype":"ios",
                                           "appversion":(Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String)!,
                                           "devicetype":"mobile",
                                           "osversion":UIDevice.current.systemVersion]

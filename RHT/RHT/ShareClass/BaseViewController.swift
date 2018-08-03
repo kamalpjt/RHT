@@ -58,7 +58,7 @@ class BaseViewController: UIViewController {
             let contentInsets = UIEdgeInsetsMake(0, 0, (coveredFrame.size.height), 0.0)
             self.basescrollView? .contentInset = contentInsets;
             self.basescrollView?.scrollIndicatorInsets = contentInsets;
-            self.basescrollView?.contentSize = CGSize(width: (self.basescrollView?.contentSize.width)!, height: (self.basescrollView?.contentSize.height)!)
+            self.basescrollView?.contentSize = CGSize(width: (self.basescrollView?.contentSize.width)!, height: (self.basescrollView?.contentSize.height)!+50)
 
         }
     }
