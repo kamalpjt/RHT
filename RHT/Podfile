@@ -10,6 +10,7 @@ target 'RHT' do
    pod 'AWSS3'
    pod 'ApiAI'
    pod 'SDWebImage', '~> 4.0'
+   pod 'Firebase/Core'
    pod "CTKFlagPhoneNumber"
  
   # Pods for RHT
