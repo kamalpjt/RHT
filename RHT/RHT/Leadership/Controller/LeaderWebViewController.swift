@@ -14,7 +14,7 @@ class LeaderWebViewController: BaseViewController,UIWebViewDelegate,URLSessionDe
     var m_destinationFileUrl:URL?
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        getAllItem()
         wvPdfWebView.delegate = self
         let pdfArray = m_pdfurl?.components(separatedBy: "/")
         let documentsUrl:URL =  (FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first as URL?)!
@@ -40,6 +40,35 @@ class LeaderWebViewController: BaseViewController,UIWebViewDelegate,URLSessionDe
     }
     override func viewWillDisappear(_ animated: Bool) {
         SVProgressHUD.dismiss()
+    }
+    
+    func getAllItem() -> Void{
+        /*NSArray *documentPath = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+        NSString *currDircetory = [documentPath objectAtIndex:0];
+        NSArray *filePathsArray = [[NSFileManager defaultManager] subpathsOfDirectoryAtPath:currDircetory  error:nil];
+        
+        for (NSString *s in filePathsArray){
+            
+            NSString *filestring = [currDircetory stringByAppendingFormat:@"/%@",s];
+            NSDictionary *filePathsArray1 = [[NSFileManager defaultManager] attributesOfItemAtPath:filestring error:nil];
+            NSLog(@"Modified Day : %@", [filePathsArray1 objectForKey:NSFileModificationDate]);
+        }*/
+        
+         let documentsUrl:URL =  (FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first as URL?)!
+         let path = documentsUrl.appendingPathComponent(AppConstant.sharedInstance.LOCALPDFFOLDER);
+        //var error: NSError? = nil
+        let fileManager = FileManager.default
+        let contents = try? fileManager.contentsOfDirectory(atPath: path.absoluteString)
+        if contents == nil {
+           // debugPrint(error)
+        }
+        else {
+            let filenames = contents as! [String]
+           // return (filenames, nil)
+        }
+       
+        
+        
     }
     func SubmitButton() -> UIBarButtonItem{
         let menuButton = UIButton.init(type: UIButtonType.custom)
