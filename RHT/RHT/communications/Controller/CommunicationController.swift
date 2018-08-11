@@ -18,6 +18,7 @@ class CommunicationController: UIViewController,UICollectionViewDelegate,UISearc
     var m_MattersDetail:[matters] = []
     var dataSource:MatterDataSource?
     
+    @IBOutlet weak var vActivation: UIView!
     @IBOutlet weak var vContainer: UIView!
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,13 +27,24 @@ class CommunicationController: UIViewController,UICollectionViewDelegate,UISearc
         vTop.layer.cornerRadius = 10;
         sbSearchMatter.layer.cornerRadius = 10;
         sbSearchMatter.layer.masksToBounds = false
-       // ShowAndHideGeneral()
+        ShareData.sharedInstance.SetCornerRadius(view: vActivation, radius: 10)
+        ShareData.sharedInstance.DrawBorder(view: vActivation, color: UIColor.red);
+        
+        // ShowAndHideGeneral()
         
         // Do any additional setup after loading the view.
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        SetUpCollectionView()
+        if UserDetail.Instance.isVerified != 0 {
+            cvMatter.isHidden = false;
+            vActivation.isHidden = true;
+            SetUpCollectionView()
+        }else{
+            cvMatter.isHidden = true;
+            vActivation.isHidden = false;
+        }
+        
         
     }
     func ShowAndHideGeneral() -> Void{
@@ -136,7 +148,7 @@ class CommunicationController: UIViewController,UICollectionViewDelegate,UISearc
             vc.m_receverid = ""
             navigationController?.pushViewController(vc, animated: true)
         }
-       
+        
         
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath)
@@ -144,10 +156,15 @@ class CommunicationController: UIViewController,UICollectionViewDelegate,UISearc
         let modeldata = m_MattersDetail[indexPath.row]
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "CommunicationDetailController") as! CommunicationDetailController ;
         vc.m_matterType = "matters";
-        vc.m_matterid = modeldata.matterid!
+        vc.m_matterid = modeldata.id!
         vc.m_FromAnnocument = false
         //vc.m_receverid = modeldata.id!
         navigationController?.pushViewController(vc, animated: true)
+    }
+    @IBAction func activationAction(_ sender: Any) {
+        
+        let viewcontroller = self.storyboard?.instantiateViewController(withIdentifier: "ActivationController") as! ActivationController
+        navigationController?.pushViewController(viewcontroller, animated: true)
     }
     
     

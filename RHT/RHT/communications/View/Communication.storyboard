@@ -200,6 +200,28 @@
                                             </collectionViewCell>
                                         </cells>
                                     </collectionView>
+                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TQ1-bF-D0f">
+                                        <rect key="frame" x="60" y="263" width="200" height="60"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="E8t-8b-CfD">
+                                                <rect key="frame" x="0.0" y="0.0" width="200" height="60"/>
+                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <inset key="imageEdgeInsets" minX="-17" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                                <state key="normal" title="REQUIRE ACTIVATION" image="Lock">
+                                                    <color key="titleColor" red="0.87843137250000003" green="0.20392156859999999" blue="0.2901960784" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                </state>
+                                                <variation key="heightClass=regular-widthClass=regular">
+                                                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                                </variation>
+                                                <connections>
+                                                    <action selector="activationAction:" destination="SHY-wK-V3r" eventType="touchUpInside" id="aFV-Xo-smE"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </view>
                                 </subviews>
                                 <color key="backgroundColor" red="0.96470588235294119" green="0.96862745098039216" blue="0.97647058823529409" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
@@ -234,6 +256,7 @@
                         <outlet property="lblNoRecord" destination="hUc-yz-Yzk" id="LtK-vE-iLh"/>
                         <outlet property="sbSearchMatter" destination="pg8-AG-7l6" id="D6G-GU-TB9"/>
                         <outlet property="txtSearchBar" destination="pg8-AG-7l6" id="EGV-Yi-tFv"/>
+                        <outlet property="vActivation" destination="TQ1-bF-D0f" id="Byr-YS-gz0"/>
                         <outlet property="vContainer" destination="zcu-f4-OXn" id="hcG-Ag-aBt"/>
                         <outlet property="vTop" destination="n2P-pA-8i3" id="P2G-ev-pm8"/>
                     </connections>
@@ -481,6 +504,146 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7o9-sa-3zf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-4719.375" y="874.64788732394368"/>
+        </scene>
+        <!--Activation Controller-->
+        <scene sceneID="nQM-10-d1A">
+            <objects>
+                <viewController storyboardIdentifier="ActivationController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Vee-jc-Ygq" customClass="ActivationController" customModule="RHT" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Qs8-xs-l0K">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="27K-at-WRx">
+                                <rect key="frame" x="0.0" y="20" width="320" height="548"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please enter register phone number." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Rh-H8-dbY">
+                                        <rect key="frame" x="0.0" y="26" width="320" height="16"/>
+                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="13"/>
+                                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                        <variation key="heightClass=regular-widthClass=regular">
+                                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
+                                        </variation>
+                                    </label>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="F1c-0z-NNF" customClass="CTKFlagPhoneNumberTextField" customModule="CTKFlagPhoneNumber">
+                                        <rect key="frame" x="27" y="71" width="266" height="44"/>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gWm-Pz-6DP">
+                                        <rect key="frame" x="74" y="134" width="170" height="45"/>
+                                        <color key="backgroundColor" red="0.1803921568627451" green="0.38823529411764707" blue="0.81176470588235294" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="14"/>
+                                        <state key="normal" title="REQUEST PIN">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <variation key="heightClass=regular-widthClass=regular">
+                                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
+                                        </variation>
+                                        <connections>
+                                            <action selector="BtnPinAction:" destination="Vee-jc-Ygq" eventType="touchUpInside" id="1V7-nK-O0g"/>
+                                        </connections>
+                                    </button>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="t5S-JK-i6T">
+                                        <rect key="frame" x="8" y="198" width="304" height="1"/>
+                                        <color key="backgroundColor" white="0.66666666666666663" alpha="0.5" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="1" id="nGc-pL-OlO"/>
+                                        </constraints>
+                                    </view>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You will receive a OTP PIN on your registered mobile phone via SMS.To activate enter your pin below." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="6" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dkr-pI-z0U">
+                                        <rect key="frame" x="8" y="215" width="304" height="50.5"/>
+                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
+                                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ENTER YOUR PIN" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HdE-cF-fAK">
+                                        <rect key="frame" x="0.0" y="271" width="320" height="19.5"/>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
+                                        <color key="textColor" red="0.18039215689999999" green="0.38823529410000002" blue="0.81176470590000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                        <variation key="heightClass=regular-widthClass=regular">
+                                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
+                                        </variation>
+                                    </label>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BQ7-ky-6Sr" customClass="KWVerificationCodeView" customModule="KWVerificationCodeView">
+                                        <rect key="frame" x="40" y="298" width="240" height="54"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="textSize">
+                                                <real key="value" value="14"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="digits">
+                                                <integer key="value" value="4"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                <color key="value" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="underlineColor">
+                                                <color key="value" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="underlineSelectedColor">
+                                                <color key="value" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="textFieldTintColor">
+                                                <color key="value" red="0.87843137250000003" green="0.20392156859999999" blue="0.2901960784" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="F1c-0z-NNF" firstAttribute="top" secondItem="3Rh-H8-dbY" secondAttribute="bottom" constant="29" id="1z1-GM-174"/>
+                                    <constraint firstAttribute="trailing" secondItem="gWm-Pz-6DP" secondAttribute="trailing" constant="76" id="3xQ-Eu-d1b"/>
+                                    <constraint firstItem="gWm-Pz-6DP" firstAttribute="top" secondItem="F1c-0z-NNF" secondAttribute="bottom" constant="19" id="640-tr-zDL"/>
+                                    <constraint firstAttribute="bottom" secondItem="BQ7-ky-6Sr" secondAttribute="bottom" constant="196" id="6vL-01-lPX"/>
+                                    <constraint firstItem="BQ7-ky-6Sr" firstAttribute="top" secondItem="HdE-cF-fAK" secondAttribute="bottom" constant="7.5" id="7h5-Yg-F4a"/>
+                                    <constraint firstItem="3Rh-H8-dbY" firstAttribute="top" secondItem="27K-at-WRx" secondAttribute="top" constant="26" id="B8W-e4-SQ4"/>
+                                    <constraint firstItem="gWm-Pz-6DP" firstAttribute="height" secondItem="27K-at-WRx" secondAttribute="height" multiplier="45:548" id="Bfr-9u-hYa"/>
+                                    <constraint firstItem="HdE-cF-fAK" firstAttribute="leading" secondItem="27K-at-WRx" secondAttribute="leading" id="HyB-aB-8UW"/>
+                                    <constraint firstAttribute="trailing" secondItem="F1c-0z-NNF" secondAttribute="trailing" constant="27" id="Ie3-oD-FsG"/>
+                                    <constraint firstItem="Dkr-pI-z0U" firstAttribute="leading" secondItem="27K-at-WRx" secondAttribute="leading" constant="8" id="Rcd-pm-QUR"/>
+                                    <constraint firstAttribute="trailing" secondItem="BQ7-ky-6Sr" secondAttribute="trailing" constant="40" id="TV8-47-eqA"/>
+                                    <constraint firstItem="gWm-Pz-6DP" firstAttribute="leading" secondItem="27K-at-WRx" secondAttribute="leading" constant="74" id="Vad-Cw-rPz"/>
+                                    <constraint firstItem="Dkr-pI-z0U" firstAttribute="top" secondItem="t5S-JK-i6T" secondAttribute="bottom" constant="16" id="VcE-jm-nOD"/>
+                                    <constraint firstItem="BQ7-ky-6Sr" firstAttribute="height" secondItem="27K-at-WRx" secondAttribute="height" multiplier="54:548" id="XCu-I6-2Sa"/>
+                                    <constraint firstAttribute="trailing" secondItem="3Rh-H8-dbY" secondAttribute="trailing" id="ZwA-hB-gEP"/>
+                                    <constraint firstItem="F1c-0z-NNF" firstAttribute="height" secondItem="27K-at-WRx" secondAttribute="height" multiplier="44:548" id="dqc-BA-RKC"/>
+                                    <constraint firstItem="3Rh-H8-dbY" firstAttribute="centerX" secondItem="27K-at-WRx" secondAttribute="centerX" id="g8e-dA-o3i"/>
+                                    <constraint firstAttribute="trailing" secondItem="HdE-cF-fAK" secondAttribute="trailing" id="hGD-QV-v1y"/>
+                                    <constraint firstAttribute="trailing" secondItem="t5S-JK-i6T" secondAttribute="trailing" constant="8" id="lDv-8x-dPa"/>
+                                    <constraint firstItem="3Rh-H8-dbY" firstAttribute="leading" secondItem="27K-at-WRx" secondAttribute="leading" id="oq6-Dn-eeF"/>
+                                    <constraint firstItem="BQ7-ky-6Sr" firstAttribute="leading" secondItem="27K-at-WRx" secondAttribute="leading" constant="40" id="rpk-Ag-NRp"/>
+                                    <constraint firstItem="HdE-cF-fAK" firstAttribute="top" secondItem="Dkr-pI-z0U" secondAttribute="bottom" constant="5.5" id="s6U-kT-TEI"/>
+                                    <constraint firstAttribute="trailing" secondItem="Dkr-pI-z0U" secondAttribute="trailing" constant="8" id="tE8-ln-oMI"/>
+                                    <constraint firstItem="t5S-JK-i6T" firstAttribute="leading" secondItem="27K-at-WRx" secondAttribute="leading" constant="8" id="tsv-TT-Cyc"/>
+                                    <constraint firstItem="t5S-JK-i6T" firstAttribute="top" secondItem="gWm-Pz-6DP" secondAttribute="bottom" constant="19" id="yTk-Y7-bmk"/>
+                                    <constraint firstItem="F1c-0z-NNF" firstAttribute="leading" secondItem="27K-at-WRx" secondAttribute="leading" constant="27" id="yma-Cw-1QD"/>
+                                </constraints>
+                            </scrollView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="27K-at-WRx" firstAttribute="centerX" secondItem="B4W-Og-bag" secondAttribute="centerX" id="2J4-TN-pin"/>
+                            <constraint firstItem="27K-at-WRx" firstAttribute="trailing" secondItem="B4W-Og-bag" secondAttribute="trailing" id="4H9-5n-r88"/>
+                            <constraint firstItem="27K-at-WRx" firstAttribute="centerY" secondItem="B4W-Og-bag" secondAttribute="centerY" id="KiO-eI-DUL"/>
+                            <constraint firstItem="27K-at-WRx" firstAttribute="leading" secondItem="B4W-Og-bag" secondAttribute="leading" id="Z9u-t7-YPh"/>
+                            <constraint firstItem="27K-at-WRx" firstAttribute="bottom" secondItem="B4W-Og-bag" secondAttribute="bottom" id="fZK-uJ-PPU"/>
+                            <constraint firstItem="27K-at-WRx" firstAttribute="top" secondItem="B4W-Og-bag" secondAttribute="top" id="lnS-hT-KX5"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="B4W-Og-bag"/>
+                    </view>
+                    <connections>
+                        <outlet property="btnPin" destination="gWm-Pz-6DP" id="ph4-WQ-WsX"/>
+                        <outlet property="scrollView" destination="27K-at-WRx" id="2T4-Tx-wLm"/>
+                        <outlet property="txtPhoneNumber" destination="F1c-0z-NNF" id="afr-Up-Bdn"/>
+                        <outlet property="vOTP" destination="BQ7-ky-6Sr" id="3Mb-Oi-rdT"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5VJ-8m-Jup" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-4719.375" y="1528.5211267605634"/>
         </scene>
         <!--News Controller-->
         <scene sceneID="Wbg-PD-6Wu">
@@ -1213,6 +1376,7 @@
         <image name="Add" width="16" height="16"/>
         <image name="Communications" width="64" height="64"/>
         <image name="Dravid" width="155" height="130"/>
+        <image name="Lock" width="24" height="24"/>
         <image name="Pdf" width="64" height="64"/>
         <image name="PluseWhite" width="24" height="24"/>
         <image name="Redprofile" width="64" height="64"/>

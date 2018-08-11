@@ -40,7 +40,7 @@ class LoginViewController: BaseViewController,UITextFieldDelegate {
         //txtPassowrd.text = "12345678"
        // txtemail.text = "rht@gmail.com"
         txtPassowrd.text = "staff@123"
-        txtemail.text = "kamalelango15@gmail.com"
+        txtemail.text = "sam@gmail.com"
         SetUpView()
         SetTextFieldImage()
         CloseKeyboard(bool: true);

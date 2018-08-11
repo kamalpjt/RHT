@@ -48,7 +48,7 @@ class RegisterViewController: BaseViewController ,UITextFieldDelegate{
         txtPhoneNumber.parentViewController = self
         txtPhoneNumber.placeholder = "Phone Number"
         txtPhoneNumber.borderStyle = UITextBorderStyle.none
-         basescrollView = self.scrollView
+        basescrollView = self.scrollView
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)

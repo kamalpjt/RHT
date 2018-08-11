@@ -68,6 +68,7 @@
 		8AFCE3F420EDE8A30016A9B6 /* LeaderDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AFCE3F320EDE8A30016A9B6 /* LeaderDataSource.swift */; };
 		8AFCE3F620EDECAA0016A9B6 /* LeaderCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AFCE3F520EDECAA0016A9B6 /* LeaderCollectionCell.swift */; };
 		8AFCE3F820EE04600016A9B6 /* LeaderWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AFCE3F720EE04600016A9B6 /* LeaderWebViewController.swift */; };
+		8AFDAF47211EB77E00101D35 /* ActivationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AFDAF46211EB77E00101D35 /* ActivationController.swift */; };
 		8AFE8A4D20DB884200E24511 /* ImageFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AFE8A4C20DB884200E24511 /* ImageFlowLayout.swift */; };
 		8AFED3EF20B21F040094F1DA /* ChatListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AFED3EE20B21F040094F1DA /* ChatListController.swift */; };
 		8AFED3F720B27EEE0094F1DA /* AddCommunicationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AFED3F620B27EEE0094F1DA /* AddCommunicationController.swift */; };
@@ -186,6 +187,7 @@
 		8AFCE3F320EDE8A30016A9B6 /* LeaderDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderDataSource.swift; sourceTree = "<group>"; };
 		8AFCE3F520EDECAA0016A9B6 /* LeaderCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderCollectionCell.swift; sourceTree = "<group>"; };
 		8AFCE3F720EE04600016A9B6 /* LeaderWebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderWebViewController.swift; sourceTree = "<group>"; };
+		8AFDAF46211EB77E00101D35 /* ActivationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivationController.swift; sourceTree = "<group>"; };
 		8AFE8A4C20DB884200E24511 /* ImageFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageFlowLayout.swift; sourceTree = "<group>"; };
 		8AFED3EE20B21F040094F1DA /* ChatListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatListController.swift; sourceTree = "<group>"; };
 		8AFED3F620B27EEE0094F1DA /* AddCommunicationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCommunicationController.swift; sourceTree = "<group>"; };
@@ -486,6 +488,22 @@
 			path = view;
 			sourceTree = "<group>";
 		};
+		8AFDAF44211EA87100101D35 /* Activate */ = {
+			isa = PBXGroup;
+			children = (
+				8AFDAF45211EA88900101D35 /* Controller */,
+			);
+			path = Activate;
+			sourceTree = "<group>";
+		};
+		8AFDAF45211EA88900101D35 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				8AFDAF46211EB77E00101D35 /* ActivationController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
 		A90BF6582075F65B007B8F2B /* SideMenu */ = {
 			isa = PBXGroup;
 			children = (
@@ -524,6 +542,7 @@
 		A9182449206CBB2000B358D8 /* RHT */ = {
 			isa = PBXGroup;
 			children = (
+				8AFDAF44211EA87100101D35 /* Activate */,
 				8A02218321117D12005EE791 /* AttachmentList */,
 				8A058E0F20F09BDE00DF0FD0 /* Comment */,
 				8AFCE3E920EDE3F90016A9B6 /* Leadership */,
@@ -884,6 +903,7 @@
 				"${BUILT_PRODUCTS_DIR}/ApiAI/ApiAI.framework",
 				"${BUILT_PRODUCTS_DIR}/CTKFlagPhoneNumber/CTKFlagPhoneNumber.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
+				"${BUILT_PRODUCTS_DIR}/KWVerificationCodeView/KWVerificationCodeView.framework",
 				"${BUILT_PRODUCTS_DIR}/ReachabilitySwift/Reachability.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
 				"${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework",
@@ -899,6 +919,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ApiAI.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CTKFlagPhoneNumber.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KWVerificationCodeView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Reachability.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SVProgressHUD.framework",
@@ -999,6 +1020,7 @@
 				8A058E1C20F1471300DF0FD0 /* ChatCommentDelegate.swift in Sources */,
 				8A073A1420F1D90E006C4D73 /* CommentPostModel.swift in Sources */,
 				8A01779120DA126900F680CF /* AwsImage.swift in Sources */,
+				8AFDAF47211EB77E00101D35 /* ActivationController.swift in Sources */,
 				8A0114E620E87B560097A23D /* CommunicationModel.swift in Sources */,
 				8A03582E20ECB7F800D7F3A5 /* NewsCollectionViewCell.swift in Sources */,
 				8AFCE3F120EDE6320016A9B6 /* LeaderModel.swift in Sources */,

@@ -26,6 +26,8 @@ class AddCommunicationController: BaseViewController,UICollectionViewDelegateFlo
     var dataSourceImage = ImageView()
     var matterType:String = "";
     var recevierId:String = "";
+    var m_matterid:String = "";
+    
     var selectedImageUrl: NSURL!
     var m_selectedImage: UIImage!
     var m_selectedImageUrlArray:[String] = []
@@ -82,6 +84,7 @@ class AddCommunicationController: BaseViewController,UICollectionViewDelegateFlo
                                            "attachment":m_selectedPdfUrlArray,
                                            "posttype":matterType,
                                            "receiverid":recevierId,
+                                           "matterid":m_matterid,
                                            "user_type":UserDetail.Instance.user_type! ,
                                            "id":UserDetail.Instance.id!,
                                            "sendername":UserDetail.Instance.name!,"ostype":"ios",
@@ -89,6 +92,7 @@ class AddCommunicationController: BaseViewController,UICollectionViewDelegateFlo
                                            "devicetype":"mobile",
                                            "osversion":UIDevice.current.systemVersion]
                 CommunicationParsing.instance.getResponseDetail(url: "/postcommunication",withLoader:true, param: params, resposneBlock: { response , statuscode in
+                    
                     if(statuscode == 200){
                         let model = response as! AddModel
                         self.tvDescription.text = ""

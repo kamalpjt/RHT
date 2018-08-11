@@ -231,8 +231,10 @@ class CommunicationDetailController: UIViewController,UITableViewDelegate,PageNa
     //MARK:Action
     @objc func AddButton() -> Void{
         let vc = self.storyboard?.instantiateViewController(withIdentifier:"AddCommunicationController") as! AddCommunicationController
+
         vc.matterType = m_matterType
         vc.recevierId = m_receverid
+        vc.m_matterid  = m_matterid
         navigationController?.pushViewController(vc, animated: true)
         
     }

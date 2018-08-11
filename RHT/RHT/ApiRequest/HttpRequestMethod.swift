@@ -39,7 +39,7 @@ class HttpRequestMethod {
                     let course = try JSONDecoder().decode([Courses].self, from: response.data!)
                     print(course)
                 } catch let jsonerror {
-                    let statuscode = response.response?.statusCode
+                  //  let statuscode = response.response?.statusCode
                     print(jsonerror)
                 }
             }else{
@@ -51,13 +51,6 @@ class HttpRequestMethod {
     
     func postMethod(url:String,withLoader:Bool, parameters:[String:Any],sucessResponseBlcok:@escaping (jsonResponseSucessBlock),failureResponseBlcok:@escaping (jsonResponseFailureBlock)) -> Void{
         
-//        var dict:Dictionary = ["ostype":"ios",
-//                               "appversion":(Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String)!,
-//                               "devicetype":"mobile",
-//                               "osversion":UIDevice.current.systemVersion]
-//         dict.unionInPlace(dictionary: parameters)
-        
-       
         if withLoader {
             SVProgressHUD.show()
         }
@@ -66,12 +59,12 @@ class HttpRequestMethod {
         request(AppConfig.sharedInstance.RHTDDevIp!+url, method: HTTPMethod.post, parameters: parameters, encoding: JSONEncoding.default, headers: headerWithContentType).responseData(completionHandler: {response in
             if (response.result.isSuccess){
                 SVProgressHUD.dismiss()
-//                do{
-//                        let oobj = try JSONSerialization.jsonObject(with: response.data!, options: JSONSerialization.ReadingOptions.mutableContainers)
-//                        print(oobj)
-//                } catch (let eror){
-//                    
-//                }
+                do{
+                        let oobj = try JSONSerialization.jsonObject(with: response.data!, options: JSONSerialization.ReadingOptions.mutableContainers)
+                        debugPrint(oobj)
+                } catch (let eror){
+                    
+                }
                 sucessResponseBlcok(response.data!,(response.response?.statusCode)!);
                 //do your json stuff
             } else if (response.result.isFailure) {
