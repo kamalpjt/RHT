@@ -975,6 +975,7 @@
                         <viewLayoutGuide key="safeArea" id="NYs-vr-y5U"/>
                     </view>
                     <connections>
+                        <outlet property="btnSumbit" destination="AHS-zO-Uqn" id="Epb-UT-aSP"/>
                         <outlet property="svScrollView" destination="dqm-rE-Bza" id="z1X-2G-kPo"/>
                         <outlet property="txtConfirmPassowrd" destination="Eql-6S-LrM" id="dIH-65-iDo"/>
                         <outlet property="txtNewPassowrd" destination="O4R-ku-oex" id="iJq-oZ-LJI"/>

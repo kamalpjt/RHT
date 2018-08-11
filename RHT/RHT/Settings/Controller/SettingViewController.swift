@@ -54,9 +54,32 @@ class SettingViewController: BaseViewController,UITableViewDataSource,UITableVie
                 storyboard = UIStoryboard.init(name: "Login", bundle: Bundle.main)
             }
             
-            let rootViewController = storyboard.instantiateViewController(withIdentifier: "LoginViewController")
-            let navController = UINavigationController(rootViewController: rootViewController)
-            UIApplication.shared.keyWindow?.rootViewController  = navController;
+            if(checkInternetIsAvailable()){
+                    let params:[String:Any] = ["userid":UserDetail.Instance.userid!,
+                                               "id":UserDetail.Instance.id!,
+                                               "sessionid":1,
+                                               "deviceid":"",
+                                               "ostype":"ios",
+                                               "appversion":(Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String)!,
+                                               "devicetype":"mobile",
+                                               "osversion":UIDevice.current.systemVersion]
+                    LoginParsing.instance.logOutApp(url: "/logout",withLoader:true, param: params, resposneBlock: { response , statuscode in
+                        if(statuscode == 200){
+                            let model = response as! CommentPostModel
+                           // SharedAlert.instance.ShowAlert(title: "Message", message: model.response.msg!, viewController: self)
+                            let alertController = UIAlertController (title: StringConstant.instance.ALERTTITLE, message:model.response.msg!, preferredStyle: .alert)
+                            let settingsAction = UIAlertAction(title: "Ok", style: .default) { (_) -> Void in
+                                let rootViewController = storyboard.instantiateViewController(withIdentifier: "LoginViewController")
+                                let navController = UINavigationController(rootViewController: rootViewController)
+                                UIApplication.shared.keyWindow?.rootViewController  = navController;
+                            }
+                            alertController.addAction(settingsAction)
+                          self.present(alertController, animated: true, completion: nil)
+                        }
+                    })
+            }
+            
+           
             
         }
    }
