@@ -27,9 +27,13 @@ class NewsWebviewController: UIViewController,UIWebViewDelegate {
     }
     func webViewDidStartLoad(_ webView: UIWebView) {
         
+        SVProgressHUD.show()
     }
     func webViewDidFinishLoad(_ webView: UIWebView) {
-        
+        SVProgressHUD.dismiss()
+    }
+    func webView(_ webView: UIWebView, didFailLoadWithError error: Error) {
+        SVProgressHUD.dismiss()
     }
 
     /*

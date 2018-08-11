@@ -8,7 +8,7 @@
 
 import UIKit
 
-class NewsController: UIViewController,PageNationDelegate,GetIDDelegate {
+class NewsController: BaseViewController,PageNationDelegate,GetIDDelegate {
    
     
    
@@ -20,7 +20,7 @@ class NewsController: UIViewController,PageNationDelegate,GetIDDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        SetUpCollectionView()
+        
         // Do any additional setup after loading the view.
     }
 
@@ -28,6 +28,11 @@ class NewsController: UIViewController,PageNationDelegate,GetIDDelegate {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
         
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        m_pageCount = 0
+        self.m_NewsArray.removeAll()
+        SetUpCollectionView()
     }
     func SetUpCollectionView()
     {

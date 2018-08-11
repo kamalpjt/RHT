@@ -41,6 +41,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         ConfigAws()
         CheckPhotoAutorizsation()
         createPdfFolder()
+        deleteItemInLocalDirectory()
         self.window?.makeKeyAndVisible()
          
         return true
@@ -97,6 +98,40 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                  print("FilePath:" + imagesDirectoryPath)
             }
            
+        }
+    }
+    func deleteItemInLocalDirectory() -> Void{
+        
+         //https://iosdevcenters.blogspot.com/2016/04/save-and-get-image-from-document.html
+        let paths = (NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] as NSString).appendingPathComponent(AppConstant.sharedInstance.LOCALPDFFOLDER)
+        
+        let fileManager = FileManager.default
+        
+        
+        do {
+            let files = try fileManager.subpathsOfDirectory(atPath: paths)
+            // print(files[0])
+            for var s in files {
+                debugPrint(s)
+                let filestring =  paths.appending("/"+"\(s)")
+                let filePathsArray1 =  try fileManager.attributesOfItem(atPath: filestring)
+                let dates = filePathsArray1[FileAttributeKey.modificationDate] as! Date
+                let currentdate = Date()
+                let diffrence = ShareData.sharedInstance.daysBetweenDates(startDate: dates, endDate: currentdate)
+                debugPrint(diffrence)
+                if (diffrence > 5)
+                {
+                    //try? FileManager.default.removeItem(at: URL.init(string: filestring)!)
+                    try? fileManager.removeItem(atPath: filestring)
+                    debugPrint("Removed file")
+                }
+                
+                // print(filePathsArray1[FileAttributeKey.modificationDate] as! NSDate)
+            }
+            
+        }
+        catch let error as NSError {
+            print("Ooops! Something went wrong: \(error)")
         }
     }
     func applicationWillResignActive(_ application: UIApplication) {

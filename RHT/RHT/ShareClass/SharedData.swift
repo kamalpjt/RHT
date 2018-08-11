@@ -181,5 +181,11 @@ class ShareData {
         let stringDate = formater.string(from: utcString)
         return stringDate
     }
+    func daysBetweenDates(startDate: Date, endDate: Date) -> Int
+    {
+        let calendar = Calendar.current
+        let components = calendar.dateComponents([Calendar.Component.day], from: startDate, to: endDate)
+        return components.day!
+    }
    
 }

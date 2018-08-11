@@ -8,14 +8,16 @@
 
 import UIKit
 
-class ChangePasswordController: UIViewController {
+class ChangePasswordController: BaseViewController {
     @IBOutlet weak var txtOldPassowrd: CustomTextField!
     
+    @IBOutlet weak var svScrollView: UIScrollView!
     @IBOutlet weak var txtConfirmPassowrd: CustomTextField!
     @IBOutlet weak var txtNewPassowrd: CustomTextField!
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.basescrollView = svScrollView
         // Do any additional setup after loading the view.
     }
     
