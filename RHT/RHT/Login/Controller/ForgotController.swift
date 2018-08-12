@@ -45,6 +45,19 @@ class ForgotController: UIViewController {
         //var param:[String:Any] = ["":]
         if(Vaildation())
         {
+            let param:[String:Any] = [
+                                      "email":UserDetail.Instance.email!,
+                                      "sessionid":"1",
+                                      "ostype":"ios",
+                                      "appversion":(Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String)!,
+                                      "devicetype":"mobile",
+                                      "osversion":UIDevice.current.systemVersion]
+            LoginParsing.instance.changePassowrd(url: "/forgotpassword",withLoader:true, param: param, resposneBlock: { response , statuscode in
+                if(statuscode == 200){
+                    let model = response as! CommentPostModel
+                    SharedAlert.instance.ShowAlert(title: StringConstant.instance.ALERTTITLE , message: model.response.msg!, viewController: self)
+                }
+            })
             
         }
     }

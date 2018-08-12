@@ -17,16 +17,16 @@ class LoginParsing {
             do {
                 if(statuscode==200){
                     let login = try JSONDecoder().decode(UserDetailModel.self, from: sucessresponse)
-                 
+                    
                     if login.statusCode == AppConstant.sharedInstance.INTERNALSUCESSCODE {
                         
                         resposneBlock(login, statuscode)
                         
                     }else{
-                         SharedAlert.instance.ShowAlert(title: StringConstant.instance.ALERTTITLE, message: login.statusMessage!, viewController: (UIApplication.shared.keyWindow?.rootViewController)!)
+                        SharedAlert.instance.ShowAlert(title: StringConstant.instance.ALERTTITLE, message: login.statusMessage!, viewController: (UIApplication.shared.keyWindow?.rootViewController)!)
                     }
                 }
-    
+                
             } catch let jsonerror {
                 print(jsonerror)
             }

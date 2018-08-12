@@ -39,11 +39,11 @@ class RegisterViewController: BaseViewController ,UITextFieldDelegate{
         CloseKeyboard(bool: true)
         // Do any additional setup after loading the view.
          txtPhoneNumber.setFlag(with: "SG")
-        let items = [
-            UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.save, target: self, action: nil),
-            UIBarButtonItem(title: "Item 1", style: .plain, target: self, action: nil),
-            UIBarButtonItem(title: "Item 2", style: .plain, target: self, action: nil)
-        ]
+//        let items = [
+//            UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.save, target: self, action: nil),
+//            UIBarButtonItem(title: "Item 1", style: .plain, target: self, action: nil),
+//            UIBarButtonItem(title: "Item 2", style: .plain, target: self, action: nil)
+//        ]
        // txtPhoneNumber.textFieldInputAccessoryView = getCustomTextFieldInputAccessoryView(with: items)
         txtPhoneNumber.parentViewController = self
         txtPhoneNumber.placeholder = "Phone Number"
@@ -68,36 +68,47 @@ class RegisterViewController: BaseViewController ,UITextFieldDelegate{
         
         if txtFirstName.text?.trimmingCharacters(in: .whitespacesAndNewlines).count == 0 {
             txtFirstName.becomeFirstResponder()
+            SharedAlert.instance.ShowAlert(title:StringConstant.instance.ALERTTITLE , message: StringConstant.instance.ENTERFIRSTNAME, viewController: self)
             return false
         }else if txtLastName.text?.trimmingCharacters(in: .whitespacesAndNewlines).count == 0 {
             txtLastName.becomeFirstResponder()
+            SharedAlert.instance.ShowAlert(title:StringConstant.instance.ALERTTITLE , message: StringConstant.instance.ENTERLASTNAME, viewController: self)
             return false
         } else if txtEmail.text?.trimmingCharacters(in: .whitespacesAndNewlines).count == 0 {
             txtEmail.becomeFirstResponder()
+            SharedAlert.instance.ShowAlert(title:StringConstant.instance.ALERTTITLE , message: StringConstant.instance.ENTEREMAIL, viewController: self)
             return false
         }else if !ShareData.sharedInstance.emailValidation(emailText: txtEmail.text!) {
             txtEmail.becomeFirstResponder()
+             SharedAlert.instance.ShowAlert(title:StringConstant.instance.ALERTTITLE , message: StringConstant.instance.VALIDMAIL, viewController: self)
             return false
         }else if txtPassowrd.text?.trimmingCharacters(in: .whitespacesAndNewlines).count == 0 {
             txtPassowrd.becomeFirstResponder()
+             SharedAlert.instance.ShowAlert(title:StringConstant.instance.ALERTTITLE , message: StringConstant.instance.ENTERPASSOWRD, viewController: self)
             return false
         }else if txtConfirmPassowrd.text?.trimmingCharacters(in: .whitespacesAndNewlines).count == 0 {
             txtConfirmPassowrd.becomeFirstResponder()
+             SharedAlert.instance.ShowAlert(title:StringConstant.instance.ALERTTITLE , message: StringConstant.instance.ENTERCONFIRMPASSOWRD, viewController: self)
             return false
         }else if txtPassowrd.text != txtConfirmPassowrd.text {
             txtPassowrd.becomeFirstResponder()
+             SharedAlert.instance.ShowAlert(title:StringConstant.instance.ALERTTITLE , message: StringConstant.instance.PASSWORDMISMATCHED, viewController: self)
             return false
         }else if txtPhoneNumber.text?.trimmingCharacters(in: .whitespacesAndNewlines).count == 0{
             txtPhoneNumber.becomeFirstResponder()
+             SharedAlert.instance.ShowAlert(title:StringConstant.instance.ALERTTITLE , message: StringConstant.instance.ENTERPHONENUMBER, viewController: self)
             return false
         }
         return true
     }
     @IBAction func RegisterAction(_ sender: Any) {
         if(Vaildation()){
+            let countryCode =  txtPhoneNumber.getCountryPhoneCode() ?? ""
+            let getPhonenumber = txtPhoneNumber.getRawPhoneNumber() ?? ""
             let params:[String:String] = ["email":txtEmail.text!,"password":txtPassowrd.text!,
                                           "first_name":txtFirstName.text!,"last_name":txtLastName.text!,
-                                          "phone":txtPhoneNumber.getRawPhoneNumber()!,"ostype":"ios",
+                                          "phone":(countryCode.replacingOccurrences(of: "+", with: "")) + getPhonenumber,
+                                          "ostype":"ios",
                                           "appversion":(Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String)!,
                                           "devicetype":"mobile",
                                           "osversion":UIDevice.current.systemVersion]
