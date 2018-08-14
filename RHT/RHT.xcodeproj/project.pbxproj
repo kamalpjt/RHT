@@ -29,6 +29,8 @@
 		8A03582E20ECB7F800D7F3A5 /* NewsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A03582D20ECB7F800D7F3A5 /* NewsCollectionViewCell.swift */; };
 		8A03583020ECBA1500D7F3A5 /* NewsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A03582F20ECBA1500D7F3A5 /* NewsModel.swift */; };
 		8A03583220ECBC9500D7F3A5 /* NewsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A03583120ECBC9500D7F3A5 /* NewsDataSource.swift */; };
+		8A03622421206FC500B92123 /* ActivateModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A03622321206FC500B92123 /* ActivateModel.swift */; };
+		8A0362262120747300B92123 /* VerifyOTPModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A0362252120747300B92123 /* VerifyOTPModel.swift */; };
 		8A05187120D0F82500F65504 /* UserDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A05187020D0F82500F65504 /* UserDetail.swift */; };
 		8A058E1420F09E2E00DF0FD0 /* CommentListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A058E1320F09E2E00DF0FD0 /* CommentListModel.swift */; };
 		8A058E1820F1288400DF0FD0 /* CommentTblSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A058E1720F1288400DF0FD0 /* CommentTblSource.swift */; };
@@ -148,6 +150,8 @@
 		8A03582D20ECB7F800D7F3A5 /* NewsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsCollectionViewCell.swift; sourceTree = "<group>"; };
 		8A03582F20ECBA1500D7F3A5 /* NewsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsModel.swift; sourceTree = "<group>"; };
 		8A03583120ECBC9500D7F3A5 /* NewsDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsDataSource.swift; sourceTree = "<group>"; };
+		8A03622321206FC500B92123 /* ActivateModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivateModel.swift; sourceTree = "<group>"; };
+		8A0362252120747300B92123 /* VerifyOTPModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifyOTPModel.swift; sourceTree = "<group>"; };
 		8A05187020D0F82500F65504 /* UserDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetail.swift; sourceTree = "<group>"; };
 		8A058E1320F09E2E00DF0FD0 /* CommentListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentListModel.swift; sourceTree = "<group>"; };
 		8A058E1720F1288400DF0FD0 /* CommentTblSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentTblSource.swift; sourceTree = "<group>"; };
@@ -361,6 +365,15 @@
 			path = Controller;
 			sourceTree = "<group>";
 		};
+		8A03622221206F9700B92123 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				8A03622321206FC500B92123 /* ActivateModel.swift */,
+				8A0362252120747300B92123 /* VerifyOTPModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		8A058E0F20F09BDE00DF0FD0 /* Comment */ = {
 			isa = PBXGroup;
 			children = (
@@ -491,6 +504,7 @@
 		8AFDAF44211EA87100101D35 /* Activate */ = {
 			isa = PBXGroup;
 			children = (
+				8A03622221206F9700B92123 /* Model */,
 				8AFDAF45211EA88900101D35 /* Controller */,
 			);
 			path = Activate;
@@ -963,6 +977,7 @@
 				A994955220AC1A4F00EECC2B /* MatterCollectionViewCell.swift in Sources */,
 				8AFCE3EB20EDE4320016A9B6 /* LeadershipController.swift in Sources */,
 				8AA6E60F20BED78A00C82BFA /* AppConfig.swift in Sources */,
+				8A0362262120747300B92123 /* VerifyOTPModel.swift in Sources */,
 				8AFF1B3120C10795005ACCBD /* SharedAlert.swift in Sources */,
 				8A01B5F220B130C400096FBE /* ChatModel.swift in Sources */,
 				8AFC0ACE20D3B2D6004FA0F5 /* CommunicationParsing.swift in Sources */,
@@ -1033,6 +1048,7 @@
 				A9A134DF2078B1930093A78E /* HomeCollectionFlowLayout.swift in Sources */,
 				8A03582C20ECABDF00D7F3A5 /* NewsWebviewController.swift in Sources */,
 				8AFCE3F420EDE8A30016A9B6 /* LeaderDataSource.swift in Sources */,
+				8A03622421206FC500B92123 /* ActivateModel.swift in Sources */,
 				A9182486206CC4AC00B358D8 /* BaseViewController.swift in Sources */,
 				8A6AEB9020B82C7100D89295 /* SessionManagers.swift in Sources */,
 				8A058E1820F1288400DF0FD0 /* CommentTblSource.swift in Sources */,
@@ -1207,7 +1223,7 @@
 				INFOPLIST_FILE = RHT/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = rht.RHs;
+				PRODUCT_BUNDLE_IDENTIFIER = com.rhtgoc.rht;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "RHT/RHT-Bridging-Header.h";
@@ -1230,7 +1246,7 @@
 				INFOPLIST_FILE = RHT/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = rht.RHs;
+				PRODUCT_BUNDLE_IDENTIFIER = com.rhtgoc.rht;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "RHT/RHT-Bridging-Header.h";

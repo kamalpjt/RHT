@@ -31,11 +31,59 @@ class ActivationController: BaseViewController,KWVerificationCodeViewDelegate {
 
     @IBAction func BtnPinAction(_ sender: Any) {
         
+        if txtPhoneNumber.text?.trimmingCharacters(in: .whitespacesAndNewlines).count == 0 {
+            txtPhoneNumber.becomeFirstResponder()
+            SharedAlert.instance.ShowAlert(title:StringConstant.instance.ALERTTITLE , message: StringConstant.instance.ENTERPHONENUMBER, viewController: self)
+        }else{
+            if(checkInternetIsAvailable()){
+                let countryCode =  txtPhoneNumber.getCountryPhoneCode() ?? ""
+                let getPhonenumber = txtPhoneNumber.getRawPhoneNumber() ?? ""
+                let param:[String:Any] = ["id":UserDetail.Instance.id!,
+                                          "user_type":UserDetail.Instance.user_type!,
+                                          "phone":(countryCode.replacingOccurrences(of: "+", with: "")) + getPhonenumber,
+                                          "sessionid":"1",
+                                          "ostype":"ios",
+                                          "appversion":(Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String)!,
+                                          "devicetype":"mobile",
+                                          "osversion":UIDevice.current.systemVersion]
+                LoginParsing.instance.getVerificationCode(url: "/getverificationcode",withLoader:true, param: param, resposneBlock: { response , statuscode in
+                    if(statuscode == 200){
+                        let model = response as! ActivateModel
+                        if model.response.sentotp == 1 {
+                            SharedAlert.instance.ShowAlert(title: StringConstant.instance.ALERTTITLE , message:StringConstant.instance.OTPSENTSUCCESSFULLY + " to \(String(describing: model.response.phone))"  , viewController: self)
+                        }
+                        
+                    }
+                })
+            }
+        }
     }
     func didChangeVerificationCode() {
         if vOTP.hasValidCode()  {
             debugPrint("true")
             view.endEditing(true)
+            if(checkInternetIsAvailable()){
+                //let countryCode =  txtPhoneNumber.getCountryPhoneCode() ?? ""
+               // let getPhonenumber = txtPhoneNumber.getRawPhoneNumber() ?? ""
+                let param:[String:Any] = ["id":UserDetail.Instance.id!,
+                                          "user_type":UserDetail.Instance.user_type!,
+                                          "phone":UserDetail.Instance.phone ?? "",
+                                          "verificationcode":vOTP.getVerificationCode(),
+                                          "sessionid":"1",
+                                          "ostype":"ios",
+                                          "appversion":(Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String)!,
+                                          "devicetype":"mobile",
+                                          "osversion":UIDevice.current.systemVersion]
+                LoginParsing.instance.verifyOTP(url: "/verifyuserbycode",withLoader:true, param: param, resposneBlock: { response , statuscode in
+                    if(statuscode == 200){
+                        let model = response as! VerifyOTPModel
+                        if model.response.verifysucess == 1 {
+//                            SharedAlert.instance.ShowAlert(title: StringConstant.instance.ALERTTITLE , message:StringConstant.instance.OTPSENTSUCCESSFULLY + " to \(String(describing: model.response.phone))"  , viewController: self)
+                        }
+                        
+                    }
+                })
+            }
         }else{
              debugPrint("false")
         }

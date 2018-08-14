@@ -20,7 +20,7 @@ class ChatTblSource: NSObject,UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if(chatItem[indexPath.row].mType == MessageType.text){
+        if(chatItem[indexPath.row].mType == MessageType.text || chatItem[indexPath.row].mType == MessageType.image ){
             let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier) as! ChatCell
             let item = chatItem[indexPath.row]
             cell.BindValue(chatitem: item)

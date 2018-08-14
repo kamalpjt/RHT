@@ -58,7 +58,7 @@ class ChatViewController: UIViewController,UITextViewDelegate,UITableViewDelegat
     override func viewWillAppear(_ animated: Bool) {
         //AddKeyboardObserver()
         if   AppConstant.sharedInstance.chatItem.count == 0{
-            let chat = ChatModel.init(chatMessage: "Hi", userName: "john", IsSender: true, date:ShareData.sharedInstance.GetCurrentDateAndTime(),imageUrl: "" , mType: MessageType.text)
+            let chat = ChatModel.init(chatMessage: "Hi", userName: UserDetail.Instance.name!, IsSender: true, date:ShareData.sharedInstance.GetCurrentDateAndTime(),imageUrl: "" , mType: MessageType.text,mtextArray: [])
             AppConstant.sharedInstance.chatItem.append(chat)
              setUpChatTbl()
         }else{
@@ -253,7 +253,7 @@ class ChatViewController: UIViewController,UITextViewDelegate,UITableViewDelegat
     @IBAction func SendButtonAction(_ sender: Any) {
         if  tvchatInput.text.trimmingCharacters(in: .whitespacesAndNewlines).count>0{
             
-            let chat = ChatModel.init(chatMessage: tvchatInput.text.trimmingCharacters(in: .whitespacesAndNewlines), userName: "john", IsSender: false, date:ShareData.sharedInstance.GetCurrentDateAndTime(),imageUrl: "" , mType: MessageType.text)
+            let chat = ChatModel.init(chatMessage: tvchatInput.text.trimmingCharacters(in: .whitespacesAndNewlines), userName: UserDetail.Instance.name!, IsSender: false, date:ShareData.sharedInstance.GetCurrentDateAndTime(),imageUrl: "" , mType: MessageType.text,mtextArray: [])
             AppConstant.sharedInstance.chatItem.append(chat)
             UIView.performWithoutAnimation {
                 self.dataSource?.chatItem =   AppConstant.sharedInstance.chatItem
@@ -269,28 +269,45 @@ class ChatViewController: UIViewController,UITextViewDelegate,UITableViewDelegat
     func ChatResponse (chatText:String){
         let  request = ApiAI.shared().textRequest()
         request?.query = [chatText]
-//        request?.setCompletionBlockSuccess({ (request, response) in
-//            
-//            print(response )
-//        }, failure: { (request, error) in
-//            
-//        })
+        request?.setCompletionBlockSuccess({ (request, response) in
+            
+            print(response )
+        }, failure: { (request, error) in
+            
+        })
         request?.setMappedCompletionBlockSuccess({ (request, response) in
            // print(response)
             let response = response as! AIResponse
           //  let textResponse = response.timestamp
-            let responemessage = response.result.fulfillment.messages[0]["speech"]!
-            let chat = ChatModel.init(chatMessage: responemessage as! String, userName: "john", IsSender: true, date:ShareData.sharedInstance.GetCurrentDateAndTime(),imageUrl: "" , mType: MessageType.text)
-            AppConstant.sharedInstance.chatItem.append(chat)
-            UIView.performWithoutAnimation {
-                self.dataSource?.chatItem =   AppConstant.sharedInstance.chatItem
-                self.dataDelegate?.chatItem = AppConstant.sharedInstance.chatItem
-                let index = IndexPath(item: AppConstant.sharedInstance.chatItem.count-1, section: 0)
-                self.cvChat.insertRows(at: [index], with: UITableViewRowAnimation.automatic)
-                self.cvChat.scrollToRow(at: index, at: UITableViewScrollPosition.bottom, animated: false)
+            let action = response.result.action
+            if  action  != "input.unknown" {
+                let responemessage = response.result.fulfillment.messages[0]["speech"]!
+                let chat = ChatModel.init(chatMessage: responemessage as! String, userName: "Agent", IsSender: true, date:ShareData.sharedInstance.GetCurrentDateAndTime(),imageUrl: "" , mType: MessageType.text, mtextArray: [])
+                AppConstant.sharedInstance.chatItem.append(chat)
+                UIView.performWithoutAnimation {
+                    self.dataSource?.chatItem =   AppConstant.sharedInstance.chatItem
+                    self.dataDelegate?.chatItem = AppConstant.sharedInstance.chatItem
+                    let index = IndexPath(item: AppConstant.sharedInstance.chatItem.count-1, section: 0)
+                    self.cvChat.insertRows(at: [index], with: UITableViewRowAnimation.automatic)
+                    self.cvChat.scrollToRow(at: index, at: UITableViewScrollPosition.bottom, animated: false)
+                }
+                print(response.result)
+            }else{
+                let responemessage1 = response.result.fulfillment.messages[1]["textToSpeech"]!
+                debugPrint(responemessage1)
+                let responemessage2 = response.result.fulfillment.messages[2]["suggestions"]!
+                debugPrint(responemessage2)
+                let chat = ChatModel.init(chatMessage: "", userName: "Agent", IsSender: true, date:ShareData.sharedInstance.GetCurrentDateAndTime(),imageUrl: "" , mType: MessageType.multiple, mtextArray: responemessage2 as! [[String : AnyObject]])
+                AppConstant.sharedInstance.chatItem.append(chat)
+                UIView.performWithoutAnimation {
+                    self.dataSource?.chatItem =   AppConstant.sharedInstance.chatItem
+                    self.dataDelegate?.chatItem = AppConstant.sharedInstance.chatItem
+                    let index = IndexPath(item: AppConstant.sharedInstance.chatItem.count-1, section: 0)
+                    self.cvChat.insertRows(at: [index], with: UITableViewRowAnimation.automatic)
+                    self.cvChat.scrollToRow(at: index, at: UITableViewScrollPosition.bottom, animated: false)
+                }
             }
             
-            print(response.result)
         }, failure: { (request, error) in
             print(error!)
         })

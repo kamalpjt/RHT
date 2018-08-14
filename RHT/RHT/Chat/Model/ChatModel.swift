@@ -16,12 +16,14 @@ class ChatModel{
     var date:String?
     var mType:MessageType
     var imageUrl:String?
-    init(chatMessage:String,userName:String,IsSender:Bool,date:String,imageUrl:String,mType:MessageType) {
+    var textArray:[[String : AnyObject]]
+    init(chatMessage:String,userName:String,IsSender:Bool,date:String,imageUrl:String,mType:MessageType,mtextArray:[[String : AnyObject]]) {
         self.chatMessage = chatMessage
         self.userName = userName
         self.IsSender = IsSender
         self.date = date;
         self.mType = mType
         self.imageUrl = imageUrl
+        self.textArray = mtextArray
     }
 }
