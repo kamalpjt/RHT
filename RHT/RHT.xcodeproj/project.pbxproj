@@ -59,6 +59,7 @@
 		8ADC021520AEB85500EE03DA /* DesignableButon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ADC021420AEB85500EE03DA /* DesignableButon.swift */; };
 		8AEB4DD920AE04240045DBD2 /* CommunicationDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AEB4DD820AE04240045DBD2 /* CommunicationDetailController.swift */; };
 		8AEB4DDB20AE047D0045DBD2 /* CommunicationDetailDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AEB4DDA20AE047D0045DBD2 /* CommunicationDetailDataSource.swift */; };
+		8AF6EE5E2122F7F400858C32 /* tableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AF6EE5D2122F7F400858C32 /* tableCell.swift */; };
 		8AF8743A20D6AED500BBFC92 /* PickerControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AF8743920D6AED500BBFC92 /* PickerControllerDelegate.swift */; };
 		8AFC0ACC20D3A975004FA0F5 /* AddModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AFC0ACB20D3A975004FA0F5 /* AddModel.swift */; };
 		8AFC0ACE20D3B2D6004FA0F5 /* CommunicationParsing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AFC0ACD20D3B2D6004FA0F5 /* CommunicationParsing.swift */; };
@@ -180,6 +181,7 @@
 		8ADC021420AEB85500EE03DA /* DesignableButon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignableButon.swift; sourceTree = "<group>"; };
 		8AEB4DD820AE04240045DBD2 /* CommunicationDetailController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunicationDetailController.swift; sourceTree = "<group>"; };
 		8AEB4DDA20AE047D0045DBD2 /* CommunicationDetailDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunicationDetailDataSource.swift; sourceTree = "<group>"; };
+		8AF6EE5D2122F7F400858C32 /* tableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = tableCell.swift; sourceTree = "<group>"; };
 		8AF8743920D6AED500BBFC92 /* PickerControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerControllerDelegate.swift; sourceTree = "<group>"; };
 		8AFC0ACB20D3A975004FA0F5 /* AddModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddModel.swift; sourceTree = "<group>"; };
 		8AFC0ACD20D3B2D6004FA0F5 /* CommunicationParsing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunicationParsing.swift; sourceTree = "<group>"; };
@@ -687,6 +689,7 @@
 			children = (
 				8AD69C0D20A5BC8500F2E135 /* ChatCell.swift */,
 				8A01B5F320B1396300096FBE /* ImageChatcell.swift */,
+				8AF6EE5D2122F7F400858C32 /* tableCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -992,6 +995,7 @@
 				A9182488206CC4EC00B358D8 /* SharedData.swift in Sources */,
 				8A08AA1620A32F0000C3B6A8 /* ChatViewController.swift in Sources */,
 				A918248A206CC50500B358D8 /* AppConstant.swift in Sources */,
+				8AF6EE5E2122F7F400858C32 /* tableCell.swift in Sources */,
 				8AEB4DD920AE04240045DBD2 /* CommunicationDetailController.swift in Sources */,
 				8A05187120D0F82500F65504 /* UserDetail.swift in Sources */,
 				A90BF65B2075F6AB007B8F2B /* RESideMenu.m in Sources */,

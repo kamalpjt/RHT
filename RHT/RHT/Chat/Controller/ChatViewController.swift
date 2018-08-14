@@ -32,6 +32,7 @@ class ChatViewController: UIViewController,UITextViewDelegate,UITableViewDelegat
     var dataDelegate:ChatTblDelegate?
     private let cellIdentifier = "ChatCell"
     private let cellIdentifierimage = "imagecell"
+    private let cellIdentifiertable = "tableCell"
     //  var chatItem = [ChatModel]()
     
     override func viewDidLoad() {
@@ -58,7 +59,7 @@ class ChatViewController: UIViewController,UITextViewDelegate,UITableViewDelegat
     override func viewWillAppear(_ animated: Bool) {
         //AddKeyboardObserver()
         if   AppConstant.sharedInstance.chatItem.count == 0{
-            let chat = ChatModel.init(chatMessage: "Hi", userName: UserDetail.Instance.name!, IsSender: true, date:ShareData.sharedInstance.GetCurrentDateAndTime(),imageUrl: "" , mType: MessageType.text,mtextArray: [])
+            let chat = ChatModel.init(chatMessage: "Hi", userName: UserDetail.Instance.name!, IsSender: true, date:ShareData.sharedInstance.GetCurrentDateAndTime(),imageUrl: "" , mType: MessageType.text,mtextArray: [],mHeadersText: "")
             AppConstant.sharedInstance.chatItem.append(chat)
              setUpChatTbl()
         }else{
@@ -81,6 +82,7 @@ class ChatViewController: UIViewController,UITextViewDelegate,UITableViewDelegat
         cvChat.separatorStyle = .none
         cvChat.register(ChatCell.self, forCellReuseIdentifier: cellIdentifier)
         cvChat.register(ImageChatcell.self, forCellReuseIdentifier: cellIdentifierimage)
+        cvChat.register(tableCell.self, forCellReuseIdentifier: cellIdentifiertable)
         self.dataSource = ChatTblSource()
         self.dataDelegate = ChatTblDelegate()
         self.dataSource?.chatItem = AppConstant.sharedInstance.chatItem
@@ -88,7 +90,7 @@ class ChatViewController: UIViewController,UITextViewDelegate,UITableViewDelegat
         cvChat.dataSource =  self.dataSource
         cvChat.delegate =  self.dataDelegate
         cvChat.reloadData()
-        CloseKeyboard(bool: true)
+       // CloseKeyboard(bool: true)
     }
     func setUpTextView() -> Void{
         tvchatInput.textContainerInset = UIEdgeInsets.init(top: 5, left: 5, bottom: 5, right: 5)
@@ -253,7 +255,7 @@ class ChatViewController: UIViewController,UITextViewDelegate,UITableViewDelegat
     @IBAction func SendButtonAction(_ sender: Any) {
         if  tvchatInput.text.trimmingCharacters(in: .whitespacesAndNewlines).count>0{
             
-            let chat = ChatModel.init(chatMessage: tvchatInput.text.trimmingCharacters(in: .whitespacesAndNewlines), userName: UserDetail.Instance.name!, IsSender: false, date:ShareData.sharedInstance.GetCurrentDateAndTime(),imageUrl: "" , mType: MessageType.text,mtextArray: [])
+            let chat = ChatModel.init(chatMessage: tvchatInput.text.trimmingCharacters(in: .whitespacesAndNewlines), userName: UserDetail.Instance.name!, IsSender: false, date:ShareData.sharedInstance.GetCurrentDateAndTime(),imageUrl: "" , mType: MessageType.text,mtextArray: [],mHeadersText: "")
             AppConstant.sharedInstance.chatItem.append(chat)
             UIView.performWithoutAnimation {
                 self.dataSource?.chatItem =   AppConstant.sharedInstance.chatItem
@@ -282,7 +284,7 @@ class ChatViewController: UIViewController,UITextViewDelegate,UITableViewDelegat
             let action = response.result.action
             if  action  != "input.unknown" {
                 let responemessage = response.result.fulfillment.messages[0]["speech"]!
-                let chat = ChatModel.init(chatMessage: responemessage as! String, userName: "Agent", IsSender: true, date:ShareData.sharedInstance.GetCurrentDateAndTime(),imageUrl: "" , mType: MessageType.text, mtextArray: [])
+                let chat = ChatModel.init(chatMessage: responemessage as! String, userName: "Agent", IsSender: true, date:ShareData.sharedInstance.GetCurrentDateAndTime(),imageUrl: "" , mType: MessageType.text, mtextArray: [],mHeadersText: "")
                 AppConstant.sharedInstance.chatItem.append(chat)
                 UIView.performWithoutAnimation {
                     self.dataSource?.chatItem =   AppConstant.sharedInstance.chatItem
@@ -293,11 +295,11 @@ class ChatViewController: UIViewController,UITextViewDelegate,UITableViewDelegat
                 }
                 print(response.result)
             }else{
-                let responemessage1 = response.result.fulfillment.messages[1]["textToSpeech"]!
+                let responemessage1 = response.result.fulfillment.messages[1]["textToSpeech"]! as! String
                 debugPrint(responemessage1)
                 let responemessage2 = response.result.fulfillment.messages[2]["suggestions"]!
                 debugPrint(responemessage2)
-                let chat = ChatModel.init(chatMessage: "", userName: "Agent", IsSender: true, date:ShareData.sharedInstance.GetCurrentDateAndTime(),imageUrl: "" , mType: MessageType.multiple, mtextArray: responemessage2 as! [[String : AnyObject]])
+                let chat = ChatModel.init(chatMessage: "", userName: "Agent", IsSender: true, date:ShareData.sharedInstance.GetCurrentDateAndTime(),imageUrl: "" , mType: MessageType.multiple, mtextArray: responemessage2 as! [[String : AnyObject]],mHeadersText:responemessage1 )
                 AppConstant.sharedInstance.chatItem.append(chat)
                 UIView.performWithoutAnimation {
                     self.dataSource?.chatItem =   AppConstant.sharedInstance.chatItem

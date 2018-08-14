@@ -23,6 +23,11 @@ class ChatTblDelegate: NSObject,UITableViewDelegate {
             
             let estimatedFramedate = ShareData.sharedInstance.GetStringCGSize(stringValue:chatItem[indexPath.row].userName!, font:UIFont.systemFont(ofSize: ShareData.SetFont12(), weight: UIFont.Weight.semibold))
             return estimatedFramemessage.height+estimatedFramedate.height+estimatedFramename.height+39;
+        }else if(chatItem[indexPath.row].mType == MessageType.multiple){
+            let messagetext = chatItem[indexPath.row].textArray.count
+            let size = ShareData.sharedInstance.GetchatStringCGSize(stringValue:chatItem[indexPath.row].multipleHeaderText! , font: UIFont.systemFont(ofSize: 14, weight: .semibold), width: Int(ShareData.GetPhoneCurrentScreenWidth() - 100))
+            let totalHeight =  44 * messagetext + Int(size.height) + 23
+            return CGFloat(totalHeight)
         }else{
             return UIScreen.main.bounds.size.width/2
         }

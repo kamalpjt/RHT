@@ -21,7 +21,7 @@ enum MessageType{
     case multiple
 }
 
-class ChatCell: UITableViewCell,UITableViewDataSource,UITableViewDelegate {
+class ChatCell: UITableViewCell {
 
     var lblUserName:UILabel = {
         let lblname = UILabel()
@@ -55,13 +55,7 @@ class ChatCell: UITableViewCell,UITableViewDataSource,UITableViewDelegate {
         date.textColor = UIColor.gray;
         return date;
     }()
-    
-    var tblView:UITableView = {
-        let tbl = UITableView()
-        return tbl
-    }()
     private let cellIdentifier = "ChatCell"
-    var textArray:[[String:AnyObject]] = []
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -74,9 +68,7 @@ class ChatCell: UITableViewCell,UITableViewDataSource,UITableViewDelegate {
         self.addSubview(lblUserName)
         self.addSubview(tvChat)
         self.addSubview(lblDate)
-        self.addSubview(tblView)
-        self.selectionStyle = UITableViewCellSelectionStyle.none;
-       
+      
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -107,38 +99,7 @@ class ChatCell: UITableViewCell,UITableViewDataSource,UITableViewDelegate {
         lblDate.textAlignment = chatitem.IsSender == true ?  NSTextAlignment.left :  NSTextAlignment.right;
         tvChat.textAlignment = chatitem.IsSender == true ?  NSTextAlignment.left :  NSTextAlignment.right;
       //  SetUpLayout()
-        if(chatitem.mType == MessageType.text)
-        {
-            UserNameHeight(messagetext: chatitem.chatMessage!, userName: chatitem.userName!, date: chatitem.date!, sendervalue: chatitem.IsSender!)
-            
-        }else if (chatitem.mType == MessageType.multiple){
-            tblView.frame  = CGRect(x: 0, y: 5, width: Int(ShareData.GetPhoneCurrentScreenWidth() - 100), height: 44 * textArray.count)
-            textArray = chatitem.textArray
-            tblView.delegate = self
-            tblView.dataSource = self
-            tblView.reloadData()
-        }
-        
-    }
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-       
-        return textArray.count
-    }
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        
-        return CGFloat(44 * textArray.count)
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell: UITableViewCell = {
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: "cell") else {
-                return UITableViewCell(style: .default, reuseIdentifier: "cell")
-            }
-            return cell
-        }()
-        let item = textArray[indexPath.row]
-        cell.textLabel?.text =  item["title"] as? String
-        return cell
+          UserNameHeight(messagetext: chatitem.chatMessage!, userName: chatitem.userName!, date: chatitem.date!, sendervalue: chatitem.IsSender!)
     }
     private func UserNameHeight(messagetext: String,userName: String,date:String, sendervalue:Bool)
     {

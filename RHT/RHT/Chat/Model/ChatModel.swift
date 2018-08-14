@@ -17,7 +17,9 @@ class ChatModel{
     var mType:MessageType
     var imageUrl:String?
     var textArray:[[String : AnyObject]]
-    init(chatMessage:String,userName:String,IsSender:Bool,date:String,imageUrl:String,mType:MessageType,mtextArray:[[String : AnyObject]]) {
+    var multipleHeaderText:String?
+    
+    init(chatMessage:String,userName:String,IsSender:Bool,date:String,imageUrl:String,mType:MessageType,mtextArray:[[String : AnyObject]],mHeadersText:String) {
         self.chatMessage = chatMessage
         self.userName = userName
         self.IsSender = IsSender
@@ -25,5 +27,6 @@ class ChatModel{
         self.mType = mType
         self.imageUrl = imageUrl
         self.textArray = mtextArray
+        self.multipleHeaderText = mHeadersText
     }
 }

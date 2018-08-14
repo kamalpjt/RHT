@@ -65,7 +65,7 @@ class ChatListController: UIViewController,UITextViewDelegate,DeleteCommentdeleg
     //MARK:Common Funcation
     func SetUpList()
     {
-        let chat = ChatModel.init(chatMessage: "Hi", userName: "john", IsSender: true, date:"12/100/201",imageUrl: "" , mType: MessageType.text,mtextArray: [])
+        let chat = ChatModel.init(chatMessage: "Hi", userName: "john", IsSender: true, date:"12/100/201",imageUrl: "" , mType: MessageType.text,mtextArray: [] ,mHeadersText: "")
         //chatItem.append(chat)
         tblCommentList.register(CommentCell.self, forCellReuseIdentifier: cellIdentifier)
 //        self.dataSource = CommentTblSource()
