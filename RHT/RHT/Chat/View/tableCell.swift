@@ -60,7 +60,7 @@ class tableCell: UITableViewCell,UITableViewDataSource,UITableViewDelegate {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    public func BindValue(chatitem:ChatModel)
+    public func BindValue(chatitem:ChatModel,tag:Int)
     {
         //debugPrint()
         textArray = chatitem.textArray
@@ -75,6 +75,7 @@ class tableCell: UITableViewCell,UITableViewDataSource,UITableViewDelegate {
         lblView.layer.cornerRadius = 5;
         lblView.layer.masksToBounds = true;
         let tblView = UITableView()
+        tblView.tag = tag
         tblView.isScrollEnabled = false
         lblView.addSubview(tblView)
         tblView.frame  = CGRect(x: 0, y: 0, width: lblView.frame.size.width, height: lblView.frame.size.height)
@@ -125,11 +126,17 @@ class tableCell: UITableViewCell,UITableViewDataSource,UITableViewDelegate {
             return cell
         }()
         let item = textArray[indexPath.row]
-      ///  cell.backgroundColor = UIColor.blue
+        cell.selectionStyle = .none
         cell.textLabel?.text =  item["title"] as? String
+        cell.textLabel?.textColor = UIColor.blue
+        cell.textLabel?.textAlignment = .center
+        cell.textLabel?.font = UIFont.systemFont(ofSize: 14, weight: .regular)
         return cell
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
+        debugPrint(indexPath.row)
+         let item = textArray[indexPath.row]
+        NotificationCenter.default.post(name: Notification.Name("TableAction"), object: nil, userInfo: ["Sender": item["title"] ?? ""])
     }
 }

@@ -27,12 +27,14 @@ class ChatViewController: UIViewController,UITextViewDelegate,UITableViewDelegat
     var delegate: UpdateCons?
     var frameheight:CGFloat?
     var frameheightKeyboard:Int = 0;
+    var bottomViewHeight:CGFloat = 0;
     var cell:ChatCell?
     var dataSource:ChatTblSource?
     var dataDelegate:ChatTblDelegate?
     private let cellIdentifier = "ChatCell"
     private let cellIdentifierimage = "imagecell"
     private let cellIdentifiertable = "tableCell"
+    private let cellIdentifierright  = "ChatRightCell"
     //  var chatItem = [ChatModel]()
     
     override func viewDidLoad() {
@@ -70,11 +72,12 @@ class ChatViewController: UIViewController,UITextViewDelegate,UITableViewDelegat
                 cvChat.scrollToRow(at: index, at: UITableViewScrollPosition.top, animated: true)
             }
         }
-        
+        NotificationCenter.default.addObserver(self, selector: #selector(self.attachmentAction(notification:)), name: Notification.Name("TableAction"), object: nil)
         AddKeyboardObserver()
     }
     override func viewWillDisappear(_ animated: Bool) {
         RemoveKeyboardObserver()
+         NotificationCenter.default.removeObserver(self, name: Notification.Name("TableAction"), object: nil)
     }
     
     func setUpChatTbl() -> Void{
@@ -83,6 +86,7 @@ class ChatViewController: UIViewController,UITextViewDelegate,UITableViewDelegat
         cvChat.register(ChatCell.self, forCellReuseIdentifier: cellIdentifier)
         cvChat.register(ImageChatcell.self, forCellReuseIdentifier: cellIdentifierimage)
         cvChat.register(tableCell.self, forCellReuseIdentifier: cellIdentifiertable)
+        cvChat.register(ChatRightCell.self, forCellReuseIdentifier: cellIdentifierright)
         self.dataSource = ChatTblSource()
         self.dataDelegate = ChatTblDelegate()
         self.dataSource?.chatItem = AppConstant.sharedInstance.chatItem
@@ -137,7 +141,7 @@ class ChatViewController: UIViewController,UITextViewDelegate,UITableViewDelegat
         if let keyboardSize = (notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
             if self.VContainer.frame.origin.y == 0{
                 frameheight = cvChat.frame.height
-                
+                bottomViewHeight = vBottomHeight.constant
                 if(ShareData.isIPhone5()||ShareData.isIPhone6()||ShareData.isIPhone6Plus())
                 {
                     let getheight = cvChat.frame.height - keyboardSize.height
@@ -205,19 +209,22 @@ class ChatViewController: UIViewController,UITextViewDelegate,UITableViewDelegat
                 {
                     cvChat.heightAnchor.constraint(equalTo: VContainer.heightAnchor, multiplier: getheight/VContainer.frame.height , constant: 0).isActive=true
                     frameheightKeyboard = frameheightKeyboard + 15;
-                    vBottomHeight.constant =  vBottomHeight.constant + 15;
+                    vBottomHeight.constant =  vBottomHeight.constant + 15; 
                 }
             }
         }else if(currentRect.origin.y < previousRect.origin.y) {
             
             let getheight =  cvChat.frame.height + 15
-            
+
             if(frameheight != nil){
-                if(frameheight!/2.5<cvChat.frame.height+15)
+                if(vBottomHeight.constant != 0.0)
                 {
                     cvChat.heightAnchor.constraint(equalTo: VContainer.heightAnchor, multiplier: getheight/VContainer.frame.height , constant: 0).isActive=true
                     frameheightKeyboard = frameheightKeyboard - 15;
-                    vBottomHeight.constant =  vBottomHeight.constant - 15;
+                    debugPrint(vBottomHeight.constant - 15)
+                    if vBottomHeight.constant != 0.0 {
+                        vBottomHeight.constant =  vBottomHeight.constant - 15;
+                    }
                 }
             }
             
@@ -250,6 +257,20 @@ class ChatViewController: UIViewController,UITextViewDelegate,UITableViewDelegat
             }
         }
         return true
+    }
+    @objc func attachmentAction(notification: Notification){
+        let text = notification.userInfo?["Sender"] as? String
+        
+        let chat = ChatModel.init(chatMessage:text! , userName: UserDetail.Instance.name!, IsSender: false, date:ShareData.sharedInstance.GetCurrentDateAndTime(),imageUrl: "" , mType: MessageType.text,mtextArray: [],mHeadersText: "")
+        AppConstant.sharedInstance.chatItem.append(chat)
+        UIView.performWithoutAnimation {
+            self.dataSource?.chatItem =   AppConstant.sharedInstance.chatItem
+            self.dataDelegate?.chatItem = AppConstant.sharedInstance.chatItem
+            let index = IndexPath(item: AppConstant.sharedInstance.chatItem.count-1, section: 0)
+            self.cvChat.insertRows(at: [index], with: UITableViewRowAnimation.fade)
+            self.cvChat.scrollToRow(at: index, at: UITableViewScrollPosition.bottom, animated: false)
+        }
+        ChatResponse(chatText:text!)
     }
     //MARK:-ButtonAction
     @IBAction func SendButtonAction(_ sender: Any) {

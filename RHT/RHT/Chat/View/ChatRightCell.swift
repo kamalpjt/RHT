@@ -15,13 +15,8 @@ import UIKit
 //    var date:String?
 //    var mType:Int
 //}
-enum MessageType{
-    case image
-    case text
-    case multiple
-}
 
-class ChatCell: UITableViewCell {
+class ChatRightCell: UITableViewCell {
 
     var vContainerview:UIView = {
           let view = UIView()
@@ -62,7 +57,7 @@ class ChatCell: UITableViewCell {
         date.textColor = UIColor.gray;
         return date;
     }()*/
-    private let cellIdentifier = "ChatCell"
+    private let cellIdentifier = "ChatRightCell"
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -98,7 +93,7 @@ class ChatCell: UITableViewCell {
         
         let lblname = UILabel()
         lblname.frame = CGRect(x:5, y: 5, width: ShareData.GetPhoneCurrentScreenWidth()-15, height: nameRect.height)
-        lblname.textAlignment = .left
+        lblname.textAlignment = .right
         lblname.font = UIFont.systemFont(ofSize: ShareData.SetFont14(), weight: UIFont.Weight.semibold)
         lblname.text = username
         lblname.translatesAutoresizingMaskIntoConstraints = false;
@@ -111,8 +106,8 @@ class ChatCell: UITableViewCell {
 
         let date = UILabel()
         let ypos = 5 + nameRect.height + 7 + messageRect.height+20 + 2
+        date.textAlignment = .right
         date.frame = CGRect(x:5, y: ypos, width: ShareData.GetPhoneCurrentScreenWidth()-15, height: dateRect.height)
-        date.textAlignment = .left
         date.font = UIFont.systemFont(ofSize: ShareData.SetFont12(), weight: UIFont.Weight.semibold)
         date.text = dateText
         date.translatesAutoresizingMaskIntoConstraints = false;
@@ -124,8 +119,8 @@ class ChatCell: UITableViewCell {
         
 //        let messageSize = ShareData.sharedInstance.GetStringCGSize(stringValue: messagetext, font: UIFont.systemFont(ofSize: ShareData.SetFont13(), weight: UIFont.Weight.regular))
         let txView = UITextView()
-        txView.frame = CGRect(x: 5, y: (5+nameRect.height+7), width: messageRect.width+20, height: (messageRect.height+20))
-        txView.textAlignment = .left
+        txView.frame = CGRect(x: UIScreen.main.bounds.width-25-messageRect.width, y: (5+nameRect.height+7), width: messageRect.width+20, height: (messageRect.height+20))
+        txView.textAlignment = .right
         txView.layer.cornerRadius = 15
         txView.layer.masksToBounds = true;
         txView.textContainerInset = UIEdgeInsets.init(top: 10, left: 10, bottom: 10, right: 10)
