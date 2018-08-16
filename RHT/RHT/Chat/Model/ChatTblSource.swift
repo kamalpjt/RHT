@@ -22,30 +22,31 @@ class ChatTblSource: NSObject,UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let item = chatItem[indexPath.row]
         if(chatItem[indexPath.row].mType == MessageType.text){
             let sender = chatItem[indexPath.row].IsSender
             if(sender!)
             {
                 let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier) as! ChatCell
-                let item = chatItem[indexPath.row]
-                cell.BindValue(chatitem: item)
+                
+                cell.BindValue(chatitem: item, row:indexPath.row)
                 return cell
             }else {
                 let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifierright) as! ChatRightCell
-                let item = chatItem[indexPath.row]
-                cell.BindValue(chatitem: item)
+                //let item = chatItem[indexPath.row]
+                cell.BindValue(chatitem: item, row: indexPath.row)
                 return cell
             }
             
         }else if (chatItem[indexPath.row].mType == MessageType.multiple){
             let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifiertable) as! tableCell
-            let item = chatItem[indexPath.row]
+            //let item = chatItem[indexPath.row]
             cell.BindValue(chatitem: item, tag: indexPath.row)
             return cell
             
         }else{
             let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifierimage) as! ImageChatcell
-            let item = chatItem[indexPath.row]
+            //let item = chatItem[indexPath.row]
             cell.BindValue(item: item)
             return cell
         }

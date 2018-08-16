@@ -25,7 +25,7 @@ class ChatCell: UITableViewCell {
 
     var vContainerview:UIView = {
           let view = UIView()
-        view.backgroundColor = UIColor.orange
+        view.backgroundColor = UIColor.magenta
         return view
     }()
     /*var lblUserName:UILabel = {
@@ -63,17 +63,19 @@ class ChatCell: UITableViewCell {
         return date;
     }()*/
     private let cellIdentifier = "ChatCell"
+
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
         
        //  self.SetUpLayout()
     }
+    
     override init(style: UITableViewCellStyle, reuseIdentifier: String!) {
         
         super.init(style: style, reuseIdentifier: reuseIdentifier)
          self.selectionStyle = UITableViewCellSelectionStyle.none;
-        self.addSubview(vContainerview)
+        self.contentView.addSubview(vContainerview)
        
       
     }
@@ -82,6 +84,10 @@ class ChatCell: UITableViewCell {
         
         // Configure the view for the selected state
     }
+    override func prepareForReuse() {
+        
+    }
+
     private func SetUpLayout()
     {
 //        lblUserName.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20).isActive=true
@@ -94,6 +100,9 @@ class ChatCell: UITableViewCell {
 //        lblDate.topAnchor.constraint(equalTo: tvChat.bottomAnchor, constant: 4).isActive=true;
     
     }
+    override func layoutSubviews() {
+        
+    }
     func createUsernameLabel(username:String,messageRect:CGRect,dateRect:CGRect,nameRect:CGRect) -> UILabel {
         
         let lblname = UILabel()
@@ -101,8 +110,8 @@ class ChatCell: UITableViewCell {
         lblname.textAlignment = .left
         lblname.font = UIFont.systemFont(ofSize: ShareData.SetFont14(), weight: UIFont.Weight.semibold)
         lblname.text = username
-        lblname.translatesAutoresizingMaskIntoConstraints = false;
-        lblname.textColor = UIColor.blue;
+        //lblname.translatesAutoresizingMaskIntoConstraints = false;
+        lblname.textColor = UIColor.brown;
         return lblname;
     }
     func createDateLabel(dateText:String,messageRect:CGRect,dateRect:CGRect,nameRect:CGRect) -> UILabel  {
@@ -115,7 +124,7 @@ class ChatCell: UITableViewCell {
         date.textAlignment = .left
         date.font = UIFont.systemFont(ofSize: ShareData.SetFont12(), weight: UIFont.Weight.semibold)
         date.text = dateText
-        date.translatesAutoresizingMaskIntoConstraints = false;
+       // date.translatesAutoresizingMaskIntoConstraints = false;
         date.textColor = UIColor.gray;
         return date;
     }
@@ -133,7 +142,7 @@ class ChatCell: UITableViewCell {
         txView.textContainer.lineFragmentPadding = 0
         txView.font = UIFont.systemFont(ofSize: ShareData.SetFont13() , weight: UIFont.Weight.regular)
         txView.text = messagetext
-        txView.translatesAutoresizingMaskIntoConstraints = false;
+       // txView.translatesAutoresizingMaskIntoConstraints = false;
         txView.backgroundColor = AppConstant.sharedInstance.backGroundColor;
         txView.textColor = UIColor.white
         txView.isEditable = false;
@@ -152,8 +161,9 @@ class ChatCell: UITableViewCell {
         
         return (estimatedFramedate, messageSize ,estimatedFramename)
     }
-    public func BindValue(chatitem:ChatModel)
+    public func BindValue(chatitem:ChatModel,row:Int)
     {
+       // item = chatitem
         let getValueTuples = getSize(dateText: chatitem.date!, messageText: chatitem.chatMessage!, nameText: chatitem.userName!)
         let dateSize = getValueTuples.0;
         let messageSize = getValueTuples.1;

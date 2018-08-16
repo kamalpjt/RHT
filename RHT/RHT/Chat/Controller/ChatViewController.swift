@@ -66,11 +66,11 @@ class ChatViewController: UIViewController,UITextViewDelegate,UITableViewDelegat
              setUpChatTbl()
         }else{
              setUpChatTbl()
-            if(AppConstant.sharedInstance.chatItem.count>0)
-            {
-                let index = IndexPath(item: AppConstant.sharedInstance.chatItem.count-1, section: 0)
-                cvChat.scrollToRow(at: index, at: UITableViewScrollPosition.top, animated: true)
-            }
+//            if(AppConstant.sharedInstance.chatItem.count>0)
+//            {
+//                let index = IndexPath(item: AppConstant.sharedInstance.chatItem.count-1, section: 0)
+//                cvChat.scrollToRow(at: index, at: UITableViewScrollPosition.top, animated: true)
+//            }
         }
         NotificationCenter.default.addObserver(self, selector: #selector(self.attachmentAction(notification:)), name: Notification.Name("TableAction"), object: nil)
         AddKeyboardObserver()
@@ -292,12 +292,12 @@ class ChatViewController: UIViewController,UITextViewDelegate,UITableViewDelegat
     func ChatResponse (chatText:String){
         let  request = ApiAI.shared().textRequest()
         request?.query = [chatText]
-        request?.setCompletionBlockSuccess({ (request, response) in
-            
-            print(response )
-        }, failure: { (request, error) in
-            
-        })
+//        request?.setCompletionBlockSuccess({ (request, response) in
+//
+//            print(response )
+//        }, failure: { (request, error) in
+//
+//        })
         request?.setMappedCompletionBlockSuccess({ (request, response) in
            // print(response)
             let response = response as! AIResponse

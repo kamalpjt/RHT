@@ -68,7 +68,7 @@ class ChatRightCell: UITableViewCell {
         
         super.init(style: style, reuseIdentifier: reuseIdentifier)
          self.selectionStyle = UITableViewCellSelectionStyle.none;
-        self.addSubview(vContainerview)
+        self.contentView.addSubview(vContainerview)
        
       
     }
@@ -96,7 +96,7 @@ class ChatRightCell: UITableViewCell {
         lblname.textAlignment = .right
         lblname.font = UIFont.systemFont(ofSize: ShareData.SetFont14(), weight: UIFont.Weight.semibold)
         lblname.text = username
-        lblname.translatesAutoresizingMaskIntoConstraints = false;
+       // lblname.translatesAutoresizingMaskIntoConstraints = false;
         lblname.textColor = UIColor.blue;
         return lblname;
     }
@@ -110,7 +110,7 @@ class ChatRightCell: UITableViewCell {
         date.frame = CGRect(x:5, y: ypos, width: ShareData.GetPhoneCurrentScreenWidth()-15, height: dateRect.height)
         date.font = UIFont.systemFont(ofSize: ShareData.SetFont12(), weight: UIFont.Weight.semibold)
         date.text = dateText
-        date.translatesAutoresizingMaskIntoConstraints = false;
+       // date.translatesAutoresizingMaskIntoConstraints = false;
         date.textColor = UIColor.gray;
         return date;
     }
@@ -128,7 +128,7 @@ class ChatRightCell: UITableViewCell {
         txView.textContainer.lineFragmentPadding = 0
         txView.font = UIFont.systemFont(ofSize: ShareData.SetFont13() , weight: UIFont.Weight.regular)
         txView.text = messagetext
-        txView.translatesAutoresizingMaskIntoConstraints = false;
+       // txView.translatesAutoresizingMaskIntoConstraints = false;
         txView.backgroundColor = AppConstant.sharedInstance.backGroundColor;
         txView.textColor = UIColor.white
         txView.isEditable = false;
@@ -147,7 +147,7 @@ class ChatRightCell: UITableViewCell {
         
         return (estimatedFramedate, messageSize ,estimatedFramename)
     }
-    public func BindValue(chatitem:ChatModel)
+    public func BindValue(chatitem:ChatModel,row:Int)
     {
         let getValueTuples = getSize(dateText: chatitem.date!, messageText: chatitem.chatMessage!, nameText: chatitem.userName!)
         let dateSize = getValueTuples.0;
