@@ -23,24 +23,24 @@ class ChatRightCell: UITableViewCell {
         view.backgroundColor = UIColor.orange
         return view
     }()
-    /*var lblUserName:UILabel = {
+    var lblUserName:UILabel = {
         let lblname = UILabel()
         lblname.textAlignment = .right
         lblname.font = UIFont.systemFont(ofSize: ShareData.SetFont14(), weight: UIFont.Weight.semibold)
         lblname.text = "Userdfjhshdjfhjkhjfhdjskhjfhsdjhfjshdfjsk"
-        lblname.translatesAutoresizingMaskIntoConstraints = false;
+       // lblname.translatesAutoresizingMaskIntoConstraints = false;
         lblname.textColor = UIColor.blue;
         return lblname;
     }()
     var tvChat:UITextView = {
         let txView = UITextView()
-        txView.textAlignment = .right
+       // txView.textAlignment = .right
         txView.textContainerInset = UIEdgeInsets.init(top: 10, left: 10, bottom: 10, right: 10)
         txView.textContainer.lineBreakMode = NSLineBreakMode.byWordWrapping
         txView.textContainer.lineFragmentPadding = 0
         txView.font = UIFont.systemFont(ofSize: ShareData.SetFont13() , weight: UIFont.Weight.regular)
         txView.text = "sampleMessage"
-        txView.translatesAutoresizingMaskIntoConstraints = false;
+        //txView.translatesAutoresizingMaskIntoConstraints = false;
         txView.backgroundColor = AppConstant.sharedInstance.backGroundColor;
         txView.textColor = UIColor.white
         txView.isEditable = false;
@@ -51,13 +51,15 @@ class ChatRightCell: UITableViewCell {
     }()
     var lblDate:UILabel = {
         let date = UILabel()
+         date.textAlignment = .right
         date.font = UIFont.systemFont(ofSize: ShareData.SetFont12(), weight: UIFont.Weight.semibold)
         date.text = "12/09/2005"
-        date.translatesAutoresizingMaskIntoConstraints = false;
+       // date.translatesAutoresizingMaskIntoConstraints = false;
         date.textColor = UIColor.gray;
         return date;
-    }()*/
+    }()
     private let cellIdentifier = "ChatRightCell"
+     var item:ChatModel?
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -68,7 +70,11 @@ class ChatRightCell: UITableViewCell {
         
         super.init(style: style, reuseIdentifier: reuseIdentifier)
          self.selectionStyle = UITableViewCellSelectionStyle.none;
-        self.contentView.addSubview(vContainerview)
+        self.contentView.backgroundColor = UIColor.orange
+         self.contentView.addSubview(lblDate)
+         self.contentView.addSubview(lblUserName)
+         self.contentView.addSubview(tvChat)
+        // self.contentView.addSubview(lblDate)
        
       
     }
@@ -147,19 +153,38 @@ class ChatRightCell: UITableViewCell {
         
         return (estimatedFramedate, messageSize ,estimatedFramename)
     }
-    public func BindValue(chatitem:ChatModel,row:Int)
-    {
-        let getValueTuples = getSize(dateText: chatitem.date!, messageText: chatitem.chatMessage!, nameText: chatitem.userName!)
+    override func layoutSubviews() {
+        
+        let getValueTuples = getSize(dateText: (item?.date!)!, messageText: (item?.chatMessage!)!, nameText: (item?.userName!)!)
         let dateSize = getValueTuples.0;
         let messageSize = getValueTuples.1;
         let nameSize = getValueTuples.2
         
-        let totalHeight = messageSize.height+dateSize.height+nameSize.height+39;
-        vContainerview.frame = CGRect(x: 0, y: 0, width: self.frame.size.width, height: totalHeight)
         
-         self.vContainerview.addSubview(createUsernameLabel(username: chatitem.userName!, messageRect: messageSize, dateRect: dateSize, nameRect: nameSize))
-         self.vContainerview.addSubview(createMessageText(messagetext: chatitem.chatMessage!, messageRect: messageSize, dateRect: dateSize, nameRect: nameSize))
-        self.vContainerview.addSubview(createDateLabel(dateText: chatitem.date!, messageRect: messageSize, dateRect: dateSize, nameRect: nameSize))
+        lblUserName.frame = CGRect(x:5, y: 5, width: ShareData.GetPhoneCurrentScreenWidth()-15, height: nameSize.height)
+        
+        tvChat.frame = CGRect(x: UIScreen.main.bounds.width-25-messageSize.width, y: lblUserName.frame.height+7, width: messageSize.width+20, height: messageSize.height+20)
+        
+        lblDate .frame = CGRect(x: 0, y: lblUserName.frame.height+tvChat.frame.height+8, width: ShareData.GetPhoneCurrentScreenWidth()-15, height: dateSize.height)
+        
+        
+        
+        tvChat.text = item?.chatMessage!
+        lblUserName.text = item?.userName!
+        lblDate.text = item?.date!
+        
+    }
+    public func BindValue(chatitem:ChatModel,row:Int)
+    {
+        item = chatitem
+        
+        
+      //  let totalHeight = messageSize.height+dateSize.height+nameSize.height+39;
+      //  vContainerview.frame = CGRect(x: 0, y: 0, width: self.frame.size.width, height: totalHeight)
+        
+//         self.vContainerview.addSubview(createUsernameLabel(username: chatitem.userName!, messageRect: messageSize, dateRect: dateSize, nameRect: nameSize))
+//         self.vContainerview.addSubview(createMessageText(messagetext: chatitem.chatMessage!, messageRect: messageSize, dateRect: dateSize, nameRect: nameSize))
+//        self.vContainerview.addSubview(createDateLabel(dateText: chatitem.date!, messageRect: messageSize, dateRect: dateSize, nameRect: nameSize))
 
     }
   /*  private func UserNameHeight(messagetext: String,userName: String,date:String, sendervalue:Bool)

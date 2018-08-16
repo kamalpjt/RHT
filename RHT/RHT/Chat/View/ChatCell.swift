@@ -23,14 +23,14 @@ enum MessageType{
 
 class ChatCell: UITableViewCell {
 
-    var vContainerview:UIView = {
-          let view = UIView()
-        view.backgroundColor = UIColor.magenta
-        return view
-    }()
-    /*var lblUserName:UILabel = {
+//    var vContainerview:UIView = {
+//          let view = UIView()
+//        view.backgroundColor = UIColor.magenta
+//        return view
+//    }()
+    var lblUserName:UILabel = {
         let lblname = UILabel()
-        lblname.textAlignment = .right
+        lblname.textAlignment = .left
         lblname.font = UIFont.systemFont(ofSize: ShareData.SetFont14(), weight: UIFont.Weight.semibold)
         lblname.text = "Userdfjhshdjfhjkhjfhdjskhjfhsdjhfjshdfjsk"
         lblname.translatesAutoresizingMaskIntoConstraints = false;
@@ -39,7 +39,7 @@ class ChatCell: UITableViewCell {
     }()
     var tvChat:UITextView = {
         let txView = UITextView()
-        txView.textAlignment = .right
+        //txView.textAlignment = .right
         txView.textContainerInset = UIEdgeInsets.init(top: 10, left: 10, bottom: 10, right: 10)
         txView.textContainer.lineBreakMode = NSLineBreakMode.byWordWrapping
         txView.textContainer.lineFragmentPadding = 0
@@ -56,13 +56,15 @@ class ChatCell: UITableViewCell {
     }()
     var lblDate:UILabel = {
         let date = UILabel()
+        date.textAlignment = .left
         date.font = UIFont.systemFont(ofSize: ShareData.SetFont12(), weight: UIFont.Weight.semibold)
         date.text = "12/09/2005"
         date.translatesAutoresizingMaskIntoConstraints = false;
         date.textColor = UIColor.gray;
         return date;
-    }()*/
+    }()
     private let cellIdentifier = "ChatCell"
+    var item:ChatModel?
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -75,7 +77,11 @@ class ChatCell: UITableViewCell {
         
         super.init(style: style, reuseIdentifier: reuseIdentifier)
          self.selectionStyle = UITableViewCellSelectionStyle.none;
-        self.contentView.addSubview(vContainerview)
+//        self.contentView.addSubview(vContainerview)
+        self.contentView.backgroundColor = UIColor.yellow
+        self.contentView.addSubview(lblDate)
+        self.contentView.addSubview(lblUserName)
+        self.contentView.addSubview(tvChat)
        
       
     }
@@ -101,6 +107,23 @@ class ChatCell: UITableViewCell {
     
     }
     override func layoutSubviews() {
+        
+        let getValueTuples = getSize(dateText: (item?.date!)!, messageText: (item?.chatMessage!)!, nameText: (item?.userName!)!)
+        let dateSize = getValueTuples.0;
+        let messageSize = getValueTuples.1;
+        let nameSize = getValueTuples.2
+        
+        lblUserName.frame = CGRect(x: 5, y: 5, width: ShareData.GetPhoneCurrentScreenWidth(), height: nameSize.height)
+        
+        tvChat.frame = CGRect(x: 5, y: 17+7, width: messageSize.width+20, height: messageSize.height+20)
+        
+        lblDate .frame = CGRect(x: 14, y: lblUserName.frame.height+tvChat.frame.height+8, width: ShareData.GetPhoneCurrentScreenWidth(), height: dateSize.height)
+        
+        
+        
+        tvChat.text = item?.chatMessage!
+        lblUserName.text = item?.userName!
+        lblDate.text = item?.date!
         
     }
     func createUsernameLabel(username:String,messageRect:CGRect,dateRect:CGRect,nameRect:CGRect) -> UILabel {
@@ -163,18 +186,18 @@ class ChatCell: UITableViewCell {
     }
     public func BindValue(chatitem:ChatModel,row:Int)
     {
-       // item = chatitem
-        let getValueTuples = getSize(dateText: chatitem.date!, messageText: chatitem.chatMessage!, nameText: chatitem.userName!)
-        let dateSize = getValueTuples.0;
-        let messageSize = getValueTuples.1;
-        let nameSize = getValueTuples.2
+        item = chatitem
+       
         
-        let totalHeight = messageSize.height+dateSize.height+nameSize.height+39;
-        vContainerview.frame = CGRect(x: 0, y: 0, width: self.frame.size.width, height: totalHeight)
         
-         self.vContainerview.addSubview(createUsernameLabel(username: chatitem.userName!, messageRect: messageSize, dateRect: dateSize, nameRect: nameSize))
-         self.vContainerview.addSubview(createMessageText(messagetext: chatitem.chatMessage!, messageRect: messageSize, dateRect: dateSize, nameRect: nameSize))
-        self.vContainerview.addSubview(createDateLabel(dateText: chatitem.date!, messageRect: messageSize, dateRect: dateSize, nameRect: nameSize))
+//        let totalHeight = messageSize.height+dateSize.height+nameSize.height+39;
+//        let vContainerview = UIView()
+//        vContainerview.frame = CGRect(x: 0, y: 0, width: self.frame.size.width, height: totalHeight)
+//        self.contentView.addSubview(vContainerview)
+//        
+//         vContainerview.addSubview(createUsernameLabel(username: chatitem.userName!, messageRect: messageSize, dateRect: dateSize, nameRect: nameSize))
+//         vContainerview.addSubview(createMessageText(messagetext: chatitem.chatMessage!, messageRect: messageSize, dateRect: dateSize, nameRect: nameSize))
+//        vContainerview.addSubview(createDateLabel(dateText: chatitem.date!, messageRect: messageSize, dateRect: dateSize, nameRect: nameSize))
 
     }
   /*  private func UserNameHeight(messagetext: String,userName: String,date:String, sendervalue:Bool)
