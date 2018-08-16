@@ -12,7 +12,7 @@ import ApiAI
 protocol UpdateCons {
     func update()
 }
-class ChatViewController: UIViewController,UITextViewDelegate,UITableViewDelegate {
+class ChatViewController: UIViewController,UITextViewDelegate,UITableViewDelegate ,UIScrollViewDelegate{
     
     @IBOutlet weak var vChatInnerView: UIView!
     @IBOutlet weak var vBottomHeight: NSLayoutConstraint!
@@ -192,6 +192,10 @@ class ChatViewController: UIViewController,UITextViewDelegate,UITableViewDelegat
     }
     
     //MARK: -TEXTVIEWDELEGATE
+    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+    
+        tvchatInput.resignFirstResponder()
+    }
     var previousRect = CGRect.zero
     func textViewDidChange(_ textView: UITextView) {
         let pos = textView.endOfDocument
@@ -336,7 +340,11 @@ class ChatViewController: UIViewController,UITextViewDelegate,UITableViewDelegat
         })
         ApiAI.shared().enqueue(request)
         tvchatInput.text = ""
-        
+    
+//        let num = frameheight!  - CGFloat(frameheightKeyboard)
+//        cvChat.heightAnchor.constraint(equalTo: VContainer.heightAnchor, multiplier: num / VContainer.frame.height , constant: 0).isActive=true
+//        vBottomHeight.constant =   0.0;
+//        frameheightKeyboard = 0
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

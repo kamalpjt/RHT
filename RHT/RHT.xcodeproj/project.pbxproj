@@ -56,6 +56,7 @@
 		8AB8769E20E003AB00EF992E /* ChangePasswordController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AB8769D20E003AB00EF992E /* ChangePasswordController.swift */; };
 		8AD0720A210CDB0D00BCF172 /* AwsPdf.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AD07209210CDB0D00BCF172 /* AwsPdf.swift */; };
 		8AD251F020B2F4CB00F77994 /* DesignableTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AD251EF20B2F4CB00F77994 /* DesignableTextView.swift */; };
+		8AD545D52125A54300609563 /* ChatController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AD545D42125A54300609563 /* ChatController.swift */; };
 		8AD69C0E20A5BC8500F2E135 /* ChatCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AD69C0D20A5BC8500F2E135 /* ChatCell.swift */; };
 		8ADC021520AEB85500EE03DA /* DesignableButon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ADC021420AEB85500EE03DA /* DesignableButon.swift */; };
 		8AEB4DD920AE04240045DBD2 /* CommunicationDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AEB4DD820AE04240045DBD2 /* CommunicationDetailController.swift */; };
@@ -179,6 +180,7 @@
 		8AB8769D20E003AB00EF992E /* ChangePasswordController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordController.swift; sourceTree = "<group>"; };
 		8AD07209210CDB0D00BCF172 /* AwsPdf.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AwsPdf.swift; sourceTree = "<group>"; };
 		8AD251EF20B2F4CB00F77994 /* DesignableTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignableTextView.swift; sourceTree = "<group>"; };
+		8AD545D42125A54300609563 /* ChatController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatController.swift; sourceTree = "<group>"; };
 		8AD69C0D20A5BC8500F2E135 /* ChatCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatCell.swift; sourceTree = "<group>"; };
 		8ADC021420AEB85500EE03DA /* DesignableButon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignableButon.swift; sourceTree = "<group>"; };
 		8AEB4DD820AE04240045DBD2 /* CommunicationDetailController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunicationDetailController.swift; sourceTree = "<group>"; };
@@ -392,6 +394,7 @@
 			isa = PBXGroup;
 			children = (
 				8AFED3EE20B21F040094F1DA /* ChatListController.swift */,
+				8AD545D42125A54300609563 /* ChatController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1002,6 +1005,7 @@
 				8AF6EE5E2122F7F400858C32 /* tableCell.swift in Sources */,
 				8AEB4DD920AE04240045DBD2 /* CommunicationDetailController.swift in Sources */,
 				8A05187120D0F82500F65504 /* UserDetail.swift in Sources */,
+				8AD545D52125A54300609563 /* ChatController.swift in Sources */,
 				A90BF65B2075F6AB007B8F2B /* RESideMenu.m in Sources */,
 				A914484120700A960031AD30 /* HomeViewController.swift in Sources */,
 				A9A134DD2078A6A00093A78E /* SettingViewController.swift in Sources */,

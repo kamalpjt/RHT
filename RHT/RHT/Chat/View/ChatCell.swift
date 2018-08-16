@@ -113,17 +113,21 @@ class ChatCell: UITableViewCell {
         let messageSize = getValueTuples.1;
         let nameSize = getValueTuples.2
         
-        lblUserName.frame = CGRect(x: 5, y: 5, width: ShareData.GetPhoneCurrentScreenWidth(), height: nameSize.height)
         
-        tvChat.frame = CGRect(x: 5, y: 17+7, width: messageSize.width+20, height: messageSize.height+20)
+        lblUserName.frame = CGRect(x:5, y: 5, width: ShareData.GetPhoneCurrentScreenWidth()-15, height: nameSize.height)
         
-        lblDate .frame = CGRect(x: 14, y: lblUserName.frame.height+tvChat.frame.height+8, width: ShareData.GetPhoneCurrentScreenWidth(), height: dateSize.height)
+        tvChat.frame = CGRect(x:5, y: lblUserName.frame.height+7, width: messageSize.width+20, height: messageSize.height+20)
+        
+        lblDate .frame = CGRect(x: 5, y: lblUserName.frame.height+tvChat.frame.height+8, width: ShareData.GetPhoneCurrentScreenWidth()-15, height: dateSize.height)
         
         
         
         tvChat.text = item?.chatMessage!
         lblUserName.text = item?.userName!
         lblDate.text = item?.date!
+        
+        
+      
         
     }
     func createUsernameLabel(username:String,messageRect:CGRect,dateRect:CGRect,nameRect:CGRect) -> UILabel {
@@ -200,42 +204,7 @@ class ChatCell: UITableViewCell {
 //        vContainerview.addSubview(createDateLabel(dateText: chatitem.date!, messageRect: messageSize, dateRect: dateSize, nameRect: nameSize))
 
     }
-  /*  private func UserNameHeight(messagetext: String,userName: String,date:String, sendervalue:Bool)
-    {
-        
-        let estimatedFramemessage = ShareData.sharedInstance.GetStringCGSize(stringValue: messagetext, font: UIFont.systemFont(ofSize: ShareData.SetFont13(), weight: UIFont.Weight.regular))
-        
-        let estimatedFramename = ShareData.sharedInstance.GetStringCGSize(stringValue:userName, font:UIFont.systemFont(ofSize: ShareData.SetFont14(), weight: UIFont.Weight.semibold))
-        
-        let estimatedFramedate = ShareData.sharedInstance.GetStringCGSize(stringValue:date, font:UIFont.systemFont(ofSize: ShareData.SetFont12(), weight: UIFont.Weight.semibold))
-        if(sendervalue)
-        {
-            lblUserName.frame = CGRect(x: 15, y: 5, width: ShareData.GetPhoneCurrentScreenWidth(), height: estimatedFramename.height)
-            //top =10 ,bottom= 10 == 20
-            tvChat.frame = CGRect(x: 5, y: lblUserName.frame.height+7, width: estimatedFramemessage.width+20, height: estimatedFramemessage.height+20)
-            lblDate .frame = CGRect(x: 14, y: lblUserName.frame.height+tvChat.frame.height+8, width: ShareData.GetPhoneCurrentScreenWidth(), height: estimatedFramedate.height)
-
-        }else{
-            lblUserName.frame = CGRect(x:0, y: 5, width: ShareData.GetPhoneCurrentScreenWidth()-15, height: estimatedFramename.height)
-            tvChat.frame = CGRect(x: UIScreen.main.bounds.width-25-estimatedFramemessage.width, y: lblUserName.frame.height+7, width: estimatedFramemessage.width+20, height: estimatedFramemessage.height+20)
-            lblDate .frame = CGRect(x: 0, y: lblUserName.frame.height+tvChat.frame.height+8, width: ShareData.GetPhoneCurrentScreenWidth()-15, height: estimatedFramedate.height)
-        }
-       
-        
-          print("height:" + String(describing: estimatedFramemessage.height))
-        
-        //tvChat.frame = CGRect(x: 10, y: <#T##CGFloat#>, width: <#T##CGFloat#>, height: <#T##CGFloat#>)
-    
-        
-//        SetUpLayout()
-//         tvChat.heightAnchor.constraint(equalToConstant:estimatedFramemessage.height).isActive=true
-//         tvChat.widthAnchor.constraint(equalToConstant: estimatedFramemessage.width).isActive=true
-//        print("height:" + String(describing: estimatedFramemessage.height))
-//         lblUserName.heightAnchor.constraint(equalToConstant:estimatedFramename.height).isActive=true
-//         lblDate.heightAnchor.constraint(equalToConstant:estimatedFramedate.height).isActive=true
-//        self.layoutIfNeeded()
-    }*/
-    
+  
     
     
     required init?(coder aDecoder: NSCoder) {
