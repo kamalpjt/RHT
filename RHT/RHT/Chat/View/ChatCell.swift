@@ -40,6 +40,8 @@ class ChatCell: UITableViewCell {
     var tvChat:UITextView = {
         let txView = UITextView()
         //txView.textAlignment = .right
+        txView.layer.cornerRadius = 15
+        txView.layer.masksToBounds = true;
         txView.textContainerInset = UIEdgeInsets.init(top: 10, left: 10, bottom: 10, right: 10)
         txView.textContainer.lineBreakMode = NSLineBreakMode.byWordWrapping
         txView.textContainer.lineFragmentPadding = 0
@@ -78,12 +80,22 @@ class ChatCell: UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
          self.selectionStyle = UITableViewCellSelectionStyle.none;
 //        self.contentView.addSubview(vContainerview)
-        self.contentView.backgroundColor = UIColor.yellow
+        //self.contentView.backgroundColor = UIColor.yellow
         self.contentView.addSubview(lblDate)
         self.contentView.addSubview(lblUserName)
         self.contentView.addSubview(tvChat)
-       
+        
+       //CloseKeyboard()
       
+    }
+    func CloseKeyboard() -> Void {
+            // view.endEditing(true);
+            let tap = UITapGestureRecognizer(target: self, action:#selector(handleTap))
+            self.contentView.addGestureRecognizer(tap)
+    }
+    @objc func handleTap(sender: UITapGestureRecognizer) {
+        //self.view.endEditing(true)
+        NotificationCenter.default.post(name: Notification.Name("close"), object: nil, userInfo:nil)
     }
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
@@ -114,11 +126,11 @@ class ChatCell: UITableViewCell {
         let nameSize = getValueTuples.2
         
         
-        lblUserName.frame = CGRect(x:5, y: 5, width: ShareData.GetPhoneCurrentScreenWidth()-15, height: nameSize.height)
+        lblUserName.frame = CGRect(x:10, y: 5, width: ShareData.GetPhoneCurrentScreenWidth()-15, height: nameSize.height)
         
-        tvChat.frame = CGRect(x:5, y: lblUserName.frame.height+7, width: messageSize.width+20, height: messageSize.height+20)
+        tvChat.frame = CGRect(x:5, y: lblUserName.frame.height+10, width: messageSize.width+20, height: messageSize.height+20)
         
-        lblDate .frame = CGRect(x: 5, y: lblUserName.frame.height+tvChat.frame.height+8, width: ShareData.GetPhoneCurrentScreenWidth()-15, height: dateSize.height)
+        lblDate .frame = CGRect(x: 10, y: lblUserName.frame.height+tvChat.frame.height+15, width: ShareData.GetPhoneCurrentScreenWidth()-15, height: dateSize.height)
         
         
         

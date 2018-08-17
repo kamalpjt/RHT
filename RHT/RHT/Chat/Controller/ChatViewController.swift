@@ -66,18 +66,20 @@ class ChatViewController: UIViewController,UITextViewDelegate,UITableViewDelegat
              setUpChatTbl()
         }else{
              setUpChatTbl()
-//            if(AppConstant.sharedInstance.chatItem.count>0)
-//            {
-//                let index = IndexPath(item: AppConstant.sharedInstance.chatItem.count-1, section: 0)
-//                cvChat.scrollToRow(at: index, at: UITableViewScrollPosition.top, animated: true)
-//            }
+            if(AppConstant.sharedInstance.chatItem.count>0)
+            {
+                let index = IndexPath(item: AppConstant.sharedInstance.chatItem.count-1, section: 0)
+                cvChat.scrollToRow(at: index, at: UITableViewScrollPosition.top, animated: true)
+            }
         }
         NotificationCenter.default.addObserver(self, selector: #selector(self.attachmentAction(notification:)), name: Notification.Name("TableAction"), object: nil)
+         NotificationCenter.default.addObserver(self, selector: #selector(self.closeAction(notification:)), name: Notification.Name("close"), object: nil)
         AddKeyboardObserver()
     }
     override func viewWillDisappear(_ animated: Bool) {
         RemoveKeyboardObserver()
          NotificationCenter.default.removeObserver(self, name: Notification.Name("TableAction"), object: nil)
+        NotificationCenter.default.removeObserver(self, name: Notification.Name("close"), object: nil)
     }
     
     func setUpChatTbl() -> Void{
@@ -94,7 +96,7 @@ class ChatViewController: UIViewController,UITextViewDelegate,UITableViewDelegat
         cvChat.dataSource =  self.dataSource
         cvChat.delegate =  self.dataDelegate
         cvChat.reloadData()
-       // CloseKeyboard(bool: true)
+      // CloseKeyboard(bool: true)
     }
     func setUpTextView() -> Void{
         tvchatInput.textContainerInset = UIEdgeInsets.init(top: 5, left: 5, bottom: 5, right: 5)
@@ -177,11 +179,14 @@ class ChatViewController: UIViewController,UITextViewDelegate,UITableViewDelegat
     }
     @objc func keyboardWillHide(notification: NSNotification){
         print("keyboardWillHide")
-        
+         if let keyboardSize = (notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
         if frameheight != nil{
-            cvChat.heightAnchor.constraint(equalTo: VContainer.heightAnchor, multiplier: frameheight!/VContainer.frame.height , constant: 0).isActive=true
-            vBottomHeight.constant =   vBottomHeight.constant - CGFloat(frameheightKeyboard);
-         frameheightKeyboard = 0
+             let getheight = (cvChat.frame.height + keyboardSize.height)
+            cvChat.heightAnchor.constraint(equalTo: VContainer.heightAnchor, multiplier: getheight/VContainer.frame.height , constant: 0).isActive=true
+            //vBottomHeight.constant =   vBottomHeight.constant - CGFloat(frameheightKeyboard);
+            vBottomHeight.constant =   0.0;
+            frameheightKeyboard = 0
+            self.view.layoutIfNeeded()
 
         }
         if(AppConstant.sharedInstance.chatItem.count>0)
@@ -190,6 +195,7 @@ class ChatViewController: UIViewController,UITextViewDelegate,UITableViewDelegat
             cvChat.scrollToRow(at: index, at: UITableViewScrollPosition.top, animated: true)
         }
     }
+}
     
     //MARK: -TEXTVIEWDELEGATE
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
@@ -261,6 +267,9 @@ class ChatViewController: UIViewController,UITextViewDelegate,UITableViewDelegat
             }
         }
         return true
+    }
+    @objc func closeAction(notification: Notification){
+        self.view.endEditing(true);
     }
     @objc func attachmentAction(notification: Notification){
         let text = notification.userInfo?["Sender"] as? String
@@ -341,10 +350,10 @@ class ChatViewController: UIViewController,UITextViewDelegate,UITableViewDelegat
         ApiAI.shared().enqueue(request)
         tvchatInput.text = ""
     
-//        let num = frameheight!  - CGFloat(frameheightKeyboard)
-//        cvChat.heightAnchor.constraint(equalTo: VContainer.heightAnchor, multiplier: num / VContainer.frame.height , constant: 0).isActive=true
-//        vBottomHeight.constant =   0.0;
-//        frameheightKeyboard = 0
+        let getheight =  cvChat.frame.height + CGFloat(frameheightKeyboard)
+        cvChat.heightAnchor.constraint(equalTo: VContainer.heightAnchor, multiplier:getheight / VContainer.frame.height , constant: 0).isActive=true
+        vBottomHeight.constant =   0.0;
+        frameheightKeyboard = 0
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

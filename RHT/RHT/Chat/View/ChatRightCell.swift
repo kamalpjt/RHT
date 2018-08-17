@@ -34,6 +34,8 @@ class ChatRightCell: UITableViewCell {
     }()
     var tvChat:UITextView = {
         let txView = UITextView()
+        txView.layer.cornerRadius = 15
+        txView.layer.masksToBounds = true;
        // txView.textAlignment = .right
         txView.textContainerInset = UIEdgeInsets.init(top: 10, left: 10, bottom: 10, right: 10)
         txView.textContainer.lineBreakMode = NSLineBreakMode.byWordWrapping
@@ -70,7 +72,7 @@ class ChatRightCell: UITableViewCell {
         
         super.init(style: style, reuseIdentifier: reuseIdentifier)
          self.selectionStyle = UITableViewCellSelectionStyle.none;
-        self.contentView.backgroundColor = UIColor.orange
+        //self.contentView.backgroundColor = UIColor.orange
          self.contentView.addSubview(lblDate)
          self.contentView.addSubview(lblUserName)
          self.contentView.addSubview(tvChat)
@@ -163,9 +165,9 @@ class ChatRightCell: UITableViewCell {
         
         lblUserName.frame = CGRect(x:5, y: 5, width: ShareData.GetPhoneCurrentScreenWidth()-15, height: nameSize.height)
         
-        tvChat.frame = CGRect(x: UIScreen.main.bounds.width-25-messageSize.width, y: lblUserName.frame.height+7, width: messageSize.width+20, height: messageSize.height+20)
+        tvChat.frame = CGRect(x: UIScreen.main.bounds.width-25-messageSize.width, y: lblUserName.frame.height+10, width: messageSize.width+20, height: messageSize.height+20)
         
-        lblDate .frame = CGRect(x: 0, y: lblUserName.frame.height+tvChat.frame.height+8, width: ShareData.GetPhoneCurrentScreenWidth()-15, height: dateSize.height)
+        lblDate .frame = CGRect(x: 0, y: lblUserName.frame.height+tvChat.frame.height+15, width: ShareData.GetPhoneCurrentScreenWidth()-15, height: dateSize.height)
         
         
         
