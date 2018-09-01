@@ -12,7 +12,7 @@ import ApiAI
 protocol UpdateCons {
     func update()
 }
-class ChatViewController: UIViewController,UITextViewDelegate,UITableViewDelegate ,UIScrollViewDelegate{
+class ChatViewController: UIViewController,UITextViewDelegate,UITableViewDelegate,UIScrollViewDelegate{
     
     @IBOutlet weak var vChatInnerView: UIView!
     @IBOutlet weak var vBottomHeight: NSLayoutConstraint!
@@ -95,6 +95,7 @@ class ChatViewController: UIViewController,UITextViewDelegate,UITableViewDelegat
         self.dataDelegate?.chatItem = AppConstant.sharedInstance.chatItem
         cvChat.dataSource =  self.dataSource
         cvChat.delegate =  self.dataDelegate
+       
         cvChat.reloadData()
       // CloseKeyboard(bool: true)
     }
@@ -172,6 +173,7 @@ class ChatViewController: UIViewController,UITextViewDelegate,UITableViewDelegat
                 {
                     let index = IndexPath(item: AppConstant.sharedInstance.chatItem.count-1, section: 0)
                     cvChat.scrollToRow(at: index, at: UITableViewScrollPosition.top, animated: true)
+                    
                 }
                 
             }
@@ -181,11 +183,13 @@ class ChatViewController: UIViewController,UITextViewDelegate,UITableViewDelegat
         print("keyboardWillHide")
          if let keyboardSize = (notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
         if frameheight != nil{
+             vBottomHeight.constant =   vBottomHeight.constant - CGFloat(frameheightKeyboard);
              let getheight = (cvChat.frame.height + keyboardSize.height)
             cvChat.heightAnchor.constraint(equalTo: VContainer.heightAnchor, multiplier: getheight/VContainer.frame.height , constant: 0).isActive=true
-            //vBottomHeight.constant =   vBottomHeight.constant - CGFloat(frameheightKeyboard);
-            vBottomHeight.constant =   0.0;
+           
+          //  vBottomHeight.constant =   0.0;
             frameheightKeyboard = 0
+            cvChat.setNeedsUpdateConstraints()
             self.view.layoutIfNeeded()
 
         }
@@ -198,9 +202,8 @@ class ChatViewController: UIViewController,UITextViewDelegate,UITableViewDelegat
 }
     
     //MARK: -TEXTVIEWDELEGATE
-    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
-    
-        tvchatInput.resignFirstResponder()
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        print("I'm scrolling!")
     }
     var previousRect = CGRect.zero
     func textViewDidChange(_ textView: UITextView) {

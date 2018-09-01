@@ -85,7 +85,7 @@ class ChatCell: UITableViewCell {
         self.contentView.addSubview(lblUserName)
         self.contentView.addSubview(tvChat)
         
-       //CloseKeyboard()
+      // CloseKeyboard()
       
     }
     func CloseKeyboard() -> Void {
