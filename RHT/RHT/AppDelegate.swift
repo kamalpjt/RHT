@@ -14,6 +14,7 @@ import ApiAI
 import SVProgressHUD
 import AWSS3
 import Photos
+import Firebase
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
@@ -43,7 +44,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         createPdfFolder()
         deleteItemInLocalDirectory()
         self.window?.makeKeyAndVisible()
-         
+         FirebaseApp.configure()
         return true
     }
     func ConfigAws()

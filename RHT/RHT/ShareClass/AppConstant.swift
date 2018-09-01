@@ -19,6 +19,7 @@ class AppConstant  {
     let CONTENTTYPEIMAGE = "image/jpeg"
     let CONTENTTYPEPDF = "pdf"
     let LOCALPDFFOLDER = "/RHTPDf"
+    let FIREBASEDATABASEURL = "https://rhtapp-4fcec.firebaseio.com/"
     //Chat constanct
     var chatItem = [ChatModel]()
     var userDetails = UserDetail.self
