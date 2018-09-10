@@ -213,6 +213,8 @@ class LoginViewController: BaseViewController,UITextFieldDelegate {
                         UserDetail.Instance.isHeadStaff = value.response.user.isHeadStaff!
                         UserDetail.Instance.genPostAdmin = value.response.user.genPostAdmin!
                         UserDetail.Instance.isVerified = value.response.user.isVerified!
+                        let fr = FBDatabase()
+                        fr.addUserToFireBase()
                         if(saveSuccessful){
                             self.SetResidemenu()
                         }

@@ -15,8 +15,10 @@ import SVProgressHUD
 import AWSS3
 import Photos
 import Firebase
+import UserNotifications
+import FirebaseMessaging
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate ,MessagingDelegate,UNUserNotificationCenterDelegate{
     
     var window: UIWindow?
     
@@ -28,6 +30,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         setNavigationBar()
         //Set enviroment
         AppConfig.sharedInstance.setEnviroment(eBuildEnvironments: eBuildEnvironment.eDev)
+        //Set progressbar
         SVProgressHUD.setBackgroundColor(AppConstant.sharedInstance.backGroundColor)
         SVProgressHUD.setForegroundColor(UIColor.white)
         SVProgressHUD.setDefaultAnimationType(SVProgressHUDAnimationType.native)
@@ -45,8 +48,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         deleteItemInLocalDirectory()
         self.window?.makeKeyAndVisible()
          FirebaseApp.configure()
+        
+        if #available(iOS 10.0, *) {
+            // For iOS 10 display notification (sent via APNS)
+            UNUserNotificationCenter.current().delegate = self
+            
+            let authOptions: UNAuthorizationOptions = [.alert, .badge, .sound]
+            UNUserNotificationCenter.current().requestAuthorization(
+                options: authOptions,
+                completionHandler: {_, _ in })
+        } else {
+            let settings: UIUserNotificationSettings =
+                UIUserNotificationSettings(types: [.alert, .badge, .sound], categories: nil)
+            application.registerUserNotificationSettings(settings)
+        }
+        
+        application.registerForRemoteNotifications()
+
         return true
     }
+    
     func ConfigAws()
     {
         let myIdentityPoolId = AppConfig.sharedInstance.AWSSID!
@@ -112,7 +133,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         do {
             let files = try fileManager.subpathsOfDirectory(atPath: paths)
             // print(files[0])
-            for var s in files {
+            for  s in files {
                 debugPrint(s)
                 let filestring =  paths.appending("/"+"\(s)")
                 let filePathsArray1 =  try fileManager.attributesOfItem(atPath: filestring)
@@ -156,6 +177,34 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
+    
+    // MARK: APNS Push notification
+    func application(_ application: UIApplication,
+                     didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+        let tokenParts = deviceToken.map { data -> String in
+            return String(format: "%02.2hhx", data)
+        }
+        
+        let token = tokenParts.joined()
+        print("Device Token: \(token)")
+    }
+    
+    func application(_ application: UIApplication,
+                     didFailToRegisterForRemoteNotificationsWithError error: Error) {
+        print("Failed to register: \(error)")
+    }
+    // MARK: Message Push notification
+    func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String) {
+        print("Firebase registration token: \(fcmToken)")
+        
+        let dataDict:[String: String] = ["token": fcmToken]
+        NotificationCenter.default.post(name: Notification.Name("FCMToken"), object: nil, userInfo: dataDict)
+        // TODO: If necessary send token to application server.
+        // Note: This callback is fired at each app startup and whenever a new token is generated.
+    }
+
+   
+
     
 //    func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
 //        return GIDSignIn.sharedInstance().handle(url, sourceApplication:sourceApplication , annotation: annotation)

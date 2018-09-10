@@ -133,6 +133,8 @@ class RegisterViewController: BaseViewController ,UITextFieldDelegate{
                         UserDetail.Instance.user_type = value.response.user.user_type!
                         UserDetail.Instance.userid = value.response.user.userid!
                         UserDetail.Instance.id = value.response.user.id!
+                        let fr = FBDatabase()
+                        fr.addUserToFireBase()
                         if(saveSuccessful){
                             self.SetResidemenu()
                         }

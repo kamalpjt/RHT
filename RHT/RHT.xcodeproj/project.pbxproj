@@ -55,6 +55,7 @@
 		8AA6E60F20BED78A00C82BFA /* AppConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AA6E60E20BED78A00C82BFA /* AppConfig.swift */; };
 		8AAD3862213AF88B00431457 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8AAD3861213AF88B00431457 /* GoogleService-Info.plist */; };
 		8AB8769E20E003AB00EF992E /* ChangePasswordController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AB8769D20E003AB00EF992E /* ChangePasswordController.swift */; };
+		8ABD69BA21439D1D000E9C8D /* FBDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ABD69B921439D1D000E9C8D /* FBDatabase.swift */; };
 		8AD0720A210CDB0D00BCF172 /* AwsPdf.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AD07209210CDB0D00BCF172 /* AwsPdf.swift */; };
 		8AD251F020B2F4CB00F77994 /* DesignableTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AD251EF20B2F4CB00F77994 /* DesignableTextView.swift */; };
 		8AD545D52125A54300609563 /* ChatController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AD545D42125A54300609563 /* ChatController.swift */; };
@@ -180,6 +181,7 @@
 		8AA6E60E20BED78A00C82BFA /* AppConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConfig.swift; sourceTree = "<group>"; };
 		8AAD3861213AF88B00431457 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		8AB8769D20E003AB00EF992E /* ChangePasswordController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordController.swift; sourceTree = "<group>"; };
+		8ABD69B921439D1D000E9C8D /* FBDatabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FBDatabase.swift; sourceTree = "<group>"; };
 		8AD07209210CDB0D00BCF172 /* AwsPdf.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AwsPdf.swift; sourceTree = "<group>"; };
 		8AD251EF20B2F4CB00F77994 /* DesignableTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignableTextView.swift; sourceTree = "<group>"; };
 		8AD545D42125A54300609563 /* ChatController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatController.swift; sourceTree = "<group>"; };
@@ -474,6 +476,14 @@
 			path = ApiRequest;
 			sourceTree = "<group>";
 		};
+		8ABD69B821439CE0000E9C8D /* FireBase */ = {
+			isa = PBXGroup;
+			children = (
+				8ABD69B921439D1D000E9C8D /* FBDatabase.swift */,
+			);
+			path = FireBase;
+			sourceTree = "<group>";
+		};
 		8AFCE3E920EDE3F90016A9B6 /* Leadership */ = {
 			isa = PBXGroup;
 			children = (
@@ -565,6 +575,7 @@
 		A9182449206CBB2000B358D8 /* RHT */ = {
 			isa = PBXGroup;
 			children = (
+				8ABD69B821439CE0000E9C8D /* FireBase */,
 				8AAD3861213AF88B00431457 /* GoogleService-Info.plist */,
 				8AFDAF44211EA87100101D35 /* Activate */,
 				8A02218321117D12005EE791 /* AttachmentList */,
@@ -1072,6 +1083,7 @@
 				8AFCE3F420EDE8A30016A9B6 /* LeaderDataSource.swift in Sources */,
 				8A03622421206FC500B92123 /* ActivateModel.swift in Sources */,
 				A9182486206CC4AC00B358D8 /* BaseViewController.swift in Sources */,
+				8ABD69BA21439D1D000E9C8D /* FBDatabase.swift in Sources */,
 				8A6AEB9020B82C7100D89295 /* SessionManagers.swift in Sources */,
 				8A058E1820F1288400DF0FD0 /* CommentTblSource.swift in Sources */,
 				8A0114F220E909820097A23D /* ClientModel.swift in Sources */,

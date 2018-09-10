@@ -301,6 +301,10 @@ class ChatViewController: UIViewController,UITextViewDelegate,UITableViewDelegat
                 self.cvChat.insertRows(at: [index], with: UITableViewRowAnimation.fade)
                 self.cvChat.scrollToRow(at: index, at: UITableViewScrollPosition.bottom, animated: false)
             }
+            let fr = FBDatabase()
+            fr.addMessageToFireBase(agentMenu: "", message: tvchatInput.text, messageType: "Text",
+                                    receiver: "staff1 a", receiverUid: "624167ea-7c58-11e8-89ed-b551f2bf21b9", sender: UserDetail.Instance.name!, senderUid: UserDetail.Instance.id!,
+                                    timestamp:String(Date().toMillis()))
             ChatResponse(chatText: tvchatInput.text.trimmingCharacters(in: .whitespacesAndNewlines))
         }
         

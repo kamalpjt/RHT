@@ -62,8 +62,8 @@ class HttpRequestMethod {
                 do{
                         let oobj = try JSONSerialization.jsonObject(with: response.data!, options: JSONSerialization.ReadingOptions.mutableContainers)
                         debugPrint(oobj)
-                } catch (let eror){
-                    
+                } catch (let er){
+                    debugPrint(er)
                 }
                 sucessResponseBlcok(response.data!,(response.response?.statusCode)!);
                 //do your json stuff
