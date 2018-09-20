@@ -68,6 +68,7 @@
 		8AFC0ACC20D3A975004FA0F5 /* AddModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AFC0ACB20D3A975004FA0F5 /* AddModel.swift */; };
 		8AFC0ACE20D3B2D6004FA0F5 /* CommunicationParsing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AFC0ACD20D3B2D6004FA0F5 /* CommunicationParsing.swift */; };
 		8AFC0AD020D3C9D5004FA0F5 /* ForgotController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AFC0ACF20D3C9D5004FA0F5 /* ForgotController.swift */; };
+		8AFC35F02153887D00E00D68 /* ChatUserListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AFC35EF2153887D00E00D68 /* ChatUserListVC.swift */; };
 		8AFC65D820B1CF2E00865555 /* DesignableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AFC65D720B1CF2E00865555 /* DesignableView.swift */; };
 		8AFC65DA20B1D6DD00865555 /* ImageListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AFC65D920B1D6DD00865555 /* ImageListController.swift */; };
 		8AFCE3EB20EDE4320016A9B6 /* LeadershipController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AFCE3EA20EDE4320016A9B6 /* LeadershipController.swift */; };
@@ -194,6 +195,7 @@
 		8AFC0ACB20D3A975004FA0F5 /* AddModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddModel.swift; sourceTree = "<group>"; };
 		8AFC0ACD20D3B2D6004FA0F5 /* CommunicationParsing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunicationParsing.swift; sourceTree = "<group>"; };
 		8AFC0ACF20D3C9D5004FA0F5 /* ForgotController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotController.swift; sourceTree = "<group>"; };
+		8AFC35EF2153887D00E00D68 /* ChatUserListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatUserListVC.swift; sourceTree = "<group>"; };
 		8AFC65D720B1CF2E00865555 /* DesignableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignableView.swift; sourceTree = "<group>"; };
 		8AFC65D920B1D6DD00865555 /* ImageListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageListController.swift; sourceTree = "<group>"; };
 		8AFCE3EA20EDE4320016A9B6 /* LeadershipController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeadershipController.swift; sourceTree = "<group>"; };
@@ -436,6 +438,7 @@
 			isa = PBXGroup;
 			children = (
 				8A08AA1520A32F0000C3B6A8 /* ChatViewController.swift */,
+				8AFC35EF2153887D00E00D68 /* ChatUserListVC.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -479,6 +482,7 @@
 		8ABD69B821439CE0000E9C8D /* FireBase */ = {
 			isa = PBXGroup;
 			children = (
+				8AAD3861213AF88B00431457 /* GoogleService-Info.plist */,
 				8ABD69B921439D1D000E9C8D /* FBDatabase.swift */,
 			);
 			path = FireBase;
@@ -576,7 +580,6 @@
 			isa = PBXGroup;
 			children = (
 				8ABD69B821439CE0000E9C8D /* FireBase */,
-				8AAD3861213AF88B00431457 /* GoogleService-Info.plist */,
 				8AFDAF44211EA87100101D35 /* Activate */,
 				8A02218321117D12005EE791 /* AttachmentList */,
 				8A058E0F20F09BDE00DF0FD0 /* Comment */,
@@ -1022,6 +1025,7 @@
 				A9182488206CC4EC00B358D8 /* SharedData.swift in Sources */,
 				8A08AA1620A32F0000C3B6A8 /* ChatViewController.swift in Sources */,
 				8A599ADF21249B5800ECEC2B /* ChatRightCell.swift in Sources */,
+				8AFC35F02153887D00E00D68 /* ChatUserListVC.swift in Sources */,
 				A918248A206CC50500B358D8 /* AppConstant.swift in Sources */,
 				8AF6EE5E2122F7F400858C32 /* tableCell.swift in Sources */,
 				8AEB4DD920AE04240045DBD2 /* CommunicationDetailController.swift in Sources */,

@@ -54,4 +54,14 @@ class FBDatabase {
         }
         
     }
+    
+    func getAllUser() -> Void {
+        ref = Database.database().reference()
+        ref.child("users").observe(DataEventType.childAdded, with: { (snapshot) in
+            
+        }) { (error) in
+            debugPrint(error)
+        }
+        
+    }
 }
