@@ -59,6 +59,7 @@ class FBDatabase {
         ref = Database.database().reference()
         ref.child("users").observe(DataEventType.childAdded, with: { (snapshot) in
             
+            debugPrint(snapshot)
         }) { (error) in
             debugPrint(error)
         }

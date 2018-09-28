@@ -14,7 +14,10 @@ class ChatUserListVC: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        let fr = FBDatabase()
+        fr.getAllUser();
     }
+    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

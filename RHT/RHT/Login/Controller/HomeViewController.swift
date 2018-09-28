@@ -128,8 +128,11 @@ class HomeViewController: BaseViewController,UICollectionViewDataSource,UICollec
     // MARK: - ACTION
     @IBAction func ChatButton(_ sender: Any) {
         
-        let num =   self.storyboard?.instantiateViewController(withIdentifier: "ChatViewController") as! ChatViewController
+//        let num =   self.storyboard?.instantiateViewController(withIdentifier: "ChatViewController") as! ChatViewController
+//        self.navigationController?.pushViewController(num, animated: true)
+        let num =   self.storyboard?.instantiateViewController(withIdentifier: "ChatUserListVC") as! ChatUserListVC
         self.navigationController?.pushViewController(num, animated: true)
+
         
     }
     @objc func SettingSelectedAction(notification: Notification){
