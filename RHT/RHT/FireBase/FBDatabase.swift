@@ -55,11 +55,19 @@ class FBDatabase {
         
     }
     
-    func getAllUser() -> Void {
+    func getAllUser(tableView:UITableView) -> Void {
+        var users = [FirebaseUserList()]
         ref = Database.database().reference()
         ref.child("users").observe(DataEventType.childAdded, with: { (snapshot) in
-            
             debugPrint(snapshot)
+         
+            if let dictionarys = snapshot.value as? [String:AnyObject] {
+                  let user = FirebaseUserList()
+                user.setValuesForKeys(dictionarys)
+                users.append(user)
+                tableView.reloadData()
+               // debugPrint(user.name,user.email)
+            }
         }) { (error) in
             debugPrint(error)
         }

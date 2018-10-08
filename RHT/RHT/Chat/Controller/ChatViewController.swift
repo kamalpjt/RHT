@@ -8,6 +8,8 @@
 
 import UIKit
 import ApiAI
+import Firebase
+import FirebaseDatabase
 
 protocol UpdateCons {
     func update()
@@ -31,6 +33,8 @@ class ChatViewController: UIViewController,UITextViewDelegate,UITableViewDelegat
     var cell:ChatCell?
     var dataSource:ChatTblSource?
     var dataDelegate:ChatTblDelegate?
+    var chatSelectedUserUdid:String?
+    var refc: DatabaseReference!
     private let cellIdentifier = "ChatCell"
     private let cellIdentifierimage = "imagecell"
     private let cellIdentifiertable = "tableCell"
@@ -54,6 +58,7 @@ class ChatViewController: UIViewController,UITextViewDelegate,UITableViewDelegat
         
       
         setUpTextView()
+        getAllUser()
         // Do any additional setup after loading the view.
         
         
@@ -81,7 +86,17 @@ class ChatViewController: UIViewController,UITextViewDelegate,UITableViewDelegat
          NotificationCenter.default.removeObserver(self, name: Notification.Name("TableAction"), object: nil)
         NotificationCenter.default.removeObserver(self, name: Notification.Name("close"), object: nil)
     }
-    
+    func getAllUser() -> Void {
+        
+        refc = Database.database().reference()
+        refc.child("chat_rooms").child("624167ea-7c58-11e8-89ed-b551f2bf21b9_" + chatSelectedUserUdid!).observe(DataEventType.childAdded, with: { (snapshot) in
+            debugPrint(snapshot)
+            
+        }) { (error) in
+            debugPrint(error)
+        }
+    }
+        
     func setUpChatTbl() -> Void{
         cvChat.tableFooterView = UIView(frame: .zero)
         cvChat.separatorStyle = .none
@@ -99,6 +114,7 @@ class ChatViewController: UIViewController,UITextViewDelegate,UITableViewDelegat
         cvChat.reloadData()
       // CloseKeyboard(bool: true)
     }
+    
     func setUpTextView() -> Void{
         tvchatInput.textContainerInset = UIEdgeInsets.init(top: 5, left: 5, bottom: 5, right: 5)
         tvchatInput.textContainer.lineBreakMode = NSLineBreakMode.byWordWrapping
