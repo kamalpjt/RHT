@@ -217,6 +217,7 @@ class LoginViewController: BaseViewController,UITextFieldDelegate {
                         fr.addUserToFireBase()
                         if(saveSuccessful){
                             self.SetResidemenu()
+                            ShareData.sharedInstance.SaveValueInNSUserdefault(keyvalue: AppConstant.sharedInstance.CheckUserIsAlreayLogin, value: true as AnyObject)
                         }
                         
                     } catch  let jsonerror{

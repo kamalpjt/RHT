@@ -84,6 +84,7 @@
 		8AFED3F720B27EEE0094F1DA /* AddCommunicationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AFED3F620B27EEE0094F1DA /* AddCommunicationController.swift */; };
 		8AFED3F920B2ABC50094F1DA /* CustomText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AFED3F820B2ABC50094F1DA /* CustomText.swift */; };
 		8AFF1B3120C10795005ACCBD /* SharedAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AFF1B3020C10795005ACCBD /* SharedAlert.swift */; };
+		8AFFC2BA216D0A1B007EE4EA /* GetKeychainValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AFFC2B9216D0A1B007EE4EA /* GetKeychainValue.swift */; };
 		9C1C3FF06EF92C14D965D71D /* Pods_RHTUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 51EE2E4E70A6D36CD1271759 /* Pods_RHTUITests.framework */; };
 		A90BF65B2075F6AB007B8F2B /* RESideMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = A90BF65A2075F6AB007B8F2B /* RESideMenu.m */; };
 		A90BF65E2075F6D1007B8F2B /* UIViewController+RESideMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = A90BF65D2075F6D1007B8F2B /* UIViewController+RESideMenu.m */; };
@@ -213,6 +214,7 @@
 		8AFED3F620B27EEE0094F1DA /* AddCommunicationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCommunicationController.swift; sourceTree = "<group>"; };
 		8AFED3F820B2ABC50094F1DA /* CustomText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomText.swift; sourceTree = "<group>"; };
 		8AFF1B3020C10795005ACCBD /* SharedAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedAlert.swift; sourceTree = "<group>"; };
+		8AFFC2B9216D0A1B007EE4EA /* GetKeychainValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetKeychainValue.swift; sourceTree = "<group>"; };
 		A0B23696F8BA6542264D351A /* Pods_RHT.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RHT.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A90BF6592075F695007B8F2B /* RESideMenu.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RESideMenu.h; sourceTree = "<group>"; };
 		A90BF65A2075F6AB007B8F2B /* RESideMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RESideMenu.m; sourceTree = "<group>"; };
@@ -684,6 +686,7 @@
 				8A42CC6B20C0198300AC6AB7 /* StringConstant.swift */,
 				8AFF1B3020C10795005ACCBD /* SharedAlert.swift */,
 				8AF8743920D6AED500BBFC92 /* PickerControllerDelegate.swift */,
+				8AFFC2B9216D0A1B007EE4EA /* GetKeychainValue.swift */,
 			);
 			path = ShareClass;
 			sourceTree = "<group>";
@@ -1040,6 +1043,7 @@
 				8AD545D52125A54300609563 /* ChatController.swift in Sources */,
 				A90BF65B2075F6AB007B8F2B /* RESideMenu.m in Sources */,
 				A914484120700A960031AD30 /* HomeViewController.swift in Sources */,
+				8AFFC2BA216D0A1B007EE4EA /* GetKeychainValue.swift in Sources */,
 				A9A134DD2078A6A00093A78E /* SettingViewController.swift in Sources */,
 				A90BF65E2075F6D1007B8F2B /* UIViewController+RESideMenu.m in Sources */,
 				8A03583020ECBA1500D7F3A5 /* NewsModel.swift in Sources */,

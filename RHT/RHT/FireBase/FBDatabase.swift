@@ -20,7 +20,7 @@ class FBDatabase {
     
     func addUserToFireBase() -> Void{
         ref = Database.database().reference()
-        let userData = ["email":UserDetail.Instance.email!,"firebaseToken":"",
+        let userData = ["email":UserDetail.Instance.email!,"firebaseToken":ShareData.sharedInstance.GetUserDefaultValue(keyvalue: AppConstant.sharedInstance.FIREBASETOKEN),
                         "name":UserDetail.Instance.name!,"timestamp":0,
                         "uid":UserDetail.Instance.id!,"unreadCount":0] as [String : Any]
         let userefrence = self.ref.child("users").child(UserDetail.Instance.id!)
@@ -31,6 +31,21 @@ class FBDatabase {
                 debugPrint("FB user data added not sucessfully")
             }else{
                 debugPrint("FB user data added sucessfully")
+            }
+        }
+    }
+    func updateFirebaseToken() -> Void {
+        
+        ref = Database.database().reference()
+        let userData = ["firebaseToken":ShareData.sharedInstance.GetUserDefaultValue(keyvalue: AppConstant.sharedInstance.FIREBASETOKEN)] as [String : Any]
+        let userefrence = self.ref.child("users").child(UserDetail.Instance.id!)
+        userefrence.setValue(userData) { (err, rf) in
+            
+            if(err != nil)
+            {
+                debugPrint("FB token updated not sucessfully")
+            }else{
+                debugPrint("FB token updated added sucessfully")
             }
         }
     }

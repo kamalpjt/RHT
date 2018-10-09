@@ -85,6 +85,19 @@ class ShareData {
         view.layer.masksToBounds = true;
         //return view;
     }
+    func SaveValueInNSUserdefault(keyvalue:String,value:AnyObject) -> Void{
+
+        let userDefaults = UserDefaults.standard
+        userDefaults.setValue(value, forKey: keyvalue)
+        userDefaults.synchronize()
+    }
+    func GetUserDefaultValue(keyvalue:String) -> AnyObject {
+        let getdata = UserDefaults.standard
+        let value  = getdata.value(forKey: keyvalue)
+            // do something here when a highscore exists
+        return value as AnyObject
+    
+    }
     func SetCornerRadiusButton(view:UIButton ,radius:CGFloat) -> Void {
         view.layer.cornerRadius = radius;
         view.layer.masksToBounds = true;

@@ -20,6 +20,9 @@ class AppConstant  {
     let CONTENTTYPEPDF = "pdf"
     let LOCALPDFFOLDER = "/RHTPDf"
     let FIREBASEDATABASEURL = "https://rhtapp-4fcec.firebaseio.com/"
+    let CheckUserIsAlreayLogin = "login"
+    let FIREBASETOKEN = "FBToken"
+    
     //Chat constanct
     var chatItem = [ChatModel]()
     var userDetails = UserDetail.self

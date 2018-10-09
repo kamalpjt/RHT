@@ -81,15 +81,30 @@ class AppDelegate: UIResponder, UIApplicationDelegate ,MessagingDelegate,UNUserN
     }
     func showLaunchScreen() -> UIViewController {
         var storyboard:UIStoryboard ;
+        var rootViewController:UIViewController;
         if ShareData.isIpad(){
-             storyboard = UIStoryboard.init(name: "Loginipad", bundle: Bundle.main)
+            storyboard = UIStoryboard.init(name: "Loginipad", bundle: Bundle.main)
         }else{
             storyboard = UIStoryboard.init(name: "Login", bundle: Bundle.main)
         }
-    
-        let rootViewController = storyboard.instantiateViewController(withIdentifier: "LoginViewController")
-         let navController = UINavigationController(rootViewController: rootViewController)
-        return navController;
+        let checklogin = ShareData.sharedInstance.GetUserDefaultValue(keyvalue: AppConstant.sharedInstance.CheckUserIsAlreayLogin)
+        if  checklogin.boolValue  != nil && checklogin.boolValue  == true{
+            
+           // rootViewController = storyboard.instantiateViewController(withIdentifier: "HomeViewController")
+            
+            let VC1 = storyboard.instantiateViewController(withIdentifier: "HomeViewController") as! HomeViewController
+            let navi = UINavigationController.init(rootViewController: VC1)
+            let  leftmenu = storyboard.instantiateViewController(withIdentifier: "SettingViewController") as! SettingViewController
+            let navi2 = UINavigationController.init(rootViewController: leftmenu)
+            rootViewController = RESideMenu.init(contentViewController: navi, leftMenuViewController: navi2, rightMenuViewController: nil)
+         
+            return rootViewController
+        }else{
+             rootViewController = storyboard.instantiateViewController(withIdentifier: "LoginViewController")
+            let navController = UINavigationController(rootViewController: rootViewController)
+            return navController;
+        }
+        
     }
     func setNavigationBar() -> Void {
         UINavigationBar.appearance().tintColor = UIColor.white;
@@ -238,8 +253,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate ,MessagingDelegate,UNUserN
        
         let dataDict:[String: String] = ["token": fcmToken]
         NotificationCenter.default.post(name: Notification.Name("FCMToken"), object: nil, userInfo: dataDict)
+        ShareData.sharedInstance.SaveValueInNSUserdefault(keyvalue: AppConstant.sharedInstance.FIREBASETOKEN, value: fcmToken as AnyObject )
         // TODO: If necessary send token to application server.
         // Note: This callback is fired at each app startup and whenever a new token is generated.
+        let checklogin = ShareData.sharedInstance.GetUserDefaultValue(keyvalue: AppConstant.sharedInstance.CheckUserIsAlreayLogin)
+        if  checklogin.boolValue  != nil && checklogin.boolValue  == true{
+            GetKeychainValue.Instance.getUserDataFromKeyChain()
+            let fr = FBDatabase()
+            fr.addUserToFireBase()
+            
+        }
     }
     func messaging(_ messaging: Messaging, didReceive remoteMessage: MessagingRemoteMessage) {
         
