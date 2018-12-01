@@ -1014,14 +1014,14 @@
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SeS-wC-BMb">
-                                                    <rect key="frame" x="70" y="25" width="166" height="17"/>
+                                                    <rect key="frame" x="70" y="25" width="166" height="12"/>
                                                     <color key="backgroundColor" red="0.18039215689999999" green="0.38823529410000002" blue="0.81176470590000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0RW-NF-h8N">
-                                                    <rect key="frame" x="253" y="24" width="25" height="21"/>
+                                                    <rect key="frame" x="253" y="8" width="25" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="21" id="CFV-vA-mKk"/>
                                                         <constraint firstAttribute="width" constant="25" id="d4J-bd-rjd"/>

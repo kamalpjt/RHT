@@ -130,8 +130,14 @@ class HomeViewController: BaseViewController,UICollectionViewDataSource,UICollec
         
 //        let num =   self.storyboard?.instantiateViewController(withIdentifier: "ChatViewController") as! ChatViewController
 //        self.navigationController?.pushViewController(num, animated: true)
-        let num =   self.storyboard?.instantiateViewController(withIdentifier: "ChatUserListVC") as! ChatUserListVC
-        self.navigationController?.pushViewController(num, animated: true)
+        if UserDetail.Instance.genPostAdmin == 1 {
+            let num =   self.storyboard?.instantiateViewController(withIdentifier: "ChatUserListVC") as! ChatUserListVC
+            self.navigationController?.pushViewController(num, animated: true)
+        }else{
+            let num =   self.storyboard?.instantiateViewController(withIdentifier: "ChatViewController") as! ChatViewController
+            self.navigationController?.pushViewController(num, animated: true)
+        }
+       
 
         
     }

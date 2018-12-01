@@ -10,7 +10,7 @@ import UIKit
 import ApiAI
 import Firebase
 import FirebaseDatabase
-
+import Reachability
 protocol UpdateCons {
     func update()
 }
@@ -26,6 +26,7 @@ class ChatViewController: UIViewController,UITextViewDelegate,UITableViewDelegat
     @IBOutlet weak var cvChat: UITableView!
     @IBOutlet weak var VContainer: UIView!
     
+    let reachability = Reachability()
     var delegate: UpdateCons?
     var frameheight:CGFloat?
     var frameheightKeyboard:Int = 0;
@@ -39,6 +40,10 @@ class ChatViewController: UIViewController,UITextViewDelegate,UITableViewDelegat
     private let cellIdentifierimage = "imagecell"
     private let cellIdentifiertable = "tableCell"
     private let cellIdentifierright  = "ChatRightCell"
+   
+    
+    let firebase = FBDatabase()
+    //let fallBackEvent = false;
     //  var chatItem = [ChatModel]()
     
     override func viewDidLoad() {
@@ -58,16 +63,20 @@ class ChatViewController: UIViewController,UITextViewDelegate,UITableViewDelegat
         
       
         setUpTextView()
-        getAllUser()
+        
+
         // Do any additional setup after loading the view.
         
         
     }
     override func viewWillAppear(_ animated: Bool) {
         //AddKeyboardObserver()
+        if  reachability?.connection != Reachability.Connection.none{
+            getAllUser()
+        }
         if   AppConstant.sharedInstance.chatItem.count == 0{
-            let chat = ChatModel.init(chatMessage: "Hi", userName: UserDetail.Instance.name!, IsSender: true, date:ShareData.sharedInstance.GetCurrentDateAndTime(),imageUrl: "" , mType: MessageType.text,mtextArray: [],mHeadersText: "")
-            AppConstant.sharedInstance.chatItem.append(chat)
+//            let chat = ChatModel.init(chatMessage: "Hi", userName: UserDetail.Instance.name!, IsSender: true, date:ShareData.sharedInstance.GetCurrentDateAndTime(),imageUrl: "" , mType: MessageType.text,mtextArray: [],mHeadersText: "")
+//            AppConstant.sharedInstance.chatItem.append(chat)
              setUpChatTbl()
         }else{
              setUpChatTbl()
@@ -82,18 +91,43 @@ class ChatViewController: UIViewController,UITextViewDelegate,UITableViewDelegat
         AddKeyboardObserver()
     }
     override func viewWillDisappear(_ animated: Bool) {
-        RemoveKeyboardObserver()
+          //view.endEditing(true)
+       
          NotificationCenter.default.removeObserver(self, name: Notification.Name("TableAction"), object: nil)
-        NotificationCenter.default.removeObserver(self, name: Notification.Name("close"), object: nil)
+         NotificationCenter.default.removeObserver(self, name: Notification.Name("close"), object: nil)
+         RemoveKeyboardObserver()
     }
     func getAllUser() -> Void {
-        
+        var userIdFormat = String()
+        SVProgressHUD.show()
         refc = Database.database().reference()
-        refc.child("chat_rooms").child("624167ea-7c58-11e8-89ed-b551f2bf21b9_" + chatSelectedUserUdid!).observe(DataEventType.childAdded, with: { (snapshot) in
-            debugPrint(snapshot)
+         if UserDetail.Instance.genPostAdmin == 1 {
+            userIdFormat = "624167ea-7c58-11e8-89ed-b551f2bf21b9_" + chatSelectedUserUdid!
+         }else{
+            userIdFormat = "624167ea-7c58-11e8-89ed-b551f2bf21b9_" + UserDetail.Instance.id!
+        }
+        refc.child("chat_rooms").child(userIdFormat).observe(DataEventType.childAdded, with: { (snapshot) in
+          //  debugPrint(snapshot)
+            if let dictionarys = snapshot.value as? [String:AnyObject] {
+                let user = FireBaseMessageList()
+                user.setValuesForKeys(dictionarys)
+                 debugPrint(user.IsSender())
+                debugPrint(user.date())
+                 debugPrint(user.textArray())
+                debugPrint(user.message!)
+                let chat = ChatModel.init(chatMessage:user.message! , userName: user.userName(), IsSender: user.IsSender(), date:user.date(),imageUrl: "" , mType: user.type(),mtextArray: user.textArray(),mHeadersText: user.mutipleHeader())
+                AppConstant.sharedInstance.chatItem.append(chat)
+                DispatchQueue.main.async {
+                    self.dataSource?.chatItem =   AppConstant.sharedInstance.chatItem
+                    self.dataDelegate?.chatItem = AppConstant.sharedInstance.chatItem
+                    self.cvChat.reloadData()
+                    SVProgressHUD.dismiss()
+                }
+            }
             
         }) { (error) in
             debugPrint(error)
+            SVProgressHUD.show()
         }
     }
         
@@ -209,11 +243,11 @@ class ChatViewController: UIViewController,UITextViewDelegate,UITableViewDelegat
             self.view.layoutIfNeeded()
 
         }
-        if(AppConstant.sharedInstance.chatItem.count>0)
-        {
-            let index = IndexPath(item: AppConstant.sharedInstance.chatItem.count-1, section: 0)
-            cvChat.scrollToRow(at: index, at: UITableViewScrollPosition.top, animated: true)
-        }
+//        if(AppConstant.sharedInstance.chatItem.count>0)
+//        {
+//            let index = IndexPath(item: AppConstant.sharedInstance.chatItem.count-1, section: 0)
+//            cvChat.scrollToRow(at: index, at: UITableViewScrollPosition.none, animated: true)
+//        }
     }
 }
     
@@ -302,7 +336,13 @@ class ChatViewController: UIViewController,UITextViewDelegate,UITableViewDelegat
             self.cvChat.insertRows(at: [index], with: UITableViewRowAnimation.fade)
             self.cvChat.scrollToRow(at: index, at: UITableViewScrollPosition.bottom, animated: false)
         }
-        ChatResponse(chatText:text!)
+        
+        if text == "Yes"{
+           AppConstant.sharedInstance.connectToAgent = true
+        }else{
+            AppConstant.sharedInstance.connectToAgent = false
+        }
+        ChatBotResponse(chatText:text!)
     }
     //MARK:-ButtonAction
     @IBAction func SendButtonAction(_ sender: Any) {
@@ -317,15 +357,27 @@ class ChatViewController: UIViewController,UITextViewDelegate,UITableViewDelegat
                 self.cvChat.insertRows(at: [index], with: UITableViewRowAnimation.fade)
                 self.cvChat.scrollToRow(at: index, at: UITableViewScrollPosition.bottom, animated: false)
             }
-            let fr = FBDatabase()
-            fr.addMessageToFireBase(agentMenu: "", message: tvchatInput.text, messageType: "Text",
-                                    receiver: "staff1 a", receiverUid: "624167ea-7c58-11e8-89ed-b551f2bf21b9", sender: UserDetail.Instance.name!, senderUid: UserDetail.Instance.id!,
-                                    timestamp:String(Date().toMillis()))
-            ChatResponse(chatText: tvchatInput.text.trimmingCharacters(in: .whitespacesAndNewlines))
+          
+//            if chatBotFallBackEvent == true{
+//                fr.addMessageToFireBase(agentMenu: "", message: tvchatInput.text, messageType: "Text",
+//                                        receiver: "staff1 a", receiverUid: "624167ea-7c58-11e8-89ed-b551f2bf21b9", sender: UserDetail.Instance.name!, senderUid: UserDetail.Instance.id!,
+//                                        timestamp:Date().toMillis())
+//            }else{
+//                fr.addMessageToFireBase(agentMenu: "", message: tvchatInput.text, messageType: "Text",
+//                                        receiver: "staff1 a", receiverUid: "624167ea-7c58-11e8-89ed-b551f2bf21b9", sender: UserDetail.Instance.name!, senderUid: UserDetail.Instance.id!,
+//                                        timestamp:Date().toMillis())
+//                
+//            }
+            if AppConstant.sharedInstance.connectToAgent == true {
+                
+            }else{
+                ChatBotResponse(chatText: tvchatInput.text.trimmingCharacters(in: .whitespacesAndNewlines))
+            }
+            
         }
         
     }
-    func ChatResponse (chatText:String){
+    func ChatBotResponse (chatText:String){
         let  request = ApiAI.shared().textRequest()
         request?.query = [chatText]
 //        request?.setCompletionBlockSuccess({ (request, response) in
@@ -343,28 +395,44 @@ class ChatViewController: UIViewController,UITextViewDelegate,UITableViewDelegat
                 let responemessage = response.result.fulfillment.messages[0]["speech"]!
                 let chat = ChatModel.init(chatMessage: responemessage as! String, userName: "Agent", IsSender: true, date:ShareData.sharedInstance.GetCurrentDateAndTime(),imageUrl: "" , mType: MessageType.text, mtextArray: [],mHeadersText: "")
                 AppConstant.sharedInstance.chatItem.append(chat)
+                //Send message
+//                self.firebase.addMessageToFireBase(agentMenu:"" , message: responemessage as! String, messageType: "Text",
+//                                        receiver: "staff1 a", receiverUid: "624167ea-7c58-11e8-89ed-b551f2bf21b9", sender: "Agent", senderUid: UserDetail.Instance.id!,
+//                                        timestamp:Date().toMillis())
+                
                 UIView.performWithoutAnimation {
                     self.dataSource?.chatItem =   AppConstant.sharedInstance.chatItem
                     self.dataDelegate?.chatItem = AppConstant.sharedInstance.chatItem
                     let index = IndexPath(item: AppConstant.sharedInstance.chatItem.count-1, section: 0)
                     self.cvChat.insertRows(at: [index], with: UITableViewRowAnimation.automatic)
-                    self.cvChat.scrollToRow(at: index, at: UITableViewScrollPosition.bottom, animated: false)
+                    self.cvChat.scrollToRow(at: index, at: UITableViewScrollPosition.top, animated: false)
                 }
                 print(response.result)
+                
             }else{
-                let responemessage1 = response.result.fulfillment.messages[1]["textToSpeech"]! as! String
-                debugPrint(responemessage1)
-                let responemessage2 = response.result.fulfillment.messages[2]["suggestions"]!
-                debugPrint(responemessage2)
-                let chat = ChatModel.init(chatMessage: "", userName: "Agent", IsSender: true, date:ShareData.sharedInstance.GetCurrentDateAndTime(),imageUrl: "" , mType: MessageType.multiple, mtextArray: responemessage2 as! [[String : AnyObject]],mHeadersText:responemessage1 )
+                AppConstant.sharedInstance.chatBotFallBackEvent = true;
+                let responemessage = response.result.fulfillment.messages[1]["textToSpeech"]! as! String
+                debugPrint(responemessage)
+                let agentMenuarray = response.result.fulfillment.messages[2]["suggestions"]!
+                debugPrint(agentMenuarray)
+                var dict = [[String:AnyObject]] ()
+                for message1 in agentMenuarray as! [[String : AnyObject]] {
+                    
+                    for (_ ,value) in message1 {
+                        dict.append(["displayText" : value])
+                    }
+                }
+                let chat = ChatModel.init(chatMessage: "", userName: "Agent", IsSender: true, date:ShareData.sharedInstance.GetCurrentDateAndTime(),imageUrl: "" , mType: MessageType.multiple, mtextArray: dict ,mHeadersText:responemessage )
                 AppConstant.sharedInstance.chatItem.append(chat)
                 UIView.performWithoutAnimation {
                     self.dataSource?.chatItem =   AppConstant.sharedInstance.chatItem
                     self.dataDelegate?.chatItem = AppConstant.sharedInstance.chatItem
                     let index = IndexPath(item: AppConstant.sharedInstance.chatItem.count-1, section: 0)
                     self.cvChat.insertRows(at: [index], with: UITableViewRowAnimation.automatic)
-                    self.cvChat.scrollToRow(at: index, at: UITableViewScrollPosition.bottom, animated: false)
+                    self.cvChat.scrollToRow(at: index, at: UITableViewScrollPosition.top, animated: false)
                 }
+                
+                self.AgentMenus(dataValue:dict,  message: responemessage)
             }
             
         }, failure: { (request, error) in
@@ -377,6 +445,25 @@ class ChatViewController: UIViewController,UITextViewDelegate,UITableViewDelegat
         cvChat.heightAnchor.constraint(equalTo: VContainer.heightAnchor, multiplier:getheight / VContainer.frame.height , constant: 0).isActive=true
         vBottomHeight.constant =   0.0;
         frameheightKeyboard = 0
+    }
+    func AgentMenus(dataValue:[[String : AnyObject]],message:String) -> Void {
+       
+        do {
+           
+            let customDict:[[String : AnyObject]] = dataValue
+            let jsonData = try JSONSerialization.data(withJSONObject: customDict, options: [])
+            
+            //Convert back to string. Usually only do this for debugging
+            if let JSONString = String(data: jsonData, encoding: String.Encoding.utf8) {
+                
+//                self.firebase.addMessageToFireBase(agentMenu:JSONString, message: message , messageType: "Text",
+//                                             receiver: "staff1 a", receiverUid: "624167ea-7c58-11e8-89ed-b551f2bf21b9", sender: "Agent", senderUid: UserDetail.Instance.id!,
+//                                             timestamp:Date().toMillis())
+            }
+            
+        }catch  {
+            
+        }
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

@@ -25,6 +25,8 @@ class AppConstant  {
     
     //Chat constanct
     var chatItem = [ChatModel]()
+    var chatBotFallBackEvent:Bool?
+    var connectToAgent:Bool?
     var userDetails = UserDetail.self
     //static var appConstant = AppConstant()
     let gooleplusid = "419503471544-0d4f7g754k1nol46catr24u90sjgrq4b.apps.googleusercontent.com"

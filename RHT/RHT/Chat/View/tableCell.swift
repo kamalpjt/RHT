@@ -64,10 +64,11 @@ class tableCell: UITableViewCell,UITableViewDataSource,UITableViewDelegate {
     {
         //debugPrint()
         textArray = chatitem.textArray
-        let num = textArray.count * 44 + 44 + 5
-        let size = ShareData.sharedInstance.GetchatStringCGSize(stringValue:chatitem.multipleHeaderText! , font: UIFont.systemFont(ofSize: 14, weight: .semibold), width: Int(ShareData.GetPhoneCurrentScreenWidth() - 100))
+       
+        let size = ShareData.sharedInstance.GetchatStringCGSize(stringValue:chatitem.multipleHeaderText! , font: UIFont.systemFont(ofSize: 14, weight: .semibold), width: Int(ShareData.GetPhoneCurrentScreenWidth() - 110))
         headerHeight = Int(size.height)
         headerText = chatitem.multipleHeaderText
+         let num = textArray.count * 44 + headerHeight! + 15
         debugPrint(num)
         lblView.frame  = CGRect(x: 5, y: 5, width: Int(ShareData.GetPhoneCurrentScreenWidth() - 100), height: num)
         ShareData.sharedInstance.DrawBorder(view: lblView, color: UIColor.lightGray)
@@ -100,16 +101,17 @@ class tableCell: UITableViewCell,UITableViewDataSource,UITableViewDelegate {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         
         let view = UIView()
-        view.frame = CGRect(x: 0, y: 0, width: Int(ShareData.GetPhoneCurrentScreenWidth() - 100), height: headerHeight!+20)
+        view.frame = CGRect(x: 0, y: 0, width: Int(ShareData.GetPhoneCurrentScreenWidth() - 110), height: headerHeight!+20)
         view.backgroundColor = UIColor.lightGray
         let lblheader = UILabel()
         lblheader.backgroundColor = UIColor.clear
-        debugPrint(headerHeight!)
-        lblheader.frame = CGRect(x: 5, y: 0, width: Int(ShareData.GetPhoneCurrentScreenWidth() - 110), height: 53)
+        debugPrint("headerHeight:"+String(headerHeight!))
+        lblheader.frame = CGRect(x: 5, y: 0, width: Int(ShareData.GetPhoneCurrentScreenWidth() - 110), height: headerHeight!+20)
         lblheader.font = UIFont.systemFont(ofSize: 14, weight: UIFont.Weight.semibold)
         lblheader.numberOfLines = 0
         lblheader.lineBreakMode = .byWordWrapping
         lblheader.text = headerText!
+         debugPrint("headerHeight:"+headerText!)
         lblheader.textAlignment = .center
         view.addSubview(lblheader)
         return view
@@ -127,7 +129,7 @@ class tableCell: UITableViewCell,UITableViewDataSource,UITableViewDelegate {
         }()
         let item = textArray[indexPath.row]
         cell.selectionStyle = .none
-        cell.textLabel?.text =  item["title"] as? String
+        cell.textLabel?.text =  item["displayText"] as? String
         cell.textLabel?.textColor = UIColor.blue
         cell.textLabel?.textAlignment = .center
         cell.textLabel?.font = UIFont.systemFont(ofSize: 14, weight: .regular)
@@ -137,6 +139,6 @@ class tableCell: UITableViewCell,UITableViewDataSource,UITableViewDelegate {
         
         debugPrint(indexPath.row)
          let item = textArray[indexPath.row]
-        NotificationCenter.default.post(name: Notification.Name("TableAction"), object: nil, userInfo: ["Sender": item["title"] ?? ""])
+        NotificationCenter.default.post(name: Notification.Name("TableAction"), object: nil, userInfo: ["Sender": item["displayText"] ?? ""])
     }
 }

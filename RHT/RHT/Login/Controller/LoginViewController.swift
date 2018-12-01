@@ -37,10 +37,10 @@ class LoginViewController: BaseViewController,UITextFieldDelegate {
         super.viewDidLoad()
        // vEmailmultiplier.constant = 0
 //        vEmail.heightAnchor.constraint(equalTo: vLogin.heightAnchor, multiplier: 0.1/vLogin.frame.height , constant: 0).isActive=true
-        //txtPassowrd.text = "12345678"
-       // txtemail.text = "rht@gmail.com"
-        txtPassowrd.text = "staff@123"
-        txtemail.text = "sam1@gmail.com"
+        //txtPassowrd.text = "staff@123"
+       // txtemail.text = "sam1@gmail.com"
+        txtPassowrd.text = "pass@123"
+        txtemail.text = "cus2@gg.com"
         SetUpView()
         SetTextFieldImage()
         CloseKeyboard(bool: true);

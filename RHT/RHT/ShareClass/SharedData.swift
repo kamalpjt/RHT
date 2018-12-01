@@ -179,6 +179,14 @@ class ShareData {
         let dateString = formater.string(from: date)
         return dateString
     }
+    func GetCurrentDate() -> String{
+        let formater = DateFormatter()
+        formater.dateFormat = "dd-MM-yyyy h:mm a"
+        formater.locale = Locale(identifier: "en_US_POSIX")
+        let date = Date()
+        let dateString = formater.string(from: date)
+        return dateString
+    }
     func ChangeUTCDate(utcString:Date) ->String{
         //convert UTC formate to nsdate
         //        let  dateformaterr = DateFormatter()

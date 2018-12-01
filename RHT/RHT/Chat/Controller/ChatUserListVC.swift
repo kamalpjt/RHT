@@ -10,7 +10,7 @@ import UIKit
 import Firebase
 import FirebaseDatabase
 
-class ChatUserListVC: UIViewController,UITableViewDataSource,UITableViewDelegate {
+class ChatUserListVC: BaseViewController,UITableViewDataSource,UITableViewDelegate {
    
     @IBOutlet weak var tblUserList: UITableView!
      var users = [FirebaseUserList()]
@@ -23,7 +23,10 @@ class ChatUserListVC: UIViewController,UITableViewDataSource,UITableViewDelegate
        // tblUserList.delegate = self
        // tblUserList.dataSource = self
         users.removeAll()
-        getAllUser();
+        if checkInternetIsAvailable() {
+            getAllUser();
+        }
+        
        
     }
     
@@ -37,24 +40,48 @@ class ChatUserListVC: UIViewController,UITableViewDataSource,UITableViewDelegate
         ref = Database.database().reference()
         ref.child("users").observe(DataEventType.childAdded, with: { (snapshot) in
             debugPrint(snapshot)
-            
+
+           
             if let dictionarys = snapshot.value as? [String:AnyObject] {
                 let user = FirebaseUserList()
                 user.setValuesForKeys(dictionarys)
-               
-               // if user.name! != nil{
-                    self.users.append(user)
-                 debugPrint("name:"+(user.name!))
+
+                 //if UserDetail.Instance.id == 
+                // if user.name! != nil{
+                self.users.append(user)
+                debugPrint("name:"+(user.name!))
                 debugPrint("count:"+String(self.users.count))
-                    DispatchQueue.main.async {
-                        self.tblUserList.reloadData()
-                  //  }
+                DispatchQueue.main.async {
+                    self.tblUserList.reloadData()
+                    //  }
                 }
                 // debugPrint(user.name,user.email)
             }
         }) { (error) in
             debugPrint(error)
         }
+       
+//        ref.child("users").observeSingleEvent(of: DataEventType.childAdded) { (snapshot) in
+//
+//            debugPrint(snapshot)
+//
+//            if let dictionarys = snapshot.value as? [String:AnyObject] {
+//                let user = FirebaseUserList()
+//                user.setValuesForKeys(dictionarys)
+//
+//                // if user.name! != nil{
+//                self.users.append(user)
+//                debugPrint("name:"+(user.name!))
+//                debugPrint("count:"+String(self.users.count))
+//                DispatchQueue.main.async {
+//                    self.tblUserList.reloadData()
+//                    //  }
+//                }
+//                // debugPrint(user.name,user.email)
+//            }
+//        }
+        
+        
         
     }
     

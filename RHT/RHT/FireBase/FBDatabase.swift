@@ -51,13 +51,13 @@ class FBDatabase {
     }
     
     func addMessageToFireBase(agentMenu:String,message:String,messageType:String,receiver:String,receiverUid:String,sender:String,
-                              senderUid:String,timestamp:String) -> Void {
+                              senderUid:String,timestamp:Int64) -> Void {
         ref = Database.database().reference()
-        let userefrence = self.ref.child("chat_rooms").child("624167ea-7c58-11e8-89ed-b551f2bf21b9_"+UserDetail.Instance.id!).child(timestamp)
+        let userefrence = self.ref.child("chat_rooms").child(UserDetail.Instance.id!+"-"+"624167ea-7c58-11e8-89ed-b551f2bf21b9").child(String(timestamp))
         let messageData = ["agentMenu":agentMenu,"message":message,
                            "messageType":messageType,"receiver":receiver,
                            "receiverUid":receiverUid,"sender":sender,
-                           "senderUid":senderUid,"timestamp":timestamp]
+                           "senderUid":senderUid,"timestamp":timestamp] as [String : Any]
         userefrence.updateChildValues(messageData) { (err, rf) in
             
             if(err != nil)
